@@ -262,7 +262,7 @@ const NewCase = ({ setShowCase }) => {
         className="add-facility-form"
       >
         <div className="form-header">
-          <h1>New Case Record</h1>
+          <h1>Add New Case</h1>
           <p onClick={() => setShowCase(false)}>
             <HiX />
           </p>
