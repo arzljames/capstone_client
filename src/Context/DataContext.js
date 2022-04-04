@@ -3,7 +3,7 @@
 
 import { createContext, useState, useEffect } from "react";
 import api from "../API/Api";
-import io from "socket.io-client";
+import axios from "axios";
 
 const DataContext = createContext({});
 
@@ -27,6 +27,9 @@ export const DataProvider = ({ children }) => {
 
   const fetchLogin = async () => {
     let response = await api.get("/api/auth/login");
+
+
+
     if (response.data.loggedIn) {
       setUser(response.data);
     } else {
