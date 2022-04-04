@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let serverUrl = 'http://localhost:3001'
+let serverUrl = 'https://zcmc.herokuapp.com/'
 
 const api = axios.create({
     baseURL: serverUrl,
