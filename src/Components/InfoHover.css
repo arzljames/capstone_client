@@ -1,0 +1,13 @@
+.info-hover {
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: -300%;
+  font-size: 12px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 300;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+}

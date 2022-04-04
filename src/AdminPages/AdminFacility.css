@@ -1,0 +1,283 @@
+.above-table {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #ebebeb;
+}
+
+.above-table input {
+  background: #e7e7e7;
+  border: none;
+  outline: none;
+  height: 30px;
+  width: 100%;
+  max-width: 300px;
+  padding: 0px 10px;
+  border-radius: 2px;
+  transition: 0.2s ease-in-out;
+  border: 1px solid #dddddd;
+}
+
+.above-table input:focus {
+  background: #fff;
+  transition: 0.2s ease-in-out;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.above-table-right {
+  display: flex;
+}
+
+.above-table-right button {
+  outline: none;
+  padding: 0px 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  height: 30px;
+  border: none;
+}
+
+.admin-subheading button.add-fac-btn {
+  outline: none;
+  padding: 0px 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  height: 30px;
+  border: none;
+  background: #058e46;
+  color: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.admin-subheading button.add-fac-btn p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+  color: #fff;
+  margin-top: 0px;
+}
+
+.admin-subheading button.add-fac-btn:hover {
+  background: #057a3c;
+  color: #fff;
+  transition: 0.1s ease-in-out;
+}
+
+.above-table-right button.fac-btns {
+  color: #808080;
+  background: transparent;
+}
+
+.above-table-right button.fac-btns p {
+  color: #057a3c;
+}
+
+.above-table-right button p {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+.table-container {
+  height: auto;
+  width: 100%;
+  overflow-x: scroll;
+  border-radius: 4px;
+  min-width: 500px;
+}
+
+.table {
+  width: 100%;
+  min-width: 800px;
+  height: auto;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0px 0px;
+  min-height: 500px;
+  border: 1px solid #ebebeb;
+  position: relative;
+}
+
+.table-header {
+  width: 100%;
+  height: 50px;
+  background: #fff;
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #272727;
+  border-left: 2px solid #05138e00;
+  font-size: 12px;
+}
+
+.table-pagination {
+  width: 100%;
+  height: 50px;
+  background: #fff;
+  display: flex;
+  border-top: 1px solid #ececec;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.fac-no {
+  width: 35px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.fac-doctors,
+.fac-spec {
+  width: 12.5%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.fac-name {
+  width: 35%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.fac-body-name p {
+  margin-right: 10px;
+  color: #06753a;
+}
+
+.fac-add {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  padding-left: 20px;
+}
+
+.fac-body-no {
+  width: 35px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fac-body-action p {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid #d3d3d300;
+}
+
+.fac-body-action p:hover {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background: rgb(233, 233, 233);
+  border: 1px solid #d3d3d3;
+}
+
+.fac-body-doctors,
+.fac-body-spec {
+  width: 12.5%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fac-body-name {
+  width: 35%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.fac-body-add {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.table-body {
+  width: 100%;
+  height: 40px;
+  background: #fff;
+  display: flex;
+  font-size: 14px;
+  color: #272727;
+  justify-content: space-between;
+  cursor: pointer;
+  border-left: 2px solid #05138e00;
+  border-bottom: 1px solid #e0e0e0
+}
+
+.table-body:hover,
+.table-body-2:hover {
+  background: #eeeef1;
+  border-left: 2px solid #92e3a9;
+}
+
+.table-body-active {
+  width: 100%;
+  height: 40px;
+  background: #eeeef1;
+  display: flex;
+  font-size: 14px;
+  color: #272727;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: 400;
+  border-left: 2px solid #92e3a9;
+  border-bottom: 1px solid #e0e0e0
+}
+
+.table-body-2 {
+  width: 100%;
+  height: 40px;
+  background: #f7f8fc;
+  display: flex;
+  font-size: 14px;
+  color: #272727;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: 400;
+  border-left: 2px solid #05138e00;
+  border-bottom: 1px solid #e0e0e0
+}

@@ -1,0 +1,35 @@
+.form-message-prompt {
+  width: 100%;
+  height: auto;
+  background: rgb(255, 104, 104);
+  padding: 15px;
+  margin-bottom: 24px;
+  border-radius: 3px;
+  position: relative;
+}
+
+.form-message-prompt p {
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+}
+
+.form-message-prompt div {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.1s ease-in-out;
+}
+
+.form-message-prompt div:hover {
+  background: rgba(0, 0, 0, 0.1);
+  transition: 0.1s ease-in-out;
+}

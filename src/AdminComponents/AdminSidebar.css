@@ -1,0 +1,90 @@
+.admin-sidebar {
+  width: 70px;
+  height: 100%;
+  background: #111727;
+  padding: 50px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+/* width */
+.admin-sidebar::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+.admin-sidebar::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+
+/* Handle */
+.admin-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(197, 197, 197, 0);
+}
+
+/* Handle on hover */
+.admin-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(163, 163, 163, 0);
+}
+
+.icon-container {
+  height: 70px;
+  min-height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.icon-container-active {
+  height: 70px;
+  min-height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  background: #1f2942;
+  color: #fff;
+}
+
+.icon-container:hover {
+  background: #1f2942;
+  transition: 0.1s ease-in-out;
+}
+.icon-container p {
+  font-size: 11px;
+  color: #506188;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.icon-container-active p {
+  font-size: 11px;
+  color: rgb(221, 221, 221);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.icon-container-active .icon {
+  color: rgb(221, 221, 221);
+  font-size: 18px;
+}
+
+.icon-container .icon {
+  color: #506188;
+  font-size: 18px;
+}
+
+.icon-container .icon {
+  color: #506188;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 576px) {
+}

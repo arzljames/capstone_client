@@ -1,0 +1,344 @@
+.admin-header {
+  width: 100%;
+  height: 50px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0px;
+  padding: 0px 20px;
+  background: #fff;
+  z-index: 2;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.admin-header-brand {
+  display: flex;
+  align-items: center;
+}
+
+.admin-header h1 {
+  color: #0f531e;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 576px) {
+  .admin-header {
+    padding: 0 15px;
+  }
+
+  .admin-searchbar-container {
+    flex: 1;
+    padding-right: 20px;
+  }
+}
+
+/* Admin Profile Header  */
+
+.admin-profile-header {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  z-index: 3;
+}
+
+.admin-profile-name {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  padding-right: 8px;
+  transition: 0.1s ease-in-out;
+  border-radius: 100px;
+}
+
+.admin-profile-name-active {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  padding-right: 8px;
+  transition: 0.1s ease-in-out;
+  border-radius: 100px;
+  background: rgb(223, 223, 223);
+  cursor: pointer;
+}
+
+.admin-profile-name:hover {
+  background: rgb(223, 223, 223);
+  transition: 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.admin-profile-name-active h5 {
+  font-size: 14px;
+  color: #0f531e;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-left: 10px;
+}
+
+.admin-profile-name h5 {
+  font-size: 14px;
+  color: #272727;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-left: 10px;
+}
+
+.admin-profile-picture {
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  position: relative;
+  border: 1px solid #d3d3d3;
+}
+
+.active-status-online {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #4dd965;
+  bottom: -5%;
+  right: -5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.active-status-busy {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff2626;
+  bottom: -5%;
+  right: -5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.active-status-offline {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #c9c9c9;
+  bottom: -5%;
+  right: -5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: #272727;
+  border: 1px solid #fff;
+}
+
+.profile-settings {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: 0.1s ease-in-out;
+  margin-left: 10px;
+  background: #eee;
+}
+
+.profile-settings-active {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: 0.1s ease-in-out;
+  background: rgb(223, 223, 223);
+  margin-left: 10px;
+}
+
+.profile-settings p {
+  color: #272727;
+  margin: 0px;
+  padding: 0px;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.profile-settings-active p {
+  color: #0f531e;
+  margin: 0px;
+  padding: 0px;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.profile-settings:hover {
+  background: rgb(223, 223, 223);
+  transition: 0.1s ease-in-out;
+}
+
+.profile-container-dropdown {
+  position: absolute;
+  right: 0px;
+  top: 50px;
+  width: 300px;
+  min-height: 150px;
+  height: auto;
+  z-index: 3;
+  background: rgb(255, 255, 255);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 0px 4px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ececec;
+  padding-bottom: 0px;
+}
+
+.profile-container-dropdown ul {
+  list-style: none;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 4px;
+}
+
+.profile-container-dropdown li {
+  font-size: 14px;
+  color: #272727;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  padding: 0px 16px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  font-weight: 500;
+}
+
+.profile-container-dropdown li p {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-container-dropdown li:hover {
+  background: #eceef0;
+  border-radius: 3px;
+  transition: 0.1s ease-in-out;
+  color: #272727;
+}
+
+.admin-profile-picture img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.notification-dropdown {
+  position: absolute;
+  right: 0px;
+  top: 50px;
+  width: 400px;
+  min-height: 400px;
+  height: 85vh;
+  overflow-y: scroll;
+  z-index: 3;
+  background: rgb(255, 255, 255);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 0px 4px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ececec;
+  padding-bottom: 0px;
+  padding: 20px 10px;
+}
+
+.notification-dropdown p.p-no-notification {
+  color: #808080;
+  width: auto;
+  font-size: 14px;
+  font-weight: 500;
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-style: italic;
+}
+
+/* width */
+.notification-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+.notification-dropdown::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+
+/* Handle */
+.notification-dropdown::-webkit-scrollbar-thumb {
+  background: rgb(197, 197, 197);
+  border-radius: 500px;
+}
+
+/* Handle on hover */
+.notification-dropdown::-webkit-scrollbar-thumb:hover {
+  background: rgb(163, 163, 163);
+}
+
+.notification-dropdown div.admin-subheading {
+  margin-top: 0;
+  padding-left: 10px;
+}
+
+/* Notification Badge */
+.notif-badge {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  background: rgb(255, 39, 39);
+  border-radius: 50%;
+  top: 2px;
+  right: 2px;
+  color: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  border: 1px solid #fff;
+}

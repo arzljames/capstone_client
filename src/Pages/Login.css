@@ -1,0 +1,365 @@
+.login-container {
+  width: 100%;
+  height: auto;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 50px 20px;
+}
+
+.login-container h1 {
+  color: #272727;
+  margin-bottom: 32px;
+  font-size: 26px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  min-width: 350px;
+  width: 350px;
+  background: #eef1f100;
+  border-radius: 10px;
+  /* border: 1px solid #e4e4e4; */
+}
+
+.login-form label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #272727;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.login-form label i {
+  font-size: 12px;
+  color: red;
+}
+
+.login-form input {
+  margin-bottom: 20px;
+  height: 40px;
+  padding: 10px;
+  outline-style: none;
+  border: none;
+  border: 1px solid #b8b8b8;
+  transition: 0.1s ease-in-out;
+  color: #272727;
+}
+
+.login-form .error-input {
+  margin-bottom: 5px;
+  height: 40px;
+  padding: 10px;
+  outline-style: none;
+  border: none;
+  border: 1px solid #ff1616;
+  transition: 0.1s ease-in-out;
+  color: #272727;
+}
+
+.login-form .error-input:hover,
+.login-form .error-input:focus {
+  margin-bottom: 5px;
+  height: 40px;
+  padding: 10px;
+  outline-style: none;
+  border: none;
+  border: 1px solid #ff1616;
+  transition: 0.1s ease-in-out;
+  color: #272727;
+  box-shadow: none;
+}
+
+p.error-input-text {
+  color: #ff1616;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.login-form input:hover {
+  border: 1px solid #636363;
+  transition: 0.1s ease-in-out;
+}
+
+.login-form input:focus {
+  border: 1px solid #636363;
+  box-shadow: rgba(33, 207, 76, 0.3) 0px 0px 0px 3px;
+  transition: 0.1s ease-in-out;
+}
+
+.login-form-btn {
+  width: 100%;
+  height: 40px;
+  outline-style: none;
+  border: none;
+  cursor: pointer;
+  background: #058e46;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 32px;
+  transition: 0.2s ease-in-out;
+}
+
+.login-form-btn-disable {
+  opacity: 50%;
+  pointer-events: none;
+  width: 100%;
+  height: 40px;
+  outline-style: none;
+  border: none;
+  cursor: pointer;
+  background: #058e46;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 22px;
+  transition: 0.2s ease-in-out;
+  margin-top: 32px;
+}
+
+.login-form-btn:hover {
+  transition: 0.2s ease-in-out;
+  background: #057a3c;
+}
+
+.form-link {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+
+.form-link p {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #272727;
+}
+
+.form-link p span {
+  color: rgb(24, 85, 197);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-link p span.link {
+  text-decoration: none;
+}
+
+.form-link p span:hover {
+  text-decoration: underline;
+}
+
+.form-input-container {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.form-input-container input {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.eye-password {
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  top: 0;
+  font-size: 18px;
+  color: #acacac;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.eye-password:hover {
+  transition: 0.2s ease-in-out;
+  color: #858585;
+}
+
+.enter-email-msg {
+  font-size: 14px;
+  color: #272727;
+  margin-bottom: 24px;
+}
+
+.forgot-password-container {
+  width: 350px;
+  height: auto;
+}
+
+.specialization-input {
+  width: 100%;
+  height: 40px;
+  outline-style: none;
+  border: none;
+  border: 1px solid #b8b8b8;
+  transition: 0.1s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.hospital-input {
+  width: 100%;
+  height: 40px;
+  outline-style: none;
+  border: none;
+  border: 1px solid #b8b8b8;
+  transition: 0.1s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+div.specialization-input:hover,
+div.hospital-input:hover {
+  border: 1px solid #636363;
+}
+
+.hospital-input-active {
+  width: 100%;
+  height: 40px;
+  outline-style: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  color: #272727;
+  justify-content: flex-end;
+  position: relative;
+  justify-content: space-between;
+  transition: 0.1s ease-in-out;
+  box-shadow: rgba(33, 207, 76, 0.3) 0px 0px 0px 3px;
+  border: 1px solid #636363;
+  margin-bottom: 20px;
+}
+
+.specialization-input p,
+.specialization-input-active p,
+.hospital-input p,
+.hospital-input-active p,
+.specialization-input-disable p {
+  font-size: 13px;
+  color: #808080;
+}
+
+.specialization-input span,
+.specialization-input-active span,
+.hospital-input span,
+.hospital-input-active span,
+.specialization-input-disable span {
+  font-size: 10px;
+  color: #272727;
+}
+
+.specialization-input p.specialization,
+.specialization-input-active p.specialization,
+.hospital-input p.specialization,
+.hospital-input-active p.specialization {
+  color: #272727;
+}
+
+.specialization-input-active {
+  width: 100%;
+  height: 40px;
+  outline-style: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  color: #272727;
+  justify-content: flex-end;
+  position: relative;
+  justify-content: space-between;
+  transition: 0.1s ease-in-out;
+  box-shadow: rgba(33, 207, 76, 0.3) 0px 0px 0px 3px;
+  border: 1px solid #636363;
+  margin-bottom: 50px;
+}
+
+.specialization-input-disable {
+  width: 100%;
+  height: 40px;
+  outline-style: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  color: #272727;
+  justify-content: flex-end;
+  position: relative;
+  justify-content: space-between;
+  transition: 0.1s ease-in-out;
+  border: 1px solid #b8b8b8;
+  margin-bottom: 50px;
+  background: #eee;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.specialization-input:hover,
+.hospital-input:hover {
+  border: 1px solid #aaaaaa;
+}
+
+.specialization-dropdown {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-height: 120px;
+  background: rgb(255, 255, 255);
+  box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
+  border: 1px solid #b8b8b8;
+  overflow-y: scroll;
+  z-index: 2;
+}
+
+.form-dropdown-list {
+  list-style: none;
+}
+
+.form-dropdown-list li {
+  width: 100%;
+  height: auto;
+  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.form-dropdown-list li:hover {
+  background: #ebebeb;
+}
+
+@media screen and (max-width: 576px) {
+  .login-form,
+  .forgot-password-container {
+    min-width: 0px;
+    width: 100%;
+  }
+}

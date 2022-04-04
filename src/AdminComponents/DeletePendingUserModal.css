@@ -1,0 +1,92 @@
+.delete-pending-user-modal {
+  width: 375px;
+  height: 250px;
+  min-height: 250px;
+  background: #fff;
+  border-radius: 2px;
+  padding: 15px;
+}
+
+.delete-pending-user-modal-header {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  align-items: center;
+}
+
+.delete-pending-user-modal-header h1 {
+  color: #272727;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.delete-pending-user-modal-body {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.delete-pending-user-modal-body p {
+  color: #808080;
+  font-size: 15px;
+}
+
+.delete-pending-user-modal-footer {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.dpum-cancel-btn {
+  border: none;
+  outline: none;
+  font-weight: 600;
+  color: #272727;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  border-radius: 2px;
+}
+
+.dpum-cancel-btn:hover {
+  transition: 0.1s ease-in-out;
+  background: rgb(223, 223, 223);
+}
+
+.dpum-delete-btn {
+  border: none;
+  outline: none;
+  font-weight: 500;
+  color: #fff;
+  padding: 8px;
+  background: #ff3131;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  border-radius: 2px;
+  display: flex;
+}
+
+.dpum-delete-btn-disable {
+  border: none;
+  outline: none;
+  font-weight: 600;
+  color: #fff;
+  padding: 8px;
+  background: #ff3131;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  border-radius: 2px;
+  width: 120px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.dpum-delete-btn:hover {
+  transition: 0.1s ease-in-out;
+  background: #df2a2a;
+}

@@ -1,0 +1,142 @@
+.pending-user-card {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 15px;
+  display: flex;
+  margin-bottom: 5px;
+  transition: 0.1s ease-in-out;
+  align-items: center;
+  position: relative;
+}
+
+.pending-user-card-active {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 15px;
+  display: flex;
+  margin-bottom: 5px;
+  transition: 0.1s ease-in-out;
+  align-items: center;
+  position: relative;
+  background: #f1f3f1;
+}
+
+.pending-user-card:hover {
+  background: #f1f3f1;
+  transition: 0.1s ease-in-out;
+}
+
+.pending-user-profile-container {
+  width: auto;
+  height: auto;
+  position: relative;
+  margin-right: 15px;
+}
+
+.pending-user-profile {
+  width: 31px;
+  height: 31px;
+  background: #eee;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #cccccc;
+}
+
+.pending-user-profile img {
+  width: 100%;
+}
+
+.pending-user-name {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pending-user-name h5 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #272727;
+}
+
+.pending-user-name p {
+  color: #808080;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.option-icon-container {
+  position: absolute;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.option-icon-container-active {
+  position: absolute;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.option-icon-container:hover {
+  background: rgb(255, 255, 255);
+}
+
+.option-dropdown {
+  position: absolute;
+  background: rgb(255, 255, 255);
+  width: 200px;
+  min-height: 90px;
+  top: 110%;
+  right: 0;
+  z-index: 2;
+  border-radius: 2px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 5px;
+}
+
+.option-dropdown ul {
+  list-style: none;
+}
+
+.option-dropdown ul li {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 5px;
+  color: #808080;
+  border-radius: 2px;
+}
+
+.option-dropdown ul li:hover {
+  background: #eee;
+  color: #272727;
+}
+
+.option-dropdown ul li p {
+  margin-right: 10px;
+  font-size: 16px;
+  margin-top: 6px;
+}
+
+.option-dropdown ul li.delete-request {
+  color: rgb(255, 66, 66);
+}

@@ -1,0 +1,45 @@
+.verification-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #272727;
+  flex-direction: column;
+}
+.verification-page img {
+  width: 200px;
+  margin-bottom: 30px;
+}
+
+.verification-page p {
+  margin-bottom: 10px;
+}
+
+.verification-page button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 2px;
+  background: #047438;
+  font-weight: 600;
+  color: #047438;
+  transition: 0.1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #047438;
+  background: #fff;
+}
+
+.verification-page button:hover {
+  background: #047438;
+  transition: 0.1s ease-in-out;
+  color: #fff;
+}
+
+#proceed-login-arrow {
+  margin-left: 5px;
+}

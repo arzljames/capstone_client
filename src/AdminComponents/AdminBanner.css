@@ -1,0 +1,97 @@
+.admin-banner {
+  width: 100%;
+  height: auto;
+  background: rgb(222, 243, 222);
+  min-height: 170px;
+  border-radius: 4px;
+  padding: 20px;
+  position: relative;
+  margin-bottom: 20px;
+  border: 1px solid rgb(191, 226, 191);
+}
+
+.admin-banner h1 {
+  color: #272727;
+  font-size: 24px;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.admin-banner h2 {
+  font-size: 14px;
+  font-weight: 400;
+  color: #808080;
+}
+
+.edit-banner-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #272727;
+  border-radius: 4px;
+}
+
+.edit-banner-icon p {
+  font-size: 14px;
+  margin-right: 7px;
+}
+
+.edit-banner-icon:hover {
+  background: rgba(0, 0, 0, 0.09);
+}
+
+.banner-contact {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.banner-contact p {
+  font-size: 14px;
+  color: #272727;
+}
+
+.banner-contact strong {
+  font-weight: 600;
+  color: #272727;
+}
+
+.banner-contact .contact-no-header {
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.banner-links a {
+  text-decoration: none;
+  font-size: 14px;
+  color: rgb(47, 113, 255);
+  display: flex;
+  align-items: center;
+}
+
+.banner-links a p {
+  color: rgb(47, 113, 255);
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.banner-links a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 576px) {
+  .admin-banner {
+    padding: 15px;
+  }
+}

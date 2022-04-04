@@ -1,0 +1,906 @@
+.above-patient-table {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #ebebeb;
+}
+
+.above-patient-table-btns {
+  display: flex;
+}
+
+.above-patient-table button {
+  outline: none;
+  padding: 0px 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  color: #808080;
+  border: 1px solid #6eaf8c00;
+  border-radius: 3px;
+  min-width: 80px;
+}
+
+.above-patient-table .btn-active {
+  background: #f1f3f1;
+  border: 1px solid #9baca3;
+  position: relative;
+}
+
+.above-patient-table .btn-inactive {
+  position: relative;
+}
+
+.sort-dropdown {
+  width: 100%;
+  min-height: 100px;
+  background: rgb(255, 255, 255);
+  position: absolute;
+  top: 31px;
+  right: 0;
+  border-radius: 4px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 1px solid #ebebeb;
+  padding: 5px 0px;
+  z-index: 2;
+}
+
+.filter-dropdown {
+  width: 100%;
+  min-height: 100px;
+  background: rgb(255, 255, 255);
+  position: absolute;
+  top: 31px;
+  right: 0;
+  border-radius: 4px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 1px solid #ebebeb;
+  padding: 5px 0px;
+  z-index: 2;
+}
+
+.filter-dropdown ul li {
+  width: 100%;
+  height: 30px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  font-weight: 500;
+  transition: 0.1s ease-in-out;
+  color: #272727;
+}
+
+.filter-dropdown ul li:hover {
+  background: #f1f3f1;
+  transition: 0.1s ease-in-out;
+}
+
+.sort-dropdown ul li {
+  width: 100%;
+  height: 30px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  font-weight: 500;
+  transition: 0.1s ease-in-out;
+  color: #272727;
+}
+
+.sort-dropdown ul li:hover {
+  background: #f1f3f1;
+  transition: 0.1s ease-in-out;
+}
+
+.above-patient-table button.btn-inactive:hover {
+  background: #f1f3f1;
+  transition: 0.1s ease-in-out;
+}
+
+.above-patient-table button p {
+  color: #057a3c;
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+.patient-input-container {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  position: relative;
+}
+
+.patient-input-icon {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #808080;
+}
+
+.patient-input-container input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 10px;
+  padding-left: 30px;
+  height: 30px;
+  border-radius: 3px;
+  border: none;
+  transition: 0.2s ease-in-out;
+  background: #f1f3f1;
+}
+
+.patient-input-container input:focus {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  transition: 0.2s ease-in-out;
+  background: #f1f3f1;
+}
+
+.patient-input-container input::placeholder {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.subheading-btns {
+  height: auto;
+  width: auto;
+  display: flex;
+}
+
+.subheading-btns button {
+  outline: none;
+  padding: 0px 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  height: 30px;
+}
+
+.subheading-btns button p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+  font-size: 14px;
+  margin-top: 0;
+}
+
+.add-patient-btn {
+  background: #058e46;
+  color: #fff;
+  border: none;
+  box-shadow: rgba(9, 66, 12, 0.25) 0px 1px 1px,
+    rgba(9, 66, 12, 0.13) 0px 0px 1px 1px;
+}
+
+.add-patient-btn p {
+  color: #fff;
+}
+
+.add-case-btn {
+  background: #058e46;
+  color: #fff;
+  border: none;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+
+.add-case-btn p {
+  color: #fff;
+}
+
+.add-patient-btn:hover {
+  background: #057a3c;
+  transition: 0.1s ease-in-out;
+}
+
+.add-case-btn:hover {
+  background: #057a3c;
+  transition: 0.1s ease-in-out;
+}
+
+.pt-no {
+  width: 35px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #e0e0e0
+}
+
+.pt-name {
+  flex: 0.8;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  border-right: 1px solid #e0e0e0
+}
+
+.pt-name p {
+  margin-left: 5px;
+  text-transform: none;
+  font-weight: 500;
+  background: pink;
+}
+
+.pt-active {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #e0e0e0
+}
+
+.pt-date {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pt-total {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #e0e0e0
+}
+
+.pt-action {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+}
+
+.pt-action .action-btn {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 2px;
+}
+
+.trash-btn {
+  color: #808080;
+  background: transparent;
+}
+
+.trash-btn:hover {
+  color: #ff3333;
+
+  background: rgb(255, 255, 255);
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+.pencil-btn {
+  color: #808080;
+
+  background: transparent;
+}
+
+.pencil-btn:hover {
+  color: #272727;
+
+  background: rgb(255, 255, 255);
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+/* Patient Data styling */
+
+.above-patient-profile {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.above-patient-profile-btns {
+  width: auto;
+  display: flex;
+}
+
+.above-patient-profile-btns button {
+  outline-style: none;
+  padding: 0px 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  height: 30px;
+}
+
+.above-patient-profile-btns button p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.edit-profile-btn,
+button.deactive-btn {
+  background: #ffffff;
+  color: #058e46;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  transition: 0.1s ease-in-out;
+  border: none;
+}
+
+.edit-profile-btn:hover,
+button.deactive-btn:hover {
+  transition: 0.1s ease-in-out;
+  background: #f3f3f3;
+}
+
+.delete-patient-btn {
+  background: #ffffff;
+  border: none;
+  color: #e72222;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  transition: 0.1s ease-in-out;
+}
+
+.delete-patient-btn p {
+  color: #e72222
+}
+
+.delete-patient-btn:hover {
+  transition: 0.1s ease-in-out;
+  background: #f1d8d8;
+}
+
+.back-btn {
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #272727;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  transition: 0.1s ease-in-out;
+  padding: 6px;
+  border-radius: 2px;
+}
+
+.back-btn p {
+  margin-left: 5px;
+}
+
+.patient-profile-container {
+  width: 100%;
+  display: flex;
+  margin-top: 20px;
+}
+
+.patient-profile {
+  width: 25%;
+  min-width: 250px;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.patient-profile-content-1 {
+  width: 100%;
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border: 1px solid #ebebeb;
+}
+
+.patient-profile-content-2 {
+  width: 100%;
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  min-height: 100px;
+  border: 1px solid #ebebeb;
+}
+
+.patient-profile-content-2 h1,
+.patient-profile-content-3 h1 {
+  font-weight: 500;
+  font-size: 16px;
+  color: #272727;
+}
+
+.patient-profile-image-container {
+  width: 120px;
+  height: 120px;
+  background: #eee;
+  border-radius: 50%;
+  border: 4px solid #d3d3d3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.patient-profile-image-container img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.patient-name-infos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  align-items: center;
+  text-align: center;
+}
+
+.patient-name-infos h1 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #272727;
+  margin-bottom: 5px;
+}
+
+.patient-name-infos p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #808080;
+}
+
+.patient-infos-2col {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.patient-infos-1 {
+  width: 50%;
+  color: #808080;
+}
+
+.patient-infos-1 h5 {
+  font-weight: 500;
+}
+
+.patient-infos-2 h5 {
+  font-weight: 600;
+  color: #272727;
+}
+
+.patient-infos-2 {
+  width: 50%;
+  padding-left: 15px;
+}
+
+.patient-info {
+  flex: 1;
+}
+
+.patient-tabs {
+  width: 100%;
+  display: flex;
+  margin-bottom: -1px;
+}
+
+.patient-tabs button {
+  margin-right: 10px;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border: 1px solid #ebebeb;
+}
+
+.patient-tabs button.active-tab {
+  background: #fff;
+  color: #272727;
+  font-weight: 600;
+  border-bottom: 1px solid #fff;
+}
+
+.patient-tabs button.inactive-tab {
+  background: rgba(255, 255, 255, 0.5);
+  color: #808080;
+}
+
+.patient-content {
+  width: 100%;
+  min-height: 400px;
+  background: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 4px;
+  padding: 20px;
+  padding-bottom: 10px;
+  padding-top: 0px;
+}
+
+.patient-content h2 {
+  color: #808080;
+  font-weight: 500;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+.patient-content h5 {
+  color: #808080;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  margin-right: 15px;
+  width: 40%;
+}
+
+.patient-content p {
+  color: #272727;
+  font-size: 14px;
+  font-weight: 500;
+  width: 60%;
+}
+
+.patient-content-name {
+  display: flex;
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+
+.patient-content-name .info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.patient-content-name .info div {
+  display: flex;
+
+  flex-direction: column;
+  flex: 1;
+}
+/*End of Patient Data styling */
+
+/* Patient Form */
+.add-patient-form {
+  min-width: 500px;
+  width: 40%;
+  height: 90%;
+  background: #ffffff;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+/*End of Patient Form */
+
+.delete-patient-modal {
+  width: 95%;
+  max-width: 500px;
+  height: 300px;
+  background: #fff;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.delete-patient-modal-body {
+  flex: 1;
+  padding: 20px;
+}
+
+.delete-patient-modal-body h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #272727;
+  margin-bottom: 30px;
+}
+
+.delete-patient-modal-body p {
+  color: #272727;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.delete-patient-modal-body p b {
+  font-weight: 600;
+}
+
+.delete-patient-modal-body p b.deleted-b {
+  color: #ff3333;
+  font-size: 15px;
+}
+
+.delete-patient-modal-body input {
+  width: 100%;
+  height: 30px;
+  outline: none;
+  border: 1px solid #9b9b9b;
+  padding: 10px;
+  border-radius: 2px;
+  transition: 0.1s ease-in-out;
+}
+
+.delete-patient-modal-body input:focus {
+  transition: 0.1s ease-in-out;
+  border: 1px solid #585858;
+  box-shadow: rgba(230, 43, 43, 0.3) 0px 0px 0px 3px;
+}
+
+.delete-patient-modal-btns {
+  width: 100%;
+  height: 60px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0px 20px;
+}
+
+.delete-patient-modal-btns button {
+  margin-left: 10px;
+  padding: 0px 8px;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  height: 30px;
+  min-width: 80px;
+}
+
+.cancel-delete-patient-btn {
+  color: #272727;
+}
+
+.cancel-delete-patient-btn:hover {
+  background: #d3d3d3;
+  transition: 0.1s ease-in-out;
+}
+
+.delete-patient-btn2 {
+  color: #fff;
+  background: #ff3333;
+}
+
+.delete-patient-btn2-disable {
+  color: #fff;
+  background: #ff3333;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.delete-patient-btn2:hover {
+  background: #d12626;
+}
+
+.no-patients {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.no-patients h1 {
+  font-size: 22px;
+  color: #272727;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.no-patients p {
+  font-size: 14px;
+  color: #808080;
+  font-weight: 400;
+}
+
+
+.import-patient-btn {
+  background: #058e46;
+  color: #fff;
+  border: none;
+  box-shadow: rgba(9, 66, 12, 0.25) 0px 1px 1px,
+    rgba(9, 66, 12, 0.13) 0px 0px 1px 1px;
+    width: 30px;
+    height: 30px;
+    border-radius: 2px;
+    margin-left: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    transition: .1s ease-in-out;
+    position: relative;
+}
+
+.import-patient-btn:hover {
+
+  background: #057a3c;
+  transition: 0.1s ease-in-out;
+}
+
+.import-patient-container {
+  position: absolute;
+  background: #fff;
+  top: 35px;
+  right: 0;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 1px solid #d3d3d3;
+  font-weight: 500;
+  transition: 0.1s ease-in-out;
+  color: #272727;
+  font-size: 12px;
+  padding: 6px 10px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  width: 120px;
+}
+
+.import-patient-input {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+}
+.import-patient-container:hover {
+  transition: .1s ease-in-out;
+  background: #F1F3F1;
+}
+
+.import-patient-container p {
+  margin-right: 5px;
+  font-size: 12px;
+  color: #05793b
+}
+
+.import-patient-container div {
+  display: flex;
+  align-items: center;
+}
+
+
+.import-patient-modal {
+  width: 95%;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.import-patient-modal h1 {
+  color: #272727;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+
+.import-patient-modal p {
+  color: #272727;
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+
+.import-patient-modal-footer {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.import-patient-modal-footer button {
+  padding: 0px 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  height: 30px;
+  outline-style: none;
+  border: none;
+  min-width: 80px;
+}
+
+.import-patient-modal-footer button.save {
+  background: #058e46;
+  color: #fff;
+  margin-left: 10px;
+  transition: 0.1s ease-in-out;
+  min-width: 80px;
+}
+
+.import-patient-modal-footer button.save.disable {
+  background: #058e46;
+  color: #fff;
+  margin-left: 10px;
+  transition: 0.1s ease-in-out;
+  min-width: 80px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.import-patient-modal-footer button.save:hover {
+  background: #057a3c;
+  transition: 0.1s ease-in-out;
+}
+
+.import-patient-modal-footer button.cancel {
+  background: #fff;
+  color: #555555;
+  min-width: 80px;
+  transition: 0.1s ease-in-out;
+  border: 1px solid #d3d3d3
+}
+
+.import-patient-modal-footer button.cancel:hover {
+  transition: .1s ease-in-out;
+  background: rgb(219, 219, 219);
+}

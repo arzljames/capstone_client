@@ -1,0 +1,37 @@
+.admin-user-no {
+    width: 35px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-user-hospital {
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    flex: 0.75;
+}
+
+.admin-user-spec {
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0.5;
+}
+
+.admin-user-patients {
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0.5;
+}
+
+.admin-user-name {
+    flex: 1;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+}

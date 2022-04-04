@@ -1,0 +1,12 @@
+.profile-hover {
+  width: 250px;
+  height: 250px;
+  background: #ffffff;
+  padding: 10px;
+  position: absolute;
+  top: -100%;
+  right: -260px;
+  z-index: 3;
+  border-radius: 4px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
