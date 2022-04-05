@@ -66,13 +66,13 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
         </div>
       </div>
 
-      {/* {notification.filter((item) => item.user._id === user.userId).length ===
+      {notification.filter((item) => item.specialization === user.specialization).length ===
         0 && <p className="p-no-notification">No new notification</p>}
 
       {tab !== "Read" &&
         notification
           .filter(
-            (item) => item.user._id === user.userId && item.active === true
+            (item) => item.specialization === user.specialization && item.active === true
           )
           .slice(0)
           .reverse()
@@ -100,7 +100,7 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
                 >
                   <div className="notification-details-title">
                     <h1>
-                      {item.from.firstname + " " + item.from.lastname}{" "}
+                      Dr. {item.from.firstname + " " + item.from.lastname}{" "}
                       {item.title}
                     </h1>
                   </div>
@@ -117,7 +117,7 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
       {tab !== "Unread" &&
         notification
           .filter(
-            (item) => item.user._id === user.userId && item.active === false
+            (item) => item.specialization === user.specialization && item.active === false
           )
           .slice(0)
           .reverse()
@@ -142,7 +142,7 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
                 >
                   <div className="notification-details-title">
                     <h1>
-                      {item.from.firstname + " " + item.from.lastname}{" "}
+                    Dr. {item.from.firstname + " " + item.from.lastname}{" "}
                       {item.title}
                     </h1>
                   </div>
@@ -154,7 +154,7 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
                 </p>
               </div>
             );
-          })} */}
+          })}
     </div>
   );
 };

@@ -46,6 +46,14 @@ const OutgoingConsult = () => {
                       />
                     );
                   })}
+
+                {cases.filter(
+                  (e) => e.physician._id === user.userId && e.active === true
+                ).length === 0 && (
+                  <div className="no-active-cases">
+                    <p>No current active consultation request.</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

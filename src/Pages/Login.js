@@ -149,7 +149,7 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="login-form-btn"
+            className={loader ? "login-form-btn-disable" : "login-form-btn"}
             onClick={() => handleLogin()}
           >
             {loader ? (

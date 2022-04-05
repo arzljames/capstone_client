@@ -236,9 +236,9 @@ p.nothing-to-show-p {
 
 .chats img {
   width: 100%;
+  border-radius: 50%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
 }
 
 /* End of main chat body styling  */

@@ -22,6 +22,7 @@ import { HiUpload } from "react-icons/hi";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { parse } from "papaparse";
 import ImportModal from "../Components/ImportModal";
+import DeleteMultiplePatientModal from "../Components/DeleteMultiplePatientModal";
 
 const Patients = () => {
   const navigate = useNavigate();
@@ -123,6 +124,7 @@ const Patients = () => {
   const [CSV, setCSV] = useState([]);
 
   const [patientState, setPatientState] = useState([]);
+  const [patientsId, setPatientsId] = useState([]);
 
   useEffect(() => {
     setPatientState(
@@ -141,8 +143,17 @@ const Patients = () => {
   }, [patients]);
 
   useEffect(() => {
-    console.log(patientState);
+    const arr = [];
+    patientState.forEach((d) => {
+      if (d.select) {
+        arr.push(d._id);
+      }
+    });
+
+    setPatientsId(arr);
   }, [patientState]);
+
+  const [deleteModal, setDeleteModal] = useState(false);
 
   return (
     <>
@@ -150,6 +161,12 @@ const Patients = () => {
         <AnimatePresence>
           {CSV.length !== 0 && <ImportModal setCSV={setCSV} CSV={CSV} />}
           {toast && <Toast />}
+          {deleteModal && (
+            <DeleteMultiplePatientModal
+              setDeleteModal={setDeleteModal}
+              patientsId={patientsId}
+            />
+          )}
         </AnimatePresence>
 
         <Sidebar />
@@ -162,12 +179,19 @@ const Patients = () => {
                 <h2>List of Patients</h2>
 
                 <div className="subheading-btns">
-                  <button className="delete-patient-btn">
+                  {patientsId.length !== 0 && <button
+                    onClick={() => setDeleteModal(true)}
+                    className={
+                      patientsId.length === 0
+                        ? "delete-patient-btn-disable"
+                        : "delete-patient-btn"
+                    }
+                  >
                     <p>
                       <HiTrash />
                     </p>
-                    Delete
-                  </button>
+                    Delete ({patientsId.length} selected)
+                  </button>}
                   <motion.button
                     onClick={() => navigate("/consultation/patients/admission")}
                     className="add-patient-btn"

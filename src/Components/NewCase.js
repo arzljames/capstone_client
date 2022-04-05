@@ -209,7 +209,7 @@ const NewCase = ({ setShowCase }) => {
                   setAppState(result.data.ok);
                   setMessage("Successfully saved consultation case.");
                   navigate(
-                    `/consultation/outgoing/case/case-data/${result.data.ok._id}`,
+                    `/consultation/outgoing/${result.data.ok._id}`,
                     {
                       state: patientData[0],
                     }

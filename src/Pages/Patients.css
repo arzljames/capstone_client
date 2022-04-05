@@ -386,6 +386,21 @@ button.deactive-btn:hover {
   transition: 0.1s ease-in-out;
 }
 
+.delete-patient-btn-disable {
+  background: #ffffff;
+  border: none;
+  color: #e72222;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  transition: 0.1s ease-in-out;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.delete-patient-btn-disable p {
+  color: #e72222
+}
+
 .delete-patient-btn p {
   color: #e72222
 }

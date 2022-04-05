@@ -80,8 +80,6 @@ const ProfileHeader = () => {
   const [pp, setPp] = useState("");
 
   useEffect(() => {
-
-
     const fetchPP = async () => {
       try {
         let response = await listUsers
@@ -95,6 +93,10 @@ const ProfileHeader = () => {
 
     fetchPP();
   }, []);
+
+useEffect(() => {
+  console.log(notification.filter(e => e.specialization === user.specialization) )
+}, [])
 
 
   return (
@@ -134,17 +136,17 @@ const ProfileHeader = () => {
         <p>
           <IoNotifications />
         </p>
-        {/* {notification.filter(
-          (item) => item.user._id === user.userId && item.active === true
+        {notification.filter(
+          (item) => item.specialization === user.specialization && item.active === true
         ).length !== 0 ? (
           <div className="notif-badge">
             {
               notification.filter(
-                (item) => item.user._id === user.userId && item.active === true
+                (item) => item.specialization === user.specialization && item.active === true
               ).length
             }
           </div>
-        ) : null} */}
+        ) : null} 
       </motion.div>
       <motion.div
         whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
