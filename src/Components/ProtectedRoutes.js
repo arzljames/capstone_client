@@ -3,7 +3,7 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 const ProtectedRoutes = ({ user, role }) => {
   const location = useLocation();
   if (user === null) {
-    return <p>sds</p>;
+    return null
   }
 
   if (user.loggedIn && user.userType === role) {

@@ -22,6 +22,8 @@ import Toast from "../Components/Toast";
 import DeleteCaseModal from "../Components/DeleteCaseModal";
 
 const CaseData = () => {
+
+
   const [deleteModal, setDeleteModal] = useState(false);
   const navigate = useNavigate();
   const [patientCase, setPatientCase] = useState([]);
@@ -36,17 +38,10 @@ const CaseData = () => {
     setMessage,
     setIsError,
     toast,
+    facilities
   } = useAuth();
 
   const { id } = useParams();
-  const { state } = useLocation();
-
-  // useEffect(() => {
-  //   const joinRoom = () => {
-  //     socket.emit("join_room", id);
-  //   };
-  //   joinRoom();
-  // }, []);
 
   useEffect(() => {
     const fetchPatientCase = async () => {
@@ -73,6 +68,8 @@ const CaseData = () => {
       </div>
     );
   }
+
+  
 
   const handleDeactivate = async () => {
     try {
@@ -118,6 +115,8 @@ const CaseData = () => {
     }
   };
 
+
+
   function getAge(dateString) {
     var today = new Date();
     var birthDate = new Date(dateString);
@@ -158,6 +157,11 @@ const CaseData = () => {
 
     return today;
   };
+
+
+ 
+
+
   return (
     <>
       <AnimatePresence>
@@ -295,6 +299,7 @@ const CaseData = () => {
 
                       <p>
                         <b>Specialization:</b>
+              
                         <p>{patientCase.physician.specialization}</p>
                       </p>
 

@@ -106,8 +106,8 @@
 
 .active-status-online {
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
   background: #4dd965;
   bottom: -5%;
@@ -138,10 +138,10 @@
 
 .active-status-offline {
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
-  background: #c9c9c9;
+  background: #FFCB6A;
   bottom: -5%;
   right: -5%;
   display: flex;
@@ -265,6 +265,8 @@
 .admin-profile-picture img {
   width: 100%;
   border-radius: 50%;
+  object-fit: cover;
+  height: 100%;
 }
 
 .notification-dropdown {

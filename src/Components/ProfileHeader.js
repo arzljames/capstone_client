@@ -17,7 +17,7 @@ import { useClickOutside } from "../Hooks/useClickOutside";
 import { socket } from "./Socket";
 
 const ProfileHeader = () => {
-  const { user, appState, setAppState } = useAuth();
+  const { user, appState, setAppState, listUsers } = useAuth();
 
   const navigate = useNavigate();
   const path = window.location.pathname;
@@ -76,6 +76,27 @@ const ProfileHeader = () => {
     fetchChat();
   }, [socket]);
 
+
+  const [pp, setPp] = useState("");
+
+  useEffect(() => {
+
+
+    const fetchPP = async () => {
+      try {
+        let response = await listUsers
+          .filter((id) => id._id === user.userId)[0].picture
+
+        if (response) {
+          setPp(response);
+        }
+      } catch (error) {}
+    };
+
+    fetchPP();
+  }, []);
+
+
   return (
     <div ref={domNode} className="admin-profile-header">
       <motion.div
@@ -89,7 +110,7 @@ const ProfileHeader = () => {
       >
         <div className="admin-profile-picture">
          
-          <img src={!users.picture ? NoUser : users.picture} alt="Avatar" />
+          <img src={!pp ? NoUser : pp} alt="Avatar" />
           <div
             className={
               status === "Online"
@@ -98,7 +119,7 @@ const ProfileHeader = () => {
             }
           ></div>
         </div>
-        <h5>{user.firstname}</h5>
+        <h5>{user.firstname}</h5> 
       </motion.div>
       <motion.div
         whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
@@ -138,10 +159,12 @@ const ProfileHeader = () => {
         </p>
       </motion.div>
 
+      
+
       {dropdownNotif && (
         <NotificationDropdown setDropdownNotif={setDropdownNotif} />
       )}
-      {dropdown && <ProfileDropdown profilePicture={profilePicture} users={users} submitLogout={submitLogout} />}
+      {dropdown && <ProfileDropdown    profilePicture={profilePicture} users={users} submitLogout={submitLogout} />}
     </div>
   );
 };

@@ -21,7 +21,7 @@ import api from "../API/Api";
 import PulseLoader from "react-spinners/PulseLoader";
 
 const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
-  const { user } = useAuth();
+  const { user, facilities } = useAuth();
   const [dropdown, setDropdown] = useState(false);
 
   let domNode = useClickOutside(() => {
@@ -64,6 +64,24 @@ const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
     }
   };
 
+  const [specc, setSpecc] = useState("");
+
+  useEffect(() => {
+    const fetchSpecc = async () => {
+      try {
+        let response = await facilities
+          .filter((id) => id._id === user.designation)[0]
+          .specialization.filter((e) => e._id === user.specialization)[0].name;
+
+        if (response) {
+          setSpecc(response);
+        }
+      } catch (error) {}
+    };
+
+    fetchSpecc();
+  }, []);
+
   return (
     <>
       {loader && (
@@ -96,7 +114,7 @@ const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
             <h5>
               {user.firstname} {user.lastname}
             </h5>
-            <p>{user.specialization}</p>
+            <p>{specc ? specc : null}</p>
 
             <p className="p-active-status">
               Active Status: <span>{users.activeStatus}</span>

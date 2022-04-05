@@ -5,11 +5,7 @@ import OutgoingCaseActive2 from "./OutgoingCaseActive2";
 const PatientActiveCase = ({ state, name, patientId }) => {
   const { patients, cases } = useAuth();
 
-  useEffect(() => {
-    console.log(
-      cases.filter((e) => e.patient._id === state._id && e.active === true)
-    );
-  }, []);
+
   return (
     <>
       <h2>Active case</h2>
@@ -26,6 +22,7 @@ const PatientActiveCase = ({ state, name, patientId }) => {
             />
           );
         })}
+
     </>
   );
 };

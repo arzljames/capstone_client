@@ -82,6 +82,8 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+
+
   useEffect(() => {
     fetchLogin();
     fetchUsers();
@@ -96,6 +98,15 @@ export const DataProvider = ({ children }) => {
 
   const [hospital, setHospital] = useState("");
   const [department, setDepartment] = useState("");
+
+
+
+
+
+
+
+
+
 
   return (
     <DataContext.Provider

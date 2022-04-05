@@ -15,6 +15,7 @@ import NewCase from "../Components/NewCase";
 import useAuth from "../Hooks/useAuth";
 import api from "../API/Api";
 import { useNavigate } from "react-router-dom";
+import Toast from "../Components/Toast";
 
 const dropdownVariants = {
   hidden: {
@@ -54,7 +55,7 @@ const Case = () => {
     setIsFilter(false);
   });
 
-  const { cases, hospitalSpec, user } = useAuth();
+  const { cases, hospitalSpec, user, toast } = useAuth();
 
   return (
     <>
@@ -64,6 +65,7 @@ const Case = () => {
       <div className="container">
         <AnimatePresence>
           {showCase && <NewCase setShowCase={setShowCase} />}
+          {toast && <Toast />}
         </AnimatePresence>
         <Sidebar />
         <div className="content">
@@ -200,7 +202,7 @@ const Case = () => {
                         className="table-body"
                       >
                         <div className="pt-no">{index + 1}</div>
-                        <div className="pt-name">020422-124523</div>
+                        <div className="pt-name">{item.caseId}</div>
                         <div className="pt-name">
                           {item.patient.firstname + " " + item.patient.lastname}
                         </div>

@@ -37,7 +37,7 @@ const OutgoingCaseActive = ({ caseId, item }) => {
     <>
       <div
         onClick={() => {
-          navigate(`/consultation/outgoing/case/case-data/${item._id}`, {
+          navigate(`/consultation/outgoing/${item._id}`, {
             state: { item },
           });
         }}

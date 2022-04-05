@@ -53,6 +53,9 @@ const NewCase = ({ setShowCase }) => {
     setShowCase(false);
   });
 
+
+  let todayDate = new Date();
+
   const updateSocket = () => {
     socket.emit("notif");
   };
@@ -63,7 +66,6 @@ const NewCase = ({ setShowCase }) => {
     user,
     patients,
     facilities,
-    listUsers,
     setTab,
     setToast,
     setMessage,
@@ -75,7 +77,6 @@ const NewCase = ({ setShowCase }) => {
   const {
     patientId,
     setPatientId,
-    setHospital,
     temperature,
     setTemperature,
     respiratory,
@@ -114,7 +115,6 @@ const NewCase = ({ setShowCase }) => {
 
   const clearForm = () => {
     setPatientId("");
-    setHospital("");
     setSpecialization("");
     setTemperature("");
     setRespiratory("");
@@ -176,6 +176,7 @@ const NewCase = ({ setShowCase }) => {
           .then((data) => {
             api
               .put(`/api/patient/add-case/${patientId}`, {
+                caseId,
                 physician: user.userId,
                 specialization,
                 temperature,
@@ -213,11 +214,11 @@ const NewCase = ({ setShowCase }) => {
                       state: patientData[0],
                     }
                   );
-                  console.log(result);
                 } else {
                   setToast(true);
                   setIsError(true);
                   setMessage("Request failed with status code 404");
+                  
                 }
               });
           });
@@ -242,6 +243,34 @@ const NewCase = ({ setShowCase }) => {
   const onBtnClick = () => {
     inputFileRef.current.click();
   };
+
+
+  const [caseId, setCaseId] = useState("");
+
+  useEffect(() => {
+const getDate = () => {
+  var myDate = new Date();
+
+  var year = myDate.getFullYear();
+  
+  var month = myDate.getMonth() + 1;
+  if(month <= 9)
+      month = '0'+month;
+  
+  var day= myDate.getDate();
+  if(day <= 9)
+      day = '0'+day;
+  
+  var time = myDate.getMilliseconds()
+  
+  var prettyDate = month+year+day +'-'+ time;
+  
+  setCaseId(prettyDate)
+  console.log(prettyDate)
+}
+
+getDate()
+  },[])
 
   return (
     <motion.div

@@ -108,6 +108,7 @@
 .case-content p {
   font-size: 12px;
   color: #808080;
+  width: 100%;
 }
 
 .case-content div.case-content-date {

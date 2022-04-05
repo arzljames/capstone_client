@@ -86,7 +86,7 @@ function App() {
           <Route path="consultation/case" element={<Case />} />
           <Route path="consultation/case/case-data/:id" element={<CaseData />} />
           <Route
-            path="consultation/outgoing/case/case-data/:id"
+            path="consultation/outgoing/:id"
             element={<CaseData />}
           />
           <Route

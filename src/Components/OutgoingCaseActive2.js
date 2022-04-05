@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import {FcDocument} from 'react-icons/fc'
 
 const OutgoingCaseActive2 = ({ item, name, patientId }) => {
   const createdAt = new Date(item.createdAt);
   const navigate = useNavigate();
-  var options = {
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  };
+
+
+  
+  const {hospitalSpec} = useAuth();
 
   const getDate = (date) => {
     let today =
@@ -44,18 +44,21 @@ const OutgoingCaseActive2 = ({ item, name, patientId }) => {
         }
         className="case-content"
       >
-        <h1>Patient Name: {item.patient.firstname}</h1>
-        <p>
-          To: Dr.{" "}
-          {item.referralPhysician.firstname +
-            " " +
-            item.referralPhysician.lastname}{" "}
-          &#8212; {item.referralPhysician.specialization}
-        </p>
+        <div className="case-content-avatar">
+          <FcDocument />
+        </div>
+        <div className="case-content-data">
+          <h1>{item.patient.firstname + " " + item.patient.lastname}</h1>
+          {hospitalSpec.filter(id => id._id === item.specialization).map((e) => {
+     return <p>{e.name}</p>
+   })}
+         
+          <p>{item.designation.facility}</p>
 
-        <div>
-          <p>{getDate(createdAt)} </p>
-          <p>{getTime(createdAt)}</p>
+          <div className="case-content-date">
+            <p>{getDate(createdAt)} </p>
+            <p>{getTime(createdAt)}</p>
+          </div>
         </div>
       </div>
     </>
