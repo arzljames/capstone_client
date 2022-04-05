@@ -14,6 +14,7 @@ import PatientInactiveCase from "../Components/PatientInactiveCase";
 import useAuth from "../Hooks/useAuth";
 import Toast from "../Components/Toast";
 import PulseLoader from "react-spinners/PulseLoader";
+import api from "../API/Api";
 
 const containerVariant = {
   hidden: {
@@ -51,8 +52,18 @@ const PatientsData = () => {
   const [patient, setPatient] = useState([]);
 
   useEffect(() => {
-    setPatient(patients.filter((e) => e._id === id)[0]);
-  }, [patients]);
+    const fetchPatients = async () => {
+      try {
+        let response = await api.get("/api/patient");
+
+        if (response.data) {
+          setPatient(response.data.filter((e) => e._id === id)[0]);
+        }
+      } catch (error) {}
+    };
+
+    fetchPatients();
+  }, []);
 
   if (patient.length === 0) {
     return (
@@ -107,7 +118,7 @@ const PatientsData = () => {
                     onClick={() =>
                       navigate(
                         `/consultation/patients/edit-profile/${patient._id}`,
-                        { patient }
+                        { state: patient }
                       )
                     }
                     className="edit-profile-btn"
