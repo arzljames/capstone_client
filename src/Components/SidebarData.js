@@ -21,6 +21,7 @@ import {
     {
       name: "Chat",
       link: "/chat",
+      link2: "chat",
       icon: <IoChatbubbleEllipsesOutline />,
       activeIcon: <IoChatbubbleEllipsesSharp />,
     },

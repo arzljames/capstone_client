@@ -75,7 +75,7 @@ const ChatBody = ({ users, socket }) => {
   }
   return (
     <div className="chat-main-body-content">
-      <div className="chat-header">
+     <div className="chat-header">
         <div className="avatar-container">
           <img src={!users.picture ? Avatar : users.picture} alt="Profile Picture" />
           <div
@@ -133,9 +133,11 @@ const ChatBody = ({ users, socket }) => {
                     />
                   </div>
                 )}
+                <div className="sender-message-container">
+                <span>{e.sender.firstname === user.firstname ? 'Me' : e.sender.firstname}, {getTime(e.createdAt)}</span>
                 <div className="sender-message">
                   <p>{e.content}</p>
-                  <span>{getTime(e.createdAt)}</span>
+                </div>
                 </div>
               </div>
             );
@@ -164,6 +166,9 @@ const ChatBody = ({ users, socket }) => {
           </div>
         </div>
       </div>
+     
+
+
     </div>
   );
 };

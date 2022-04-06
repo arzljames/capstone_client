@@ -204,6 +204,10 @@
   .statistic-section {
     flex-direction: column;
   }
+
+  .container {
+    padding-bottom: 60px;
+  }
 }
 
 @media screen and (max-width: 576px) {

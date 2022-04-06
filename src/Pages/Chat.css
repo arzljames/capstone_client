@@ -247,9 +247,11 @@ p.nothing-to-show-p {
 .chat-main-body-content {
   width: 100%;
   display: flex;
-  flex-direction: column;
   height: 100vh;
+  flex-direction: column;
 }
+
+
 
 .chat-main-body-content .chat-header {
   width: 100%;
@@ -428,12 +430,14 @@ p.nothing-to-show-p {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  border-bottom-right-radius: 2px;
 }
 
 .chat-message-container {
   margin-top: 15px;
   align-self: flex-start;
   display: flex;
+  
 }
 
 .chat-message-container .sender-avatar {
@@ -468,40 +472,30 @@ p.nothing-to-show-p {
   flex-direction: column;
   align-items: flex-end;
   flex: 1;
+  border-top-left-radius: 2px;
 }
 
-.chat-message-container .sender-message p {
-  margin-bottom: 5px;
+.chat-message-container .sender-message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.chat-message-container .sender-message span {
-  font-weight: 500;
+.chat-message-container-me .sender-message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.chat-message-container-me .sender-message-container span, 
+.chat-message-container .sender-message-container span
+ {
   font-size: 11px;
-}
-
-.chat-message-container-me .sender-message p {
-  margin-bottom: 5px;
-}
-
-.chat-message-container-me .sender-message span {
-  font-weight: 500;
-  font-size: 11px;
-}
-
-/* .chat-message-container {
-  background: #e0e0e0;
-  padding: 10px;
-  border-radius: 20px;
+  margin: 5px;
   color: #272727;
-  flex-basis: auto;
-  font-size: 14px;
-  margin-top: 20px;
-  align-self: flex-start;
   font-weight: 500;
-  display: inline-block;
-  word-break: break-word;
-  white-space: pre-line;
-} */
+}
+
 
 .chat-main-body-content .chat-footer {
   width: 100%;
@@ -587,3 +581,13 @@ p.nothing-to-show-p {
   background: none;
 }
 /* End of main chat body content styling */
+
+
+
+
+
+@media screen and (max-width: 768px) {
+  .chat-nav {
+    display: none;
+  }
+}
