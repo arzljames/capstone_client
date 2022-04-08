@@ -25,11 +25,12 @@ const searchVariant = {
 
 
 
-const ChatNavbar = ({setId}) => {
-  const [showSearch, setShowSearch] = useState(false);
+const ChatNavbar = ({setId, }) => {
+
   const [recent, setRecent] = useState([]);
   const [term, setTerm] = useState("");
-  const {user} = useAuth();
+  const {showSearch, setShowSearch} = useAuth();
+
 
 
   return (
@@ -66,7 +67,7 @@ const ChatNavbar = ({setId}) => {
                 <HiOutlineSearch />
               </p>
               <p>
-                <HiOutlinePencilAlt />
+                <HiOutlinePencilAlt /> 
               </p>
             </div>
           </>

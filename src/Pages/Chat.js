@@ -9,7 +9,8 @@ import useAuth from "../Hooks/useAuth";
 import NoUser from "../Assets/nouser.png";
 
 const Chat = () => {
-  const { user } = useAuth();
+  const { user, pp } = useAuth();
+
 
   return (
     <>
@@ -21,13 +22,13 @@ const Chat = () => {
         <div className="content">
           <Header />
           <div className="chat-content">
-            <ChatNavbar />
+            <ChatNavbar  />
             <div className="content-body">
               <div className="no-content">
                 <h1>Hello, {user.firstname}</h1>
                 <div className="chat-user-header">
                   <img
-                    src={!user.picture ? NoUser : user.picture}
+                    src={!pp ? NoUser : pp}
                     alt="Avatar"
                   />
                 </div>

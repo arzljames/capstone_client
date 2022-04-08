@@ -87,7 +87,7 @@ const DeleteCaseModal = ({ setDeleteModal, id }) => {
           <p>
             You are about to delete this case permanently. Once{" "}
             <b className="deleted-b">deleted</b> you will no longer be able to
-            retrieve this information.
+            retrieve this record.
           </p>
         </div>
         <div className="delete-patient-modal-btns">

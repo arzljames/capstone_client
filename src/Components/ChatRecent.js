@@ -3,8 +3,8 @@ import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
 import { socket } from "./Socket";
 
-const ChatRecent = ({setId, recent}) => {
-  const { user, listUsers } = useAuth();
+const ChatRecent = ({ setId, recent }) => {
+  const { user, listUsers, recentChat } = useAuth();
 
   const [users, setUsers] = useState([]);
 
@@ -18,11 +18,11 @@ const ChatRecent = ({setId, recent}) => {
 
     fetchChat();
   }, [socket]);
+
   return (
     <>
       <div className="recent-p-container">
         <p className="status-label">Recent Chats</p>
-        
       </div>
     </>
   );

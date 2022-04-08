@@ -11,6 +11,7 @@ import {
   HiOutlineSearch,
 } from "react-icons/hi";
 import useAuth from "../Hooks/useAuth";
+import {buttonVariant} from "../Animations/Animations"
 
 const AdminPeople = () => {
   const [showModal, setShowModal] = useState(false);
@@ -31,7 +32,8 @@ const AdminPeople = () => {
               <motion.button
                 className="add-fac-btn"
                 onClick={() => setShowModal(true)}
-                whileTap={{ scale: 0.9 }}
+                variants={buttonVariant}
+                whileTap="tap"
               >
                 <p>
                   {" "}
@@ -67,7 +69,7 @@ const AdminPeople = () => {
               <div className="table">
                 <div className="table-header">
                   <div className="admin-user-no">#</div>
-                  <div className="admin-user-name">Name</div>
+                  <div className="admin-user-name">Full Name</div>
                   <div className="admin-user-patients">Total Patients</div>
                   <div className="admin-user-spec">Specialization</div>
                   <div className="admin-user-hospital">Hospital</div>

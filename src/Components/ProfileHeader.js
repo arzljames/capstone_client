@@ -39,9 +39,9 @@ const ProfileHeader = () => {
     setDropdownNotif(false);
   });
 
-  const { notification } = useAuth();
+  const { notification, pp, setPp, status, setStatus } = useAuth();
 
-  const [status, setStatus] = useState("Offline");
+
 
   useEffect(() => {
     const fetchStatus = async () => {
@@ -77,7 +77,7 @@ const ProfileHeader = () => {
   }, [socket]);
 
 
-  const [pp, setPp] = useState("");
+
 
   useEffect(() => {
     const fetchPP = async () => {
@@ -92,11 +92,9 @@ const ProfileHeader = () => {
     };
 
     fetchPP();
-  }, []);
+  }, [listUsers]);
 
-useEffect(() => {
-  console.log(notification.filter(e => e.specialization === user.specialization) )
-}, [])
+
 
 
   return (

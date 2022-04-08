@@ -7,7 +7,6 @@ import api from "../API/Api";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { user, facilities } = useAuth();
 
   return (
     <div className="admin-header">

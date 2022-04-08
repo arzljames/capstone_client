@@ -129,17 +129,17 @@ const Case = () => {
                             <li onClick={() => setFilter("None")}>None</li>
                             <li
                               onClick={() => {
-                                setFilter("Active Case");
+                                setFilter('Active');
                               }}
                             >
-                              Active Case
+                              Active
                             </li>
                             <li
                               onClick={() => {
-                                setFilter("No Active Case");
+                                setFilter('Done');
                               }}
                             >
-                              No Active Case
+                              Done
                             </li>
                           </ul>
                         </motion.div>
@@ -193,7 +193,15 @@ const Case = () => {
                     <div className="pt-date">STATUS</div>
                   </div>
 
-                  {cases.map((item, index) => {
+                  {cases.filter(e => filter === "None" ? e : filter === 'Active' ? e.active === true : e.active === false)
+                  .filter((val) => {
+                    if(user.designation ==="623ec7fb80a6838424edaa29"  && user.specialization === val.specialization) {
+                      return val
+                    } else if(user.userId === val.physician._id) {
+                      return val
+                    }
+                  }) 
+                  .map((item, index) => {
                     return (
                       <div
                         onClick={() =>
@@ -204,7 +212,7 @@ const Case = () => {
                         <div className="pt-no">{index + 1}</div>
                         <div className="pt-name">{item.caseId}</div>
                         <div className="pt-name">
-                          {item.patient.firstname + " " + item.patient.lastname}
+                          {item.patient.firstname + " " + item.patient.lastname} 
                         </div>
 
                         <div className="pt-active">
@@ -214,7 +222,7 @@ const Case = () => {
                               return e.name;
                             })}
                         </div>
-                        <div className="pt-total">02/04/2022 11:02PM</div>
+                        <div className="pt-total">02/04/2022 11:02PM</div> 
                         <div className="pt-date">
                           {item.active ? "Active" : "Done"}
                         </div>

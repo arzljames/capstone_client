@@ -40,12 +40,8 @@ const Patients = () => {
   } = useAuth();
 
   const [isSort, setIsSort] = useState(false);
-  const [isFilter, setIsFilter] = useState(false);
-
-  const [filter, setFilter] = useState("None");
   const [sort, setSort] = useState("Oldest");
 
-  const [sortedPatients, setSortedPatients] = useState([]);
   const [showImport, setShowImport] = useState(false);
 
   const dropdownVariants = {
@@ -107,10 +103,6 @@ const Patients = () => {
     setIsSort(false);
   });
 
-  let domNodeFilter = useClickOutside(() => {
-    setIsFilter(false);
-  });
-
   let domNodeImport = useClickOutside(() => {
     setShowImport(false);
   });
@@ -127,18 +119,30 @@ const Patients = () => {
   const [patientsId, setPatientsId] = useState([]);
 
   useEffect(() => {
+    patientState.map((e, index, array) => {
+      if (array[index + 1] && e.select === array[index + 1].select) {
+        console.log("same");
+      } else {
+        console.log("not same");
+      }
+    });
+  }, [patients, patientState]);
+
+  useEffect(() => {
     setPatientState(
-      patients.map((e) => {
-        return {
-          select: false,
-          _id: e._id,
-          createdAt: e.createdAt,
-          physician: e.physician,
-          fullname: e.fullname,
-          firstname: e.firstname,
-          lastname: e.lastname,
-        };
-      })
+      patients
+        .filter((id) => id.physician._id === user.userId)
+        .map((e) => {
+          return {
+            select: false,
+            _id: e._id,
+            createdAt: e.createdAt,
+            physician: e.physician,
+            fullname: e.fullname,
+            firstname: e.firstname,
+            lastname: e.lastname,
+          };
+        })
     );
   }, [patients]);
 
@@ -179,19 +183,21 @@ const Patients = () => {
                 <h2>List of Patients</h2>
 
                 <div className="subheading-btns">
-                  {patientsId.length !== 0 && <button
-                    onClick={() => setDeleteModal(true)}
-                    className={
-                      patientsId.length === 0
-                        ? "delete-patient-btn-disable"
-                        : "delete-patient-btn"
-                    }
-                  >
-                    <p>
-                      <HiTrash />
-                    </p>
-                    Delete ({patientsId.length} selected)
-                  </button>}
+                  {patientsId.length !== 0 && (
+                    <button
+                      onClick={() => setDeleteModal(true)}
+                      className={
+                        patientsId.length === 0
+                          ? "delete-patient-btn-disable"
+                          : "delete-patient-btn"
+                      }
+                    >
+                      <p>
+                        <HiTrash />
+                      </p>
+                      Delete ({patientsId.length} selected)
+                    </button>
+                  )}
                   <motion.button
                     onClick={() => navigate("/consultation/patients/admission")}
                     className="add-patient-btn"
@@ -299,7 +305,7 @@ const Patients = () => {
                     value={term}
                     onChange={(e) => setTerm(e.target.value)}
                     type="search"
-                    placeholder="Search patient (last name, first name M.I.)"
+                    placeholder="Search patient"
                   />
                   <div className="patient-input-icon">
                     <HiOutlineSearch />
@@ -308,52 +314,9 @@ const Patients = () => {
 
                 <div className="above-patient-table-btns">
                   <button
-                    className={isFilter ? "btn-active" : "btn-inactive"}
-                    onClick={() => {
-                      setIsFilter(!isFilter);
-                      setIsSort(false);
-                    }}
-                  >
-                    <p>
-                      <HiOutlineFilter />
-                    </p>
-                    Filter by: {filter}
-                    <AnimatePresence>
-                      {isFilter && (
-                        <motion.div
-                          ref={domNodeFilter}
-                          variants={dropdownVariants}
-                          initial="hidden"
-                          animate="visible"
-                          exit="exit"
-                          className="filter-dropdown"
-                        >
-                          <ul>
-                            <li onClick={() => setFilter("None")}>None</li>
-                            <li
-                              onClick={() => {
-                                setFilter("Active Case");
-                              }}
-                            >
-                              Active Case
-                            </li>
-                            <li
-                              onClick={() => {
-                                setFilter("No Active Case");
-                              }}
-                            >
-                              No Active Case
-                            </li>
-                          </ul>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </button>
-                  <button
                     className={isSort ? "btn-active" : "btn-inactive"}
                     onClick={() => {
                       setIsSort(!isSort);
-                      setIsFilter(false);
                     }}
                   >
                     <p>
@@ -411,10 +374,7 @@ const Patients = () => {
                   </button>
                 </div>
               </div>
-
-              <div className="table-container">
-                <div className="table">
-                  <div className="table-header">
+              <div className="table-header">
                     <div className="pt-no">
                       <input
                         onChange={(e) => {
@@ -435,11 +395,13 @@ const Patients = () => {
                     <div className="pt-total">TOTAL CASE</div>
                     <div className="pt-date">Date Admitted</div>
                   </div>
+              <div className="table-container">
+                
+                <div className="table">
+                  
 
-                  {patientState.filter((e) => e.physician._id === user.userId)
-                    .length !== 0 ? (
+                  {patientState.length !== 0 ? (
                     patientState
-                      .filter((e) => e.physician._id === user.userId)
                       .filter((val) => {
                         if (term === "") {
                           return val;

@@ -13,7 +13,6 @@ export const DataProvider = ({ children }) => {
   const [facilities, setFacilities] = useState([]);
   const [appState, setAppState] = useState("");
   const [pending, setPending] = useState([]);
-  const [status, setStatus] = useState("");
   const [patients, setPatients] = useState([]);
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
@@ -24,6 +23,10 @@ export const DataProvider = ({ children }) => {
   const [response, setResponse] = useState([]);
   const [notification, setNotification] = useState([]);
   const [hospitalSpec, setHospitalSpec] = useState([]);
+  const [recentChat, setRecentChat] = useState([]);
+  const [pp, setPp] = useState("");
+  const [status, setStatus] = useState("Offline");
+  const [showSearch, setShowSearch] = useState(false);
 
   const fetchLogin = async () => {
     let response = await api.get("/api/auth/login");
@@ -84,12 +87,24 @@ export const DataProvider = ({ children }) => {
 
 
 
+  const fetchRecentChats = async () => {
+    let response = await api.get("/api/chat");
+
+
+    if(response.data) {
+      setRecentChat(response.data)
+    }
+  }
+
+
+
   useEffect(() => {
     fetchLogin();
     fetchUsers();
     fetchFacilities();
     getSpec();
     fetchCases();
+    fetchRecentChats();
   }, [appState]);
 
   useEffect(() => {
@@ -143,6 +158,11 @@ export const DataProvider = ({ children }) => {
         department,
         setDepartment,
         hospitalSpec,
+        recentChat,
+        pp,
+        setPp,
+        status, setStatus,
+        showSearch, setShowSearch
       }}
     >
       {children}

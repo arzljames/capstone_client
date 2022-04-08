@@ -205,6 +205,7 @@ p.nothing-to-show-p {
   border-radius: 50%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .chat-users .avatar .status-online {
@@ -239,6 +240,7 @@ p.nothing-to-show-p {
   border-radius: 50%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 /* End of main chat body styling  */
@@ -299,6 +301,7 @@ p.nothing-to-show-p {
   border-radius: 50%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .chat-main-body-content .chat-header .name-container h1 {
@@ -378,6 +381,7 @@ p.nothing-to-show-p {
   border-radius: 50%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .chats-body {
@@ -457,6 +461,7 @@ p.nothing-to-show-p {
   border-radius: 50%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .chat-message-container .sender-message {

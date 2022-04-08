@@ -38,6 +38,15 @@ const IncomingConsult = () => {
                   .map((item) => {
                     return <IncomingCaseActive item={item} name={"sds"} />;
                   })}
+
+
+{cases.filter(
+                  (e) => e.specialization === user.specialization && e.active === true
+                ).length === 0 && (
+                  <div className="no-active-cases">
+                    <p>No incoming active consultation request.</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

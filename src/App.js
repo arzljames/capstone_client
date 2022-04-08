@@ -94,7 +94,7 @@ function App() {
             element={<CaseData />}
           />
           <Route
-            path="consultation/patients/case/case-data/:id"
+            path="consultation/patients/case/:id"
             element={<CaseData />}
           />
         </Route>

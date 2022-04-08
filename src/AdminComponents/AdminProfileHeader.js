@@ -35,15 +35,13 @@ let useClickOutside = (handler) => {
 };
 
 const AdminProfileHeader = () => {
-  const {user, appState, setAppState, status, setStatus} = useAuth();
+  const { user, appState, setAppState, status, setStatus } = useAuth();
   const firstname = `${user.firstname} `;
   const fullName = firstname.split(" ");
   const initials = fullName.shift().charAt(0) + fullName.pop().charAt(0);
 
   const navigate = useNavigate();
   const path = window.location.pathname;
-
-
 
   const submitLogout = async () => {
     try {
@@ -60,8 +58,6 @@ const AdminProfileHeader = () => {
     setDropdown(false);
   });
 
- 
-
   return (
     <div ref={domNode} className="admin-profile-header">
       <motion.div
@@ -71,30 +67,20 @@ const AdminProfileHeader = () => {
           path.includes(user.username)
             ? "admin-profile-name-active"
             : "admin-profile-name"
-        } 
+        }
       >
         <div className="admin-profile-picture">
           {/* <img src={!user.picture ? NoUser : user.picture} alt="Avatar" /> */}
           {!user.picture && <p>{initials}</p>}
           <div
             className={
-              user.activeStatus === "Online"
+              status === "Online"
                 ? "active-status-online"
-                : user.activeStatus === "Busy"
-                ? "active-status-busy"
                 : "active-status-offline"
             }
-          >
-            {user.activeStatus === "Online" ? (
-              <HiCheck />
-            ) : user.activeStatus === "Busy" ? (
-              <HiOutlineClock />
-            ) : (
-              <HiOutlineX />
-            )}
-          </div>
+          ></div>
         </div>
-        <h5>{user.firstname}</h5> {status} 
+        <h5>{user.firstname}</h5>
       </motion.div>
       <motion.div
         whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}

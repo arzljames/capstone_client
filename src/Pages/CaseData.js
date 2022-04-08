@@ -20,10 +20,9 @@ import ResponseChat from "../Components/ResponseChat";
 import PulseLoader from "react-spinners/PulseLoader";
 import Toast from "../Components/Toast";
 import DeleteCaseModal from "../Components/DeleteCaseModal";
+import { DocumentGenerator } from "../Components/DocumentGenerator";
 
 const CaseData = () => {
-
-
   const [deleteModal, setDeleteModal] = useState(false);
   const navigate = useNavigate();
   const [patientCase, setPatientCase] = useState([]);
@@ -38,7 +37,7 @@ const CaseData = () => {
     setMessage,
     setIsError,
     toast,
-    facilities
+    facilities,
   } = useAuth();
 
   const { id } = useParams();
@@ -68,8 +67,6 @@ const CaseData = () => {
       </div>
     );
   }
-
-  
 
   const handleDeactivate = async () => {
     try {
@@ -115,8 +112,6 @@ const CaseData = () => {
     }
   };
 
-
-
   function getAge(dateString) {
     var today = new Date();
     var birthDate = new Date(dateString);
@@ -158,10 +153,6 @@ const CaseData = () => {
     return today;
   };
 
-
- 
-
-
   return (
     <>
       <AnimatePresence>
@@ -197,7 +188,10 @@ const CaseData = () => {
                       Delete
                     </button>
                   )}
-                  <button className="download-btn">
+                  <button
+                    onClick={() => DocumentGenerator()}
+                    className="download-btn"
+                  >
                     <p>
                       <HiDownload />
                     </p>
@@ -299,7 +293,7 @@ const CaseData = () => {
 
                       <p>
                         <b>Specialization:</b>
-              
+
                         <p>{patientCase.physician.specialization}</p>
                       </p>
 

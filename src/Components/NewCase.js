@@ -262,11 +262,14 @@ const getDate = () => {
       day = '0'+day;
   
   var time = myDate.getMilliseconds()
+  var hour = myDate.getHours();
+
+  if(hour <= 9)
+    hour = '0'+hour
   
-  var prettyDate = month+year+day +'-'+ time;
+  var prettyDate = month+day+year +'-'+ hour+time;
   
   setCaseId(prettyDate)
-  console.log(prettyDate)
 }
 
 getDate()

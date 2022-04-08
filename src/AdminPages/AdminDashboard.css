@@ -20,7 +20,9 @@
   overflow-y: scroll;
   padding: 20px;
   padding-bottom: 70px;
+  display: flex;
   flex-direction: column;
+
 }
 
 /* width */

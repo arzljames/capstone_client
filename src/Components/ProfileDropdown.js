@@ -2,26 +2,20 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   IoPersonOutline,
   IoSettingsOutline,
-  IoCodeSlash,
   IoExitOutline,
   IoBookOutline,
 } from "react-icons/io5";
 import useAuth from "../Hooks/useAuth";
 import NoUser from "../Assets/nouser.png";
-import {
-  HiOutlineChevronDown,
-  HiCheck,
-  HiOutlineClock,
-  HiOutlineX,
-  HiPencil,
-} from "react-icons/hi";
+import { HiPencil } from "react-icons/hi";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { socket } from "./Socket";
 import api from "../API/Api";
 import PulseLoader from "react-spinners/PulseLoader";
 
 const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
-  const { user, facilities } = useAuth();
+  const { user, facilities, setAppState, setToast, setIsError, setMessage } =
+    useAuth();
   const [dropdown, setDropdown] = useState(false);
 
   let domNode = useClickOutside(() => {
@@ -50,17 +44,36 @@ const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
         .then((res) => res.json())
         .then((data) => {
           setLoader(false);
-          api
-            .put(`/api/user/profile/${user.userId}`, {
-              picture: data.url,
-            })
-            .then((response) => {
-              socket.emit("chat");
-              setLoader(false);
-            });
+
+          let response = api.put(`/api/user/profile/${user.userId}`, {
+            picture: data.url,
+          });
+
+          if (response) {
+            socket.emit("chat");
+            setLoader(false);
+            setAppState("Change DP");
+            setTimeout(() => setAppState(""));
+            setToast(true);
+            setIsError(false);
+            setMessage("Successfully changed profile picture.");
+          } else {
+            socket.emit("chat");
+            setLoader(false);
+            setAppState("Change DP");
+            setTimeout(() => setAppState(""));
+            setToast(true);
+            setIsError(false);
+            setMessage("Successfully changed profile picture.");
+          }
         });
     } catch (error) {
       setLoader(false);
+      setAppState("Change DP");
+      setTimeout(() => setAppState(""));
+      setToast(true);
+      setIsError(true);
+      setMessage(error.message);
     }
   };
 

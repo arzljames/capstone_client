@@ -126,14 +126,16 @@
 
 .consultation-nav ul li div {
   border-radius: 50%;
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: 5px;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 500;
+  background: rgb(255, 87, 65);
+  color: #fff
 }
 
 .consultation-nav ul li.active-nav {
