@@ -125,6 +125,50 @@
   position: relative;
 }
 
+
+.patient-input-container div.advance-search {
+  width: 100%;
+  min-height: 50px;
+  height: auto;
+  background: rgb(255, 255, 255);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+  rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0px;
+  font-size: 14px;
+  color: #272727;
+  font-weight: 500;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.patient-input-container div.advance-search p {
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.patient-input-container div.advance-search div {
+  width: 100%;
+  padding: 0px 10px;
+  cursor: pointer;
+  transition: .1s ease-in-out;
+}
+
+.patient-input-container div.advance-search div:hover {
+  transition: .1s ease-in-out;
+text-decoration: underline;
+}
+
+
+
 .patient-input-icon {
   width: 30px;
   height: 30px;
@@ -139,6 +183,7 @@
 
 .patient-input-container input {
   width: 100%;
+  border: 1px solid #d3d3d300;
   border: none;
   outline: none;
   padding: 10px;
@@ -151,10 +196,9 @@
 }
 
 .patient-input-container input:focus {
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   transition: 0.2s ease-in-out;
   background: #f1f3f1;
+  border: 1px solid #d3d3d3
 }
 
 .patient-input-container input::placeholder {
@@ -918,3 +962,9 @@ button.deactive-btn:hover {
   transition: .1s ease-in-out;
   background: rgb(219, 219, 219);
 }
+
+
+
+/* Patient Advance Search Modal */
+
+/* End Patient Advance Search Modal */

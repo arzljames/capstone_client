@@ -5,6 +5,7 @@
   background: #f1f3f1;
   overflow: hidden;
   display: flex;
+
 }
 
 .content {
@@ -19,9 +20,9 @@
   flex: 1;
   overflow-y: scroll;
   padding: 20px;
-  padding-bottom: 70px;
   display: flex;
   flex-direction: column;
+  padding-bottom: 70px;
 
 }
 

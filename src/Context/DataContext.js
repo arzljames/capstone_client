@@ -31,8 +31,6 @@ export const DataProvider = ({ children }) => {
   const fetchLogin = async () => {
     let response = await api.get("/api/auth/login");
 
-
-
     if (response.data.loggedIn) {
       setUser(response.data);
     } else {
@@ -85,18 +83,13 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-
-
   const fetchRecentChats = async () => {
     let response = await api.get("/api/chat");
 
-
-    if(response.data) {
-      setRecentChat(response.data)
+    if (response.data) {
+      setRecentChat(response.data);
     }
-  }
-
-
+  };
 
   useEffect(() => {
     fetchLogin();
@@ -105,6 +98,17 @@ export const DataProvider = ({ children }) => {
     getSpec();
     fetchCases();
     fetchRecentChats();
+
+    // const interval = setInterval(() => {
+    //   fetchLogin();
+    //   fetchUsers();
+    //   fetchFacilities();
+    //   getSpec();
+    //   fetchCases();
+    //   fetchRecentChats();
+    // }, 3000);
+
+    // return () => clearInterval(interval);
   }, [appState]);
 
   useEffect(() => {
@@ -113,15 +117,6 @@ export const DataProvider = ({ children }) => {
 
   const [hospital, setHospital] = useState("");
   const [department, setDepartment] = useState("");
-
-
-
-
-
-
-
-
-
 
   return (
     <DataContext.Provider
@@ -161,8 +156,10 @@ export const DataProvider = ({ children }) => {
         recentChat,
         pp,
         setPp,
-        status, setStatus,
-        showSearch, setShowSearch
+        status,
+        setStatus,
+        showSearch,
+        setShowSearch,
       }}
     >
       {children}

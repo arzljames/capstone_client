@@ -7,7 +7,6 @@ import {
   HiOutlineSearch,
   HiOutlineSortDescending,
   HiTrash,
-  HiOutlineFilter,
 } from "react-icons/hi";
 import { motion } from "framer-motion";
 import "./Patients.css";
@@ -23,14 +22,15 @@ import { useClickOutside } from "../Hooks/useClickOutside";
 import { parse } from "papaparse";
 import ImportModal from "../Components/ImportModal";
 import DeleteMultiplePatientModal from "../Components/DeleteMultiplePatientModal";
+import PatientAdvanceSearch from "../Components/PatientAdvanceSearch";
+import { dropdownVariants } from "../Animations/Animations";
 
 const Patients = () => {
+  const [searchDropdown, setSearchDropdown] = useState(false);
   const navigate = useNavigate();
-  const [showCase, setShowCase] = useState(false);
   const {
     user,
     patients,
-    setPatients,
     cases,
     appState,
     setToast,
@@ -44,50 +44,17 @@ const Patients = () => {
 
   const [showImport, setShowImport] = useState(false);
 
-  const dropdownVariants = {
-    hidden: {
-      opacity: 0,
-      y: -10,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.1,
-        ease: "easeInOut",
-      },
-    },
-    exit: {
-      opacity: 0,
-      transition: {
-        duration: 0,
-      },
-    },
-  };
+  // const sortAsc = () => {
+  //   setPatients(
+  //     patients.sort((a, b) => a.firstname.localeCompare(b.firstname))
+  //   );
+  // };
 
-  const sortNewest = () => {
-    if (sort !== "Newest") {
-      setPatients(patients.slice(0).reverse());
-    }
-  };
-
-  const sortOldest = () => {
-    if (sort !== "Oldest") {
-      setPatients(patients.slice(0).reverse());
-    }
-  };
-
-  const sortAsc = () => {
-    setPatients(
-      patients.sort((a, b) => a.firstname.localeCompare(b.firstname))
-    );
-  };
-
-  const sortDsc = () => {
-    setPatients(
-      patients.sort((b, a) => a.firstname.localeCompare(b.firstname))
-    );
-  };
+  // const sortDsc = () => {
+  //   setPatients(
+  //     patients.sort((b, a) => a.firstname.localeCompare(b.firstname))
+  //   );
+  // };
 
   const [term, setTerm] = useState("");
 
@@ -119,18 +86,9 @@ const Patients = () => {
   const [patientsId, setPatientsId] = useState([]);
 
   useEffect(() => {
-    patientState.map((e, index, array) => {
-      if (array[index + 1] && e.select === array[index + 1].select) {
-        console.log("same");
-      } else {
-        console.log("not same");
-      }
-    });
-  }, [patients, patientState]);
-
-  useEffect(() => {
     setPatientState(
       patients
+
         .filter((id) => id.physician._id === user.userId)
         .map((e) => {
           return {
@@ -158,6 +116,23 @@ const Patients = () => {
   }, [patientState]);
 
   const [deleteModal, setDeleteModal] = useState(false);
+  const [showAdvance, setShowAdvance] = useState(false);
+
+  let domNodeSearch = useClickOutside(() => {
+    setSearchDropdown(false);
+  });
+
+  const sortAscDate = (a, b) => {
+    var dateA = new Date(a.createdAt).getTime();
+    var dateB = new Date(b.createdAt).getTime();
+    return dateA > dateB ? 1 : -1;
+  };
+
+  const sortDscDate = (a, b) => {
+    var dateA = new Date(a.createdAt).getTime();
+    var dateB = new Date(b.createdAt).getTime();
+    return dateA < dateB ? 1 : -1;
+  };
 
   return (
     <>
@@ -170,6 +145,9 @@ const Patients = () => {
               setDeleteModal={setDeleteModal}
               patientsId={patientsId}
             />
+          )}
+          {showAdvance && (
+            <PatientAdvanceSearch setShowAdvance={setShowAdvance} />
           )}
         </AnimatePresence>
 
@@ -305,11 +283,25 @@ const Patients = () => {
                     value={term}
                     onChange={(e) => setTerm(e.target.value)}
                     type="search"
+                    onFocus={() => setSearchDropdown(true)}
                     placeholder="Search patient"
                   />
                   <div className="patient-input-icon">
                     <HiOutlineSearch />
                   </div>
+
+                  {searchDropdown && (
+                    <div ref={domNodeSearch} className="advance-search">
+                      {!term ? (
+                        <p>Type in the search bar</p>
+                      ) : (
+                        <p>You searched for "{term}"</p>
+                      )}
+                      <div onClick={() => setShowAdvance(true)}>
+                        Advance Search
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="above-patient-table-btns">
@@ -337,7 +329,6 @@ const Patients = () => {
                             <li
                               onClick={() => {
                                 setSort("Oldest");
-                                sortOldest();
                               }}
                             >
                               Oldest
@@ -345,7 +336,6 @@ const Patients = () => {
                             <li
                               onClick={() => {
                                 setSort("Newest");
-                                sortNewest();
                               }}
                             >
                               Newest
@@ -354,7 +344,6 @@ const Patients = () => {
                             <li
                               onClick={() => {
                                 setSort("Name (A-Z)");
-                                sortAsc();
                               }}
                             >
                               Name (A-Z)
@@ -362,7 +351,6 @@ const Patients = () => {
                             <li
                               onClick={() => {
                                 setSort("Name (Z-A)");
-                                sortDsc();
                               }}
                             >
                               Name (Z-A)
@@ -375,31 +363,28 @@ const Patients = () => {
                 </div>
               </div>
               <div className="table-header">
-                    <div className="pt-no">
-                      <input
-                        onChange={(e) => {
-                          let checked = e.target.checked;
-                          setPatientState(
-                            patientState.map((d) => {
-                              d.select = checked;
-                              return d;
-                            })
-                          );
-                        }}
-                        type="checkbox"
-                      />
-                    </div>
-                    <div className="pt-name">FULL NAME</div>
+                <div className="pt-no">
+                  <input
+                    onChange={(e) => {
+                      let checked = e.target.checked;
+                      setPatientState(
+                        patientState.map((d) => {
+                          d.select = checked;
+                          return d;
+                        })
+                      );
+                    }}
+                    type="checkbox"
+                  />
+                </div>
+                <div className="pt-name">FULL NAME</div>
 
-                    <div className="pt-active">ACTIVE CASE</div>
-                    <div className="pt-total">TOTAL CASE</div>
-                    <div className="pt-date">Date Admitted</div>
-                  </div>
+                <div className="pt-active">ACTIVE CASE</div>
+                <div className="pt-total">TOTAL CASE</div>
+                <div className="pt-date">Date Admitted</div>
+              </div>
               <div className="table-container">
-                
                 <div className="table">
-                  
-
                   {patientState.length !== 0 ? (
                     patientState
                       .filter((val) => {

@@ -279,7 +279,7 @@ const PatientsData = () => {
                         tab === "History" ? "active-tab" : "inactive-tab"
                       }
                     >
-                      History
+                      History Case
                     </button>
                   </div>
                   <div className="patient-content">
