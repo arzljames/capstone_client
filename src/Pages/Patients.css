@@ -306,6 +306,15 @@ text-decoration: underline;
   display: flex;
   align-items: center;
   justify-content: center;
+  
+}
+
+.pt-sex, .pt-age {
+   width: 100px;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .pt-total {
@@ -1029,3 +1038,26 @@ button.deactive-btn:hover {
 /* Patient Advance Search Modal */
 
 /* End Patient Advance Search Modal */
+
+
+
+
+
+@media screen and (max-width: 768px) {
+  .pt-date, .pt-total, .pt-active {
+    display: none;
+  }
+
+  .pt-sex, .pt-age {
+    width: 50px;
+  }
+
+  .above-patient-table {
+    flex-direction: column-reverse;
+    padding: 10px;
+  }
+
+  .above-patient-table input {
+    margin-top: 5px;
+  }
+}

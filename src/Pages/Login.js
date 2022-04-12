@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import Axios from "axios";
-import { HiEyeOff, HiEye, HiLockClosed, HiAtSymbol } from "react-icons/hi";
+import { HiEyeOff, HiEye, HiOutlineLockClosed, HiAtSymbol } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
 import api from "../API/Api";
 import PendingModal from "../Components/PendingModal";
@@ -157,7 +157,7 @@ const Login = () => {
               type={showPassword ? "text" : "password"}
             />
             <p className="login-icon">
-              <HiLockClosed />
+              <HiOutlineLockClosed />
             </p>
             {login.password.length > 0 ? (
               <div

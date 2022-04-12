@@ -26,7 +26,7 @@ import PatientAdvanceSearch from "../Components/PatientAdvanceSearch";
 import { dropdownVariants } from "../Animations/Animations";
 import PatientTableData from "../Components/PatientTableData";
 import ReactPaginate from "react-paginate";
-import {Helmet} from 'react-helmet'
+import { Helmet } from "react-helmet";
 
 const Patients = () => {
   const [searchDropdown, setSearchDropdown] = useState(false);
@@ -80,6 +80,17 @@ const Patients = () => {
   const [patientState, setPatientState] = useState([]);
   const [patientsId, setPatientsId] = useState([]);
 
+  function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
+
   useEffect(() => {
     setPatientState(
       patients
@@ -94,6 +105,8 @@ const Patients = () => {
             fullname: e.fullname,
             firstname: e.firstname,
             lastname: e.lastname,
+            sex: e.sex,
+            age: getAge(e.birthday),
           };
         })
     );
@@ -117,6 +130,14 @@ const Patients = () => {
     setSearchDropdown(false);
   });
 
+  const sortAscName = (a, b) => {
+    return a.firstname.localeCompare(b.firstname);
+  };
+
+  const sortDscName = (a, b) => {
+    return b.firstname.localeCompare(a.firstname);
+  };
+
   const sortAscDate = (a, b) => {
     var dateA = new Date(a.createdAt).getTime();
     var dateB = new Date(b.createdAt).getTime();
@@ -139,9 +160,9 @@ const Patients = () => {
   };
   return (
     <>
-    <Helmet>
-      <title>Patients | ZCMC Telemedicine</title>
-    </Helmet>
+      <Helmet>
+        <title>Patients | ZCMC Telemedicine</title>
+      </Helmet>
       <div className="container">
         <AnimatePresence>
           {CSV.length !== 0 && <ImportModal setCSV={setCSV} CSV={CSV} />}
@@ -368,11 +389,16 @@ const Patients = () => {
                 </div>
               </div>
               <PatientTableData
+                sortAscDate={sortAscDate}
+                sortDscDate={sortDscDate}
+                sortAscName={sortAscName}
+                sortDscName={sortDscName}
                 setPatientState={setPatientState}
                 patientState={patientState}
                 term={term}
                 usersPerPage={usersPerPage}
                 pagesVisited={pagesVisited}
+                sort={sort}
               />
               <br />
               <div className="pagination-container">
@@ -393,7 +419,6 @@ const Patients = () => {
                 />
               </div>
             </div>
-            
           </div>
         </div>
       </div>
