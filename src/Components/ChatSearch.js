@@ -14,7 +14,7 @@ const ChatSearch = ({ term }) => {
       <div className="recent-p-container">
         {term !== "" && <p className="status-label">Search Results</p>}
         {listUsers
-          .filter((e) => e._id !== user.userId && e.userType !== "admin")
+          .filter((e) => e._id !== user.userId && e.userType !== "admin" && e.verified === true)
           .filter((val) => {
             if (term === "") {
               return val;

@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import "./Login.css";
 import Axios from "axios";
-import { HiEyeOff, HiEye } from "react-icons/hi";
+import { HiEyeOff, HiEye, HiLockClosed, HiAtSymbol } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
-import PulseLoader from "react-spinners/PulseLoader";
 import api from "../API/Api";
-import FormMessage from "../Components/FormMessage";
 import PendingModal from "../Components/PendingModal";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const formVariants = {
   hidden: {
@@ -78,8 +76,14 @@ const Login = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Sign in to ZCMC Telemedicine | ZCMC Telemedicine</title>
+      </Helmet>
       <div className="login-container">
-        <h1>Sign in to ZCMC Telemedicine</h1>
+        <div className="login-header">
+          <h1>Sign in</h1>
+          <p>Enter your credentials to continue</p>
+        </div>
 
         <motion.form
           variants={formVariants}
@@ -88,10 +92,6 @@ const Login = () => {
           className="login-form"
           onSubmit={(e) => e.preventDefault()}
         >
-          {/* <AnimatePresence>
-            {prompt && <FormMessage setPrompt={setPrompt} message={message} />}
-          </AnimatePresence> */}
-
           <AnimatePresence>
             {verification && (
               <PendingModal
@@ -104,25 +104,43 @@ const Login = () => {
           <label>
             Username <i>*</i>
           </label>
-          <motion.input
-            variants={formVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className={usernameError ? "error-input" : null}
-            name="username"
-            value={login.username}
-            onChange={(e) => {
-              setLogin({
-                username: e.target.value,
-                password: login.password,
-              });
-            }}
-            type="text"
-          />
+
+          <div
+            className={
+              usernameError
+                ? "login-username-container-error"
+                : "login-username-container"
+            }
+          >
+            <motion.input
+              variants={formVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className={usernameError ? "error-input" : "username"}
+              name="username"
+              value={login.username}
+              onChange={(e) => {
+                setLogin({
+                  username: e.target.value,
+                  password: login.password,
+                });
+              }}
+              type="text"
+            />
+            <p className="login-icon">
+              <HiAtSymbol />
+            </p>
+          </div>
+
           <AnimatePresence>
-            {usernameError && <p className="error-input-text">{message}</p>}
+            {usernameError && (
+              <p style={{ marginTop: "5px" }} className="error-input-text">
+                {message}
+              </p>
+            )}
           </AnimatePresence>
+
           <label>
             Password <i>*</i>
           </label>
@@ -138,6 +156,9 @@ const Login = () => {
               }}
               type={showPassword ? "text" : "password"}
             />
+            <p className="login-icon">
+              <HiLockClosed />
+            </p>
             {login.password.length > 0 ? (
               <div
                 onClick={() => setShowPassword(!showPassword)}
@@ -152,11 +173,7 @@ const Login = () => {
             className={loader ? "login-form-btn-disable" : "login-form-btn"}
             onClick={() => handleLogin()}
           >
-            {loader ? (
-              <PulseLoader size={7} margin={2} color="#fff" />
-            ) : (
-              "Sign In"
-            )}
+            {loader ? "Signing in..." : "Sign In"}
           </button>
           <div className="form-link">
             <p>

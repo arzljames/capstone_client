@@ -57,6 +57,30 @@ const Case = () => {
 
   const { cases, hospitalSpec, user, toast } = useAuth();
 
+  const getDate = (date) => {
+    let dates = new Date(date);
+    let today =
+      dates.toLocaleString("en-us", { month: "short" }) +
+      " " +
+      dates.getDate() +
+      "," +
+      " " +
+      dates.getFullYear();
+
+    return today;
+  };
+
+  const getTime = (date) => {
+    var options = {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    };
+    let today = new Date(date).toLocaleString("en-US", options);
+
+    return today;
+  };
+
   return (
     <>
       <Helmet>
@@ -222,7 +246,7 @@ const Case = () => {
                               return e.name;
                             })}
                         </div>
-                        <div className="pt-total">02/04/2022 11:02PM</div> 
+                        <div className="pt-total">{getDate(item.createdAt)} {getTime(item.createdAt)}</div> 
                         <div className="pt-date">
                           {item.active ? "Active" : "Done"}
                         </div>

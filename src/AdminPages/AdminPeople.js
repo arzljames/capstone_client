@@ -11,7 +11,7 @@ import {
   HiOutlineSearch,
 } from "react-icons/hi";
 import useAuth from "../Hooks/useAuth";
-import {buttonVariant} from "../Animations/Animations"
+import { buttonVariant } from "../Animations/Animations";
 
 const AdminPeople = () => {
   const [showModal, setShowModal] = useState(false);
@@ -81,7 +81,7 @@ const AdminPeople = () => {
                       <div key={key} className="table-body">
                         <div className="admin-user-no">{key + 1}</div>
                         <div className="admin-user-name">
-                          {item.firstname + " " + item.lastname}
+                          Dr. {item.firstname + " " + item.lastname}
                         </div>
                         <div className="admin-user-patients">
                           {

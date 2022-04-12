@@ -17,13 +17,16 @@ import { AnimatePresence } from "framer-motion";
 import useAuth from "../Hooks/useAuth";
 import Toast from "../Components/Toast";
 import { AiFillCaretDown } from "react-icons/ai";
-import { HiUpload } from "react-icons/hi";
+import { HiUpload, HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { parse } from "papaparse";
 import ImportModal from "../Components/ImportModal";
 import DeleteMultiplePatientModal from "../Components/DeleteMultiplePatientModal";
 import PatientAdvanceSearch from "../Components/PatientAdvanceSearch";
 import { dropdownVariants } from "../Animations/Animations";
+import PatientTableData from "../Components/PatientTableData";
+import ReactPaginate from "react-paginate";
+import {Helmet} from 'react-helmet'
 
 const Patients = () => {
   const [searchDropdown, setSearchDropdown] = useState(false);
@@ -57,14 +60,6 @@ const Patients = () => {
   // };
 
   const [term, setTerm] = useState("");
-
-  const getDate = (date) => {
-    let dates = new Date(date);
-    let today =
-      dates.getMonth() + "/" + dates.getDate() + "/" + dates.getFullYear();
-
-    return today;
-  };
 
   let domNodeSort = useClickOutside(() => {
     setIsSort(false);
@@ -134,8 +129,19 @@ const Patients = () => {
     return dateA < dateB ? 1 : -1;
   };
 
+  const [pageNumber, setPageNumber] = useState(0);
+  const [usersPerPage, setUsersPerPage] = useState(10);
+  const pagesVisited = pageNumber * usersPerPage;
+
+  const pageCount = Math.ceil(patientState.length / usersPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
   return (
     <>
+    <Helmet>
+      <title>Patients | ZCMC Telemedicine</title>
+    </Helmet>
       <div className="container">
         <AnimatePresence>
           {CSV.length !== 0 && <ImportModal setCSV={setCSV} CSV={CSV} />}
@@ -276,7 +282,6 @@ const Patients = () => {
                   </div>
                 </div>
               </div>
-
               <div className="above-patient-table">
                 <div className="patient-input-container">
                   <input
@@ -362,120 +367,33 @@ const Patients = () => {
                   </button>
                 </div>
               </div>
-              <div className="table-header">
-                <div className="pt-no">
-                  <input
-                    onChange={(e) => {
-                      let checked = e.target.checked;
-                      setPatientState(
-                        patientState.map((d) => {
-                          d.select = checked;
-                          return d;
-                        })
-                      );
-                    }}
-                    type="checkbox"
-                  />
-                </div>
-                <div className="pt-name">FULL NAME</div>
-
-                <div className="pt-active">ACTIVE CASE</div>
-                <div className="pt-total">TOTAL CASE</div>
-                <div className="pt-date">Date Admitted</div>
-              </div>
-              <div className="table-container">
-                <div className="table">
-                  {patientState.length !== 0 ? (
-                    patientState
-                      .filter((val) => {
-                        if (term === "") {
-                          return val;
-                        } else if (
-                          val.fullname
-                            .toLowerCase()
-                            .includes(term.toLocaleLowerCase())
-                        ) {
-                          return val;
-                        }
-                      })
-
-                      .map((item, key) => {
-                        return (
-                          <div
-                            key={key + 1}
-                            onClick={() =>
-                              navigate(`/consultation/patients/${item._id}`, {
-                                state: item,
-                              })
-                            }
-                            className={
-                              item.select
-                                ? "table-body-active"
-                                : key % 2 === 0
-                                ? "table-body"
-                                : item.select
-                                ? "table-body-active"
-                                : "table-body-2"
-                            }
-                          >
-                            <div
-                              onClick={(e) => e.stopPropagation()}
-                              className="pt-no"
-                            >
-                              <input
-                                onChange={(e) => {
-                                  let checked = e.target.checked;
-                                  setPatientState(
-                                    patientState.map((d) => {
-                                      if (item._id === d._id) {
-                                        d.select = checked;
-                                      }
-                                      return d;
-                                    })
-                                  );
-                                }}
-                                checked={item.select}
-                                type="checkbox"
-                              />
-                            </div>
-                            <div className="pt-name">
-                              {item.firstname + " " + item.lastname}{" "}
-                            </div>
-
-                            <div className="pt-active">
-                              {
-                                cases.filter(
-                                  (f) =>
-                                    f.patient._id === item._id &&
-                                    f.active === true
-                                ).length
-                              }
-                            </div>
-                            <div className="pt-total">
-                              {
-                                cases.filter((f) => f.patient._id === item._id)
-                                  .length
-                              }
-                            </div>
-                            <div className="pt-date">
-                              {getDate(item.createdAt)}
-                            </div>
-                          </div>
-                        );
-                      })
-                  ) : (
-                    <div className="no-patients">
-                      <h1>No Patients</h1>
-                      <p>
-                        Looks like you don't have a patient to handle. Click the{" "}
-                        <em>add patient</em> button above to start adding
-                        patient.
-                      </p>
-                    </div>
-                  )}
-                </div>
+              <PatientTableData
+                setPatientState={setPatientState}
+                patientState={patientState}
+                term={term}
+                usersPerPage={usersPerPage}
+                pagesVisited={pagesVisited}
+              />
+              <br />
+              <div className="pagination-container">
+                <ReactPaginate
+                  previousLabel={<HiChevronLeft size={20} />}
+                  nextLabel={<HiChevronRight size={20} />}
+                  breakLabel="..."
+                  pageCount={pageCount}
+                  marginPagesDisplayed={3}
+                  containerClassName="pagination"
+                  pageClassName="page-item"
+                  pageLinkClassName="page-link"
+                  breakClassName="page-item"
+                  nextClassName="page-item"
+                  previousClassName="page-item"
+                  activeClassName="active"
+                  onPageChange={changePage}
+                />
               </div>
             </div>
+            
           </div>
         </div>
       </div>

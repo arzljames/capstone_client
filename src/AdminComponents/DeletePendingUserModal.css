@@ -1,5 +1,6 @@
 .delete-pending-user-modal {
-  width: 375px;
+  width: 95%;
+  max-width: 500px;
   height: 250px;
   min-height: 250px;
   background: #fff;

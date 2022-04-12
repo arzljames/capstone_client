@@ -9,12 +9,22 @@
   padding: 50px 20px;
 }
 
+.login-header {
+  margin-bottom: 32px;
+  width: 100%;
+  width: 350px;
+}
+
 .login-container h1 {
   color: #272727;
-  margin-bottom: 32px;
   font-size: 26px;
   font-weight: 600;
-  text-align: center;
+  text-align: left;
+}
+
+.login-container p {
+  color: #505050;
+  font-size: 15px
 }
 
 .login-form {
@@ -32,7 +42,7 @@
   font-size: 14px;
   color: #272727;
   font-weight: 500;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .login-form label i {
@@ -40,15 +50,104 @@
   color: red;
 }
 
-.login-form input {
+.login-form input, .login-form select {
   margin-bottom: 20px;
   height: 40px;
   padding: 10px;
   outline-style: none;
   border: none;
-  border: 1px solid #b8b8b8;
+  border: 1px solid #058e4500;
   transition: 0.1s ease-in-out;
   color: #272727;
+  border-radius: 6px;
+  /* background: rgb(239, 240, 241); */
+  border: 1px solid #9e9e9e
+}
+
+.login-username-container {
+  width: 100%;
+  margin-bottom: 0px;
+  position: relative;
+  margin-bottom: 20px;
+
+}
+
+.login-username-container input.username{
+padding-left: 45px;
+}
+
+.login-username-container-error {
+  width: 100%;
+  margin-bottom: 0px;
+  position: relative;
+
+}
+
+.login-username-container-error input.error-input, .login-username-container-error input.error-input:hover, .login-username-container-error input.error-input:focus {
+  margin-bottom: 0px;
+  padding-left: 45px;
+  width: 100%;
+}
+
+
+
+.login-username-container input {
+  height: 40px;
+  padding: 10px;
+  outline-style: none;
+  border: none;
+  border: 1px solid #058e4500;
+  transition: 0.1s ease-in-out;
+  color: #272727;
+  border-radius: 6px;
+  border: 1px solid #9e9e9e;
+  margin-bottom: 0px;
+  width: 100%;
+}
+
+.form-input-container input {
+  margin-bottom: 20px;
+  height: 40px;
+  padding: 10px;
+  outline-style: none;
+  border: none;
+  border: 1px solid #058e4500;
+  transition: 0.1s ease-in-out;
+  color: #272727;
+  border-radius: 6px;
+  border: 1px solid #9e9e9e
+}
+
+.form-input-container .error-input {
+  margin-bottom: 5px;
+  height: 40px;
+  padding: 10px;
+  outline-style: none;
+  border: none;
+  border: 1px solid #ff1616;
+  transition: 0.1s ease-in-out;
+  color: #272727;
+  padding-left: 45px;
+
+}
+
+.form-input-container .error-input:hover, .form-input-container .error-input:focus {
+  margin-bottom: 5px;
+  height: 40px;
+  padding: 10px;
+  outline-style: none;
+  border: none;
+  border: 1px solid #ff1616;
+  transition: 0.1s ease-in-out;
+  color: #272727;
+  padding-left: 45px;
+}
+
+.form-input-container p.error-input-text {
+  color: #ff1616;
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .login-form .error-input {
@@ -83,12 +182,12 @@ p.error-input-text {
 }
 
 .login-form input:hover {
-  border: 1px solid #636363;
+  border: 1px solid #058e46;
   transition: 0.1s ease-in-out;
 }
 
 .login-form input:focus {
-  border: 1px solid #636363;
+  border: 1px solid #058e46;
   box-shadow: rgba(33, 207, 76, 0.3) 0px 0px 0px 3px;
   transition: 0.1s ease-in-out;
 }
@@ -101,10 +200,11 @@ p.error-input-text {
   cursor: pointer;
   background: #058e46;
   color: #fff;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 15px;
-  margin-top: 32px;
+  margin-top: 12px;
   transition: 0.2s ease-in-out;
+  border-radius: 6px;
 }
 
 .login-form-btn-disable {
@@ -117,11 +217,12 @@ p.error-input-text {
   cursor: pointer;
   background: #058e46;
   color: #fff;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 15px;
   margin-top: 22px;
   transition: 0.2s ease-in-out;
-  margin-top: 32px;
+  margin-top: 12px;
+  border-radius: 6px;
 }
 
 .login-form-btn:hover {
@@ -162,11 +263,53 @@ p.error-input-text {
   width: 100%;
   height: auto;
   position: relative;
+  margin-bottom: 20px;
+}
+
+.form-input-container.login {
+  width: 100%;
+  height: auto;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+p.login-icon {
+position: absolute;
+color: #a8a8a8;
+display: flex;
+width: 35px;
+height: 40px;
+top: 0;
+left: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+p.login-icon::after {
+  content: "";
+  height: 50%;
+  width: 1px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #c2c2c2;
+  position: absolute;
+}
+
+.form-input-container.login-username p.login-icon {
+  position: absolute;
+  left: 10px;
+color: #9e9e9e;
+top: 50%;
+transform: translateY(-50%);
+display: flex;
 }
 
 .form-input-container input {
   width: 100%;
   margin-bottom: 0;
+   padding-left: 45px;
 }
 
 .eye-password {
@@ -356,10 +499,17 @@ div.hospital-input:hover {
   background: #ebebeb;
 }
 
+
+
+
 @media screen and (max-width: 576px) {
   .login-form,
   .forgot-password-container {
     min-width: 0px;
+    width: 100%;
+  }
+
+  .login-header {
     width: 100%;
   }
 }

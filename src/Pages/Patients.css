@@ -179,18 +179,17 @@ text-decoration: underline;
   align-items: center;
   justify-content: center;
   color: #808080;
+
 }
 
 .patient-input-container input {
   width: 100%;
-  border: 1px solid #d3d3d300;
-  border: none;
+  border: 1px solid #7a282800;
   outline: none;
   padding: 10px;
   padding-left: 30px;
   height: 30px;
   border-radius: 3px;
-  border: none;
   transition: 0.2s ease-in-out;
   background: #f1f3f1;
 }
@@ -198,7 +197,7 @@ text-decoration: underline;
 .patient-input-container input:focus {
   transition: 0.2s ease-in-out;
   background: #f1f3f1;
-  border: 1px solid #d3d3d3
+  border: 1px solid #a5a5a5
 }
 
 .patient-input-container input::placeholder {
@@ -276,16 +275,15 @@ text-decoration: underline;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-right: 1px solid #e0e0e0
+  /* border-right: 1px solid #e0e0e0 */
 }
 
 .pt-name {
-  flex: 0.8;
+  flex: 1;
   height: 100%;
   display: flex;
   align-items: center;
   padding-left: 20px;
-  border-right: 1px solid #e0e0e0
 }
 
 .pt-name p {
@@ -295,16 +293,15 @@ text-decoration: underline;
 }
 
 .pt-active {
-  flex: 1;
+  width: 150px;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-right: 1px solid #e0e0e0
 }
 
 .pt-date {
-  flex: 1;
+  width: 150px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -312,12 +309,12 @@ text-decoration: underline;
 }
 
 .pt-total {
-  flex: 1;
+  width: 150px;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-right: 1px solid #e0e0e0
+
 }
 
 .pt-action {
@@ -963,7 +960,71 @@ button.deactive-btn:hover {
   background: rgb(219, 219, 219);
 }
 
+.pagination-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 
+.pagination {
+  display: flex;
+  list-style: none;
+  align-items: flex-end;
+  font-size: 14px;
+  font-weight: 500;
+  color: #69777c
+}
+
+
+.page-item {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.page-link {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.page-item:hover {
+  background: rgb(201, 205, 209);
+}
+
+.active {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+  background: #111727;
+  color: #fff
+}
+
+.active:hover {
+  background: #111727;
+}
+
+.page-item a {
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+}
 
 /* Patient Advance Search Modal */
 
