@@ -267,7 +267,7 @@ const EditPatientProfile = () => {
                   <div className="admission-2col">
                     <div className="div1">
                       <label>
-                        Birthday: <i>*</i>
+                        Birthday: <i>*</i> 
                       </label>
                     </div>
                     <div className="div2">

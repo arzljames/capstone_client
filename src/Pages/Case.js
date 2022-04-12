@@ -16,6 +16,7 @@ import useAuth from "../Hooks/useAuth";
 import api from "../API/Api";
 import { useNavigate } from "react-router-dom";
 import Toast from "../Components/Toast";
+import "./Case.css";
 
 const dropdownVariants = {
   hidden: {
@@ -153,14 +154,14 @@ const Case = () => {
                             <li onClick={() => setFilter("None")}>None</li>
                             <li
                               onClick={() => {
-                                setFilter('Active');
+                                setFilter("Active");
                               }}
                             >
                               Active
                             </li>
                             <li
                               onClick={() => {
-                                setFilter('Done');
+                                setFilter("Done");
                               }}
                             >
                               Done
@@ -209,50 +210,75 @@ const Case = () => {
                 <div className="table">
                   <div className="table-header">
                     <div className="pt-no">#</div>
-                    <div className="pt-name">CASE NO.</div>
-                    <div className="pt-name">PATIENT</div>
+                    <div className="cs-id">Case No.</div>
+                    <div className="cs-name">Patient</div>
 
-                    <div className="pt-active">DEPARTMENT</div>
-                    <div className="pt-total">DATE & TIME</div>
-                    <div className="pt-date">STATUS</div>
+                    <div className="cs-department">Department</div>
+                    <div className="cs-date">Date & Time</div>
+                    <div className="cs-status">Status</div>
                   </div>
 
-                  {cases.filter(e => filter === "None" ? e : filter === 'Active' ? e.active === true : e.active === false)
-                  .filter((val) => {
-                    if(user.designation ==="623ec7fb80a6838424edaa29"  && user.specialization === val.specialization) {
-                      return val
-                    } else if(user.userId === val.physician._id) {
-                      return val
-                    }
-                  }) 
-                  .map((item, index) => {
-                    return (
-                      <div
-                        onClick={() =>
-                          navigate(`/consultation/case/case-data/${item._id}`)
-                        }
-                        className="table-body"
-                      >
-                        <div className="pt-no">{index + 1}</div>
-                        <div className="pt-name">{item.caseId}</div>
-                        <div className="pt-name">
-                          {item.patient.firstname + " " + item.patient.lastname} 
-                        </div>
+                  {cases
+                    .filter((e) =>
+                      filter === "None"
+                        ? e
+                        : filter === "Active"
+                        ? e.active === true
+                        : e.active === false
+                    )
+                    .filter((val) => {
+                      if (
+                        user.designation === "623ec7fb80a6838424edaa29" &&
+                        user.specialization === val.specialization
+                      ) {
+                        return val;
+                      } else if (user.userId === val.physician._id) {
+                        return val;
+                      }
+                    })
+                    .map((item, index) => {
+                      return (
+                        <div
+                          onClick={() =>
+                            navigate(`/consultation/case/case-data/${item._id}`)
+                          }
+                          className={
+                            index % 2 === 0 ? "table-body" : "table-body-2"
+                          }
+                        >
+                          <div className="pt-no">{index + 1}</div>
+                          <div className="cs-id">{item.caseId}</div>
+                          <div className="cs-name">
+                            {item.patient.firstname +
+                              " " +
+                              item.patient.lastname}
+                          </div>
 
-                        <div className="pt-active">
-                          {hospitalSpec
-                            .filter((id) => id._id === item.specialization)
-                            .map((e) => {
-                              return e.name;
-                            })}
+                          <div className="cs-department">
+                            {hospitalSpec
+                              .filter((id) => id._id === item.specialization)
+                              .map((e) => {
+                                return e.name;
+                              })}
+                          </div>
+                          <div className="cs-date">
+                            {getDate(item.createdAt)} {getTime(item.createdAt)}
+                          </div>
+                          <div className="cs-status">
+                            
+                            <p className={item.active ? "active" : "done"}>
+                            <div
+                              className={
+                                item.active
+                                  ? "indicator active"
+                                  : "indicator done"
+                              }
+                            ></div>{item.active ? "Active" : "Done"}
+                            </p>
+                          </div>
                         </div>
-                        <div className="pt-total">{getDate(item.createdAt)} {getTime(item.createdAt)}</div> 
-                        <div className="pt-date">
-                          {item.active ? "Active" : "Done"}
-                        </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
                 </div>
               </div>
             </div>

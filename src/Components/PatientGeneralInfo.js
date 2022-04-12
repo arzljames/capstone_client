@@ -76,8 +76,8 @@ const PatientGeneralInfo = ({ state }) => {
 
           <div></div>
         </div>
-
-        <h2>Address Information</h2>
+        <hr />
+        <br />
 
         <div className="info">
           <div>
@@ -109,8 +109,8 @@ const PatientGeneralInfo = ({ state }) => {
 
           <div></div>
         </div>
-
-        <h2>Contact Information</h2>
+        <hr />
+        <br />
 
         <div className="info">
           <div>

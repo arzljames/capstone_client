@@ -379,13 +379,13 @@ const CaseData = () => {
                   </div>
                 </div>
               </div>
-              <ResponseChat
+              {/* <ResponseChat
                 id={id}
                 user={user}
                 response={response}
                 setResponse={setResponse}
                 active={patientCase.active}
-              />
+              /> */}
             </div>
           </div>
         </div>

@@ -54,7 +54,7 @@ const NewCase = ({ setShowCase }) => {
   });
 
 
-  let todayDate = new Date();
+  const [isClick, setIsClick] = useState(false);
 
   const updateSocket = () => {
     socket.emit("notif");
@@ -135,7 +135,9 @@ const NewCase = ({ setShowCase }) => {
   };
 
   const handleSubmit = async () => {
+    setIsClick(true);
     try {
+
       if (
         !patientId ||
         !specialization ||
@@ -160,7 +162,8 @@ const NewCase = ({ setShowCase }) => {
         setMessage(
           "Request failed with status code 404. Please check empty fields."
         );
-
+        setIsClick(false)
+          
         return;
       } else {
         const formData = new FormData();
@@ -218,6 +221,7 @@ const NewCase = ({ setShowCase }) => {
                   setToast(true);
                   setIsError(true);
                   setMessage("Request failed with status code 404");
+                  setIsClick(false);
                   
                 }
               });
@@ -227,6 +231,7 @@ const NewCase = ({ setShowCase }) => {
       setToast(true);
       setIsError(true);
       setMessage(error.message);
+      setIsClick(false);
     }
   };
 
@@ -519,8 +524,11 @@ getDate()
             >
               Cancel
             </button>
-            <button onClick={() => handleSubmit()} className="save-btn">
-              Save
+            <button onClick={() =>{
+               handleSubmit();
+
+            }} className={isClick ? "save-btn-disable" : "save-btn"}>
+              Save 
             </button>
           </div>
         </div>

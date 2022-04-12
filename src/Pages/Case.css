@@ -1,0 +1,80 @@
+.cs-id {
+width: 175px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.table-body .cs-id, .table-body-2 .cs-id {
+    color: rgb(44, 111, 189);
+}
+
+.cs-name {
+    flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.cs-department, .cs-date {
+    width: 200px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-status {
+    width: 150px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cs-status p.active {
+    color: #058e46;
+    width: auto;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    background: #dcf1e5;
+    border-radius: 4px;
+}
+
+.cs-status p.done {
+    color: #ff831d;
+    width: auto;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    background: #ffeee0;
+    border-radius: 4px;
+}
+
+.cs-status  .indicator{
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.cs-status .indicator.done {
+    background: #ff831d;
+}
+
+.cs-status .indicator.active {
+    background: #058e46;
+}
+
+
+@media screen and (max-width: 768px) {
+    
+.cs-department, .cs-date, .cs-status {
+    display: none;
+}
+}

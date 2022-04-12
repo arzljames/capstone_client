@@ -356,6 +356,11 @@
     rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
+.active-btn p {
+  margin: 0px;
+  margin-left: 5px;
+}
+
 .deactive-btn {
   background: #058e46;
   color: #fff;

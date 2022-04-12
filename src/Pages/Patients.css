@@ -286,6 +286,11 @@ text-decoration: underline;
   padding-left: 20px;
 }
 
+.table-body .pt-name, .table-body-2 .pt-name {
+  color: rgb(44, 111, 189);
+  font-weight: 500;
+}
+ 
 .pt-name p {
   margin-left: 5px;
   text-transform: none;
@@ -487,7 +492,7 @@ button.deactive-btn:hover {
 .patient-profile {
   width: 25%;
   min-width: 250px;
-  margin-right: 20px;
+  margin-right: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -501,7 +506,7 @@ button.deactive-btn:hover {
   flex-direction: column;
   align-items: center;
   border-radius: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: 1px solid #ebebeb;
 }
 
@@ -1049,7 +1054,7 @@ button.deactive-btn:hover {
   }
 
   .pt-sex, .pt-age {
-    width: 50px;
+    width: 60px;
   }
 
   .above-patient-table {
@@ -1057,7 +1062,9 @@ button.deactive-btn:hover {
     padding: 10px;
   }
 
-  .above-patient-table input {
+  .above-patient-table .patient-input-container {
     margin-top: 5px;
+    width: 100%;
+    max-width: none;
   }
 }

@@ -343,6 +343,16 @@
   min-width: 80px;
 }
 
+.save-btn-disable {
+  background: #058e46;
+  color: #fff;
+  margin-left: 10px;
+  transition: 0.1s ease-in-out;
+  min-width: 80px;
+  opacity: .5;
+  pointer-events: none;
+}
+
 .save-btn:hover {
   background: #057a3c;
   transition: 0.1s ease-in-out;
