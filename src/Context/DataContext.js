@@ -4,6 +4,7 @@
 import { createContext, useState, useEffect } from "react";
 import api from "../API/Api";
 import axios from "axios";
+import { socket } from "../Components/Socket";
 
 const DataContext = createContext({});
 
@@ -27,6 +28,7 @@ export const DataProvider = ({ children }) => {
   const [pp, setPp] = useState("");
   const [status, setStatus] = useState("Offline");
   const [showSearch, setShowSearch] = useState(false);
+  const [chatUsers, setChatUsers] = useState([]);
 
   const fetchLogin = async () => {
     let response = await api.get("/api/auth/login");
@@ -48,6 +50,15 @@ export const DataProvider = ({ children }) => {
     if (response.data) {
       setListUsers(response.data);
       setPending(response.data.filter((e) => e.verified === false));
+      setChatUsers(response.data);
+    }
+  };
+
+  const fetchChatUsers = async () => {
+    let response = await api.get("/api/user/users");
+
+    if (response.data) {
+      setChatUsers(response.data);
     }
   };
 
@@ -98,22 +109,18 @@ export const DataProvider = ({ children }) => {
     getSpec();
     fetchCases();
     fetchRecentChats();
-
-    // const interval = setInterval(() => {
-    //   fetchLogin();
-    //   fetchUsers();
-    //   fetchFacilities();
-    //   getSpec();
-    //   fetchCases();
-    //   fetchRecentChats();
-    // }, 3000);
-
-    // return () => clearInterval(interval);
+    fetchPatients();
   }, [appState]);
 
   useEffect(() => {
-    fetchPatients();
-  }, [appState]);
+    fetchChatUsers();
+
+    const interval = setInterval(() => {
+      fetchChatUsers();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [socket]);
 
   const [hospital, setHospital] = useState("");
   const [department, setDepartment] = useState("");
@@ -160,6 +167,7 @@ export const DataProvider = ({ children }) => {
         setStatus,
         showSearch,
         setShowSearch,
+        chatUsers,
       }}
     >
       {children}

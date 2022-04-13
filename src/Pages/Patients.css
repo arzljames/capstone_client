@@ -216,12 +216,12 @@ text-decoration: underline;
   padding: 0px 6px;
   cursor: pointer;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   margin-left: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 30px;
 }
 
@@ -235,7 +235,7 @@ text-decoration: underline;
 }
 
 .add-patient-btn {
-  background: #058e46;
+  background: #1CB45D;
   color: #fff;
   border: none;
   box-shadow: rgba(9, 66, 12, 0.25) 0px 1px 1px,
@@ -260,7 +260,7 @@ text-decoration: underline;
 }
 
 .add-patient-btn:hover {
-  background: #057a3c;
+  background: #199b51;
   transition: 0.1s ease-in-out;
 }
 
@@ -286,10 +286,7 @@ text-decoration: underline;
   padding-left: 20px;
 }
 
-.table-body .pt-name, .table-body-2 .pt-name {
-  color: rgb(44, 111, 189);
-  font-weight: 500;
-}
+
  
 .pt-name p {
   margin-left: 5px;
@@ -828,14 +825,14 @@ button.deactive-btn:hover {
 
 
 .import-patient-btn {
-  background: #058e46;
+  background: #1CB45D;
   color: #fff;
   border: none;
   box-shadow: rgba(9, 66, 12, 0.25) 0px 1px 1px,
     rgba(9, 66, 12, 0.13) 0px 0px 1px 1px;
     width: 30px;
     height: 30px;
-    border-radius: 2px;
+    border-radius: 4px;
     margin-left: 2px;
     display: flex;
     align-items: center;
@@ -848,7 +845,7 @@ button.deactive-btn:hover {
 
 .import-patient-btn:hover {
 
-  background: #057a3c;
+  background: #199b51;
   transition: 0.1s ease-in-out;
 }
 
@@ -1045,7 +1042,73 @@ button.deactive-btn:hover {
 /* End Patient Advance Search Modal */
 
 
+/* Patient Modal */
+.patient-modal {
+  background: #fff;
+  max-width: 800px;
+  max-height: 600px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
 
+.patient-modal-exit {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  transition: .1s ease-in-out;
+  cursor: pointer;
+  color: #272727
+}
+
+.patient-modal-exit:hover {
+  background: #eee;
+  transition: .1s ease-in-out;
+}
+
+.patient-modal-nav {
+  width: 175px;
+  height: 100%;
+  background: #eee;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  padding: 20px 10px;
+  display: flex;
+}
+
+.patient-modal-nav ul {
+  list-style: none;
+  width: 100%;
+}
+
+.patient-modal-nav ul li{
+ height: 40px;
+ cursor: pointer;
+ padding: 0px 10px;
+ border-radius: 4px;
+ margin-bottom: 5px;
+ display: flex;
+ align-items: center;
+ font-size: 14px;
+ width: 100%;
+ color: #808080;
+ font-weight: 400;
+}
+
+.patient-modal-nav ul li.li-active{
+  background: #badfca;
+  width: 100%;
+  color: #143b20;
+  font-weight: 500;
+}
+/* End Patient Modal */
 
 
 @media screen and (max-width: 768px) {
@@ -1066,5 +1129,46 @@ button.deactive-btn:hover {
     margin-top: 5px;
     width: 100%;
     max-width: none;
+  }
+
+  .patient-modal {
+    width: 100%;
+    height: 100vh;
+    padding-bottom: 50px;
+    border-radius: 0px;
+    max-height: none;
+    max-width: none;
+    flex-direction: column;
+  }
+
+  .patient-modal-nav {
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    border-radius: 0px;
+    background: none;
+    padding-top: 10px;
+  }
+
+  .patient-modal-nav ul {
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #eee;
+  }
+
+  .patient-modal-nav ul li {
+    margin: 0px;
+    width: 33.33%;
+    border-radius: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .patient-modal-nav ul li.li-active {
+    background: transparent;
+    width: 33.33%;
+    border-bottom: 1px solid #257447;
+    border-radius: 0px;
   }
 }

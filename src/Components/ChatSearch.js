@@ -4,7 +4,7 @@ import Avatar from "../Assets/nouser.png";
 import { useNavigate } from "react-router-dom";
 
 const ChatSearch = ({ term }) => {
-  const { listUsers, user } = useAuth();
+  const { chatUsers, user } = useAuth();
   const navigate = useNavigate();
 
   const path = window.location.pathname;
@@ -13,7 +13,7 @@ const ChatSearch = ({ term }) => {
     <>
       <div className="recent-p-container">
         {term !== "" && <p className="status-label">Search Results</p>}
-        {listUsers
+        {chatUsers
           .filter((e) => e._id !== user.userId && e.userType !== "admin" && e.verified === true)
           .filter((val) => {
             if (term === "") {

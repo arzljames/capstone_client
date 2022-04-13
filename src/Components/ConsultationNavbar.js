@@ -2,14 +2,10 @@ import React, { useEffect } from "react";
 import "../Pages/Homepage.css";
 import {
   IoMedkitOutline,
-  IoFitnessOutline,
-  IoPeople,
-  IoFitness,
 } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { HiOutlineUsers, HiArrowSmDown, HiArrowSmUp } from "react-icons/hi";
 import useAuth from "../Hooks/useAuth";
-import {FcConferenceCall, FcUpload, FcFile} from 'react-icons/fc'
+import {FcConferenceCall, FcUpload, FcFile, FcDownload} from 'react-icons/fc'
 
 const ConsultationNavbar = () => {
   const path = window.location.pathname;
@@ -88,7 +84,7 @@ const ConsultationNavbar = () => {
             }
           >
             <p>
-              <HiArrowSmDown />
+              <FcDownload />
             </p>
             Incoming Request
             {cases.filter(

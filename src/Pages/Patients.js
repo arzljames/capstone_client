@@ -27,6 +27,7 @@ import { dropdownVariants } from "../Animations/Animations";
 import PatientTableData from "../Components/PatientTableData";
 import ReactPaginate from "react-paginate";
 import { Helmet } from "react-helmet";
+import PatientModal from "../Components/PatientModal";
 
 const Patients = () => {
   const [searchDropdown, setSearchDropdown] = useState(false);
@@ -79,6 +80,8 @@ const Patients = () => {
 
   const [patientState, setPatientState] = useState([]);
   const [patientsId, setPatientsId] = useState([]);
+  const [patientModal, setPatientModal] = useState(false);
+  const [patientId, setPatientId] = useState("");
 
   function getAge(dateString) {
     var today = new Date();
@@ -130,6 +133,9 @@ const Patients = () => {
     setSearchDropdown(false);
   });
 
+
+ 
+
   const sortAscName = (a, b) => {
     return a.firstname.localeCompare(b.firstname);
   };
@@ -176,6 +182,8 @@ const Patients = () => {
           {showAdvance && (
             <PatientAdvanceSearch setShowAdvance={setShowAdvance} />
           )}
+
+          {patientModal && <PatientModal setPatientModal={setPatientModal} patientId={patientId}/>}
         </AnimatePresence>
 
         <Sidebar />
@@ -399,6 +407,8 @@ const Patients = () => {
                 usersPerPage={usersPerPage}
                 pagesVisited={pagesVisited}
                 sort={sort}
+                setPatientId={setPatientId}
+                setPatientModal={setPatientModal}
               />
               <br />
               <div className="pagination-container">

@@ -6,9 +6,7 @@ width: 175px;
   padding-left: 10px;
 }
 
-.table-body .cs-id, .table-body-2 .cs-id {
-    color: rgb(44, 111, 189);
-}
+
 
 .cs-name {
     flex: 1;

@@ -13,6 +13,8 @@ const PatientTableData = ({
   sortAscName,
   sortDscName,
   sort,
+  setPatientId,
+  setPatientModal
 }) => {
   const navigate = useNavigate();
   const { cases } = useAuth();
@@ -49,7 +51,7 @@ const PatientTableData = ({
               type="checkbox"
             />
           </div>
-          <div className="pt-name">Full name</div>
+          <div className="pt-name">PATIENT NAME</div>
           <div className="pt-sex">Sex</div>
           <div className="pt-age">Age</div>
           <div className="pt-active">Active Case</div>
@@ -85,10 +87,13 @@ const PatientTableData = ({
               return (
                 <div
                   key={key + 1}
-                  onClick={() =>
-                    navigate(`/consultation/patients/${item._id}`, {
-                      state: item,
-                    })
+                  onClick={() => {
+                    setPatientModal(true);
+                    setPatientId(item._id)
+                  }
+                    // navigate(`/consultation/patients/${item._id}`, {
+                    //   state: item,
+                    // })
                   }
                   className={
                     item.select

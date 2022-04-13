@@ -209,7 +209,6 @@ const Case = () => {
               <div className="table-container">
                 <div className="table">
                   <div className="table-header">
-                    <div className="pt-no">#</div>
                     <div className="cs-id">Case No.</div>
                     <div className="cs-name">Patient</div>
 
@@ -246,7 +245,6 @@ const Case = () => {
                             index % 2 === 0 ? "table-body" : "table-body-2"
                           }
                         >
-                          <div className="pt-no">{index + 1}</div>
                           <div className="cs-id">{item.caseId}</div>
                           <div className="cs-name">
                             {item.patient.firstname +
