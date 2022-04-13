@@ -9,6 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { HiOutlineUsers, HiArrowSmDown, HiArrowSmUp } from "react-icons/hi";
 import useAuth from "../Hooks/useAuth";
+import {FcConferenceCall, FcUpload, FcFile} from 'react-icons/fc'
 
 const ConsultationNavbar = () => {
   const path = window.location.pathname;
@@ -37,7 +38,7 @@ const ConsultationNavbar = () => {
             }
           >
             <p>
-              <IoPeople />
+              <FcConferenceCall />
             </p>
             Patients
           </li>
@@ -51,7 +52,7 @@ const ConsultationNavbar = () => {
           }
         >
           <p>
-            <IoFitness />
+            <FcFile />
           </p>
           Consultation Case
         </li>
@@ -63,7 +64,7 @@ const ConsultationNavbar = () => {
             }
           >
             <p>
-              <HiArrowSmUp />
+              <FcUpload />
             </p>
             Outgoing Request
             {cases.filter(

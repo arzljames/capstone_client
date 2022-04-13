@@ -83,31 +83,33 @@
 .case-content {
   width: 100%;
   height: 80px;
-  background: #fff;
-  border: 1px solid #e6e6e6;
-  border-radius: 2px;
+  background: rgb(255, 255, 255);
+  border: 1px solid #F4F7F8;
+  border-radius: 4px;
   cursor: pointer;
   transition: 0.1s ease-in-out;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   margin-left: 0px;
   display: flex;
   padding: 10px 20px;
   position: relative;
   align-items: center;
   font-size: 40px;
+  
 }
 
 
 
 .case-content-avatar {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   background: rgb(205, 255, 231);
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 20px;
+  font-size: 30px;
 }
 
 .case-content.case-content-disable {

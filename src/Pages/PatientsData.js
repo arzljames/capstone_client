@@ -263,7 +263,7 @@ const PatientsData = () => {
                         tab === "General" ? "active-tab" : "inactive-tab"
                       }
                     >
-                      General
+                      Personal Info
                     </button>
                     <button
                       onClick={() => setTab("Active Case")}

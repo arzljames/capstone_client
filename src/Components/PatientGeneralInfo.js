@@ -14,7 +14,7 @@ const PatientGeneralInfo = ({ state }) => {
 
   return (
     <>
-      <h2>Pesonal Information</h2>
+      <h2></h2>
       <div className="patient-content-name">
         <div className="info">
           <div>

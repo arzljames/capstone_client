@@ -37,13 +37,13 @@ const OutgoingCaseInactive = ({ item, name, patientId }) => {
             state: { item: item, name: name, patientId: patientId },
           })
         }
-        className="case-content case-content-disable"
+        className="case-content case-content"
       >
         <div className="case-content-avatar">
           <FcDocument />
         </div>
         <div className="case-content-data">
-          <h1>Patient Name: {item.patient.firstname}</h1>
+          <h1>Case No: {item.caseId}</h1>
           {/* <p>
             To: Dr.{" "}
             {item.referralPhysician.firstname +
