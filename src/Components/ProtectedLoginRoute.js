@@ -1,9 +1,10 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+import Loader from "../Pages/Loader"
 
 const ProtectedLoginRoutes = ({ user }) => {
   const location = useLocation();
   if (user === null) {
-    return null;
+    return <Loader />;
   }
 
   if (user.userType === 'admin') {

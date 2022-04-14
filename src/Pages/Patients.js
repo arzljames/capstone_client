@@ -164,6 +164,12 @@ const Patients = () => {
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
+
+  const [patient, setPatient] = useState([])
+
+  const filterPatient = (id) => {
+    setPatient(patients.filter(e => e._id === id)[0])
+  }
   return (
     <>
       <Helmet>
@@ -183,7 +189,7 @@ const Patients = () => {
             <PatientAdvanceSearch setShowAdvance={setShowAdvance} />
           )}
 
-          {patientModal && <PatientModal setPatientModal={setPatientModal} patientId={patientId}/>}
+          {patientModal && <PatientModal patient={patient} setPatientModal={setPatientModal} patientId={patientId}/>}
         </AnimatePresence>
 
         <Sidebar />
@@ -267,7 +273,7 @@ const Patients = () => {
 
                           return;
                         }
-                        result.data.map((e) => {});
+
 
                         setCSV([
                           ...CSV,
@@ -409,6 +415,7 @@ const Patients = () => {
                 sort={sort}
                 setPatientId={setPatientId}
                 setPatientModal={setPatientModal}
+                filterPatient={filterPatient}
               />
               <br />
               <div className="pagination-container">

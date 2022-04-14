@@ -14,7 +14,8 @@ const PatientTableData = ({
   sortDscName,
   sort,
   setPatientId,
-  setPatientModal
+  setPatientModal,
+  filterPatient
 }) => {
   const navigate = useNavigate();
   const { cases } = useAuth();
@@ -51,9 +52,9 @@ const PatientTableData = ({
               type="checkbox"
             />
           </div>
-          <div className="pt-name">PATIENT NAME</div>
-          <div className="pt-sex">Sex</div>
-          <div className="pt-age">Age</div>
+          <div className="pt-name">Patient Name</div>
+          {/* <div className="pt-sex">Sex</div>
+          <div className="pt-age">Age</div> */}
           <div className="pt-active">Active Case</div>
           <div className="pt-total">Total Case</div>
           <div className="pt-date">Date Admitted</div>
@@ -90,6 +91,7 @@ const PatientTableData = ({
                   onClick={() => {
                     setPatientModal(true);
                     setPatientId(item._id)
+                    filterPatient(item._id)
                   }
                     // navigate(`/consultation/patients/${item._id}`, {
                     //   state: item,
@@ -126,8 +128,8 @@ const PatientTableData = ({
                     {item.firstname + " " + item.lastname}{" "}
                   </div>
 
-                  <div className="pt-sex">{item.sex[0]}</div>
-                  <div className="pt-age">{item.age}</div>
+                  {/* <div className="pt-sex">{item.sex[0]}</div>
+                  <div className="pt-age">{item.age}</div> */}
 
                   <div className="pt-active">
                     {
@@ -144,13 +146,14 @@ const PatientTableData = ({
               );
             })
         ) : (
-          <div className="no-patients">
-            <h1>No Patients</h1>
-            <p>
-              Looks like you don't have a patient to handle. Click the{" "}
-              <em>add patient</em> button above to start adding patient.
-            </p>
-          </div>
+          // <div className="no-patients">
+          //   <h1>No Patients</h1>
+          //   <p>
+          //     Looks like you don't have a patient to handle. Click the{" "}
+          //     <em>add patient</em> button above to start adding patient.
+          //   </p>
+          // </div>
+          null
         )}
       </div>
     </>
