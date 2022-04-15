@@ -307,7 +307,8 @@ text-decoration: underline;
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-left: 10px;
   
 }
 
@@ -1053,7 +1054,57 @@ button.deactive-btn:hover {
   position: relative;
   display: flex;
   overflow: hidden;
+  flex-direction: column;
 }
+
+.patient-modal-header {
+  width: 100%;
+  min-height: 30px;
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.patient-modal-container {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  overflow-y: scroll;
+}
+
+/* width */
+.patient-modal-container::-webkit-scrollbar {
+  width: 0px;
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+}
+
+/* Track */
+.patient-modal-container::-webkit-scrollbar-track {
+  background: #f1f1f100;
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+}
+
+/* Handle */
+.patient-modal-container::-webkit-scrollbar-thumb {
+  background: rgba(197, 197, 197, 0);
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+}
+
+/* Handle on hover */
+.patient-modal-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(163, 163, 163, 0);
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+}
+
 
 
 .patient-modal-btns {
@@ -1098,18 +1149,18 @@ button.deactive-btn:hover {
 }
 
 .patient-modal-exit {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
   right: 10px;
   top: 10px;
   transition: .1s ease-in-out;
   cursor: pointer;
-  color: #272727
+  color: #272727;
+
 }
 
 .patient-modal-exit:hover {
@@ -1120,7 +1171,6 @@ button.deactive-btn:hover {
 .patient-modal-nav {
   width: 175px;
   height: 100%;
-  /* border-right: 1px solid #d3d3d3; */
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   padding: 20px 10px;
@@ -1175,10 +1225,10 @@ button.deactive-btn:hover {
 
 .patient-modal-content {
   flex: 1;
-  height: 100%;
+  width: 100%;
   padding: 20px 10px;
-  overflow-y: scroll;
   position: relative;
+  overflow-y: scroll;
 }
 
 
@@ -1211,6 +1261,7 @@ button.deactive-btn:hover {
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 10px;
+  border: 1px solid #ebebeb;
 }
 
 .patient-personal h2 {
@@ -1232,11 +1283,86 @@ button.deactive-btn:hover {
   color: #272727;
   font-weight: 500;
 }
+
+
+.case-history-table {
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0px 0px;
+  border: 1px solid #ebebeb;
+  position: relative;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  overflow: hidden;
+}
+
+.case-history-table-header {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #5fa56f;
+}
+
+.case-history-table-body {
+  width: 100%;
+  min-height: 32px;
+  display: flex;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+  text-transform: capitalize;
+  color: #5f5f5f;
+  background: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.case-history-table-body-2 {
+  width: 100%;
+  min-height: 32px;
+  display: flex;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+  text-transform: capitalize;
+  color: #5f5f5f;
+  background: #e9f1eb;
+  cursor: pointer;
+}
+
+.case-history-table-body:hover, .case-history-table-body-2:hover {
+  background:#ced3cf;
+}
+
+.ch-no {
+  padding-left: 10px;
+  flex: 1;
+}
+
+.ch-department {
+  padding-left: 10px;
+  width: 150px;
+}
+
+.ch-status {
+  width: 150px;
+  padding-left: 10px;
+}
 /* End Patient Modal */
 
 
 @media screen and (max-width: 768px) {
-  .pt-date, .pt-total, .pt-active {
+  .pt-date, .pt-total, .pt-active, .ch-status, .patient-modal-nav ul li div {
     display: none;
   }
 
@@ -1265,13 +1391,16 @@ button.deactive-btn:hover {
     flex-direction: column;
   }
 
+  .patient-modal-container {
+    flex-direction: column;
+  }
+
   .patient-modal-nav {
     width: 100%;
     height: auto;
     padding: 0px;
     border-radius: 0px;
     background: none;
-    padding-top: 10px;
   }
 
   .patient-modal-nav ul {

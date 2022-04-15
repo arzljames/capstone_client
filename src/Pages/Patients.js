@@ -170,6 +170,8 @@ const Patients = () => {
   const filterPatient = (id) => {
     setPatient(patients.filter(e => e._id === id)[0])
   }
+
+  // const [deleteModal, setDeleteModal] = useState(false);
   return (
     <>
       <Helmet>
@@ -190,6 +192,13 @@ const Patients = () => {
           )}
 
           {patientModal && <PatientModal patient={patient} setPatientModal={setPatientModal} patientId={patientId}/>}
+          {/* {deleteModal && (
+          <DeletePatientModal
+            id={patient._id}
+            name={patient.firstname}
+            setDeleteModal={setDeleteModal}
+          />
+        )} */}
         </AnimatePresence>
 
         <Sidebar />

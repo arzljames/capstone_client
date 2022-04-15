@@ -6,13 +6,15 @@ import { HiX, HiUser, HiTrash } from "react-icons/hi";
 import useAuth from "../Hooks/useAuth";
 import OutgoingCaseActive2 from "./OutgoingCaseActive2";
 import { GrClear } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
 
 const PatientModal = ({ patientId, setPatientModal, patient }) => {
   let domNodePatient = useClickOutside(() => {
     setPatientModal(false);
   });
 
-  const { cases } = useAuth();
+  const navigate = useNavigate();
+  const { cases, facilities } = useAuth();
 
   const [tab, setTab] = useState("Patient Profile");
 
@@ -43,208 +45,270 @@ const PatientModal = ({ patientId, setPatientModal, patient }) => {
         ref={domNodePatient}
         className="patient-modal"
       >
-        {/* <div
-          onClick={() => setPatientModal(false)}
-          className="patient-modal-exit"
-        >
-          <HiX />
-        </div> */}
-        <div className="patient-modal-nav">
-          <ul>
-            <li
-              className={tab === "Patient Profile" ? "li-active" : ""}
-              onClick={() => setTab("Patient Profile")}
-            >
-              Patient Profile
-            </li>
-            <li
-              className={tab === "Case History" ? "li-active" : ""}
-              onClick={() => setTab("Case History")}
-            >
-              Case History
-            </li>
-            <li
-              className={tab === "Active Case" ? "li-active" : ""}
-              onClick={() => setTab("Active Case")}
-            >
-              Active Case{" "}
-              {cases.filter(
-                (e) => e.patient._id === patient._id && e.active === true
-              ).length === 0 ? null : (
-                <div>
-                  {
-                    cases.filter(
-                      (e) => e.patient._id === patient._id && e.active === true
-                    ).length
+        <div className="patient-modal-header">
+          <p
+            onClick={() => setPatientModal(false)}
+            className="patient-modal-exit"
+          >
+            <HiX />
+          </p>
+        </div>
+        <div className="patient-modal-container">
+          <div className="patient-modal-nav">
+            <ul>
+              <li
+                className={tab === "Patient Profile" ? "li-active" : ""}
+                onClick={() => setTab("Patient Profile")}
+              >
+                Patient Profile
+              </li>
+              <li
+                className={tab === "Case History" ? "li-active" : ""}
+                onClick={() => setTab("Case History")}
+              >
+                Case History
+              </li>
+              <li
+                className={tab === "Active Case" ? "li-active" : ""}
+                onClick={() => setTab("Active Case")}
+              >
+                Active Case{" "}
+                {cases.filter(
+                  (e) => e.patient._id === patient._id && e.active === true
+                ).length === 0 ? null : (
+                  <div>
+                    {
+                      cases.filter(
+                        (e) =>
+                          e.patient._id === patient._id && e.active === true
+                      ).length
+                    }
+                  </div>
+                )}
+              </li>
+            </ul>
+          </div>
+          {tab === "Patient Profile" && (
+            <div className="patient-modal-content">
+              <div className="patient-modal-btns">
+                <button className="delete-patient-btn">
+                  <p>
+                    <HiTrash />
+                  </p>
+                  Delete
+                </button>
+                <button
+                  onClick={() =>
+                    navigate(
+                      `/consultation/patients/edit-profile/${patient._id}`,
+                      { state: patient }
+                    )
                   }
+                  className="edit-profile-btn"
+                >
+                  <p>
+                    <HiUser />
+                  </p>
+                  Edit Profile
+                </button>
+              </div>
+              <div className="patient-personal">
+                <h2>Personal Information</h2>
+
+                <div className="patient-content-name">
+                  <div className="info">
+                    <div>
+                      <label>Last name</label>
+                      <p>{patient.lastname}</p>
+                    </div>
+
+                    <div>
+                      <label>First name</label>
+                      <p>{patient.firstname}</p>
+                    </div>
+
+                    <div>
+                      <label>Middle name</label>
+                      <p>{patient.middlename}</p>
+                    </div>
+                  </div>
+
+                  <div className="info">
+                    <div>
+                      <label>Sex</label>
+                      <p>{patient.sex}</p>
+                    </div>
+                    <div>
+                      <label>Birthday</label>
+                      <p>{patient.birthday}</p>
+                    </div>
+
+                    <div>
+                      <label>Age</label>
+                      <p>{getAge(patient.birthday)}</p>
+                    </div>
+                  </div>
+
+                  <div className="info">
+                    <div>
+                      <label>Civil Status</label>
+                      <p>{patient.civilStatus}</p>
+                    </div>
+
+                    <div>
+                      <label>Religion</label>
+                      <p>{patient.religion}</p>
+                    </div>
+
+                    <div></div>
+                  </div>
+
+                  <div className="info">
+                    <div>
+                      <label>Guardian</label>
+                      <p>{patient.guardian.name}</p>
+                    </div>
+
+                    <div>
+                      <label>Relation</label>
+                      <p>{patient.guardian.relationship}</p>
+                    </div>
+
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="patient-personal">
+                <h2>Address</h2>
+
+                <div className="patient-content-name">
+                  <div className="info">
+                    <div>
+                      <label>Street</label>
+                      <p>{patient.address.street}</p>
+                    </div>
+
+                    <div>
+                      <label>Barangay</label>
+                      <p>{patient.address.barangay}</p>
+                    </div>
+
+                    <div>
+                      <label>City/Municipality</label>
+                      <p>{patient.address.city}</p>
+                    </div>
+                  </div>
+
+                  <div className="info">
+                    <div>
+                      <label>Birth Place</label>
+                      <p>{patient.birthplace}</p>
+                    </div>
+
+                    <div>
+                      <label>Ethnicity</label>
+                      <p>{patient.ethnicity}</p>
+                    </div>
+
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="patient-personal">
+                <h2>Contact</h2>
+
+                <div className="info">
+                  <div>
+                    <label>Contact No.</label>
+                    <p>+63 {patient.contact}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {tab === "Case History" && (
+            <div className="patient-modal-content">
+              <div className="case-history-table">
+                <div className="case-history-table-header">
+                  <div className="ch-no">Case No.</div>
+                  <div className="ch-department">Department</div>
+                  <div className="ch-status">Status</div>
+                </div>
+
+                {cases
+                  .filter((e) => e.patient._id === patient._id)
+                  .map((item, index) => {
+                    return (
+                      <div
+                        onClick={() =>
+                          navigate(`/consultation/case/case-data/${item._id}`)
+                        }
+                        className={
+                          index % 2 === 0
+                            ? "case-history-table-body"
+                            : "case-history-table-body-2"
+                        }
+                      >
+                        <div className="ch-no">{item.caseId}</div>
+                        <div className="ch-department">
+                          {
+                            facilities
+                              .filter((e) => e._id === item.designation._id)
+                              .map((f) => {
+                                return f.specialization.filter(
+                                  (g) => g._id === item.specialization
+                                )[0];
+                              })[0].name
+                          }
+                        </div>
+                        <div className="ch-status">
+                          {item.active ? "Active" : "Done"}
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+
+              {cases.filter((e) => e.patient._id === patient._id).length ===
+                0 && (
+                <div className="no-active-case">
+                  <h1>No Case History</h1>
+                  <p>No history case found</p>
                 </div>
               )}
-            </li>
-          </ul>
+            </div>
+          )}
+
+          {tab === "Active Case" && (
+            <div className="patient-modal-content">
+              {cases.filter(
+                (e) => e.patient._id === patient._id && e.active === true
+              ).length === 0 ? (
+                <div className="no-active-case">
+                  <h1>No Case</h1>
+                  <p>No active case found</p>
+                </div>
+              ) : (
+                cases
+                  .filter(
+                    (e) => e.patient._id === patient._id && e.active === true
+                  )
+                  .map((item, key) => {
+                    return (
+                      <OutgoingCaseActive2
+                        key={key + 1}
+                        item={item}
+                        patientid={item.patient._id}
+                      />
+                    );
+                  })
+              )}
+            </div>
+          )}
         </div>
-        {tab === "Patient Profile" && (
-          <div className="patient-modal-content">
-            <div className="patient-modal-btns">
-              <button className="delete-patient-btn">
-                <p>
-                  <HiTrash />
-                </p>
-                Delete
-              </button>
-              <button className="edit-profile-btn">
-                <p>
-                  <HiUser />
-                </p>
-                Edit Profile
-              </button>
-            </div>
-            <div className="patient-personal">
-              <h2>Personal Information</h2>
-
-              <div className="patient-content-name">
-                <div className="info">
-                  <div>
-                    <label>Last name</label>
-                    <p>{patient.lastname}</p>
-                  </div>
-
-                  <div>
-                    <label>First name</label>
-                    <p>{patient.firstname}</p>
-                  </div>
-
-                  <div>
-                    <label>Middle name</label>
-                    <p>{patient.middlename}</p>
-                  </div>
-                </div>
-
-                <div className="info">
-                  <div>
-                    <label>Sex</label>
-                    <p>{patient.sex}</p>
-                  </div>
-                  <div>
-                    <label>Birthday</label>
-                    <p>{patient.birthday}</p>
-                  </div>
-
-                  <div>
-                    <label>Age</label>
-                    <p>{getAge(patient.birthday)}</p>
-                  </div>
-                </div>
-
-                <div className="info">
-                  <div>
-                    <label>Civil Status</label>
-                    <p>{patient.civilStatus}</p>
-                  </div>
-
-                  <div>
-                    <label>Religion</label>
-                    <p>{patient.religion}</p>
-                  </div>
-
-                  <div></div>
-                </div>
-
-                <div className="info">
-                  <div>
-                    <label>Guardian</label>
-                    <p>{patient.guardian.name}</p>
-                  </div>
-
-                  <div>
-                    <label>Relation</label>
-                    <p>{patient.guardian.relationship}</p>
-                  </div>
-
-                  <div></div>
-                </div>
-              </div>
-            </div>
-
-            <div className="patient-personal">
-              <h2>Address</h2>
-
-              <div className="patient-content-name">
-                <div className="info">
-                  <div>
-                    <label>Street</label>
-                    <p>{patient.address.street}</p>
-                  </div>
-
-                  <div>
-                    <label>Barangay</label>
-                    <p>{patient.address.barangay}</p>
-                  </div>
-
-                  <div>
-                    <label>City/Municipality</label>
-                    <p>{patient.address.city}</p>
-                  </div>
-                </div>
-
-                <div className="info">
-                  <div>
-                    <label>Birth Place</label>
-                    <p>{patient.birthplace}</p>
-                  </div>
-
-                  <div>
-                    <label>Ethnicity</label>
-                    <p>{patient.ethnicity}</p>
-                  </div>
-
-                  <div></div>
-                </div>
-              </div>
-            </div>
-
-            <div className="patient-personal">
-              <h2>Contact</h2>
-
-              <div className="info">
-                <div>
-                  <label>Contact No.</label>
-                  <p>+63 {patient.contact}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {tab === "Case History" && (
-          <div className="patient-modal-content">Case History</div>
-        )}
-
-        {tab === "Active Case" && (
-          <div className="patient-modal-content">
-            {cases.filter(
-              (e) => e.patient._id === patient._id && e.active === true
-            ).length === 0 ? (
-              <div className="no-active-case">
-                <h1>No Case</h1>
-                <p>No active case found</p>
-              </div>
-            ) : (
-              cases
-                .filter(
-                  (e) => e.patient._id === patient._id && e.active === true
-                )
-                .map((item, key) => {
-                  return (
-                    <OutgoingCaseActive2
-                      key={key + 1}
-                      item={item}
-                      patientid={item.patient._id}
-                    />
-                  );
-                })
-            )}
-          </div>
-        )}
       </motion.div>
     </motion.div>
   );

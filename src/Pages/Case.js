@@ -56,7 +56,7 @@ const Case = () => {
     setIsFilter(false);
   });
 
-  const { cases, hospitalSpec, user, toast } = useAuth();
+  const { cases, facilities, user, toast } = useAuth();
 
   const getDate = (date) => {
     let dates = new Date(date);
@@ -253,11 +253,15 @@ const Case = () => {
                           </div>
 
                           <div className="cs-department">
-                            {hospitalSpec
-                              .filter((id) => id._id === item.specialization)
-                              .map((e) => {
-                                return e.name;
-                              })}
+                          {
+                            facilities
+                              .filter((e) => e._id === item.designation._id)
+                              .map((f) => {
+                                return f.specialization.filter(
+                                  (g) => g._id === item.specialization
+                                )[0];
+                              })[0].name
+                          }
                           </div>
                           <div className="cs-date">
                             {getDate(item.createdAt)} {getTime(item.createdAt)}
