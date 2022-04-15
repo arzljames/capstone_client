@@ -12,7 +12,7 @@ const IncomingCaseActive = ({ item, name }) => {
     hour12: true
   };
 
-  const { user } = useAuth();
+  const { facilities } = useAuth();
   return (
     <>
       <div
@@ -28,7 +28,15 @@ const IncomingCaseActive = ({ item, name }) => {
         </div>
         <div className="case-content-data">
           <h1>{item.patient.firstname + " " + item.patient.lastname}</h1>
-
+          <p>{
+                            facilities
+                              .filter((e) => e._id === item.designation._id)
+                              .map((f) => {
+                                return f.specialization.filter(
+                                  (g) => g._id === item.specialization
+                                )[0];
+                              })[0].name
+                          }</p>
           <p>{item.designation.facility}</p>
           <div className="case-content-date">
             <p>{createdAt.toISOString().substring(0, 10)} </p>

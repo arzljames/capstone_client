@@ -9,7 +9,7 @@ const OutgoingCaseActive = ({ caseId, item }) => {
 
 
 
-  const {hospitalSpec} = useAuth();
+  const {facilities} = useAuth();
   const getDate = (date) => {
     let today =
       date.toLocaleString("en-us", { month: "short" }) +
@@ -48,9 +48,15 @@ const OutgoingCaseActive = ({ caseId, item }) => {
         </div>
         <div className="case-content-data">
           <h1>{item.patient.firstname + " " + item.patient.lastname}</h1>
-          {hospitalSpec.filter(id => id._id === item.specialization).map((e) => {
-     return <p>{e.name}</p>
-   })}
+          <p>{
+                            facilities
+                              .filter((e) => e._id === item.designation._id)
+                              .map((f) => {
+                                return f.specialization.filter(
+                                  (g) => g._id === item.specialization
+                                )[0];
+                              })[0].name
+                          }</p>
          
           <p>{item.designation.facility}</p>
 

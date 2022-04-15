@@ -75,4 +75,12 @@ width: 175px;
 .cs-department, .cs-date, .cs-status {
     display: none;
 }
+
+.cs-id {
+    width: 50%;
+}
+
+.cs-name {
+    width: 50%;
+}
 }

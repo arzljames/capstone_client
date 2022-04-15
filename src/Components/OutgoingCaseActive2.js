@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import {FcDocument} from 'react-icons/fc'
+import { FcDocument } from "react-icons/fc";
 
 const OutgoingCaseActive2 = ({ item, name, patientId }) => {
   const createdAt = new Date(item.createdAt);
   const navigate = useNavigate();
 
-
-  
-  const {hospitalSpec} = useAuth();
+  const { facilities } = useAuth();
 
   const getDate = (date) => {
     let today =
@@ -49,10 +47,19 @@ const OutgoingCaseActive2 = ({ item, name, patientId }) => {
         </div>
         <div className="case-content-data">
           <h1>{item.patient.firstname + " " + item.patient.lastname}</h1>
-          {hospitalSpec.filter(id => id._id === item.specialization).map((e) => {
-     return <p>{e.name}</p>
-   })}
-         
+
+          <p>
+            {
+              facilities
+                .filter((e) => e._id === item.designation._id)
+                .map((f) => {
+                  return f.specialization.filter(
+                    (g) => g._id === item.specialization
+                  )[0];
+                })[0].name
+            }
+          </p>
+
           <p>{item.designation.facility}</p>
 
           <div className="case-content-date">

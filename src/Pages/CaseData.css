@@ -1,36 +1,70 @@
 .case-data {
   width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.case-data-profile {
+  flex: 1;
   background: #fff;
-  margin-right: 20px;
-  min-height: 500px;
-  border: 1px solid #dddddd;
+  border-radius: 8px;
+  margin-right: 10px;
+  padding: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.case-data-hospital {
+  width: 350px;
+  background: #fff;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: 8px;
   padding: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  height: 100%;
 }
 
-.case-data h5 {
+.case-data-hospital h1, .case-data-profile h1, .case-information h1 {
+  font-size: 16px;
+  font-weight: 600;
   color: #272727;
-  margin-bottom: 24px;
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 10px;
+  margin-bottom: 20px;
+  text-decoration: underline;
+  padding-bottom: 12px;
 }
 
-.case-data p {
-  color: #3d3d3d;
+.case-data-hospital label, .case-data-profile label, .case-information label {
   font-size: 14px;
-  margin-bottom: 24px;
+  color: #646464;
+  margin-bottom: 0px;
+}
+
+.case-data-hospital p, .case-data-profile p, .case-information p {
+  font-size: 14px;
+  color: #272727;
+  margin-bottom: 18px;
   font-weight: 500;
 }
 
-.case-data p p {
-  color: #3d3d3d;
-  font-size: 14px;
-  margin-bottom: 0px;
-  margin-top: 5px;
+.case-information {
+  width: 100%;
+  height: 100px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  margin-bottom: 20px;
+ height: auto;
 }
+
+
+.case-information h5 {
+  font-size: 16px;
+  color: #272727;
+  margin-bottom: 20px;
+}
+
 
 .case-data div.file-download {
   display: flex;
@@ -62,9 +96,11 @@
 }
 
 .case-data-separator {
-  margin-bottom: 20px;
   display: flex;
-  flex-direction: column;
+}
+
+.case-data-2col {
+  width: 50%;
 }
 
 .case-data-separator div {
@@ -395,4 +431,35 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .case-data {
+    flex-direction: column-reverse;
+  }
+
+  .case-data-hospital {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .case-data-profile {
+    width: 100%;
+    margin-right: 0px;
+  }
+
+  .case-information {
+    width: 100%;
+  }
+
+  .case-information .case-data-separator {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .case-information div.case-data-2col {
+    width: 100%;
+  }
 }
