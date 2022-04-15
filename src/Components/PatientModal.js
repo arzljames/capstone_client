@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { motion } from "framer-motion";
 import { formVariant, containerVariant } from "../Animations/Animations";
-import { HiX } from "react-icons/hi";
+import { HiX, HiUser, HiTrash } from "react-icons/hi";
 import useAuth from "../Hooks/useAuth";
 import OutgoingCaseActive2 from "./OutgoingCaseActive2";
+import { GrClear } from "react-icons/gr";
 
 const PatientModal = ({ patientId, setPatientModal, patient }) => {
   let domNodePatient = useClickOutside(() => {
@@ -83,6 +84,20 @@ const PatientModal = ({ patientId, setPatientModal, patient }) => {
         </div>
         {tab === "Patient Profile" && (
           <div className="patient-modal-content">
+            <div className="patient-modal-btns">
+              <button className="delete-patient-btn">
+                <p>
+                  <HiTrash />
+                </p>
+                Delete
+              </button>
+              <button className="edit-profile-btn">
+                <p>
+                  <HiUser />
+                </p>
+                Edit Profile
+              </button>
+            </div>
             <div className="patient-personal">
               <h2>Personal Information</h2>
 
@@ -192,7 +207,7 @@ const PatientModal = ({ patientId, setPatientModal, patient }) => {
 
               <div className="info">
                 <div>
-                  <label>Contact #</label>
+                  <label>Contact No.</label>
                   <p>+63 {patient.contact}</p>
                 </div>
               </div>

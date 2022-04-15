@@ -1,40 +1,14 @@
 import React from "react";
 import "./PendingModal.css";
 import { motion } from "framer-motion";
-
-const containerVariant = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.2,
-    },
-  },
-  exit: {
-    opacity: 0,
-  },
-};
-
-const modalVariant = {
-  hidden: {
-    opacity: 0,
-    y: -20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.2,
-    },
-  },
-  exit: {
-    opacity: 0,
-  },
-};
+import { HiX } from "react-icons/hi";
+import { formVariant, containerVariant } from "../Animations/Animations";
 
 const PendingModal = ({ setVerification, userEmail }) => {
+  const regex = /(?<!^)./g;
+  const splitBefore = userEmail.substring(userEmail.indexOf("@"));
+  const splitAfter = userEmail.substring(0, userEmail.indexOf("@"));
+  const replacedEmail = splitAfter.replace(regex, "*") + splitBefore;
   return (
     <motion.div
       variants={containerVariant}
@@ -44,23 +18,28 @@ const PendingModal = ({ setVerification, userEmail }) => {
       className="modal-container"
     >
       <motion.div
-        variants={modalVariant}
+        variants={formVariant}
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="pending-modal"
+        className="register-successful"
       >
-        <h1>Check Your Email</h1>
-        <p id="user-email">{userEmail}</p>
-        <p>
-          Your account is currently in the queue list for account verification.
-          We will send you an email with instructions on how you can activate
-          your account. Thank you!
-        </p>
-
-        <div className="got-it-container">
-          <button onClick={() => setVerification(false)}>Got it, thanks</button>
+        <div className="register-successful-header">
+          <h1>Check Your Email</h1>
+          <p onClick={() => setVerification(false)}>
+            <HiX />
+          </p>
         </div>
+
+        <div className="register-successful-body">
+          <p>{replacedEmail}</p> <br />
+          <p>
+            Your account is currently in the queue list for account
+            verification. We will send you an email with instructions on how you
+            can verify and activate your account.
+          </p>
+        </div>
+        <button onClick={() => setVerification(false)}>Confirm</button>
       </motion.div>
     </motion.div>
   );

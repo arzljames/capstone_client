@@ -1055,6 +1055,48 @@ button.deactive-btn:hover {
   overflow: hidden;
 }
 
+
+.patient-modal-btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+
+.patient-modal-btns button {
+  outline: none;
+  padding: 0px 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  height: 30px;
+  border: none;
+  margin-left: 10px;
+}
+
+
+.edit-profile-btn {
+  background: #ffffff;
+  color: #058e46;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  transition: 0.1s ease-in-out;
+  border: none;
+}
+
+.patient-modal-btns button p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+
 .patient-modal-exit {
   width: 30px;
   height: 30px;
@@ -1166,7 +1208,7 @@ button.deactive-btn:hover {
 .patient-personal {
   width: 100%;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  border-radius: 4px;
+  border-radius: 8px;
   padding: 10px;
   margin-bottom: 10px;
 }

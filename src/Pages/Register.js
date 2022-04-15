@@ -2,43 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import "./Login.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { HiCheck } from "react-icons/hi";
+import { HiX } from "react-icons/hi";
 import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
 import { Helmet } from "react-helmet";
-
-const formVariants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
-
-const dropdownVariants = {
-  hidden: {
-    opacity: 0,
-    y: -20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.3,
-    },
-  },
-  exit: {
-    opacity: 0,
-    zIndex: -1,
-    transition: {
-      duration: 0,
-    },
-  },
-};
+import { formVariant, containerVariant } from "../Animations/Animations";
 
 const Register = () => {
   const [success, setSuccess] = useState(false);
@@ -188,30 +156,49 @@ const Register = () => {
     <>
       <Helmet>
         <title>Sign up to ZCMC Telemedicine | ZCMC Telemedicine</title>
-      </Helmet>
-      {success && (
-        <div className="modal-container">
-          <div className="register-successful">
-            <div className="success-icon">
-              <HiCheck />
-            </div>
-            <h1>Success</h1>
+      </Helmet>{" "}
+      <AnimatePresence>
+        {success && (
+          <motion.div
+            variants={containerVariant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="modal-container"
+          >
+            <motion.div
+              variants={formVariant}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="register-successful"
+            >
+              <div className="register-successful-header">
+                <h1>Register Successful</h1>
+                <p onClick={() => setSuccess(false)}>
+                  <HiX />
+                </p>
+              </div>
 
-            <p>
-              Your account is pending for approval. We will send you an email
-              with instructions on how you can activate your account.
-            </p>
-            <button onClick={() => setSuccess(false)}>Confirm</button>
-          </div>
-        </div>
-      )}
+              <div className="register-successful-body">
+                <p>
+                  Your account is pending for approval. We will send you an
+                  email with instructions on how you can verify and activate
+                  your account. Thank you!
+                </p>
+              </div>
+              <button onClick={() => setSuccess(false)}>Confirm</button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="login-container">
         <div className="login-header">
           <h1>Sign up</h1>
         </div>
 
         <motion.form
-          variants={formVariants}
+          variants={formVariant}
           initial="hidden"
           animate="visible"
           className="login-form"
