@@ -248,17 +248,17 @@ const Case = () => {
                     })
                     .map((item, index) => {
                       return (
-                        <div
-                          onClick={() => {
-                            navigate(
-                              `/consultation/case/case-data/${item._id}`
-                            );
-                          }}
-                          className={
-                            index % 2 === 0 ? "table-body" : "table-body-2"
-                          }
-                        >
-                          <div className="cs-id">{item.caseId}</div>
+                        <div className="table-body">
+                          <div
+                            onClick={() => {
+                              navigate(
+                                `/consultation/case/case-data/${item._id}`
+                              );
+                            }}
+                            className="cs-id"
+                          >
+                            <p>{item.caseId}</p>
+                          </div>
                           <div
                             onClick={(e) => {
                               filterPatient(item.patient._id);
@@ -267,9 +267,11 @@ const Case = () => {
                             }}
                             className="cs-name"
                           >
-                            {item.patient.firstname +
-                              " " +
-                              item.patient.lastname}
+                            <p>
+                              {item.patient.firstname +
+                                " " +
+                                item.patient.lastname}
+                            </p>
                           </div>
 
                           <div className="cs-department">

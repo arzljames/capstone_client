@@ -40,39 +40,60 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
   const [tab, setTab] = useState("All");
   return (
     <div className="notification-dropdown">
+      <div className="notification-heading">
+        <h2>
+          Notifications{" "}
+          {notification.filter(
+            (item) =>
+              item.specialization === user.specialization &&
+              item.active === true
+          ).length === 0 ? null : (
+            <p>
+              {
+                notification.filter(
+                  (item) =>
+                    item.specialization === user.specialization &&
+                    item.active === true
+                ).length
+              }
+            </p>
+          )}
+        </h2>
 
-        <div className="notification-heading">
-          <h2>Notifications</h2>
-          <div className="notification-tabs">
-            <span
-              onClick={() => setTab("All")}
-              className={tab === "All" ? "active" : "not-active"}
-            >
-              All
-            </span>
-            <span
-              onClick={() => setTab("Read")}
-              className={tab === "Read" ? "active" : "not-active"}
-            >
-              Read
-            </span>
-            <span
-              onClick={() => setTab("Unread")}
-              className={tab === "Unread" ? "active" : "not-active"}
-            >
-              Unread
-            </span>
-          </div>
+        <div className="notification-tabs">
+          <span
+            onClick={() => setTab("All")}
+            className={tab === "All" ? "active" : "not-active"}
+          >
+            All
+          </span>
+          <span
+            onClick={() => setTab("Read")}
+            className={tab === "Read" ? "active" : "not-active"}
+          >
+            Read
+          </span>
+          <span
+            onClick={() => setTab("Unread")}
+            className={tab === "Unread" ? "active" : "not-active"}
+          >
+            Unread
+          </span>
         </div>
+      </div>
 
-
-      {notification.filter((item) => item.specialization === user.specialization).length ===
-        0 && <p className="p-no-notification">No new notification</p>}
+      {notification.filter(
+        (item) => item.specialization === user.specialization
+      ).length === 0 && (
+        <p className="p-no-notification">No new notification</p>
+      )}
 
       {tab !== "Read" &&
         notification
           .filter(
-            (item) => item.specialization === user.specialization && item.active === true
+            (item) =>
+              item.specialization === user.specialization &&
+              item.active === true
           )
           .slice(0)
           .reverse()
@@ -117,7 +138,9 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
       {tab !== "Unread" &&
         notification
           .filter(
-            (item) => item.specialization === user.specialization && item.active === false
+            (item) =>
+              item.specialization === user.specialization &&
+              item.active === false
           )
           .slice(0)
           .reverse()
@@ -142,7 +165,7 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
                 >
                   <div className="notification-details-title">
                     <h1>
-                    Dr. {item.from.firstname + " " + item.from.lastname}{" "}
+                      Dr. {item.from.firstname + " " + item.from.lastname}{" "}
                       {item.title}
                     </h1>
                   </div>

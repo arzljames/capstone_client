@@ -200,7 +200,7 @@ const CaseData = () => {
                     <p>
                       <HiDownload />
                     </p>
-                    Export
+                    Download File
                   </motion.button>
 
                   {patientCase.physician._id === user.userId &&
@@ -301,7 +301,7 @@ const CaseData = () => {
 
                   <label>Attending Pysician</label>
                   <p>
-                    Dr.
+                    Dr.{" "}
                     {patientCase.physician.firstname +
                       " " +
                       patientCase.physician.lastname}
@@ -336,7 +336,7 @@ const CaseData = () => {
                 <h1>Case {patientCase.caseId}</h1>
 
                 <div className="case-data-separator">
-                  <div className="case-data-2col">
+                  <div className="case-data-2col case">
                     <label>Chief complaint</label>
                     <p>{patientCase.cc}</p>
 
@@ -365,7 +365,7 @@ const CaseData = () => {
                     <p>{patientCase.reason}</p>
                   </div>
 
-                  <div className="case-data-2col">
+                  <div className="case-data-2col vital-signs">
                     <h5>Vital Signs</h5>
                     <p>Temperature: {patientCase.temperature}</p>
                     <p>Respiratory Rate: {patientCase.respiratory}</p>

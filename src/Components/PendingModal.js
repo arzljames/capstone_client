@@ -9,6 +9,7 @@ const PendingModal = ({ setVerification, userEmail }) => {
   const splitBefore = userEmail.substring(userEmail.indexOf("@"));
   const splitAfter = userEmail.substring(0, userEmail.indexOf("@"));
   const replacedEmail = splitAfter.replace(regex, "*") + splitBefore;
+
   return (
     <motion.div
       variants={containerVariant}

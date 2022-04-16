@@ -14,7 +14,7 @@ const PatientModal = ({ patientId, setPatientModal, patient }) => {
   });
 
   const navigate = useNavigate();
-  const { cases, facilities } = useAuth();
+  const { cases, facilities, user } = useAuth();
 
   const [tab, setTab] = useState("Patient Profile");
 
@@ -62,56 +62,56 @@ const PatientModal = ({ patientId, setPatientModal, patient }) => {
               >
                 Patient Profile
               </li>
-              <li
-                className={tab === "Case History" ? "li-active" : ""}
-                onClick={() => setTab("Case History")}
-              >
-                Case History
-              </li>
-              <li
-                className={tab === "Active Case" ? "li-active" : ""}
-                onClick={() => setTab("Active Case")}
-              >
-                Active Case{" "}
-                {cases.filter(
-                  (e) => e.patient._id === patient._id && e.active === true
-                ).length === 0 ? null : (
-                  <div>
-                    {
-                      cases.filter(
-                        (e) =>
-                          e.patient._id === patient._id && e.active === true
-                      ).length
-                    }
-                  </div>
-                )}
-              </li>
+              {user.designation !== "623ec7fb80a6838424edaa29" && (
+                <li
+                  className={tab === "Case History" ? "li-active" : ""}
+                  onClick={() => setTab("Case History")}
+                >
+                  Case History
+                </li>
+              )}
+              {user.designation !== "623ec7fb80a6838424edaa29" && (
+                <li
+                  className={tab === "Active Case" ? "li-active" : ""}
+                  onClick={() => setTab("Active Case")}
+                >
+                  Active Case{" "}
+                  {cases.filter(
+                    (e) => e.patient._id === patient._id && e.active === true
+                  ).length === 0 ? null : (
+                    <div>
+                      {
+                        cases.filter(
+                          (e) =>
+                            e.patient._id === patient._id && e.active === true
+                        ).length
+                      }
+                    </div>
+                  )}
+                </li>
+              )}
             </ul>
           </div>
           {tab === "Patient Profile" && (
             <div className="patient-modal-content">
-              <div className="patient-modal-btns">
-                <button className="delete-patient-btn">
-                  <p>
-                    <HiTrash />
-                  </p>
-                  Delete
-                </button>
-                <button
-                  onClick={() =>
-                    navigate(
-                      `/consultation/patients/edit-profile/${patient._id}`,
-                      { state: patient }
-                    )
-                  }
-                  className="edit-profile-btn"
-                >
-                  <p>
-                    <HiUser />
-                  </p>
-                  Edit Profile
-                </button>
-              </div>
+              {user.designation !== "623ec7fb80a6838424edaa29" && (
+                <div className="patient-modal-btns">
+                  <button
+                    onClick={() =>
+                      navigate(
+                        `/consultation/patients/edit-profile/${patient._id}`,
+                        { state: patient }
+                      )
+                    }
+                    className="edit-profile-btn"
+                  >
+                    <p>
+                      <HiUser />
+                    </p>
+                    Edit Profile
+                  </button>
+                </div>
+              )}
               <div className="patient-personal">
                 <h2>Personal Information</h2>
 

@@ -219,11 +219,27 @@
 }
 
 
-.notification-dropdown h2 {
+.notification-heading h2 {
   font-size: 18px;
   color: #272727;
   font-weight: 600;
   margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.notification-heading h2 p {
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  background: rgb(255, 71, 46);
+  color: #fff
 }
 
 .notification-tabs {

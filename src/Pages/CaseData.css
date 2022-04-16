@@ -113,6 +113,18 @@
   flex-direction: column;
 }
 
+.case-data-separator div.case-data-2col.vital-signs {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+}
+
+.case-data-separator div.case-data-2col.case {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+}
+
 .case-data-separator hr {
   margin-top: 20px;
 }
@@ -125,7 +137,6 @@
   background: rgb(255, 255, 255);
   border-radius: 8px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  height: 100vh;
 }
 
 .case-data-response form {
@@ -165,11 +176,12 @@
 .case-data-response-btns .sort-response-btn {
   background: none;
   color: #057a3c;
-  font-weight: 600;
+  font-weight: 500;
   margin-left: 0px;
   font-size: 14px;
   display: flex;
   align-items: center;
+  width: 100px;
 }
 
 .case-data-response-btns .sort-response-btn p {
@@ -200,13 +212,15 @@
 }
 
 .case-data-response form button {
-  padding: 10px 15px;
+  padding: 6px 8px;
+  height: 35px;
+  width: 90px;
   cursor: pointer;
   background: #058e46;
   outline: none;
   border: none;
   color: #fff;
-  border-radius: 2px;
+  border-radius: 4px;
   font-weight: 500;
   margin-left: 10px;
   transition: 0.1s ease-in-out;
@@ -263,6 +277,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  height: auto;
 
 }
 
@@ -471,7 +486,7 @@
     width: 100%;
   }
 
-  .case-information div.case-data-2col {
+  .case-information div.case-data-2col,  .case-information div.case-data-2col.vital-sign,   .case-information div.case-data-2col.case {
     width: 100%;
   }
 }
