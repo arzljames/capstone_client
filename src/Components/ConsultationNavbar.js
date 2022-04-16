@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import "../Pages/Homepage.css";
-import {
-  IoMedkitOutline,
-} from "react-icons/io5";
+import { IoMedkitOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import {FcConferenceCall, FcUpload, FcFile, FcDownload} from 'react-icons/fc'
+import { FcConferenceCall, FcUpload, FcFile, FcDownload } from "react-icons/fc";
 
 const ConsultationNavbar = () => {
   const path = window.location.pathname;

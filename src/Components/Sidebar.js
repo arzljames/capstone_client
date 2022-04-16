@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import "./Sidebar.css";
 import useAuth from "../Hooks/useAuth";
 import { socket } from "./Socket";
+import { IoMdPeople } from "react-icons/io";
+import { IoMedkitOutline, IoMedkit } from "react-icons/io5";
 
 const Sidebar = () => {
   const path = window.location.pathname;
   const navigate = useNavigate();
   const { notification, user, setNotification } = useAuth();
-
 
   useEffect(() => {
     const fetchNotif = () => {
@@ -23,7 +24,7 @@ const Sidebar = () => {
   }, [socket]);
 
   return (
-    <div className="admin-sidebar">
+    <div className="sidebar">
       {SidebarData.map((item) => {
         return (
           <div
@@ -34,7 +35,7 @@ const Sidebar = () => {
               path.includes(item.link2) ||
               path.includes(item.link3) ||
               path.includes(item.link4) ||
-              path.includes(item.link5) 
+              path.includes(item.link5)
                 ? "icon-container-active"
                 : "icon-container"
             }
@@ -49,7 +50,6 @@ const Sidebar = () => {
                 : item.icon}
             </div>
             <p>{item.name}</p>
-            
           </div>
         );
       })}

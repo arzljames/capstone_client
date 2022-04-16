@@ -28,25 +28,7 @@
 
 }
 
-/* width */
-.content-body::-webkit-scrollbar {
-  width: 8px;
-}
 
-/* Track */
-.content-body::-webkit-scrollbar-track {
-  background: #f1f1f100;
-}
-
-/* Handle */
-.content-body::-webkit-scrollbar-thumb {
-  background: rgb(197, 197, 197);
-}
-
-/* Handle on hover */
-.content-body::-webkit-scrollbar-thumb:hover {
-  background: rgb(163, 163, 163);
-}
 
 .container-divider {
   display: flex;
@@ -126,30 +108,6 @@
   padding-bottom: 5px;
 }
 
-/* width */
-.pending-registration-body::-webkit-scrollbar,
-.recently-added-body::-webkit-scrollbar {
-  width: 5px;
-}
-
-/* Track */
-.pending-registration-body::-webkit-scrollbar-track,
-.recently-added-body::-webkit-scrollbar-track {
-  background: #f1f1f100;
-}
-
-/* Handle */
-.pending-registration-body::-webkit-scrollbar-thumb,
-.recently-added-body::-webkit-scrollbar-thumb {
-  background: rgb(216, 216, 216);
-  border-radius: 100px;
-}
-
-/* Handle on hover */
-.pending-registration-body::-webkit-scrollbar-thumb:hover,
-.recently-added-body::-webkit-scrollbar-thumb:hover {
-  background: rgb(189, 189, 189);
-}
 
 .pending-registration-header h1,
 .recently-added-header h1 {
@@ -210,9 +168,6 @@
     flex-direction: column;
   }
 
-  .container {
-    padding-bottom: 60px;
-  }
 
   .admin-subheading {
     flex-direction: column;
@@ -232,13 +187,12 @@
     padding: 0px;
   }
 
-  .container {
-    padding-bottom: 100px;
-  }
+
 
   .content-body {
     padding: 20px 10px;
-    padding-bottom: 50px;
+    padding-bottom: 70px;
     padding-top: 0px;
   }
 }
+

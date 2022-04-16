@@ -196,3 +196,80 @@
   background: #ff2626;
   color: #fff;
 }
+
+
+.notification-dropdown {
+  position: absolute;
+  right: 0px;
+  top: 50px;
+  width: 100vw;
+  max-width: 400px;
+  max-height: 600px;
+  height: 85vh;
+  overflow-y: scroll;
+  z-index: 3;
+  background: rgb(255, 255, 255);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ececec;
+  padding-bottom: 0px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+
+.notification-dropdown h2 {
+  font-size: 18px;
+  color: #272727;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.notification-tabs {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.notification-tabs span {
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0px;
+  margin: 0px;
+  min-width:50px;
+  border-radius: 100px;
+  margin-right: 10px;
+  width:auto;
+  height: auto;
+  padding: 5px 15px;
+}
+
+.notification-tabs  span.active {
+  background: #d6e6d8;
+  font-weight: 600;
+  color: #0f531e;
+
+}
+
+.notification-tabs  span.not-active {
+  background: rgb(240, 240, 240);
+  transition: .1s ease-in-out;
+  font-weight: 500;
+  color: #272727;
+
+
+}
+
+.notification-tabs  span.not-active:hover {
+  transition: .1s ease-in-out;
+  color: #0f531e;
+  background: #d6e6d8;
+}
+
+@media screen and (max-width: 768px) {
+  .notification-dropdown {
+    right: -15px;
+    border-radius: 0px;
+   flex: 1;
+  }
+}

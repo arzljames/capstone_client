@@ -53,22 +53,9 @@
   border-radius: 100px;
 }
 
-.admin-profile-name-active {
-  display: flex;
-  align-items: center;
-  padding: 4px;
-  padding-right: 8px;
-  transition: 0.1s ease-in-out;
-  border-radius: 100px;
-  background: rgb(223, 223, 223);
-  cursor: pointer;
-}
 
-.admin-profile-name:hover {
-  background: rgb(223, 223, 223);
-  transition: 0.1s ease-in-out;
-  cursor: pointer;
-}
+
+
 
 .admin-profile-name-active h5 {
   font-size: 14px;
@@ -94,7 +81,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   position: relative;
   border-radius: 50%;
   color: #fff;
@@ -228,6 +214,7 @@
   flex-direction: column;
   border: 1px solid #ececec;
   padding-bottom: 0px;
+  border-radius: 4px;
 }
 
 .profile-container-dropdown ul {
@@ -269,24 +256,7 @@
   height: 100%;
 }
 
-.notification-dropdown {
-  position: absolute;
-  right: 0px;
-  top: 50px;
-  width: 400px;
-  min-height: 400px;
-  height: 85vh;
-  overflow-y: scroll;
-  z-index: 3;
-  background: rgb(255, 255, 255);
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  padding: 0px 4px;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ececec;
-  padding-bottom: 0px;
-  padding: 20px 10px;
-}
+
 
 .notification-dropdown p.p-no-notification {
   color: #808080;
@@ -343,4 +313,21 @@
   font-weight: 600;
   color: #fff;
   border: 1px solid #fff;
+}
+
+
+@media screen and (max-width: 768px){
+  .admin-profile-name h5, .admin-profile-name-active h5 {
+    display: none;
+  }
+
+  .admin-profile-name {
+ display: none;
+  }
+
+
+
+  .profile-container-dropdown {
+    right: -15px;
+  }
 }

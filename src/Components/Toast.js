@@ -31,14 +31,25 @@ const toastVariant = {
 const Toast = () => {
   const { setToast, setMessage, message, isError, toast } = useAuth();
 
-  let timer = setTimeout(() => {
-    setMessage(null);
-    setToast(null);
-  }, 5000);
 
-  useEffect(() => {
+
+
+  const timer =() => {
+    setTimeout(() => {
+      setMessage(null);
+      setToast(null);
+    }, 5000);
+  }
+ 
+useEffect(() => {
+  timer()
+}, [])
+
+  const cancelTimeout = () => {
     clearTimeout(timer);
-  }, [toast]);
+    setToast(false)
+
+  }
   return (
     <motion.div
       variants={toastVariant}
@@ -47,7 +58,7 @@ const Toast = () => {
       exit="exit"
       className={isError ? "toast-error" : "toast"}
     >
-      <span onClick={() => setToast(false)}>
+      <span onClick={() => cancelTimeout()}>
         <HiX />
       </span>
       <div className={isError ? "toast-icon-error" : "toast-icon"}>

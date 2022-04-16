@@ -100,8 +100,6 @@ const ProfileHeader = () => {
   return (
     <div ref={domNode} className="admin-profile-header">
       <motion.div
-        whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
-        onClick={() => navigate(`/profile/${user.username}`)}
         className={
           path.includes(user.username)
             ? "admin-profile-name-active"

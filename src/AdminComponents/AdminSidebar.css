@@ -9,25 +9,7 @@
   overflow-y: scroll;
 }
 
-/* width */
-.admin-sidebar::-webkit-scrollbar {
-  width: 0px;
-}
 
-/* Track */
-.admin-sidebar::-webkit-scrollbar-track {
-  background: #f1f1f100;
-}
-
-/* Handle */
-.admin-sidebar::-webkit-scrollbar-thumb {
-  background: rgba(197, 197, 197, 0);
-}
-
-/* Handle on hover */
-.admin-sidebar::-webkit-scrollbar-thumb:hover {
-  background: rgba(163, 163, 163, 0);
-}
 
 .icon-container {
   height: 70px;

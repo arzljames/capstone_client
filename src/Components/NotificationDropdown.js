@@ -40,10 +40,10 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
   const [tab, setTab] = useState("All");
   return (
     <div className="notification-dropdown">
-      <div className="admin-subheading">
+
         <div className="notification-heading">
           <h2>Notifications</h2>
-          <div>
+          <div className="notification-tabs">
             <span
               onClick={() => setTab("All")}
               className={tab === "All" ? "active" : "not-active"}
@@ -64,7 +64,7 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
             </span>
           </div>
         </div>
-      </div>
+
 
       {notification.filter((item) => item.specialization === user.specialization).length ===
         0 && <p className="p-no-notification">No new notification</p>}

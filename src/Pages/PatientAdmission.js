@@ -174,7 +174,7 @@ const PatientAdmission = () => {
                     <p>
                       <HiDocumentText />
                     </p>
-                    Save Patient
+                    Save Record
                   </button>
                 </div>
               </div>

@@ -6,27 +6,7 @@
 .admin-subheading .notification-heading h2 {
   margin-bottom: 20px;
 }
-.admin-subheading .notification-heading span.active {
-  background: #d6e6d8;
-  border-radius: 100px;
-  padding: 5px 15px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  color: #0f531e;
-  margin-right: 10px;
-}
 
-.admin-subheading .notification-heading span.not-active {
-  background: rgb(240, 240, 240);
-  border-radius: 100px;
-  padding: 5px 15px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  color: #272727;
-  margin-right: 10px;
-}
 
 .notification-nav {
   width: 100%;
@@ -185,3 +165,5 @@
   top: 10px;
   right: 10px;
 }
+
+

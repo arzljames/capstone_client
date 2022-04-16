@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import ProfileHeader from "./ProfileHeader";
-import useAuth from "../Hooks/useAuth";
-import api from "../API/Api";
+
 
 const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="admin-header">
+    <div className="admin-header user">
       <h1 onClick={() => navigate("/")}>Telemedicine</h1>
 
       <ProfileHeader />

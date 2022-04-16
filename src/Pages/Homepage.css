@@ -181,7 +181,13 @@
 /* End of Consultation Navbar styling */
 
 @media screen and (max-width: 768px) {
-  .consultation-nav {
-    display: none;
+
+  .consultation-content {
+    flex-direction: column;
   }
+  .consultation-nav {
+   display: none;
+  }
+
+  
 }
