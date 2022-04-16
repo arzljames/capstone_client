@@ -21,6 +21,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import Toast from "../Components/Toast";
 import DeleteCaseModal from "../Components/DeleteCaseModal";
 import { DocumentGenerator } from "../Components/DocumentGenerator";
+import { buttonVariant } from "../Animations/Animations";
 
 const CaseData = () => {
   const [deleteModal, setDeleteModal] = useState(false);
@@ -178,7 +179,9 @@ const CaseData = () => {
 
                 <div className="above-patient-profile-btns">
                   {patientCase.physician._id === user.userId && (
-                    <button
+                    <motion.button
+                      variants={buttonVariant}
+                      whileTap="tap"
                       onClick={() => setDeleteModal(true)}
                       className="delete-patient-btn"
                     >
@@ -186,9 +189,11 @@ const CaseData = () => {
                         <HiTrash />
                       </p>
                       Delete
-                    </button>
+                    </motion.button>
                   )}
-                  <button
+                  <motion.button
+                    variants={buttonVariant}
+                    whileTap="tap"
                     onClick={() => DocumentGenerator()}
                     className="download-btn"
                   >
@@ -196,18 +201,22 @@ const CaseData = () => {
                       <HiDownload />
                     </p>
                     Export
-                  </button>
+                  </motion.button>
 
                   {patientCase.physician._id === user.userId &&
                     (patientCase.active === true ? (
-                      <button
+                      <motion.button
+                        variants={buttonVariant}
+                        whileTap="tap"
                         onClick={() => handleDeactivate()}
                         className="deactive-btn"
                       >
                         Deactivate
-                      </button>
+                      </motion.button>
                     ) : (
-                      <button
+                      <motion.button
+                        variants={buttonVariant}
+                        whileTap="tap"
                         onClick={() => handleActivate()}
                         className="active-btn"
                       >
@@ -215,7 +224,7 @@ const CaseData = () => {
                         <p>
                           <HiCheck />
                         </p>
-                      </button>
+                      </motion.button>
                     ))}
                 </div>
               </div>
@@ -368,173 +377,13 @@ const CaseData = () => {
                   </div>
                 </div>
               </div>
-              {/* <div className="case-data">
-                <div className="case-data-separator">
-                  <div>
-                    <div className="case-data-2col">
-                      <h5>Patient Information</h5>
-                      <p>
-                        <b>Full name:</b> {patientCase.patient.fullname}
-                      </p>
-
-                      <p>
-                        <b>Contact #:</b> {patientCase.patient.contact}
-                      </p>
-
-                      <p>
-                        <b>Age/Sex:</b>
-                        {getAge(patientCase.patient.birthday) +
-                          " " +
-                          patientCase.patient.sex}
-                      </p>
-
-                      <p>
-                        <b>Civil Status:</b> {patientCase.patient.civilStatus}
-                      </p>
-
-                      <p>
-                        <b>Birthday:</b> {patientCase.patient.birthday}
-                      </p>
-
-                      <p>
-                        <b>Religion:</b> {patientCase.patient.religion}
-                      </p>
-
-                      <p>
-                        <b>Birth Place:</b> {patientCase.patient.birthplace}
-                      </p>
-
-                      <p>
-                        <b>Adress:</b> {patientCase.patient.address.barangay}
-                      </p>
-
-                      <p>
-                        <b>Ethnicity:</b> {patientCase.patient.ethnicity}
-                      </p>
-
-                      <p>
-                        <b>Legal Guardian:</b>
-                        {patientCase.patient.guardian.name}
-                      </p>
-
-                      <p>
-                        <b>Relation:</b>
-                        {patientCase.patient.guardian.relationship}
-                      </p>
-                    </div>
-
-                    <div className="case-data-2col">
-                      <h5>Referring Hospital</h5>
-                      <p>
-                        <b>Hospital:</b>
-                        <p> {patientCase.physician.designation}</p>
-                      </p>
-
-                      <p>
-                        <b>Attending Physician:</b>
-                        <p>
-                          Dr.{" "}
-                          {patientCase.physician.firstname +
-                            " " +
-                            patientCase.physician.lastname}
-                        </p>
-                      </p>
-
-                      <p>
-                        <b>Specialization:</b>
-
-                        <p>{patientCase.physician.specialization}</p>
-                      </p>
-
-                      <p>
-                        <b>Date / Time:</b>
-                        <p>
-                          {getDate(patientCase.createdAt) +
-                            " " +
-                            getTime(patientCase.createdAt)}
-                        </p>
-                      </p>
-                    </div>
-                  </div>
-
-                  <hr />
-                </div>
-
-                <div className="case-data-separator">
-                  <div>
-                    <div className="case-data-2col">
-                      <h5>Case Information</h5>
-                      <p>
-                        <b>Chief Complaint:</b>
-                        <p>{patientCase.cc}</p>
-                      </p>
-                      <p>
-                        <b>Pertinent History of Present Illness:</b>
-
-                        <p> {patientCase.hpi}</p>
-                      </p>
-                      <p>
-                        <b>Pertinent Past Medical History: </b>
-
-                        <p> {patientCase.pmh}</p>
-                      </p>
-                      <p>
-                        <b>Pertinent Review of Systems:</b>
-                        <p>{patientCase.ros}</p>
-                      </p>
-
-                      <p>
-                        <b>Vital Signs:</b>
-                        <br />
-                        <p>Temperature: {patientCase.temperature} </p>
-                        <p> Respiratory Rate: {patientCase.respiratory}</p>
-                        <p>Heart Rate: {patientCase.heart} </p>
-                        <p>Blood Pressure: {patientCase.blood} </p>
-                        <p>Oxygen Saturation: {patientCase.oxygen} </p>
-                        <p> Weight (KG): {patientCase.weight} </p>
-                        <p>Height: (CM): {patientCase.height}</p>
-                      </p>
-                    </div>
-                    <div className="case-data-2col">
-                      <h5 style={{ opacity: 0, pointerEvents: "none" }}>.</h5>
-                      <p>
-                        <b>Pertinent PE Findings: :</b> <p>{patientCase.pe}</p>
-                      </p>
-                      <p>
-                        <b>Pertinent Paraclinicals:</b>
-                        {!patientCase.paraclinical.name ? (
-                          <p>No File</p>
-                        ) : (
-                          <div className="file-download">
-                            <HiDocumentText color="#808080" />
-                            <a href={patientCase.paraclinical.file}>
-                              <p>{patientCase.paraclinical.name} </p>
-                            </a>
-                          </div>
-                        )}
-                      </p>
-                      <p>
-                        <b>Working Impression:</b> <p>{patientCase.wi}</p>
-                      </p>
-
-                      <p>
-                        <b>Initial Management Done:</b> <p>{patientCase.imd}</p>
-                      </p>
-
-                      <p>
-                        <b>Reason for Referral:</b> <p>{patientCase.reason}</p>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
-              {/* <ResponseChat
-                id={id}
+              <ResponseChat
+                id={patientCase._id}
                 user={user}
                 response={response}
                 setResponse={setResponse}
                 active={patientCase.active}
-              /> */}
+              />
             </div>
           </div>
         </div>

@@ -473,7 +473,7 @@ button.deactive-btn:hover {
   align-items: center;
   background: transparent;
   transition: 0.1s ease-in-out;
-  padding: 6px;
+  padding: 6px 0px;
   border-radius: 2px;
 }
 
@@ -990,46 +990,46 @@ button.deactive-btn:hover {
 
 
 .page-item {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 2px;
-  border-radius: 2px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
 .page-link {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 2px;
-  border-radius: 2px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
 .page-item:hover {
-  background: rgb(201, 205, 209);
+  background: #d0dceb;
 }
 
 .active {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 2px;
-  border-radius: 2px;
+  border-radius: 4px;
   cursor: pointer;
-  background: #111727;
+  background: #1e80f0;
   color: #fff
 }
 
 .active:hover {
-  background: #111727;
+  background: #1e80f0;
 }
 
 .page-item a {

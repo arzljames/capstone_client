@@ -170,6 +170,7 @@ const Patients = () => {
   const filterPatient = (id) => {
     setPatient(patients.filter(e => e._id === id)[0])
   }
+  
 
   // const [deleteModal, setDeleteModal] = useState(false);
   return (

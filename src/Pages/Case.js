@@ -17,6 +17,7 @@ import api from "../API/Api";
 import { useNavigate } from "react-router-dom";
 import Toast from "../Components/Toast";
 import "./Case.css";
+import PatientModal from "../Components/PatientModal";
 
 const dropdownVariants = {
   hidden: {
@@ -56,7 +57,7 @@ const Case = () => {
     setIsFilter(false);
   });
 
-  const { cases, facilities, user, toast } = useAuth();
+  const { cases, facilities, user, toast, patients } = useAuth();
 
   const getDate = (date) => {
     let dates = new Date(date);
@@ -82,6 +83,13 @@ const Case = () => {
     return today;
   };
 
+  const [patientModal, setPatientModal] = useState(false);
+  const [patient, setPatient] = useState([]);
+
+  const filterPatient = (id) => {
+    setPatient(patients.filter((e) => e._id === id)[0]);
+  };
+
   return (
     <>
       <Helmet>
@@ -91,6 +99,9 @@ const Case = () => {
         <AnimatePresence>
           {showCase && <NewCase setShowCase={setShowCase} />}
           {toast && <Toast />}
+          {patientModal && (
+            <PatientModal patient={patient} setPatientModal={setPatientModal} />
+          )}
         </AnimatePresence>
         <Sidebar />
         <div className="content">
@@ -238,44 +249,53 @@ const Case = () => {
                     .map((item, index) => {
                       return (
                         <div
-                          onClick={() =>
-                            navigate(`/consultation/case/case-data/${item._id}`)
-                          }
+                          onClick={() => {
+                            navigate(
+                              `/consultation/case/case-data/${item._id}`
+                            );
+                          }}
                           className={
                             index % 2 === 0 ? "table-body" : "table-body-2"
                           }
                         >
                           <div className="cs-id">{item.caseId}</div>
-                          <div className="cs-name">
+                          <div
+                            onClick={(e) => {
+                              filterPatient(item.patient._id);
+                              setPatientModal(true);
+                              e.stopPropagation();
+                            }}
+                            className="cs-name"
+                          >
                             {item.patient.firstname +
                               " " +
                               item.patient.lastname}
                           </div>
 
                           <div className="cs-department">
-                          {
-                            facilities
-                              .filter((e) => e._id === item.designation._id)
-                              .map((f) => {
-                                return f.specialization.filter(
-                                  (g) => g._id === item.specialization
-                                )[0];
-                              })[0].name
-                          }
+                            {
+                              facilities
+                                .filter((e) => e._id === item.designation._id)
+                                .map((f) => {
+                                  return f.specialization.filter(
+                                    (g) => g._id === item.specialization
+                                  )[0];
+                                })[0].name
+                            }
                           </div>
                           <div className="cs-date">
                             {getDate(item.createdAt)} {getTime(item.createdAt)}
                           </div>
                           <div className="cs-status">
-                            
                             <p className={item.active ? "active" : "done"}>
-                            <div
-                              className={
-                                item.active
-                                  ? "indicator active"
-                                  : "indicator done"
-                              }
-                            ></div>{item.active ? "Active" : "Done"}
+                              <div
+                                className={
+                                  item.active
+                                    ? "indicator active"
+                                    : "indicator done"
+                                }
+                              ></div>
+                              {item.active ? "Active" : "Done"}
                             </p>
                           </div>
                         </div>
