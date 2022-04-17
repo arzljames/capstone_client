@@ -250,24 +250,24 @@ const Case = () => {
                       return (
                         <div className="table-body">
                           <div
-                            onClick={() => {
+                            
+                            className="cs-id"
+                          >
+                            <p onClick={() => {
                               navigate(
                                 `/consultation/case/case-data/${item._id}`
                               );
-                            }}
-                            className="cs-id"
-                          >
-                            <p>{item.caseId}</p>
+                            }}>{item.caseId}</p>
                           </div>
                           <div
-                            onClick={(e) => {
+                            
+                            className="cs-name"
+                          >
+                            <p onClick={(e) => {
                               filterPatient(item.patient._id);
                               setPatientModal(true);
                               e.stopPropagation();
-                            }}
-                            className="cs-name"
-                          >
-                            <p>
+                            }}>
                               {item.patient.firstname +
                                 " " +
                                 item.patient.lastname}

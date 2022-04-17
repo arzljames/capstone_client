@@ -19,6 +19,10 @@ const AdminPeople = () => {
   const { listUsers, patients, facilities } = useAuth();
   const [facility, setFacility] = useState([]);
 
+  useEffect(() => {
+    setFacility(facilities);
+  }, [facilities]);
+
   return (
     <>
       <div className="container">
@@ -75,7 +79,7 @@ const AdminPeople = () => {
                   <div className="admin-user-hospital">Hospital</div>
                 </div>
                 {listUsers
-                  .filter((e) => e.userType !== "admin")
+                  .filter((e) => e.userType !== "admin" && e.verified === true)
                   .map((item, key) => {
                     return (
                       <div key={key} className="table-body">
@@ -90,22 +94,24 @@ const AdminPeople = () => {
                           }
                         </div>
                         <div className="admin-user-spec">
-                          {/* {!facilities
+                          {facility.length === 0
                             ? null
-                            : facilities
+                            : facility
                                 .filter((e) => e._id === item.designation)
                                 .map((items) => {
                                   return items.specialization.filter(
-                                    (spec) => spec._id === item.designation
+                                    (spec) => spec._id === item.specialization
                                   )[0];
-                                })[0].name} */}
+                                })[0].name}
                         </div>
                         <div className="admin-user-hospital">
-                          {facilities
-                            .filter((e) => e._id === item.designation)
-                            .map((item) => {
-                              return item.facility;
-                            })}
+                          {facility.length === 0
+                            ? null
+                            : facility
+                                .filter((e) => e._id === item.designation)
+                                .map((item) => {
+                                  return item.facility;
+                                })}
                         </div>
                       </div>
                     );

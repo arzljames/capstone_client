@@ -9,7 +9,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 const ChatBody = ({ users, socket }) => {
   const [message, setMessage] = useState(null);
   const [temp, setTemp] = useState("");
-  const { user, hospitalSpec } = useAuth();
+  const { user, hospitalSpec, facilities } = useAuth();
 
   useEffect(() => {
     socket.on("chat_messages", (data) => {
@@ -65,7 +65,6 @@ const ChatBody = ({ users, socket }) => {
     }
   };
 
-
   if (!message || !users) {
     return (
       <div className="wait-spinner-container">
@@ -75,9 +74,12 @@ const ChatBody = ({ users, socket }) => {
   }
   return (
     <div className="chat-main-body-content">
-     <div className="chat-header">
+      <div className="chat-header">
         <div className="avatar-container">
-          <img src={!users.picture ? Avatar : users.picture} alt="Profile Picture" />
+          <img
+            src={!users.picture ? Avatar : users.picture}
+            alt="Profile Picture"
+          />
           <div
             className={
               users.activeStatus === "Online"
@@ -106,8 +108,27 @@ const ChatBody = ({ users, socket }) => {
             </div>
 
             <h1>Dr. {users.firstname + " " + users.lastname}</h1>
-            <p>{users.specialization}</p>
-            <p>{users.designation}</p>
+
+            <p>
+              {facilities.length === 0
+                ? null
+                : facilities
+                    .filter((e) => e._id === users.designation)
+                    .map((items) => {
+                      return items.specialization.filter(
+                        (spec) => spec._id === users.specialization
+                      )[0];
+                    })[0].name}
+            </p>
+            <p>
+              {facilities.length === 0
+                ? null
+                : facilities
+                    .filter((e) => e._id === users.designation)
+                    .map((item) => {
+                      return item.facility;
+                    })}
+            </p>
 
             <i>Write a message and say Hi 👋 to {users.firstname}</i>
           </div>
@@ -134,10 +155,15 @@ const ChatBody = ({ users, socket }) => {
                   </div>
                 )}
                 <div className="sender-message-container">
-                <span>{e.sender.firstname === user.firstname ? 'Me' : e.sender.firstname}, {getTime(e.createdAt)}</span>
-                <div className="sender-message">
-                  <p>{e.content}</p>
-                </div>
+                  <span>
+                    {e.sender.firstname === user.firstname
+                      ? "Me"
+                      : e.sender.firstname}
+                    , {getTime(e.createdAt)}
+                  </span>
+                  <div className="sender-message">
+                    <p>{e.content}</p>
+                  </div>
                 </div>
               </div>
             );
@@ -166,9 +192,6 @@ const ChatBody = ({ users, socket }) => {
           </div>
         </div>
       </div>
-     
-
-
     </div>
   );
 };

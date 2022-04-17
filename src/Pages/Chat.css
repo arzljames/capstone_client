@@ -27,6 +27,11 @@
   padding-bottom: 4px;
 }
 
+.chat-main-body-content .chat-header {
+  background: #fff;
+  box-shadow: rgba(99, 99, 99, 0.15) 0px 2px 8px 0px;
+}
+
 .chat-icons {
   display: flex;
   align-items: center;
@@ -590,11 +595,20 @@ p.nothing-to-show-p {
 /* End of main chat body content styling */
 
 
-
+.chat-body2 {
+  display: none;
+}
 
 
 @media screen and (max-width: 768px) {
   .chat-nav {
     display: none;
   }
+
+
+  .chat-body2 {
+    display: flex;
+    flex-direction: column;
+  }
+
 }
