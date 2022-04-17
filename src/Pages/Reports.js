@@ -7,10 +7,21 @@ import "./Reports.css";
 import GenerateReport from "../Components/GenerateReport";
 import GenerateReport2 from "../Components/GenerateReport2";
 import useAuth from "../Hooks/useAuth";
+import { AnimatePresence } from "framer-motion";
+import FilterReportModal from "../Components/FilterReportModal";
 
 const Reports = () => {
-  const { user } = useAuth();
-  const [filterModal, setFilterModal] = useState(false)
+  const { patients, user } = useAuth();
+  const [reportPatients, setReportPatients] = useState([]);
+  const [filterModal, setFilterModal] = useState(true);
+  const [refer, setRefer] = useState("All");
+  const [specialization, setSpecialization] = useState("All");
+  const [age, setAge] = useState("All");
+  const [gender, setGender] = useState("All");
+
+  useEffect(() => {
+    setReportPatients(patients);
+  }, [patients]);
 
   return (
     <>
@@ -19,6 +30,17 @@ const Reports = () => {
       </Helmet>
 
       <div className="container">
+        <AnimatePresence>
+          {filterModal && (
+            <FilterReportModal
+              setRefer={setRefer}
+              setSpecialization={setSpecialization}
+              setAge={setAge}
+              setGender={setGender}
+              setFilterModal={setFilterModal}
+            />
+          )}
+        </AnimatePresence>
         <Sidebar />
         <div className="content">
           <Header />
@@ -28,7 +50,10 @@ const Reports = () => {
             ) : (
               <GenerateReport />
             )} */}
-            <GenerateReport filterModal={filterModal} setFilterModal={setFilterModal} />
+            <GenerateReport
+              filterModal={filterModal}
+              setFilterModal={setFilterModal}
+            />
           </div>
         </div>
       </div>
