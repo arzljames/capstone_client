@@ -10,6 +10,8 @@ import useAuth from "../Hooks/useAuth";
 
 const Reports = () => {
   const { user } = useAuth();
+  const [filterModal, setFilterModal] = useState(false)
+
   return (
     <>
       <Helmet>
@@ -26,7 +28,7 @@ const Reports = () => {
             ) : (
               <GenerateReport />
             )} */}
-            <GenerateReport />
+            <GenerateReport filterModal={filterModal} setFilterModal={setFilterModal} />
           </div>
         </div>
       </div>

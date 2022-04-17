@@ -84,7 +84,7 @@ const ConsultationNavbar = () => {
             <p>
               <FcDownload />
             </p>
-            <spn>Incoming Request</spn>
+            <span>Incoming Request</span>
             {cases.filter(
               (e) =>
                 e.specialization === user.specialization && e.active === true
