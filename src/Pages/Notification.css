@@ -60,22 +60,39 @@
 
 .notification-dropdown .notification-container {
   width: 100%;
-  min-height: 130px;
-  border-radius: 4px;
+  border-radius: 8px;
+  height: auto;
   display: flex;
   transition: 0.1s ease-in-out;
-  padding: 20px 10px;
+  padding: 10px 10px;
   cursor: pointer;
   position: relative;
-  padding-bottom: 40px;
+  margin-bottom: 5px;
+}
+
+.notification-dropdown .notification-container.active {
+  width: 100%;
+  border-radius: 8px;
+  height: auto;
+  display: flex;
+  transition: 0.1s ease-in-out;
+  padding: 10px 10px;
+  cursor: pointer;
+  position: relative;
+  background: rgb(235, 235, 235);
+  margin-bottom: 5px;
+  align-items: flex-start;
 }
 
 .notification-dropdown .notification-container p.date {
-  position: absolute;
-  bottom: 20px;
-  left: 75px;
-  font-size: 12px;
+  font-size: 11px;
   color: #808080;
+}
+
+.notification-dropdown .notification-details-active p.date {
+  font-size: 11px;
+  color: #176b29;
+  font-weight: 600;
 }
 
 .notification-container:hover {
@@ -84,16 +101,25 @@
 }
 
 .notification-avatar {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background: #abe0ba;
   border-radius: 50%;
-  margin-right: 20px;
+  margin-right: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #0f531e;
   font-size: 18px;
+}
+
+.notification-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid #d3d3d3;
 }
 
 .notification-details {
@@ -118,14 +144,14 @@
 
 .notification-dropdown .notification-details h1 {
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 5px;
-  color: #272727;
+  color: #808080;
 }
 
 .notification-dropdown .notification-details-active h1 {
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 5px;
   color: #272727;
 }
@@ -133,15 +159,13 @@
 .notification-dropdown .notification-details-active p {
   font-size: 14px;
   color: #272727;
-  font-weight: 500;
-  margin-bottom: 10px;
+  font-weight:400;
 }
 
 .notification-dropdown .notification-details p {
   font-size: 14px;
   color: #808080;
   font-weight: 400;
-  margin-bottom: 10px;
 }
 
 .active-circle {

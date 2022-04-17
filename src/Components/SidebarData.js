@@ -3,8 +3,8 @@ import {
     IoMedkit,
     IoChatbubbleEllipsesOutline,
     IoChatbubbleEllipsesSharp,
-    IoAtCircleOutline,
-    IoAtCircle,
+    IoBarChartOutline,
+    IoBarChart
   } from "react-icons/io5";
   
   export const SidebarData = [
@@ -24,6 +24,14 @@ import {
       link2: "chat",
       icon: <IoChatbubbleEllipsesOutline />,
       activeIcon: <IoChatbubbleEllipsesSharp />,
+    },
+
+    {
+      name: "Reports",
+      link: "/reports",
+      link2: "reports",
+      icon: <IoBarChartOutline />,
+      activeIcon: <IoBarChart />,
     },
 
     

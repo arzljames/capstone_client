@@ -329,6 +329,7 @@ p.nothing-to-show-p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 
@@ -350,6 +351,7 @@ p.nothing-to-show-p {
   margin-top: 20px;
   font-size: 15px;
   color: #272727;
+  text-align: center;
 }
 
 .chat-main-body-content .chats-body .chat-user-info .avatar {

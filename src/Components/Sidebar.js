@@ -24,7 +24,7 @@ const Sidebar = () => {
   }, [socket]);
 
   return (
-    <div className="sidebar">
+    <div className="admin-sidebar">
       {SidebarData.map((item) => {
         return (
           <div

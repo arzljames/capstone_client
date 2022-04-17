@@ -5,6 +5,7 @@ import { socket } from "./Socket";
 import { IoNotifications, IoNotificationsOutline } from "react-icons/io5";
 import api from "../API/Api";
 import "../Pages/Notification.css";
+import ReactTimeAgo from "react-time-ago";
 
 const NotificationDropdown = ({ setDropdownNotif }) => {
   const { user, notification } = useAuth();
@@ -106,11 +107,19 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
                   navigate(item.link);
                   setDropdownNotif(false);
                 }}
-                className="notification-container"
+                className={
+                  item.active
+                    ? "notification-container active"
+                    : "notification-container"
+                }
               >
                 <div className="active-circle"></div>
                 <div className="notification-avatar">
-                  <IoNotifications />
+                  {item.from.picture ? (
+                    <img src={item.from.picture} alt="Profile Picture" />
+                  ) : (
+                    <IoNotifications />
+                  )}
                 </div>
                 <div
                   className={
@@ -124,13 +133,16 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
                       Dr. {item.from.firstname + " " + item.from.lastname}{" "}
                       {item.title}
                     </h1>
+                    <p>{item.body}</p>
+                    <p className="date">
+                      <ReactTimeAgo
+                        date={item.createdAt}
+                        locale="en-US"
+                        timeStyle="round-minute"
+                      />
+                    </p>
                   </div>
-
-                  <p>{item.body}</p>
                 </div>
-                <p className="date">
-                  {dateDay(item.createdAt) + " " + dateTime(item.createdAt)}
-                </p>
               </div>
             );
           })}
@@ -151,10 +163,18 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
                   navigate(item.link);
                   setDropdownNotif(false);
                 }}
-                className="notification-container"
+                className={
+                  item.active
+                    ? "notification-container active"
+                    : "notification-container"
+                }
               >
                 <div className="notification-avatar">
-                  <IoNotificationsOutline />
+                  {item.from.picture ? (
+                    <img src={item.from.picture} alt="Profile Picture" />
+                  ) : (
+                    <IoNotifications />
+                  )}
                 </div>
                 <div
                   className={
@@ -168,13 +188,17 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
                       Dr. {item.from.firstname + " " + item.from.lastname}{" "}
                       {item.title}
                     </h1>
-                  </div>
 
-                  <p>{item.body}</p>
+                    <p>{item.body}</p>
+                    <p className="date">
+                      <ReactTimeAgo
+                        date={item.createdAt}
+                        locale="en-US"
+                        timeStyle="round-minute"
+                      />
+                    </p>
+                  </div>
                 </div>
-                <p className="date">
-                  {dateDay(item.createdAt) + " " + dateTime(item.createdAt)}
-                </p>
               </div>
             );
           })}

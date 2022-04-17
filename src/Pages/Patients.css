@@ -128,7 +128,6 @@
 
 .patient-input-container div.advance-search {
   width: 100%;
-  min-height: 50px;
   height: auto;
   background: rgb(255, 255, 255);
   position: absolute;
@@ -151,7 +150,6 @@
 .patient-input-container div.advance-search p {
   font-size: 12px;
   font-weight: 400;
-  margin-bottom: 10px;
   margin-left: 10px;
 }
 

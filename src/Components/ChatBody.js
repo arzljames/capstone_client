@@ -5,6 +5,7 @@ import { AiOutlineSend } from "react-icons/ai";
 import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
 import PulseLoader from "react-spinners/PulseLoader";
+import ReactTimeAgo from "react-time-ago";
 
 const ChatBody = ({ users, socket }) => {
   const [message, setMessage] = useState(null);
@@ -90,7 +91,24 @@ const ChatBody = ({ users, socket }) => {
         </div>
         <div className="name-container">
           <h1>Dr. {users.firstname + " " + users.lastname}</h1>
-          <p>{users.activeStatus}</p>
+          <p>
+            {users.activeStatus === "Online" ? (
+              "Online"
+            ) : !users.updatedAt ? (
+              "Offline"
+            ) : (
+              <p>
+                Active{" "}
+                {
+                  <ReactTimeAgo
+                    date={users.updatedAt}
+                    locale="en-US"
+                    timeStyle="round-minute"
+                  />
+                }
+              </p>
+            )}
+          </p>
         </div>
       </div>
       <div className="chats-body">
@@ -104,7 +122,10 @@ const ChatBody = ({ users, socket }) => {
                     : "status-offline"
                 }
               ></div>
-              <img src={Avatar} alt="Profile Picture" />
+              <img
+                src={!users.picture ? Avatar : users.picture}
+                alt="Profile Picture"
+              />
             </div>
 
             <h1>Dr. {users.firstname + " " + users.lastname}</h1>

@@ -1,0 +1,12 @@
+.reports-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.reports-header button {
+    border: none;
+    outline: none;
+    border-radius: 4px;
+}

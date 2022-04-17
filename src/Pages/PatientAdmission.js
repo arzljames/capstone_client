@@ -349,6 +349,7 @@ const PatientAdmission = () => {
                     </div>
                     <div className="div2">
                       <input
+                      placeholder="Full name"
                         value={fullname}
                         onChange={(e) => setFullname(e.target.value)}
                         type="text"
@@ -407,6 +408,7 @@ const PatientAdmission = () => {
                     </div>
                     <div className="div2">
                       <input
+                      placeholder="Complete address"
                         value={street}
                         onChange={(e) => setStreet(e.target.value)}
                         type="text"
@@ -435,6 +437,7 @@ const PatientAdmission = () => {
                     </div>
                     <div className="div2">
                       <input
+                      placeholder="City / Municipality / Province"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                         type="text"
@@ -475,7 +478,7 @@ const PatientAdmission = () => {
                   <div className="admission-2col">
                     <div className="div1">
                       <label>
-                        Contact #1: <i>*</i>
+                        Contact no.: <i>*</i>
                       </label>
                     </div>
                     <div className="div2">

@@ -186,7 +186,41 @@
     flex-direction: column;
   }
   .consultation-nav {
-   display: none;
+   width: 100%;
+   height: 50px;
+   padding: 0px;
+   margin: 0px;
+   display: flex;
+   align-items: center;
+   flex-direction: row;
+   justify-content: center;
+   padding: 0px 10px;
+
+  }
+
+  .consultation-nav-header {
+    display: none;
+  }
+
+  .consultation-nav ul {
+    display: flex;
+    width: 100%;
+  }
+
+  .consultation-nav ul li, .consultation-nav ul li.active-nav {
+    margin: 0px;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  width:100%
+  }
+
+  .consultation-nav ul li p, .consultation-nav ul li.active-nav p {
+    margin-right: 0px;
+  }
+
+  .consultation-nav ul li span, .consultation-nav ul li.active-nav span {
+    display: none;
   }
 
   

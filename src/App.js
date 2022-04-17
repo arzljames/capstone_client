@@ -28,23 +28,29 @@ import { useEffect } from "react";
 import PatientAdmission from "./Pages/PatientAdmission";
 import CaseData from "./Pages/CaseData";
 import EditPatientProfile from "./Pages/EditPatientProfile";
-import {socket} from "./Components/Socket";
+import { socket } from "./Components/Socket";
 import ChatUser from "./Pages/ChatUser";
 import Case from "./Pages/Case";
+
+import TimeAgo from "javascript-time-ago";
+
+import en from "javascript-time-ago/locale/en.json";
+import Reports from "./Pages/Reports";
+
+TimeAgo.addDefaultLocale(en);
 
 function App() {
   Axios.defaults.withCredentials = true;
   const { user } = useAuth();
 
-
-   useEffect(() => {
+  useEffect(() => {
     socket.emit("chat");
     const activeStatus = () => {
-      
       socket.emit("active_status", user.userId);
-     
     };
-    {user && activeStatus()}
+    {
+      user && activeStatus();
+    }
   }, [user]);
 
   return (
@@ -63,7 +69,7 @@ function App() {
         </Route>
 
         <Route element={<ProtectedRoutes user={user} role="user" />}>
-          <Route path="/" element={<Navigate to="/consultation" replace/> } />
+          <Route path="/" element={<Navigate to="/consultation" replace />} />
           <Route path="/consultation" element={<Homepage />} />
           <Route path="notifications" element={<Notification />} />
           <Route path="chat/:userId/:id" element={<ChatUser />} />
@@ -84,19 +90,18 @@ function App() {
           <Route path="consultation/incoming" element={<IncomingConsult />} />
           <Route path="consultation/outgoing" element={<OutgoingConsult />} />
           <Route path="consultation/case" element={<Case />} />
-          <Route path="consultation/case/case-data/:id" element={<CaseData />} />
           <Route
-            path="consultation/outgoing/:id"
+            path="consultation/case/case-data/:id"
             element={<CaseData />}
           />
+          <Route path="consultation/outgoing/:id" element={<CaseData />} />
           <Route
             path="consultation/incoming/case/case-data/:id"
             element={<CaseData />}
           />
-          <Route
-            path="consultation/patients/case/:id"
-            element={<CaseData />}
-          />
+          <Route path="consultation/patients/case/:id" element={<CaseData />} />
+
+          <Route path="reports" element={<Reports />} />
         </Route>
 
         <Route element={<ProtectedLoginRoutes user={user} />}>

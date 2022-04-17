@@ -34,7 +34,7 @@ const ConsultationNavbar = () => {
             <p>
               <FcConferenceCall />
             </p>
-            Patients
+            <span> Patients</span>
           </li>
         )}
         <li
@@ -48,7 +48,7 @@ const ConsultationNavbar = () => {
           <p>
             <FcFile />
           </p>
-          Consultation Case
+          <span> Consultation Case</span>
         </li>
         {user.designation !== "623ec7fb80a6838424edaa29" && (
           <li
@@ -60,7 +60,7 @@ const ConsultationNavbar = () => {
             <p>
               <FcUpload />
             </p>
-            Outgoing Request
+            <span>Outgoing Request</span>
             {cases.filter(
               (e) => e.physician._id === user.userId && e.active === true
             ).length === 0 ? null : (
@@ -84,7 +84,7 @@ const ConsultationNavbar = () => {
             <p>
               <FcDownload />
             </p>
-            Incoming Request
+            <spn>Incoming Request</spn>
             {cases.filter(
               (e) =>
                 e.specialization === user.specialization && e.active === true

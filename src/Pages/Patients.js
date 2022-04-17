@@ -347,9 +347,7 @@ const Patients = () => {
                       ) : (
                         <p>You searched for "{term}"</p>
                       )}
-                      <div onClick={() => setShowAdvance(true)}>
-                        Advance Search
-                      </div>
+
                     </div>
                   )}
                 </div>
