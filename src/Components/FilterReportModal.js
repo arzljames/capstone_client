@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import useAuth from "../Hooks/useAuth";
 import api from "../API/Api";
+import { toast } from "react-toastify";
 
 const FilterReportModal = ({ setFilterModal }) => {
   let domNode = useClickOutside(() => {
@@ -17,6 +18,7 @@ const FilterReportModal = ({ setFilterModal }) => {
   const [specialization, setSpecialization] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
+  const [isClick, setIsClick] = useState(false);
 
   const [reportId, setReportId] = useState("");
 
@@ -59,6 +61,7 @@ const FilterReportModal = ({ setFilterModal }) => {
 
 
   const handleSubmit = async () => {
+    setIsClick(true)
     try {
       let response = await api.post("/api/report/create", {
         from,
@@ -72,11 +75,32 @@ const FilterReportModal = ({ setFilterModal }) => {
       });
 
       if (response.data.ok) {
+        toast.success('Created new report', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+        });
         setAppState("Created new report.");
         setTimeout(() => setAppState(""), 500);
+        setFilterModal(false)
+        setIsClick(false)
       }
     } catch (error) {
       console.log(error);
+      setIsClick(false)
+      toast.error(error.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+      });
     }
   };
   return (
@@ -172,7 +196,7 @@ const FilterReportModal = ({ setFilterModal }) => {
           <button onClick={() => setFilterModal(false)} className="close">
             Cancel
           </button>
-          <button onClick={() => handleSubmit()} className="apply">
+          <button onClick={() => handleSubmit()} className={isClick ? "apply-disable" : "apply"}>
             Generate
           </button>
         </div>

@@ -311,6 +311,16 @@ text-decoration: underline;
   
 }
 
+.pt-hospital {
+  width: 300px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10px;
+  
+}
+
 .pt-sex, .pt-age {
    width: 100px;
    height: 100%;
@@ -1362,7 +1372,7 @@ button.deactive-btn:hover {
 
 
 @media screen and (max-width: 768px) {
-  .pt-date, .pt-total, .pt-active, .ch-status, .patient-modal-nav ul li div {
+  .pt-date, .pt-total, .pt-active, .ch-status, .patient-modal-nav ul li div, .pt-hospital {
     display: none;
   }
 

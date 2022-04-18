@@ -22,6 +22,7 @@ import Toast from "../Components/Toast";
 import DeleteCaseModal from "../Components/DeleteCaseModal";
 import { DocumentGenerator } from "../Components/DocumentGenerator";
 import { buttonVariant } from "../Animations/Animations";
+import { ToastContainer, toast } from "react-toastify";
 
 const CaseData = () => {
   const [deleteModal, setDeleteModal] = useState(false);
@@ -165,6 +166,17 @@ const CaseData = () => {
         )}
       </AnimatePresence>
       <div className="container">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover
+      />
         <AnimatePresence>{toast && <Toast />}</AnimatePresence>
         <Sidebar />
         <div className="content">

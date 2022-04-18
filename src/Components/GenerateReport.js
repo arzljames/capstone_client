@@ -33,6 +33,17 @@ const GenerateReport = ({ setFilterModal }) => {
     return today;
   };
 
+  function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -71,7 +82,13 @@ const GenerateReport = ({ setFilterModal }) => {
     }
   };
 
-  const filterAge = (e) => {};
+  const filterAge = (e) => {
+    if (report.age) {
+      return getAge(e.birthday) <= report.age;
+    } else {
+      return e;
+    }
+  };
 
   const filterHospital = (e) => {
     if (report.refer) {
@@ -136,28 +153,34 @@ const GenerateReport = ({ setFilterModal }) => {
               <div className="table">
                 <div className="table-header">
                   <div className="pt-name">Patient Name</div>
-                  <div className="pt-active">Physician</div>
-                  <div className="pt-total">Hospital</div>
+                  <div className="pt-date">Physician</div>
+                  <div className="pt-hospital">Hospital</div>
                 </div>
 
                 {patients
                   .filter(filterGender)
                   .filter(filterHospital)
                   .filter(filterSpec)
+                  .filter(filterAge)
                   .map((item, key) => {
                     return (
-                      <div key={key + 1} className="table-body">
+                      <div
+                        key={key + 1}
+                        className={
+                          key % 2 === 0 ? "table-body" : "table-body-2"
+                        }
+                      >
                         <div className="pt-name">
                           {item.firstname + " " + item.lastname}{" "}
                         </div>
 
-                        <div className="pt-active">
+                        <div className="pt-date">
                           Dr.{" "}
                           {item.physician.firstname +
                             " " +
                             item.physician.lastname}
                         </div>
-                        <div className="pt-total">
+                        <div className="pt-hospital">
                           {
                             facilities.filter(
                               (e) => e._id === item.physician.designation
@@ -172,7 +195,16 @@ const GenerateReport = ({ setFilterModal }) => {
                 <div className="rp-ov-1">
                   <h2>Report {reportId}</h2>
 
-                  <h3>Filter Options</h3>
+                  {!report.from &&
+                  !report.to &&
+                  !report.gender &&
+                  !report.age &&
+                  !report.refer &&
+                  !report.specialization ? (
+                    <h3>No filter options set. Showing all patients</h3>
+                  ) : (
+                    <h3>Filtered by:</h3>
+                  )}
 
                   {!report.from ? null : (
                     <p>
@@ -210,7 +242,18 @@ const GenerateReport = ({ setFilterModal }) => {
                     </p>
                   )}
                 </div>
-                <div className="rp-ov-2"></div>
+                <div className="rp-ov-1">
+                  <h4>
+                    Total Patients:{" "}
+                    {
+                      patients
+                        .filter(filterGender)
+                        .filter(filterHospital)
+                        .filter(filterSpec)
+                        .filter(filterAge).length
+                    }
+                  </h4>
+                </div>
               </div>
             </div>
           </div>

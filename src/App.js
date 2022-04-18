@@ -37,6 +37,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import Reports from "./Pages/Reports";
 import GenerateReport from "./Components/GenerateReport";
+import 'react-toastify/dist/ReactToastify.css';
 
 TimeAgo.addDefaultLocale(en);
 

@@ -9,6 +9,7 @@ import { socket } from "./Socket";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { AnimatePresence } from "framer-motion";
 import Toast from "./Toast";
+import { ToastContainer, toast } from "react-toastify";
 
 const formVariant = {
   hidden: {
@@ -53,7 +54,6 @@ const NewCase = ({ setShowCase }) => {
     setShowCase(false);
   });
 
-
   const [isClick, setIsClick] = useState(false);
 
   const updateSocket = () => {
@@ -67,11 +67,10 @@ const NewCase = ({ setShowCase }) => {
     patients,
     facilities,
     setTab,
-    setToast,
+    message,
     setMessage,
     setIsError,
     setAppState,
-    toast,
   } = useAuth();
   const [patientData, setPatientData] = useState("");
   const {
@@ -110,7 +109,7 @@ const NewCase = ({ setShowCase }) => {
     reason,
     setReason,
     specialization,
-    setSpecialization
+    setSpecialization,
   } = useCaseData();
 
   const clearForm = () => {
@@ -137,7 +136,6 @@ const NewCase = ({ setShowCase }) => {
   const handleSubmit = async () => {
     setIsClick(true);
     try {
-
       if (
         !patientId ||
         !specialization ||
@@ -157,13 +155,17 @@ const NewCase = ({ setShowCase }) => {
         !imd ||
         !reason
       ) {
-        setToast(true);
-        setIsError(true);
-        setMessage(
-          "Request failed with status code 404. Please check empty fields."
-        );
-        setIsClick(false)
-          
+        toast.error("Please check empty fields", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+        });
+        setIsClick(false);
+
         return;
       } else {
         const formData = new FormData();
@@ -204,33 +206,51 @@ const NewCase = ({ setShowCase }) => {
                 if (result) {
                   updateSocket();
                   setAppState(result.data.ok);
-                  setTimeout(() => setAppState(""), 500);
+                  setTimeout(() => {
+                    setAppState("");
+                    setMessage("")
+                  }, 5000);
                   clearForm();
                   setTab("Active Case");
-                  setToast(true);
-                  setIsError(false);
+                  setMessage('Created new case')
+                  toast.success(message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    progress: undefined,
+                  });
                   setAppState(result.data.ok);
-                  setMessage("Successfully saved consultation case.");
-                  navigate(
-                    `/consultation/outgoing/${result.data.ok._id}`,
-                    {
-                      state: patientData[0],
-                    }
-                  );
+                  navigate(`/consultation/outgoing/${result.data.ok._id}`, {
+                    state: patientData[0],
+                  });
                 } else {
-                  setToast(true);
-                  setIsError(true);
-                  setMessage("Request failed with status code 404");
+                  toast.error("Request failed with status code 404", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    progress: undefined,
+                  });
                   setIsClick(false);
-                  
                 }
               });
           });
       }
     } catch (error) {
-      setToast(true);
-      setIsError(true);
-      setMessage(error.message);
+      toast.error(error.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+      });
       setIsClick(false);
     }
   };
@@ -249,36 +269,32 @@ const NewCase = ({ setShowCase }) => {
     inputFileRef.current.click();
   };
 
-
   const [caseId, setCaseId] = useState("");
 
   useEffect(() => {
-const getDate = () => {
-  var myDate = new Date();
+    const getDate = () => {
+      var myDate = new Date();
 
-  var year = myDate.getFullYear();
-  
-  var month = myDate.getMonth() + 1;
-  if(month <= 9)
-      month = '0'+month;
-  
-  var day= myDate.getDate();
-  if(day <= 9)
-      day = '0'+day;
-  
-  var time = myDate.getMilliseconds()
-  var hour = myDate.getHours();
+      var year = myDate.getFullYear();
 
-  if(hour <= 9)
-    hour = '0'+hour
-  
-  var prettyDate = month+day+year +'-'+ hour+time;
-  
-  setCaseId(prettyDate)
-}
+      var month = myDate.getMonth() + 1;
+      if (month <= 9) month = "0" + month;
 
-getDate()
-  },[])
+      var day = myDate.getDate();
+      if (day <= 9) day = "0" + day;
+
+      var time = myDate.getMilliseconds();
+      var hour = myDate.getHours();
+
+      if (hour <= 9) hour = "0" + hour;
+
+      var prettyDate = month + day + year + "-" + hour + time;
+
+      setCaseId(prettyDate);
+    };
+
+    getDate();
+  }, []);
 
   return (
     <motion.div
@@ -289,9 +305,19 @@ getDate()
       className="modal-container"
       onSubmit={(e) => e.preventDefault()}
     >
-      <AnimatePresence>{toast && <Toast />}</AnimatePresence>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover
+      />
+
       <motion.form
-        ref={domNode}
         variants={formVariant}
         initial="hidden"
         animate="visible"
@@ -336,7 +362,7 @@ getDate()
             Service Type <i>*</i>
           </label>
           <select
-          value={specialization}
+            value={specialization}
             className="select"
             onChange={(e) => setSpecialization(e.target.value)}
           >
@@ -524,11 +550,13 @@ getDate()
             >
               Cancel
             </button>
-            <button onClick={() =>{
-               handleSubmit();
-
-            }} className={isClick ? "save-btn-disable" : "save-btn"}>
-              Save 
+            <button
+              onClick={() => {
+                handleSubmit();
+              }}
+              className={isClick ? "save-btn-disable" : "save-btn"}
+            >
+              Save
             </button>
           </div>
         </div>

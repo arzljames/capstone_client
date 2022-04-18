@@ -181,7 +181,7 @@
   font-size: 14px;
   display: flex;
   align-items: center;
-  width: 100px;
+  width: auto;
 }
 
 .case-data-response-btns .sort-response-btn p {
@@ -198,6 +198,10 @@
 .case-data-response-btns div.attach-file-btn.disable {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.case-data-response-btns div.attach-file-btn input{
+  display: none;
 }
 
 .case-data-response-btns div.attach-file-btn:hover {

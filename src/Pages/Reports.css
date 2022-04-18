@@ -169,6 +169,18 @@
 }
 
 
+.filter-modal .btns button.apply-disable {
+    background: #1CB45D;
+  color: #fff;
+  border: none;
+  box-shadow: rgba(9, 66, 12, 0.25) 0px 1px 1px,
+    rgba(9, 66, 12, 0.13) 0px 0px 1px 1px;
+    transition: 0.1s ease-in-out;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
 
 .filter-modal .btns button.apply:hover {
     background: #199b51;
@@ -270,11 +282,16 @@
 }
 
 .rp-ov-1 h3 {
-    font-size: 16px;
+    font-size: 14px;
   font-weight: 400;
   color: #5a5a5a;
   margin-bottom: 12px;
 
+}
+
+.rp-ov-1 h4 {
+    color: #272727;
+    font-weight: 600;
 }
 
 .rp-ov-1 p {
@@ -291,6 +308,32 @@
 .rp-ov-1  p i {
     color: #808080;
     font-weight: 300;
+}
+
+.reports-container .table {
+    min-height: 0px;
+}
+
+.reports-container .table-header {
+    background: #5FA56F;
+    color: #fff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.reports-container .table-body {
+    border-left: none;
+}
+
+.reports-container .table-body-2 {
+    background: #e9f1eb;
+    border-left: none;
+
+}
+
+.reports-container .table-body-2:hover, .reports-container .table-body:hover {
+    background:#ced3cf;
+    border-left:none;
 }
 
 

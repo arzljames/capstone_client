@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { HiOutlinePaperClip, HiOutlineChevronDown } from "react-icons/hi";
 import api from "../API/Api";
 import { socket } from "./Socket";
@@ -65,6 +65,12 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
 
   const { facilities } = useAuth();
 
+  const inputFileRef = useRef(null);
+
+  const onBtnClick = () => {
+    inputFileRef.current.click();
+  };
+
   return (
     <div className="case-data-response">
       <div className="response-header">
@@ -94,11 +100,13 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
           </button>
           <div>
             <div
+              onClick={() => onBtnClick()}
               className={
                 active === false ? "attach-file-btn disable" : "attach-file-btn"
               }
             >
-              <HiOutlinePaperClip /> <p>Attach File</p>
+              <HiOutlinePaperClip />
+              <input ref={inputFileRef} type="file" />
             </div>
             <button
               className={active === false ? "disable" : null}
@@ -119,7 +127,10 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
               <>
                 <motion.div className="response-body-message">
                   <div className="avatar">
-                    <img src={!e.user.picture ? NoUser : e.user.picture} alt={e.user.firstname} />
+                    <img
+                      src={!e.user.picture ? NoUser : e.user.picture}
+                      alt={e.user.firstname}
+                    />
                   </div>
                   <div className="response">
                     <div className="date">
