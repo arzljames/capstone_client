@@ -93,9 +93,6 @@ const PatientTableData = ({
                     setPatientId(item._id)
                     filterPatient(item._id)
                   }
-                    // navigate(`/consultation/patients/${item._id}`, {
-                    //   state: item,
-                    // })
                   }
                   className={
                     item.select

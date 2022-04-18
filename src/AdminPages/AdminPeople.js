@@ -72,7 +72,6 @@ const AdminPeople = () => {
             <div className="table-container">
               <div className="table">
                 <div className="table-header">
-                  <div className="admin-user-no">#</div>
                   <div className="admin-user-name">Full Name</div>
                   <div className="admin-user-patients">Total Patients</div>
                   <div className="admin-user-spec">Specialization</div>
@@ -83,7 +82,6 @@ const AdminPeople = () => {
                   .map((item, key) => {
                     return (
                       <div key={key} className="table-body">
-                        <div className="admin-user-no">{key + 1}</div>
                         <div className="admin-user-name">
                           Dr. {item.firstname + " " + item.lastname}
                         </div>

@@ -1,23 +1,84 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { formVariant, containerVariant } from "../Animations/Animations";
 import { motion } from "framer-motion";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import useAuth from "../Hooks/useAuth";
+import api from "../API/Api";
 
-const FilterReportModal = ({
-  setFilterModal,
-  setRefer,
-  setSpecialization,
-  setAge,
-  setGender,
-}) => {
+const FilterReportModal = ({ setFilterModal }) => {
   let domNode = useClickOutside(() => {
     setFilterModal(false);
   });
 
-  const { facilities, listUsers } = useAuth();
+  const { facilities, listUsers, user, setAppState } = useAuth();
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  const [refer, setRefer] = useState("");
+  const [specialization, setSpecialization] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
 
-  const today = new Date();
+  const [reportId, setReportId] = useState("");
+
+  useEffect(() => {
+    const getDate = () => {
+      var myDate = new Date();
+
+      var year = myDate.getFullYear();
+
+      var month = myDate.getMonth() + 1;
+      if (month <= 9) month = "0" + month;
+
+      var day = myDate.getDate();
+      if (day <= 9) day = "0" + day;
+
+      var time = myDate.getMilliseconds();
+      var hour = myDate.getHours();
+
+      if (hour <= 9) hour = "0" + hour;
+
+      var prettyDate = month + day + year;
+
+      return prettyDate;
+    };
+
+    function makeid(length) {
+      var result = "";
+      var characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      var charactersLength = characters.length;
+      for (var i = 0; i < length; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * charactersLength)
+        );
+      }
+      return result;
+    }
+    setReportId(getDate() + "-" + makeid(5));
+  }, [from, to, age]);
+
+
+  const handleSubmit = async () => {
+    try {
+      let response = await api.post("/api/report/create", {
+        from,
+        to,
+        gender,
+        age,
+        refer,
+        specialization,
+        reportId,
+        creator: user.userId
+      });
+
+      if (response.data.ok) {
+        setAppState("Created new report.");
+        setTimeout(() => setAppState(""), 500);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <motion.div
       variants={containerVariant}
@@ -36,30 +97,45 @@ const FilterReportModal = ({
       >
         <div className="date-range">
           <div>
-            <label>From</label> <input type="date" />
+            <label>From</label>
+            <input
+              value={from}
+              onChange={(e) => setFrom(e.target.value)}
+              type="date"
+            />
           </div>
           <div>
-            <label>To</label> <input value={today} max={today} type="date" />
+            <label>To</label>{" "}
+            <input
+              value={to}
+              onChange={(e) => setTo(e.target.value)}
+              type="date"
+            />
           </div>
         </div>
 
         <div className="date-range">
           <div>
             <label>Sex</label>
-            <select>
-              <option value="All">None</option>
+            <select value={gender} onChange={(e) => setGender(e.target.value)}>
+              <option value="">Not set</option>
               <option value="Female">Female</option>
               <option value="Male">Male</option>
             </select>
           </div>
           <div>
-            <label>Age</label> <input type="number" />
+            <label>Age Bracket (0 - {age} )</label>{" "}
+            <input
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+              type="number"
+            />
           </div>
         </div>
 
         <label>Referring Hospital</label>
-        <select>
-          <option value="All">None</option>
+        <select value={refer} onChange={(e) => setRefer(e.target.value)}>
+          <option value="">Not set</option>
 
           {facilities
             .filter((e) => e._id !== "623ec7fb80a6838424edaa29")
@@ -73,8 +149,11 @@ const FilterReportModal = ({
         </select>
 
         <label>Service Type</label>
-        <select>
-          <option value="All">None</option>
+        <select
+          value={specialization}
+          onChange={(e) => setSpecialization(e.target.value)}
+        >
+          <option value="">Not set</option>
           {facilities
             .filter((e) => e._id === "623ec7fb80a6838424edaa29")
             .map((item, index) => {
@@ -88,29 +167,14 @@ const FilterReportModal = ({
             })}
         </select>
 
-        <label>Physician</label>
-        <select>
-          <option value="All">None</option>
-          {listUsers
-            .filter(
-              (e) =>
-                e.userType !== "admin" &&
-                e.designation !== "623ec7fb80a6838424edaa29"
-            )
-            .map((item, index) => {
-              return (
-                <option key={index} value={item._id}>
-                  Dr. {item.firstname}
-                </option>
-              );
-            })}
-        </select>
 
         <div className="btns">
           <button onClick={() => setFilterModal(false)} className="close">
-            Close
+            Cancel
           </button>
-          <button className="apply">Apply</button>
+          <button onClick={() => handleSubmit()} className="apply">
+            Generate
+          </button>
         </div>
       </motion.div>
     </motion.div>

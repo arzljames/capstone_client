@@ -5,6 +5,8 @@
     margin: 20px 0px;
 }
 
+
+
 .reports-header h2 {
     color: #272727;
     font-size: 22px;
@@ -41,7 +43,7 @@
     margin-top: 0;
 }
 
-.reports-header button.export-csv {
+.reports-header button.create-report {
     border: none;
     background: #1CB45D;
   color: #fff;
@@ -50,13 +52,27 @@
     rgba(9, 66, 12, 0.13) 0px 0px 1px 1px;
 }
 
-.reports-header button.export-csv:hover {
+.reports-header button.create-report:hover {
+    background: #199b51;
+    transition: 0.1s ease-in-out;
+}
+
+.above-patient-profile-btns button.export-csv {
+    border: none;
+    background: #1CB45D;
+  color: #fff;
+  border: none;
+  box-shadow: rgba(9, 66, 12, 0.25) 0px 1px 1px,
+    rgba(9, 66, 12, 0.13) 0px 0px 1px 1px;
+}
+
+.above-patient-profile-btns button.export-csv:hover {
     background: #199b51;
     transition: 0.1s ease-in-out;
 }
 
 
-.reports-header button.edit-filter {
+.above-patient-profile-btns button.edit-filter {
     background: #ffffff;
     color: #058e46;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
@@ -174,15 +190,129 @@
     background: rgb(219, 219, 219);
 }
 
+.rp-no {
+    width: 50px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rp-id {
+    flex: 1;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+
+.rp-id p {
+    cursor: pointer;
+    color: rgb(45, 109, 206);
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.rp-id p:hover {
+    text-decoration: underline;
+}
+
+.rp-date {
+    width: 200px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.rp-modified {
+    width: 200px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+
+}
+
+.table-body .rp-modified {
+    text-transform: lowercase;
+}
+
+.reports-container {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    display: flex;
+}
+
+
+.reports-overview-container {
+    width: 400px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rp-ov-1 {
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.rp-ov-1 h2 {
+    font-size: 16px;
+  font-weight: 600;
+  color: #272727;
+  margin-bottom: 20px;
+  text-decoration: underline;
+}
+
+.rp-ov-1 h3 {
+    font-size: 16px;
+  font-weight: 400;
+  color: #5a5a5a;
+  margin-bottom: 12px;
+
+}
+
+.rp-ov-1 p {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #272727;
+}
+
+.rp-ov-1 p label {
+    font-weight: 400;
+}
+
+.rp-ov-1  p i {
+    color: #808080;
+    font-weight: 300;
+}
+
 
 @media screen and (max-width: 768px) {
     .filter-modal {
         width: 100%;
         height: 100vh;
         max-width: none;
+        overflow-y: scroll;
+        padding-bottom: 70px;
 
 border-radius: 0px;
         min-height: 500px;
         
+    }
+
+    .rp-date, .rp-modified {
+        display: none;
+    }
+
+
+    .container-modal {
+        display: none;
     }
 }

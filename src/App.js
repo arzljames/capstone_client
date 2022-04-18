@@ -36,6 +36,7 @@ import TimeAgo from "javascript-time-ago";
 
 import en from "javascript-time-ago/locale/en.json";
 import Reports from "./Pages/Reports";
+import GenerateReport from "./Components/GenerateReport";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -102,6 +103,7 @@ function App() {
           <Route path="consultation/patients/case/:id" element={<CaseData />} />
 
           <Route path="reports" element={<Reports />} />
+          <Route path="reports/:id/:reportId" element={<GenerateReport />} />
         </Route>
 
         <Route element={<ProtectedLoginRoutes user={user} />}>

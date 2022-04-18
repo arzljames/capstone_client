@@ -464,9 +464,9 @@ button.deactive-btn:hover {
 .back-btn {
   border: none;
   outline: none;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
-  color: #272727;
+
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -478,6 +478,7 @@ button.deactive-btn:hover {
 
 .back-btn p {
   margin-left: 5px;
+  color: #272727;
 }
 
 .patient-profile-container {

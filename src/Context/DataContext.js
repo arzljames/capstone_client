@@ -29,6 +29,7 @@ export const DataProvider = ({ children }) => {
   const [status, setStatus] = useState("Offline");
   const [showSearch, setShowSearch] = useState(false);
   const [chatUsers, setChatUsers] = useState([]);
+  const [reports, setReports] = useState([]);
 
   const fetchLogin = async () => {
     let response = await api.get("/api/auth/login");
@@ -102,6 +103,16 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+
+  const fetchReports = async () => {
+    let response = await api.get("/api/report");
+
+
+    if(response.data) {
+      setReports(response.data)
+    }
+  }
+
   useEffect(() => {
     fetchLogin();
     fetchUsers();
@@ -110,6 +121,7 @@ export const DataProvider = ({ children }) => {
     fetchCases();
     fetchRecentChats();
     fetchPatients();
+    fetchReports();
   }, [appState]);
 
   useEffect(() => {
@@ -168,6 +180,7 @@ export const DataProvider = ({ children }) => {
         showSearch,
         setShowSearch,
         chatUsers,
+        reports
       }}
     >
       {children}
