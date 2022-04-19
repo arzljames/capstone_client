@@ -288,9 +288,12 @@ text-decoration: underline;
 
  
 .pt-name p {
-  margin-left: 5px;
-  text-transform: none;
-  font-weight: 500;
+  cursor: pointer;
+    color: rgb(45, 109, 206);
+}
+
+.pt-name p:hover {
+  text-decoration: underline;
 }
 
 .pt-active {
@@ -1433,5 +1436,10 @@ button.deactive-btn:hover {
     width: 33.33%;
     border-bottom: 1px solid #257447;
     border-radius: 0px;
+  }
+
+  .subheading-btns {
+    display: flex;
+    justify-content: flex-end;
   }
 }

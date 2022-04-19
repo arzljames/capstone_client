@@ -7,7 +7,7 @@
 }
 
 .admin-user-hospital {
-    min-width: 200px;
+    min-width: 300px;
     display: flex;
     align-items: center;
     flex: 0.75;
@@ -34,4 +34,32 @@
     padding: 0px 20px;
     display: flex;
     align-items: center;
+}
+
+
+.us-status {
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.table-body .us-status.online {
+    color: #499c69
+}
+
+.us-status p {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.us-status p.offline {
+    background: #FFCB6A;
+}
+
+.us-status p.online {
+    background: #4DD965
 }

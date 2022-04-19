@@ -6,7 +6,6 @@ const FacilityTableBody = ({ number, facility, specialization, address, users, i
   const navigate = useNavigate();
   return (
     <div onClick={() => navigate(`/hospital/${id}`)} className={number % 2 === 0 ? "table-body" : "table-body-2"}>
-      <div className="fac-body-no">{number + 1}</div>
       <div className="fac-body-name">
         <p>
           <IoBusinessOutline />

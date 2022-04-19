@@ -1,12 +1,12 @@
 .add-facility-form {
-  min-width: 500px;
-  width: 40%;
+  max-width: 600px;
+  width: 100%;
   height: 90%;
   background: #ffffff;
-  border-radius: 4px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  border-radius: 8px;
 }
 
 .form-header {
@@ -58,25 +58,7 @@
   overflow-y: scroll;
 }
 
-/* width */
-.form-body::-webkit-scrollbar {
-  width: 8px;
-}
 
-/* Track */
-.form-body::-webkit-scrollbar-track {
-  background: #f1f1f100;
-}
-
-/* Handle */
-.form-body::-webkit-scrollbar-thumb {
-  background: rgb(197, 197, 197);
-}
-
-/* Handle on hover */
-.form-body::-webkit-scrollbar-thumb:hover {
-  background: rgb(163, 163, 163);
-}
 
 .form-body div.address-container {
   width: 100%;
@@ -143,15 +125,14 @@
 
 .form-body input {
   margin-bottom: 30px;
-  height: 35px;
-  padding: 10px;
   outline-style: none;
   border: none;
-  border: 1px solid #b8b8b8;
+  border: 1px solid #949494;
   transition: 0.1s ease-in-out;
   color: #272727;
   background: #ffffff;
-  border-radius: 2px;
+  border-radius: 4px;
+  padding: 10px;
 }
 
 .form-body input[type="file"] {
@@ -196,11 +177,11 @@
   padding: 10px;
   outline-style: none;
   border: none;
-  border: 1px solid #b8b8b8;
+  border: 1px solid #949494;
   transition: 0.1s ease-in-out;
   color: #272727;
   background: #ffffff;
-  border-radius: 2px;
+  border-radius: 4px;
   resize: none;
 }
 
@@ -219,12 +200,12 @@
 .form-body select.select {
   margin-bottom: 30px;
   outline-style: none;
-  border: 1px solid #b8b8b8;
+  border: 1px solid #949494;
   transition: 0.1s ease-in-out;
   color: #272727;
   background: #ffffff;
-  border-radius: 2px;
-  min-height: 35px;
+  border-radius: 4px;
+  min-height: 45px;
   padding: 0px 10px;
 }
 
@@ -317,7 +298,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 30px;
   outline-style: none;
   border: none;
@@ -394,11 +375,11 @@
 
 button.cancel-btn {
   background: #fff;
-  color: #058e46;
+  color: #555555;
   min-width: 80px;
   transition: 0.1s ease-in-out;
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
-    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  border: 1px solid #d3d3d3
+  
 }
 
 .cancel-btn:hover {
@@ -604,7 +585,7 @@ button.facility-close-btn {
   border: 1px solid #cacaca;
   padding: 10px;
   background: rgb(239, 241, 241);
-  border-radius: 2px;
+  border-radius: 4px;
   position: relative;
 }
 
@@ -619,4 +600,14 @@ button.facility-close-btn {
   transform: translateY(-50%);
   font-size: 12px;
   cursor: pointer;
+}
+
+
+@media screen and (max-width: 768px) {
+  .add-facility-form {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0px;
+    padding-bottom: 60px;
+  }
 }

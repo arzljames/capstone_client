@@ -259,7 +259,7 @@
 
 .reports-overview-container {
     width: 400px;
-    margin-left: 10px;
+    margin-left: 20px;
     display: flex;
     flex-direction: column;
 }

@@ -15,11 +15,10 @@ const PatientTableData = ({
   sort,
   setPatientId,
   setPatientModal,
-  filterPatient
+  filterPatient,
 }) => {
   const navigate = useNavigate();
   const { cases } = useAuth();
-  const [loading, setLoading] = useState(false);
 
   const getDate = (date) => {
     let dates = new Date(date);
@@ -38,7 +37,7 @@ const PatientTableData = ({
     <>
       <div className="table">
         <div className="table-header">
-          <div className="pt-no">
+          {/* <div className="pt-no">
             <input
               onChange={(e) => {
                 let checked = e.target.checked;
@@ -51,60 +50,49 @@ const PatientTableData = ({
               }}
               type="checkbox"
             />
-          </div>
+          </div> */}
           <div className="pt-name">Patient Name</div>
-          {/* <div className="pt-sex">Sex</div>
-          <div className="pt-age">Age</div> */}
           <div className="pt-active">Active Case</div>
           <div className="pt-total">Total Case</div>
           <div className="pt-date">Date Admitted</div>
         </div>
-        {patientState.length !== 0 ? (
-          patientState
+        {patientState.length !== 0
+          ? patientState
 
-            .filter((val) => {
-              if (term === "") {
-                return val;
-              } else if (
-                val.fullname.toLowerCase().includes(term.toLocaleLowerCase())
-              ) {
-                return val;
-              }
-            })
-            .sort(
-              sort === "Newest"
-                ? sortDscDate
-                : sort === "Oldest"
-                ? sortAscDate
-                : sort === "Name (A-Z)"
-                ? sortAscName
-                : sortDscName
-            )
-            .slice(
-              term === "" ? pagesVisited : 0,
-              term === "" ? pagesVisited + usersPerPage : patientState.length
-            )
-            .map((item, key) => {
-              return (
-                <div
-                  key={key + 1}
-                  onClick={() => {
-                    setPatientModal(true);
-                    setPatientId(item._id)
-                    filterPatient(item._id)
-                  }
-                  }
-                  className={
-                    item.select
-                      ? "table-body-active"
-                      : key % 2 === 0
-                      ? "table-body"
-                      : item.select
-                      ? "table-body-active"
-                      : "table-body-2"
-                  }
-                >
-                  <div onClick={(e) => e.stopPropagation()} className="pt-no">
+              .filter((val) => {
+                if (term === "") {
+                  return val;
+                } else if (
+                  val.fullname.toLowerCase().includes(term.toLocaleLowerCase())
+                ) {
+                  return val;
+                }
+              })
+              .sort(
+                sort === "Newest"
+                  ? sortDscDate
+                  : sort === "Oldest"
+                  ? sortAscDate
+                  : sort === "Name (A-Z)"
+                  ? sortAscName
+                  : sortDscName
+              )
+              .slice(
+                term === "" ? pagesVisited : 0,
+                term === "" ? pagesVisited + usersPerPage : patientState.length
+              )
+              .map((item, key) => {
+                return (
+                  <div
+                    key={key + 1}
+                    onClick={() => {
+                      setPatientModal(true);
+                      setPatientId(item._id);
+                      filterPatient(item._id);
+                    }}
+                    className="table-body"
+                  >
+                    {/* <div onClick={(e) => e.stopPropagation()} className="pt-no">
                     <input
                       onChange={(e) => {
                         let checked = e.target.checked;
@@ -120,38 +108,33 @@ const PatientTableData = ({
                       checked={item.select}
                       type="checkbox"
                     />
-                  </div>
-                  <div className="pt-name">
-                    {item.firstname + " " + item.lastname}{" "}
-                  </div>
+                  </div> */}
+                    <div className="pt-name">
+                      <p>{item.firstname + " " + item.lastname} </p>
+                    </div>
 
-                  {/* <div className="pt-sex">{item.sex[0]}</div>
-                  <div className="pt-age">{item.age}</div> */}
-
-                  <div className="pt-active">
-                    {
-                      cases.filter(
-                        (f) => f.patient._id === item._id && f.active === true
-                      ).length
-                    }
+                    <div className="pt-active">
+                      {
+                        cases.filter(
+                          (f) => f.patient._id === item._id && f.active === true
+                        ).length
+                      }
+                    </div>
+                    <div className="pt-total">
+                      {cases.filter((f) => f.patient._id === item._id).length}
+                    </div>
+                    <div className="pt-date">{getDate(item.createdAt)}</div>
                   </div>
-                  <div className="pt-total">
-                    {cases.filter((f) => f.patient._id === item._id).length}
-                  </div>
-                  <div className="pt-date">{getDate(item.createdAt)}</div>
-                </div>
-              );
-            })
-        ) : (
-          // <div className="no-patients">
-          //   <h1>No Patients</h1>
-          //   <p>
-          //     Looks like you don't have a patient to handle. Click the{" "}
-          //     <em>add patient</em> button above to start adding patient.
-          //   </p>
-          // </div>
-          null
-        )}
+                );
+              })
+          : // <div className="no-patients">
+            //   <h1>No Patients</h1>
+            //   <p>
+            //     Looks like you don't have a patient to handle. Click the{" "}
+            //     <em>add patient</em> button above to start adding patient.
+            //   </p>
+            // </div>
+            null}
       </div>
     </>
   );

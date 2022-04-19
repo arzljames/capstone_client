@@ -209,7 +209,7 @@ const Patients = () => {
             <ConsultationNavbar />
             <div className="content-body">
               <div className="admin-subheading">
-                <h2>List of Patients</h2>
+                <h2>Patients</h2>
 
                 <div className="subheading-btns">
                   {patientsId.length !== 0 && (

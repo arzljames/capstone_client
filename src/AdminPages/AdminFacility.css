@@ -235,7 +235,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-weight: 500;
+  font-weight: 400;
   text-transform: capitalize;
   color: #5f5f5f;
   border-left: 2px solid #05138e00;
@@ -275,7 +275,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-weight: 500;
+  font-weight: 400;
   text-transform: capitalize;
   color: #5f5f5f;
   border-left: 2px solid #05138e00;

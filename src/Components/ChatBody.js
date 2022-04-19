@@ -1,6 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Avatar from "../Assets/nouser.png";
-import { HiOutlinePaperClip, HiOutlinePhotograph } from "react-icons/hi";
+import {
+  HiOutlinePaperClip,
+  HiOutlinePhotograph,
+  HiX,
+  HiDocumentText,
+} from "react-icons/hi";
 import { AiOutlineSend } from "react-icons/ai";
 import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
@@ -10,7 +15,9 @@ import ReactTimeAgo from "react-time-ago";
 const ChatBody = ({ users, socket }) => {
   const [message, setMessage] = useState(null);
   const [temp, setTemp] = useState("");
+  const [file, setFile] = useState([]);
   const { user, hospitalSpec, facilities } = useAuth();
+  const path = window.location.pathname;
 
   useEffect(() => {
     socket.on("chat_messages", (data) => {
@@ -65,6 +72,30 @@ const ChatBody = ({ users, socket }) => {
       sendChat();
     }
   };
+
+  const inputFileRef = useRef(null);
+
+  const onBtnClick = () => {
+    inputFileRef.current.click();
+  };
+
+  const prevImage = (img) => {
+    const objectURL = URL.createObjectURL(img);
+
+    return objectURL;
+  };
+
+  const removeItem = (item) => {
+    setFile(
+      file.filter((e, index) => {
+        return index !== item;
+      })
+    );
+  };
+
+  useEffect(() => {
+    setFile([]);
+  }, [path]);
 
   if (!message || !users) {
     return (
@@ -191,25 +222,83 @@ const ChatBody = ({ users, socket }) => {
           })}
       </div>
       <div className="chat-footer">
-        <p>
-          <HiOutlinePaperClip />
-        </p>
-        <p>
-          <HiOutlinePhotograph />
-        </p>
-        <div>
+        <div className="attachment-container">
+          {file.map((e, index) => {
+            return (
+              <div
+                key={index}
+                className={
+                  e.type === "image/jpeg" ||
+                  e.type === "image/jpg" ||
+                  e.type === "image/png" ||
+                  e.type === "image/gif"
+                    ? "attachment-file img"
+                    : "attachment-file file"
+                }
+              >
+                <p onClick={() => removeItem(index)} className="close">
+                  <HiX />
+                </p>
+                {e.type === "image/jpeg" ||
+                e.type === "image/jpg" ||
+                e.type === "image/png" ||
+                e.type === "image/gif" ? (
+                  <img src={prevImage(e.file)} alt={e.name} />
+                ) : (
+                  <>
+                    <p>
+                      <HiDocumentText />
+                    </p>
+                    <h2>{e.name}</h2>
+                  </>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        <div className="chat-input-container">
+          <p className="attach" onClick={() => onBtnClick()}>
+            <HiOutlinePaperClip />
+          </p>
+          <p className="attach" onClick={() => onBtnClick()}>
+            <HiOutlinePhotograph />
+          </p>
           <input
-            value={temp}
-            onChange={(e) => setTemp(e.target.value)}
-            onKeyDown={(e) => enterKey(e)}
-            type="text"
-            placeholder="Type your message here"
+            ref={inputFileRef}
+            className="chat-input-file"
+            onChange={(e) =>
+              setFile([
+                ...file,
+                {
+                  name: e.target.files[0].name,
+                  type: e.target.files[0].type,
+                  file: e.target.files[0],
+                },
+              ])
+            }
+            type="file"
           />
-          <div onClick={() => sendChat()} className="send-btn">
-            Send
-            <p>
-              <AiOutlineSend />
-            </p>
+          <div>
+            <input
+              value={temp}
+              onChange={(e) => setTemp(e.target.value)}
+              onKeyDown={(e) => enterKey(e)}
+              type="text"
+              placeholder="Type your message here"
+            />
+            <div
+              onClick={() => sendChat()}
+              className={
+                temp.length === 0 && file.length === 0
+                  ? "send-btn-disable"
+                  : "send-btn"
+              }
+            >
+              Send
+              <p className="send">
+                <AiOutlineSend />
+              </p>
+            </div>
           </div>
         </div>
       </div>

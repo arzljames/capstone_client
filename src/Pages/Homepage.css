@@ -195,6 +195,7 @@
    flex-direction: row;
    justify-content: center;
    padding: 0px 10px;
+   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   }
 
@@ -207,12 +208,20 @@
     width: 100%;
   }
 
+  .consultation-nav ul li {
+    opacity: 0.5;
+  }
+
+  .consultation-nav ul li.active-nav {
+    opacity: 1;
+  }
+
   .consultation-nav ul li, .consultation-nav ul li.active-nav {
     margin: 0px;
     display: flex;
   align-items: center;
   justify-content: center;
-  width:100%
+  width:100%;
   }
 
   .consultation-nav ul li p, .consultation-nav ul li.active-nav p {

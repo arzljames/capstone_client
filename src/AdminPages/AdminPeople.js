@@ -76,6 +76,7 @@ const AdminPeople = () => {
                   <div className="admin-user-patients">Total Patients</div>
                   <div className="admin-user-spec">Specialization</div>
                   <div className="admin-user-hospital">Hospital</div>
+                  <div className="us-status">Active Status</div>
                 </div>
                 {listUsers
                   .filter((e) => e.userType !== "admin" && e.verified === true)
@@ -110,6 +111,23 @@ const AdminPeople = () => {
                                 .map((item) => {
                                   return item.facility;
                                 })}
+                        </div>
+
+                        <div
+                          className={
+                            item.activeStatus === "Online"
+                              ? "us-status online"
+                              : "us-status"
+                          }
+                        >
+                          <p
+                            className={
+                              item.activeStatus === "Offline"
+                                ? "offline"
+                                : "online"
+                            }
+                          ></p>{" "}
+                          {item.activeStatus}
                         </div>
                       </div>
                     );
