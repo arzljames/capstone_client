@@ -90,6 +90,12 @@ const Case = () => {
     setPatient(patients.filter((e) => e._id === id)[0]);
   };
 
+  const [searchDropdown, setSearchDropdown] = useState(false);
+
+  let domNodeSearch = useClickOutside(() => {
+    setSearchDropdown(false);
+  });
+
   return (
     <>
       <Helmet>
@@ -132,11 +138,23 @@ const Case = () => {
                     value={term}
                     onChange={(e) => setTerm(e.target.value)}
                     type="search"
-                    placeholder="Search case"
+                    onFocus={() => setSearchDropdown(true)}
+                    placeholder="Search case (ID, Patient, Department)"
                   />
                   <div className="patient-input-icon">
                     <HiOutlineSearch />
                   </div>
+
+                  {searchDropdown && (
+                    <div ref={domNodeSearch} className="advance-search">
+                      {!term ? (
+                        <p>Type in the search bar</p>
+                      ) : (
+                        <p>You searched for "{term}"</p>
+                      )}
+
+                    </div>
+                  )}
                 </div>
 
                 <div className="above-patient-table-btns">

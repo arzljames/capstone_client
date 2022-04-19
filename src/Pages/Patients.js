@@ -334,7 +334,7 @@ const Patients = () => {
                     onChange={(e) => setTerm(e.target.value)}
                     type="search"
                     onFocus={() => setSearchDropdown(true)}
-                    placeholder="Search patient"
+                    placeholder="Search patient (last name, first name)"
                   />
                   <div className="patient-input-icon">
                     <HiOutlineSearch />
