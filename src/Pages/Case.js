@@ -247,6 +247,15 @@ const Case = () => {
                   </div>
 
                   {cases
+                  .filter((vals) => {
+                    if (term === "") {
+                      return vals;
+                    } else if (
+                      vals.caseId.toLowerCase().includes(term.toLocaleLowerCase()) || vals.patient.fullname.toLowerCase().includes(term.toLocaleLowerCase()) 
+                    ) {
+                      return vals;
+                    }
+                  })
                     .filter((e) =>
                       filter === "None"
                         ? e

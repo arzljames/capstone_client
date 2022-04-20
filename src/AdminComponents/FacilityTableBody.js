@@ -17,7 +17,7 @@ const FacilityTableBody = ({ number, facility, specialization, address, users,se
         {facility}
         </span>
       </div>
-      <div className="fac-body-doctors">{users}</div>
+      <div className="fac-body-doctors">{users.length}</div>
       <div className="fac-body-spec">{specialization.length}</div>
       <div className="fac-body-add">{!address.city ? <p><em>(No Address)</em></p>: address.city}</div>
       

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AdminFacility.css";
 import "./AdminDashboard.css";
 import { useNavigate } from "react-router-dom";
@@ -26,6 +26,8 @@ const AdminFacility = () => {
   const { facilities } = useAuth();
   const [showHospitalModal, setShowHospitalModal] = useState(false);
   const [hospital, setHospital] = useState([]);
+
+
   return (
     <>
       <AnimatePresence>
@@ -106,7 +108,7 @@ const AdminFacility = () => {
                         facility={item.facility}
                         address={item.address}
                         specialization={item.specialization}
-                        users={item.user.length}
+                        users={item.user}
                         setHospital={setHospital}
                         setShowHospitalModal={setShowHospitalModal}
                         item={item}
