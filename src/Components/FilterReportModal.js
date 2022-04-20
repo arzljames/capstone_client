@@ -59,9 +59,8 @@ const FilterReportModal = ({ setFilterModal }) => {
     setReportId(getDate() + "-" + makeid(5));
   }, [from, to, age]);
 
-
   const handleSubmit = async () => {
-    setIsClick(true)
+    setIsClick(true);
     try {
       let response = await api.post("/api/report/create", {
         from,
@@ -71,11 +70,11 @@ const FilterReportModal = ({ setFilterModal }) => {
         refer,
         specialization,
         reportId,
-        creator: user.userId
+        creator: user.userId,
       });
 
       if (response.data.ok) {
-        toast.success('Created new report', {
+        toast.success("Created new report", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -86,12 +85,12 @@ const FilterReportModal = ({ setFilterModal }) => {
         });
         setAppState("Created new report.");
         setTimeout(() => setAppState(""), 500);
-        setFilterModal(false)
-        setIsClick(false)
+        setFilterModal(false);
+        setIsClick(false);
       }
     } catch (error) {
       console.log(error);
-      setIsClick(false)
+      setIsClick(false);
       toast.error(error.message, {
         position: "top-right",
         autoClose: 5000,
@@ -119,88 +118,97 @@ const FilterReportModal = ({ setFilterModal }) => {
         exit="exit"
         className="filter-modal"
       >
-        <div className="date-range">
-          <div>
-            <label>From</label>
-            <input
-              value={from}
-              onChange={(e) => setFrom(e.target.value)}
-              type="date"
-            />
-          </div>
-          <div>
-            <label>To</label>{" "}
-            <input
-              value={to}
-              onChange={(e) => setTo(e.target.value)}
-              type="date"
-            />
-          </div>
+        <div className="filter-modal-header">
+          <h1>Create Report</h1>
         </div>
-
-        <div className="date-range">
-          <div>
-            <label>Sex</label>
-            <select value={gender} onChange={(e) => setGender(e.target.value)}>
-              <option value="">Not set</option>
-              <option value="Female">Female</option>
-              <option value="Male">Male</option>
-            </select>
+        <div className="filter-modal-body">
+          <div className="date-range">
+            <div>
+              <label>From</label>
+              <input
+                value={from}
+                onChange={(e) => setFrom(e.target.value)}
+                type="date"
+              />
+            </div>
+            <div>
+              <label>To</label>{" "}
+              <input
+                value={to}
+                onChange={(e) => setTo(e.target.value)}
+                type="date"
+              />
+            </div>
           </div>
-          <div>
-            <label>Age Bracket (0 - {age} )</label>{" "}
-            <input
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-              type="number"
-            />
+
+          <div className="date-range">
+            <div>
+              <label>Sex</label>
+              <select
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+              >
+                <option value="">Not set</option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+              </select>
+            </div>
+            <div>
+              <label>Age Bracket (0 - {age} )</label>{" "}
+              <input
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+                type="number"
+              />
+            </div>
           </div>
-        </div>
 
+          <label>Referring Hospital</label>
+          <select value={refer} onChange={(e) => setRefer(e.target.value)}>
+            <option value="">Not set</option>
 
-
-        <label>Referring Hospital</label>
-        <select value={refer} onChange={(e) => setRefer(e.target.value)}>
-          <option value="">Not set</option>
-
-          {facilities
-            .filter((e) => e._id !== "623ec7fb80a6838424edaa29")
-            .map((item, index) => {
-              return (
-                <option key={index} selected value={item._id}>
-                  {item.facility}
-                </option>
-              );
-            })}
-        </select>
-
-        <label>Service Type</label>
-        <select
-          value={specialization}
-          onChange={(e) => setSpecialization(e.target.value)}
-        >
-          <option value="">Not set</option>
-          {facilities
-            .filter((e) => e._id === "623ec7fb80a6838424edaa29")
-            .map((item, index) => {
-              return item.specialization.map((f) => {
+            {facilities
+              .filter((e) => e._id !== "623ec7fb80a6838424edaa29")
+              .map((item, index) => {
                 return (
-                  <option key={index} selected value={f._id}>
-                    {f.name}
+                  <option key={index} selected value={item._id}>
+                    {item.facility}
                   </option>
                 );
-              });
-            })}
-        </select>
+              })}
+          </select>
 
-
-        <div className="btns">
-          <button onClick={() => setFilterModal(false)} className="close">
-            Cancel
-          </button>
-          <button onClick={() => handleSubmit()} className={isClick ? "apply-disable" : "apply"}>
-            Generate
-          </button>
+          <label>Service Type</label>
+          <select
+            value={specialization}
+            onChange={(e) => setSpecialization(e.target.value)}
+          >
+            <option value="">Not set</option>
+            {facilities
+              .filter((e) => e._id === "623ec7fb80a6838424edaa29")
+              .map((item, index) => {
+                return item.specialization.map((f) => {
+                  return (
+                    <option key={index} selected value={f._id}>
+                      {f.name}
+                    </option>
+                  );
+                });
+              })}
+          </select>
+        </div>
+        <div className="filter-modal-footer">
+          <div className="btns">
+            <button onClick={() => setFilterModal(false)} className="close">
+              Cancel
+            </button>
+            <button
+              onClick={() => handleSubmit()}
+              className={isClick ? "apply-disable" : "apply"}
+            >
+              Generate
+            </button>
+          </div>
         </div>
       </motion.div>
     </motion.div>
