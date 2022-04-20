@@ -27,7 +27,7 @@ const searchVariant = {
 };
 
 const Chat = () => {
-  const { user, pp } = useAuth();
+  const { user, pp, setShowCreateChat, showCreateChat } = useAuth();
   const [recent, setRecent] = useState([]);
   const [term, setTerm] = useState("");
   const { showSearch, setShowSearch } = useAuth();
@@ -44,16 +44,15 @@ const Chat = () => {
           <div className="chat-content">
             <ChatNavbar />
             <div className="content-body">
-              {/* <div className="no-content">
+              <div className="no-content">
                 <h1>Hello, {user.firstname}</h1>
                 <div className="chat-user-header">
-                  <img
-                    src={!pp ? NoUser : pp}
-                    alt="Avatar"
-                  />
+                  <img src={!pp ? NoUser : pp} alt="Avatar" />
                 </div>
-                <button>Start a conversation</button>
-              </div> */}
+                <button onClick={() => setShowCreateChat(true)}>
+                  Start a conversation
+                </button>
+              </div>
               <div className="chat-body2">
                 <div className="chat-header">
                   {showSearch ? (
@@ -86,7 +85,7 @@ const Chat = () => {
                         <p onClick={() => setShowSearch(true)}>
                           <HiOutlineSearch />
                         </p>
-                        <p>
+                        <p onClick={() => setShowCreateChat(true)}>
                           <HiOutlinePencilAlt />
                         </p>
                       </div>

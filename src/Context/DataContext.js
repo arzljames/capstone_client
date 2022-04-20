@@ -137,6 +137,8 @@ export const DataProvider = ({ children }) => {
   const [hospital, setHospital] = useState("");
   const [department, setDepartment] = useState("");
 
+  const [showCreateChat, setShowCreateChat] = useState(false)
+
   return (
     <DataContext.Provider
       value={{
@@ -180,7 +182,9 @@ export const DataProvider = ({ children }) => {
         showSearch,
         setShowSearch,
         chatUsers,
-        reports
+        reports,
+        setShowCreateChat,
+        showCreateChat
       }}
     >
       {children}

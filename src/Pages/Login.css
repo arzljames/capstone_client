@@ -275,7 +275,7 @@ p.error-input-text {
 
 p.login-icon {
 position: absolute;
-color: #a8a8a8;
+color: #058e46;
 display: flex;
 width: 35px;
 height: 40px;
@@ -293,7 +293,7 @@ p.login-icon::after {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  background: #c2c2c2;
+  background: #d4d4d4;
   position: absolute;
 }
 
@@ -557,6 +557,29 @@ div.hospital-input:hover {
 .register-successful button:hover {
   transition: .1s ease-in-out;
   background: #057a3c;
+}
+
+.error-msg {
+  padding: 10px;
+  background: rgb(255, 232, 236);
+  margin-bottom: 20px;
+  border-radius: 2px;
+  border: 1px solid rgb(255, 207, 215);
+  font-size: 14px;
+  color: rgb(255, 29, 29);
+  display: flex;
+  align-items: center;
+}
+
+.error-msg p {
+  color:   rgb(255, 29, 29);
+  margin-right: 10px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 

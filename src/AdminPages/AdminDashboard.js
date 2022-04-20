@@ -15,7 +15,7 @@ import { AnimatePresence } from "framer-motion";
 import DeletePendingUserModal from "../AdminComponents/DeletePendingUserModal";
 import { FiUserX } from "react-icons/fi";
 import NoUser from "../Assets/nouser.png";
-import {Helmet} from 'react-helmet'
+import { Helmet } from "react-helmet";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -33,13 +33,11 @@ const AdminDashboard = () => {
     setUserId(id);
   };
 
-
-
   return (
     <>
-    <Helmet>
-    <title>Admin - Dashboard | ZCMC Telemedicine</title>
-    </Helmet>
+      <Helmet>
+        <title>Admin - Dashboard | ZCMC Telemedicine</title>
+      </Helmet>
       <div className="container">
         <AnimatePresence>
           {modal && (
@@ -66,9 +64,21 @@ const AdminDashboard = () => {
             <div className="container-divider">
               <div className="admin-container-content">
                 <div className="statistic-section">
-                  <StatisticCard heading="Hospitals" image={Hospital} total={facilities.length}/>
-                  <StatisticCard heading="Doctors" image={Doctor} total={listUsers.length - 1}/>
-                  <StatisticCard heading="Patients" image={Patient} total={patients.length} />
+                  <StatisticCard
+                    heading="Hospitals"
+                    image={Hospital}
+                    total={facilities.length}
+                  />
+                  <StatisticCard
+                    heading="Doctors"
+                    image={Doctor}
+                    total={listUsers.length - 1}
+                  />
+                  <StatisticCard
+                    heading="Patients"
+                    image={Patient}
+                    total={patients.length}
+                  />
                 </div>
                 <AdminBanner />
               </div>
@@ -108,10 +118,55 @@ const AdminDashboard = () => {
                 </div>
                 <div className="recently-added">
                   <div className="recently-added-header">
-                    <h1>Recently Added Users</h1>
+                    <h1>Recently Added</h1>
                     <p onClick={() => navigate("/people")}>See All</p>
                   </div>
-                  <div className="recently-added-body"></div>
+                  <div className="recently-added-body">
+                    {listUsers
+                      .filter(
+                        (e) => e.verified === true && e.userType !== "admin"
+                      )
+                      .map((item, index) => {
+                        return (
+                          <div key={index} className="pending-user-card">
+                            <div className="pending-user-profile-container">
+                              <div className="pending-user-profile">
+                                <img
+                                  src={!item.picture ? NoUser : item.picture}
+                                  alt="Avatar"
+                                />
+                              </div>
+                            </div>
+                            <div className="pending-user-name">
+                              <h5>
+                                Dr. {item.firstname + " " + item.lastname}
+                              </h5>
+                              <p>
+                                {facilities.length === 0
+                                  ? null
+                                  : facilities.filter(
+                                      (e) => e._id === item.designation
+                                    )[0].facility}
+                              </p>
+                              <p>
+                                {facilities.length === 0
+                                  ? null
+                                  : facilities
+                                      .filter((e) => e._id === item.designation)
+                                      .map((items) => {
+                                        return items.specialization.filter(
+                                          (spec) =>
+                                            spec._id === item.specialization
+                                        )[0];
+                                      })[0].name}
+                              </p>
+                            </div>
+
+                            <div className="option-icon-container"></div>
+                          </div>
+                        );
+                      })}
+                  </div>
                 </div>
               </div>
             </div>

@@ -84,7 +84,7 @@ const AdminPeople = () => {
                     return (
                       <div key={key} className="table-body">
                         <div className="admin-user-name">
-                          Dr. {item.firstname + " " + item.lastname}
+                          <p> Dr. {item.firstname + " " + item.lastname}</p>
                         </div>
                         <div className="admin-user-patients">
                           {

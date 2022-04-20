@@ -6,11 +6,12 @@ import {
   HiOutlinePencilAlt,
   HiArrowNarrowLeft,
 } from "react-icons/hi";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import "../Pages/Chat.css";
 import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
 import { socket } from "./Socket";
+import CreateChat from "./CreateChat";
 
 const searchVariant = {
   hidden: { opacity: 0 },
@@ -27,6 +28,7 @@ const searchVariant = {
 
 const ChatNavbar = ({setId, }) => {
 
+  const {showCreateChat, setShowCreateChat} = useAuth()
   const [recent, setRecent] = useState([]);
   const [term, setTerm] = useState("");
   const {showSearch, setShowSearch} = useAuth();
@@ -34,6 +36,10 @@ const ChatNavbar = ({setId, }) => {
 
 
   return (
+    <>
+    <AnimatePresence>
+      {showCreateChat && <CreateChat />}
+    </AnimatePresence>
     <div className="chat-nav">
       <div className="chat-header">
         {showSearch ? (
@@ -66,7 +72,7 @@ const ChatNavbar = ({setId, }) => {
               <p onClick={() => setShowSearch(true)}>
                 <HiOutlineSearch />
               </p>
-              <p>
+              <p onClick={() => setShowCreateChat(true)}>
                 <HiOutlinePencilAlt /> 
               </p>
             </div>
@@ -78,6 +84,7 @@ const ChatNavbar = ({setId, }) => {
         {showSearch ? <ChatSearch setId={setId} term={term} /> : <ChatRecent recent={recent} setId={setId} />}
       </div>
     </div>
+    </>
   );
 };
 

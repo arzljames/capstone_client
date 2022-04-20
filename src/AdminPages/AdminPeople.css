@@ -36,6 +36,18 @@
     align-items: center;
 }
 
+.table-body .admin-user-name p {
+    cursor: pointer;
+    color: rgb(45, 109, 206);
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.table-body .admin-user-name p:hover {
+    text-decoration: underline;
+}
+
 
 .us-status {
     width: 150px;

@@ -15,6 +15,7 @@ import AddFacilityForm from "../AdminComponents/AddFacilityForm";
 import Toast from "../Components/Toast";
 import useAuth from "../Hooks/useAuth";
 import FacilityTableBody from "../AdminComponents/FacilityTableBody";
+import AdminHospitalModal from "../AdminComponents/AdminHospitalModal";
 
 const AdminFacility = () => {
   const navigate = useNavigate();
@@ -23,6 +24,8 @@ const AdminFacility = () => {
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
   const { facilities } = useAuth();
+  const [showHospitalModal, setShowHospitalModal] = useState(false);
+  const [hospital, setHospital] = useState([]);
   return (
     <>
       <AnimatePresence>
@@ -34,6 +37,8 @@ const AdminFacility = () => {
             setIsError={setIsError}
           />
         )}
+
+        {showHospitalModal && <AdminHospitalModal hospital={hospital} setShowHospitalModal={setShowHospitalModal}/>}
       </AnimatePresence>
       <div className="container">
         <AnimatePresence>
@@ -55,7 +60,7 @@ const AdminFacility = () => {
                   whileTap={{ scale: 0.9 }}
                 >
                   <p><HiPlus /></p>
-                  Add Facility
+                  Add Hospital
                 </motion.button>
             </div>
             <div className="above-table">
@@ -102,6 +107,9 @@ const AdminFacility = () => {
                         address={item.address}
                         specialization={item.specialization}
                         users={item.user.length}
+                        setHospital={setHospital}
+                        setShowHospitalModal={setShowHospitalModal}
+                        item={item}
                       />
                     );
                   })}

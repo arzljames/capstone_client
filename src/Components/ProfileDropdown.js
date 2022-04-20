@@ -12,6 +12,8 @@ import { useClickOutside } from "../Hooks/useClickOutside";
 import { socket } from "./Socket";
 import api from "../API/Api";
 import PulseLoader from "react-spinners/PulseLoader";
+import ProfileModal from "./ProfileModal";
+import { AnimatePresence } from "framer-motion";
 
 const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
   const { user, facilities, setAppState, setToast, setIsError, setMessage } =
@@ -95,6 +97,8 @@ const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
     fetchSpecc();
   }, []);
 
+  const [profileModal, setProfileModal] = useState(false);
+
   return (
     <>
       {loader && (
@@ -102,6 +106,10 @@ const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
           <PulseLoader size={10} margin={4} color="#fff" />
         </div>
       )}
+
+      <AnimatePresence>
+      {profileModal && <ProfileModal setProfileModal={setProfileModal}/>}
+      </AnimatePresence>
       <div className="profile-container-dropdown">
         <div className="profile-name-picture">
           <div className="profile-name-picture-container">
@@ -128,14 +136,13 @@ const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
               {user.firstname} {user.lastname}
             </h5>
             <p>{specc ? specc : null}</p>
-
             <p className="p-active-status">
               Active Status: <span>{users.activeStatus}</span>
             </p>
           </div>
         </div>
         <ul>
-          <li>
+          <li onClick={() => setProfileModal(true)}>
             <p>
               <IoPersonOutline />
             </p>

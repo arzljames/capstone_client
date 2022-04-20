@@ -160,6 +160,7 @@
   display: flex;
   align-items: center;
   text-transform: uppercase;
+  padding-left: 10px;
 }
 
 .fac-body-name p {
@@ -215,6 +216,19 @@
   height: 100%;
   display: flex;
   align-items: center;
+  padding-left: 10px;
+}
+
+.fac-body-name span {
+  cursor: pointer;
+    color: rgb(45, 109, 206);
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.fac-body-name span:hover {
+  text-decoration: underline;
 }
 
 .fac-body-add {

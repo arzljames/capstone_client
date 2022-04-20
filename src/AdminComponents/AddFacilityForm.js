@@ -124,7 +124,7 @@ const AddFacilityForm = ({
         className="add-facility-form"
       >
         <div className="form-header">
-          <h3>Add Facility</h3>
+          <h3>Add Hospital</h3>
           <p onClick={() => setShowModal(false)}>
             <HiX />
           </p>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import Axios from "axios";
-import { HiEyeOff, HiEye, HiOutlineLockClosed, HiAtSymbol } from "react-icons/hi";
+import { HiEyeOff, HiEye, HiLockClosed, HiUser } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
 import api from "../API/Api";
 import PendingModal from "../Components/PendingModal";
@@ -120,6 +120,7 @@ const Login = () => {
               className={usernameError ? "error-input" : "username"}
               name="username"
               value={login.username}
+              placeholder="Enter username"
               onChange={(e) => {
                 setLogin({
                   username: e.target.value,
@@ -129,7 +130,7 @@ const Login = () => {
               type="text"
             />
             <p className="login-icon">
-              <HiAtSymbol />
+              <HiUser />
             </p>
           </div>
 
@@ -148,6 +149,7 @@ const Login = () => {
             <input
               name="password"
               value={login.password}
+              placeholder="Enter password"
               onChange={(e) => {
                 setLogin({
                   username: login.username,
@@ -157,7 +159,7 @@ const Login = () => {
               type={showPassword ? "text" : "password"}
             />
             <p className="login-icon">
-              <HiOutlineLockClosed />
+              <HiLockClosed />
             </p>
             {login.password.length > 0 ? (
               <div

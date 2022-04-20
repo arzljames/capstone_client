@@ -9,6 +9,11 @@
   border-radius: 8px;
 }
 
+
+.add-facility-form.none {
+  display: none;
+}
+
 .form-header {
   width: 100%;
   background: #ffffff;
@@ -24,7 +29,7 @@
 .form-header h1 {
   color: #272727;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .form-header h3 {
@@ -42,11 +47,14 @@
   justify-content: center;
   cursor: pointer;
   transition: 0.1s ease-in-out;
+  color: #3a3a3a;
+  background: #eee;
+
 }
 
 .form-header p:hover {
   transition: 0.1s ease-in-out;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgb(223, 223, 223);
 }
 
 .form-body {
@@ -544,7 +552,7 @@ button.facility-close-btn {
 }
 
 .specializations-container p {
-  background: #eee;
+  background: #e1ece6;
   font-size: 13px;
   padding: 10px;
   color: #058e46;
@@ -553,27 +561,59 @@ button.facility-close-btn {
   margin-bottom: 5px;
   position: relative;
   border: 1px solid #eeeeee;
+  border-radius: 4px;
 }
 
 .specializations-container p div {
   position: absolute;
   top: -5px;
   right: -5px;
-  background: rgba(0, 0, 0, 0.459);
-  color: #ffffff;
+  background: rgb(255, 255, 255);
+  color: #808080;
   border-radius: 50%;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: 0.1s ease-in-out;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 1px solid #d3d3d3;
+}
+
+.specializations-container p div.edit-spec {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #808080;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  box-shadow: rgba(100, 100, 111, 0) 0px 7px 29px 0px;
+  border: none;
+  background: transparent;
+  display: none;
+  font-size: 16px;
+}
+
+.specializations-container p div.edit-spec:hover {
+  background: transparent;
+}
+
+.specializations-container p:hover  div.edit-spec {
+  display: flex;
 }
 
 .specializations-container p div:hover {
   transition: 0.1s ease-in-out;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(228, 228, 228, 0.8);
 }
 
 .paraclinical-file-container {
@@ -600,6 +640,39 @@ button.facility-close-btn {
   transform: translateY(-50%);
   font-size: 12px;
   cursor: pointer;
+}
+
+
+.edit-spec-modal {
+  width: 100%;
+  max-width: 550px;
+  background: #fff;
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  border: 1px solid #d3d3d3;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.edit-spec-modal div.s {
+  padding: 20px
+}
+
+.edit-spec-modal h1 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #272727;
+  margin-bottom: 20px;
+}
+
+.edit-spec-modal input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #949494
 }
 
 
