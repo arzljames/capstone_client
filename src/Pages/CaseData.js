@@ -23,8 +23,11 @@ import DeleteCaseModal from "../Components/DeleteCaseModal";
 import { DocumentGenerator } from "../Components/DocumentGenerator";
 import { buttonVariant } from "../Animations/Animations";
 import { ToastContainer, toast } from "react-toastify";
+import { AiOutlineCaretDown } from "react-icons/ai";
+import { useClickOutside } from "../Hooks/useClickOutside";
 
 const CaseData = () => {
+  const [dropdown, setDropdown] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const navigate = useNavigate();
   const [patientCase, setPatientCase] = useState([]);
@@ -43,6 +46,9 @@ const CaseData = () => {
   } = useAuth();
 
   const { id } = useParams();
+  let domNode = useClickOutside(() => {
+    setDropdown(false);
+  });
 
   useEffect(() => {
     const fetchPatientCase = async () => {
@@ -166,17 +172,17 @@ const CaseData = () => {
         )}
       </AnimatePresence>
       <div className="container">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable={false}
-        pauseOnHover
-      />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable={false}
+          pauseOnHover
+        />
         <AnimatePresence>{toast && <Toast />}</AnimatePresence>
         <Sidebar />
         <div className="content">

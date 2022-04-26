@@ -541,8 +541,8 @@ p.nothing-to-show-p {
 
 .attachment-file.img p.close, .attachment-file.file p.close {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
   border-radius: 50%;
   background: #fff;
   top: -5px;
@@ -589,6 +589,7 @@ max-width: 60px;
 border: 1px solid #d3d3d3;
   cursor: pointer;
   padding: 10px;
+  
 }
 
 .attachment-file.file h2 {
@@ -596,14 +597,17 @@ border: 1px solid #d3d3d3;
   color: #272727;
   font-weight: 500;
   text-overflow: ellipsis;
+  width: 100%;
+  overflow: hidden;
+  
 }
 
 .attachment-file.file p {
   background: #fff;
   margin: 0px;
   margin-right: 5px;
-  width: 35px;
-  height: 35px;
+  min-width: 35px;
+  min-height: 35px;
   border-radius: 50%;
 
 }

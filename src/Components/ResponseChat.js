@@ -7,6 +7,8 @@ import useAuth from "../Hooks/useAuth";
 import NoUser from "../Assets/nouser.png";
 
 const ResponseChat = ({ id, user, response, setResponse, active }) => {
+  const [file, setFile] = useState("");
+
   const [temp, setTemp] = useState("");
   const [sort, setSort] = useState("New");
   const sendResponse = async () => {
@@ -138,7 +140,7 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
                     </div>
                     <h1>Dr. {e.user.firstname}</h1>
                     <h2>
-                      {/* {
+                      {
                         facilities
                           .filter(
                             (hospital) => hospital._id === e.user.designation
@@ -149,7 +151,7 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
                             )[0];
                           })[0].name
                       }
-                      <br /> */}
+                      <br />
                       {facilities
                         .filter(
                           (hospital) => hospital._id === e.user.designation

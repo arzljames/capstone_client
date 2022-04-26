@@ -413,8 +413,9 @@ text-decoration: underline;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 2px;
   height: 30px;
+  border-radius: 4px;
+  min-width: 80px;
 }
 
 .above-patient-profile-btns button p {
@@ -423,6 +424,77 @@ text-decoration: underline;
   justify-content: center;
   margin-right: 5px;
   font-size: 14px;
+}
+
+.above-patient-profile-btns button.action-btn {
+  background: #ffffff;
+  color: #058e46;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  transition: 0.1s ease-in-out;
+  border: none;
+
+  position: relative;
+
+}
+
+.above-patient-profile-btns button.action-btn-active {
+  color: #058e46;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  transition: 0.1s ease-in-out;
+  border: 1px solid #058e46;
+  background: #f3f3f3;
+  position: relative;
+}
+
+.above-patient-profile-btns button.action-btn:hover {
+  transition: 0.1s ease-in-out;
+  background: #f3f3f3;
+}
+
+ .above-patient-profile-btns button.action-btn-active div.dropdown {
+padding: 10px 0px;
+  position: absolute;
+  right: 0;
+  top: 32px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 1px solid #ebebeb;
+}
+
+.above-patient-profile-btns button.action-btn-active div.dropdown ul {
+  list-style: none;
+}
+
+.above-patient-profile-btns button.action-btn-active div.dropdown ul li {
+  width: 130px;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  height: 30px;
+  color: #808080;
+  font-weight: 500;
+}
+
+
+.above-patient-profile-btns button.action-btn-active div.dropdown ul li.delete {
+  color: red;
+}
+
+.above-patient-profile-btns button.action-btn-active div.dropdown ul li.delete:hover {
+  color: red;
+}
+
+.above-patient-profile-btns button.action-btn-active div.dropdown ul li:hover {
+  color: #272727;
+  background: #eee;
+}
+
+.above-patient-profile-btns button.action-btn p, .above-patient-profile-btns button.action-btn-active p {
+  margin-right: 0px;
+  margin-left: 5px;
 }
 
 .edit-profile-btn,
@@ -1376,6 +1448,14 @@ button.deactive-btn:hover {
 
 @media screen and (max-width: 768px) {
   .pt-date, .pt-total, .pt-active, .ch-status, .patient-modal-nav ul li div, .pt-hospital {
+    display: none;
+  }
+
+  .back-btn {
+    font-size: 20px;
+  }
+
+  .back-btn p {
     display: none;
   }
 
