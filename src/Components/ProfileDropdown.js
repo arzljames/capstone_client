@@ -14,6 +14,7 @@ import api from "../API/Api";
 import PulseLoader from "react-spinners/PulseLoader";
 import ProfileModal from "./ProfileModal";
 import { AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
   const { user, facilities, setAppState, setToast, setIsError, setMessage } =
@@ -31,6 +32,7 @@ const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
   };
 
   const [loader, setLoader] = useState(false);
+  const navigate = useNavigate();
 
   const changeProfile = async (e) => {
     try {
@@ -148,7 +150,7 @@ const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
             </p>
             View Profile
           </li>
-          <li>
+          <li onClick={() => navigate("/settings/account")}>
             <p>
               <IoSettingsOutline />
             </p>
@@ -158,7 +160,7 @@ const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
             <p>
               <IoBookOutline />
             </p>
-            About
+            User Manual
           </li>
         </ul>
         <ul style={{ border: "none" }}>

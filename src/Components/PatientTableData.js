@@ -37,20 +37,7 @@ const PatientTableData = ({
     <>
       <div className="table">
         <div className="table-header">
-          {/* <div className="pt-no">
-            <input
-              onChange={(e) => {
-                let checked = e.target.checked;
-                setPatientState(
-                  patientState.map((d) => {
-                    d.select = checked;
-                    return d;
-                  })
-                );
-              }}
-              type="checkbox"
-            />
-          </div> */}
+ 
           <div className="pt-name">Patient Name</div>
           <div className="pt-active">Active Case</div>
           <div className="pt-total">Total Case</div>

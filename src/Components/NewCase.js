@@ -556,7 +556,7 @@ const NewCase = ({ setShowCase }) => {
               }}
               className={isClick ? "save-btn-disable" : "save-btn"}
             >
-              Save
+              Save Record
             </button>
           </div>
         </div>

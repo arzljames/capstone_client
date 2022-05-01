@@ -38,6 +38,7 @@ import en from "javascript-time-ago/locale/en.json";
 import Reports from "./Pages/Reports";
 import GenerateReport from "./Components/GenerateReport";
 import 'react-toastify/dist/ReactToastify.css';
+import AccountSettings from "./Pages/AccountSettings";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -79,11 +80,11 @@ function App() {
           <Route path="telechannel" element={<TeleChannel />} />
           <Route path="profile/:username" element={<Profile />} />
           <Route path="consultation/patients" element={<Patients />} />
+          <Route path="settings/account" element={<AccountSettings />} />
           <Route
             path="consultation/patients/admission"
             element={<PatientAdmission />}
           />
-
           <Route
             path="consultation/patients/edit-profile/:id"
             element={<EditPatientProfile />}
@@ -102,7 +103,6 @@ function App() {
             element={<CaseData />}
           />
           <Route path="consultation/patients/case/:id" element={<CaseData />} />
-
           <Route path="reports" element={<Reports />} />
           <Route path="reports/:id/:reportId" element={<GenerateReport />} />
         </Route>

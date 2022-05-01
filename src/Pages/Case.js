@@ -139,7 +139,7 @@ const Case = () => {
                     onChange={(e) => setTerm(e.target.value)}
                     type="search"
                     onFocus={() => setSearchDropdown(true)}
-                    placeholder="Search case (ID, Patient, Department)"
+                    placeholder="Search case (ID, Patient, Service)"
                   />
                   <div className="patient-input-icon">
                     <HiOutlineSearch />
@@ -152,7 +152,6 @@ const Case = () => {
                       ) : (
                         <p>You searched for "{term}"</p>
                       )}
-
                     </div>
                   )}
                 </div>
@@ -241,21 +240,26 @@ const Case = () => {
                     <div className="cs-id">Case No.</div>
                     <div className="cs-name">Patient</div>
 
-                    <div className="cs-department">Department</div>
+                    <div className="cs-department">Service</div>
                     <div className="cs-date">Date & Time</div>
                     <div className="cs-status">Status</div>
                   </div>
 
                   {cases
-                  .filter((vals) => {
-                    if (term === "") {
-                      return vals;
-                    } else if (
-                      vals.caseId.toLowerCase().includes(term.toLocaleLowerCase()) || vals.patient.fullname.toLowerCase().includes(term.toLocaleLowerCase()) 
-                    ) {
-                      return vals;
-                    }
-                  })
+                    .filter((vals) => {
+                      if (term === "") {
+                        return vals;
+                      } else if (
+                        vals.caseId
+                          .toLowerCase()
+                          .includes(term.toLocaleLowerCase()) ||
+                        vals.patient.fullname
+                          .toLowerCase()
+                          .includes(term.toLocaleLowerCase())
+                      ) {
+                        return vals;
+                      }
+                    })
                     .filter((e) =>
                       filter === "None"
                         ? e
@@ -276,25 +280,25 @@ const Case = () => {
                     .map((item, index) => {
                       return (
                         <div className="table-body">
-                          <div
-                            
-                            className="cs-id"
-                          >
-                            <p onClick={() => {
-                              navigate(
-                                `/consultation/case/case-data/${item._id}`
-                              );
-                            }}>{item.caseId}</p>
+                          <div className="cs-id">
+                            <p
+                              onClick={() => {
+                                navigate(
+                                  `/consultation/case/case-data/${item._id}`
+                                );
+                              }}
+                            >
+                              {item.caseId}
+                            </p>
                           </div>
-                          <div
-                            
-                            className="cs-name"
-                          >
-                            <p onClick={(e) => {
-                              filterPatient(item.patient._id);
-                              setPatientModal(true);
-                              e.stopPropagation();
-                            }}>
+                          <div className="cs-name">
+                            <p
+                              onClick={(e) => {
+                                filterPatient(item.patient._id);
+                                setPatientModal(true);
+                                e.stopPropagation();
+                              }}
+                            >
                               {item.patient.firstname +
                                 " " +
                                 item.patient.lastname}
