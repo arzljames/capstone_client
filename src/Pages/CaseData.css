@@ -13,34 +13,55 @@
   border-radius: 8px;
   margin-right: 10px;
   padding: 20px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .case-data-hospital {
   width: 350px;
   background: #fff;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: 8px;
   padding: 20px;
   height: 100%;
 }
 
-.case-data-hospital h1, .case-data-profile h1, .case-information h1 {
+.case-data-hospital h1,
+.case-data-profile h1,
+.case-information h1 {
   font-size: 16px;
   font-weight: 600;
   color: #272727;
   margin-bottom: 20px;
-  text-decoration: underline;
   padding-bottom: 12px;
+  position: relative;
 }
 
-.case-data-hospital label, .case-data-profile label, .case-information label {
+.case-data-hospital h1::after,
+.case-data-profile h1::after,
+.case-information h1::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  background: #057a3c;
+  left: 0px;
+  top: 80%;
+  border-radius: 100px;
+}
+
+.case-data-hospital label,
+.case-data-profile label,
+.case-information label {
   font-size: 14px;
   color: #646464;
   margin-bottom: 0px;
 }
 
-.case-data-hospital p, .case-data-profile p, .case-information p {
+.case-data-hospital p,
+.case-data-profile p,
+.case-information p {
   font-size: 14px;
   color: #272727;
   margin-bottom: 18px;
@@ -53,18 +74,17 @@
   background: #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   margin-bottom: 20px;
- height: auto;
+  height: auto;
 }
-
 
 .case-information h5 {
   font-size: 16px;
   color: #272727;
   margin-bottom: 20px;
 }
-
 
 .case-data div.file-download {
   display: flex;
@@ -136,7 +156,8 @@
   padding: 20px;
   background: rgb(255, 255, 255);
   border-radius: 8px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .case-data-response form {
@@ -154,7 +175,7 @@
   margin-bottom: 10px;
   white-space: pre-wrap;
   border: 1px solid #a5a5a5;
-  transition: .1 ease-in-out;
+  transition: 0.1 ease-in-out;
 }
 
 .case-data-response-btns {
@@ -200,7 +221,7 @@
   pointer-events: none;
 }
 
-.case-data-response-btns div.attach-file-btn input{
+.case-data-response-btns div.attach-file-btn input {
   display: none;
 }
 
@@ -250,11 +271,12 @@
   background: #057a3c;
 }
 
-.case-data-response textarea:focus, .case-data-response textarea:hover {
+.case-data-response textarea:focus,
+.case-data-response textarea:hover {
   border: 1px solid #616161;
   background: rgb(255, 255, 255);
   outline: none;
-  transition: .1s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
 
 .response-header {
@@ -282,7 +304,6 @@
   align-items: flex-start;
   justify-content: space-between;
   height: auto;
-
 }
 
 /* width */
@@ -364,7 +385,7 @@
 }
 
 .response {
-  background: #F0F2F5;
+  background: #f0f2f5;
   border-radius: 10px;
   width: auto;
   padding: 10px;
@@ -421,10 +442,10 @@
   border: none;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
     rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-    position: relative;
+  position: relative;
 }
 
-.active-btn p {
+.above-patient-profile-btns button.active-btn p {
   margin: 0px;
   margin-left: 5px;
 }
@@ -465,8 +486,6 @@
   overflow: hidden;
 }
 
-
-
 @media screen and (max-width: 768px) {
   .case-data {
     flex-direction: column-reverse;
@@ -491,7 +510,9 @@
     width: 100%;
   }
 
-  .case-information div.case-data-2col,  .case-information div.case-data-2col.vital-sign,   .case-information div.case-data-2col.case {
+  .case-information div.case-data-2col,
+  .case-information div.case-data-2col.vital-sign,
+  .case-information div.case-data-2col.case {
     width: 100%;
   }
 }

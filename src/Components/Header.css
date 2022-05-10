@@ -19,7 +19,6 @@
   align-items: center;
   justify-content: center;
   padding: 0px;
-
 }
 
 .profile-name-picture-container img {
@@ -35,10 +34,7 @@
   object-fit: cover;
   border-radius: 50%;
   border: 1px solid #d3d3d3;
-  
 }
-
-
 
 .profile-name-picture-container span {
   position: absolute;
@@ -125,8 +121,6 @@
   padding: 0px;
 }
 
-
-
 .profile-name-picture-container input {
   opacity: 0;
   pointer-events: none;
@@ -197,7 +191,6 @@
   color: #fff;
 }
 
-
 .notification-dropdown {
   position: absolute;
   right: 0px;
@@ -219,7 +212,6 @@
   overflow-x: hidden;
 }
 
-
 .notification-heading h2 {
   font-size: 18px;
   color: #272727;
@@ -240,7 +232,7 @@
   font-size: 12px;
   font-weight: 500;
   background: rgb(255, 71, 46);
-  color: #fff
+  color: #fff;
 }
 
 .notification-tabs {
@@ -253,36 +245,32 @@
   font-size: 14px;
   padding: 0px;
   margin: 0px;
-  min-width:50px;
+  min-width: 50px;
   border-radius: 100px;
   margin-right: 10px;
-  width:auto;
+  width: auto;
   height: auto;
   padding: 5px 15px;
 }
 
-.notification-tabs  span.active {
+.notification-tabs span.active {
   background: #d6e6d8;
   font-weight: 600;
   color: #0f531e;
-
 }
 
-.notification-tabs  span.not-active {
+.notification-tabs span.not-active {
   background: rgb(240, 240, 240);
-  transition: .1s ease-in-out;
+  transition: 0.1s ease-in-out;
   font-weight: 500;
   color: #272727;
-
-
 }
 
-.notification-tabs  span.not-active:hover {
-  transition: .1s ease-in-out;
+.notification-tabs span.not-active:hover {
+  transition: 0.1s ease-in-out;
   color: #0f531e;
   background: #d6e6d8;
 }
-
 
 .profile-modal {
   width: 500px;
@@ -299,13 +287,31 @@
   border-top-right-radius: 8px;
 }
 
+.dp-modal {
+  width: 95%;
+  max-width: 500px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+div.dp-modal h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #272727;
+}
+
+div.dp-modal p {
+  font-size: 14px;
+  color: #272727;
+}
+
 @media screen and (max-width: 768px) {
   .notification-dropdown {
     right: -15px;
     border-radius: 0px;
-   flex: 1;
+    flex: 1;
   }
-
 
   .admin-header.user {
     border-bottom: none;

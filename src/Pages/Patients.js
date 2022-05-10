@@ -133,9 +133,6 @@ const Patients = () => {
     setSearchDropdown(false);
   });
 
-
- 
-
   const sortAscName = (a, b) => {
     return a.firstname.localeCompare(b.firstname);
   };
@@ -165,12 +162,11 @@ const Patients = () => {
     setPageNumber(selected);
   };
 
-  const [patient, setPatient] = useState([])
+  const [patient, setPatient] = useState([]);
 
   const filterPatient = (id) => {
-    setPatient(patients.filter(e => e._id === id)[0])
-  }
-  
+    setPatient(patients.filter((e) => e._id === id)[0]);
+  };
 
   // const [deleteModal, setDeleteModal] = useState(false);
   return (
@@ -192,7 +188,13 @@ const Patients = () => {
             <PatientAdvanceSearch setShowAdvance={setShowAdvance} />
           )}
 
-          {patientModal && <PatientModal patient={patient} setPatientModal={setPatientModal} patientId={patientId}/>}
+          {patientModal && (
+            <PatientModal
+              patient={patient}
+              setPatientModal={setPatientModal}
+              patientId={patientId}
+            />
+          )}
           {/* {deleteModal && (
           <DeletePatientModal
             id={patient._id}
@@ -208,7 +210,7 @@ const Patients = () => {
           <div className="consultation-content">
             <ConsultationNavbar />
             <div className="content-body">
-              <div className="admin-subheading">
+              <div className="container-heading">
                 <h2>Patients</h2>
 
                 <div className="subheading-btns">
@@ -284,7 +286,6 @@ const Patients = () => {
                           return;
                         }
 
-
                         setCSV([
                           ...CSV,
                           result.data.map((e) => {
@@ -347,7 +348,6 @@ const Patients = () => {
                       ) : (
                         <p>You searched for "{term}"</p>
                       )}
-
                     </div>
                   )}
                 </div>

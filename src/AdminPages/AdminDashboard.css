@@ -1,22 +1,3 @@
-.container {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  background: #f4f7f8;
-  overflow: hidden;
-  display: flex;
-
-}
-
-.content {
-  flex: 1;
-  width: auto;
-  display: flex;
-  flex-direction: column;
-  margin: 0px;
-
-}
-
 .content-body {
   flex: 1;
   overflow-y: scroll;
@@ -24,11 +5,8 @@
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  padding-bottom: 70px;
-
+  height: 100%;
 }
-
-
 
 .container-divider {
   display: flex;
@@ -39,25 +17,6 @@
   padding-right: 20px;
 }
 
-.admin-subheading {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin: 20px 0px;
-}
-
-.admin-subheading h2 {
-  color: #272727;
-  font-size: 22px;
-  font-weight: 500;
-}
-
-.admin-subheading p {
-  color: #808080;
-  font-size: 15px;
-  margin-top: 5px;
-}
-
 .statistic-section {
   display: flex;
   align-items: center;
@@ -66,49 +25,133 @@
   width: 100%;
 }
 
+.chart-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid #eee;
+  min-height: 200px;
+}
+
+.year-selected {
+  display: flex;
+  align-items: center;
+}
+
+.year-selected h2 {
+  font-weight: 600;
+  margin-right: 10px;
+  color: #272727;
+  font-size: 16px;
+}
+
+.year-selected div {
+  border: 1px solid #d3d3d3;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: auto;
+  width: auto;
+}
+
+.year-selected div p {
+  display: flex;
+  margin-left: 5px;
+}
+
+.year-dropdown {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  background: pink;
+
+  right: 0;
+  bottom: -50px;
+}
+
+.year-selected div:hover {
+  transition: 0.1s ease-in-out;
+  background: #eee;
+}
+
+.calendar-container {
+  width: 100%;
+  background: #69c591;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s ease-in-out;
+  color: #fff;
+}
+
+.calendar-container:hover {
+  transition: 0.2s ease-in-out;
+  background: #56a779;
+  cursor: pointer;
+  color: #fff;
+}
+
+.calendar-container .date {
+  text-align: center;
+}
+
+.calendar-container .date h2 {
+  font-weight: 300;
+  font-size: 15px;
+
+  margin-bottom: 4px;
+}
+
+.calendar-container .date h3 {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 30px;
+}
+
 .admin-right-panel {
   width: 25%;
-  height: auto;
   min-width: 300px;
   display: flex;
   flex-direction: column;
+  flex: 1;
+  margin: 0px;
+  padding: 0px;
 }
 
 .pending-registration {
   width: 100%;
-  height: 50%;
-  max-height: 300px;
-  height: 300px;
-  background: rgb(255, 255, 255);
-  margin-bottom: 20px;
+  height: 100%;
   border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  margin: 0px;
+  background: #fff;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-.pending-registration-header,
-.recently-added-header {
-  width: 100%;
-  height: 20%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: inherit;
-  padding: 0px 15px;
-  border-bottom: 1px solid #ececec;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+.pending-registration h2 {
+  font-weight: 600;
+  font-size: 16px;
+  color: #272727;
+  margin-bottom: 20px;
+  margin-left: 10px;
 }
 
 .recently-added-body,
 .pending-registration-body {
   width: 100%;
   height: 80%;
-  overflow-y: scroll;
-  padding-top: 5px;
-  padding-left: 5px;
-  padding-bottom: 5px;
 }
-
 
 .pending-registration-header h1,
 .recently-added-header h1 {
@@ -171,12 +214,9 @@
     flex-direction: column;
   }
 
-
-
   .admin-subheading h2 {
     font-size: 16px;
   }
-
 
   .admin-subheading p {
     display: none;
@@ -192,12 +232,9 @@
     padding: 0px;
   }
 
-
-
   .content-body {
     padding: 20px 10px;
     padding-bottom: 130px;
     padding-top: 0px;
   }
 }
-

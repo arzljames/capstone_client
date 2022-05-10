@@ -9,7 +9,6 @@
   padding: 0px 20px;
   background: #fff;
   z-index: 2;
-  border-bottom: 1px solid #e7e7e7;
 }
 
 .admin-header-brand {
@@ -52,10 +51,6 @@
   transition: 0.1s ease-in-out;
   border-radius: 100px;
 }
-
-
-
-
 
 .admin-profile-name-active h5 {
   font-size: 14px;
@@ -127,7 +122,7 @@
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background: #FFCB6A;
+  background: #ffcb6a;
   bottom: -5%;
   right: -5%;
   display: flex;
@@ -256,8 +251,6 @@
   height: 100%;
 }
 
-
-
 .notification-dropdown p.p-no-notification {
   color: #808080;
   width: auto;
@@ -315,17 +308,15 @@
   border: 1px solid #fff;
 }
 
-
-@media screen and (max-width: 768px){
-  .admin-profile-name h5, .admin-profile-name-active h5 {
+@media screen and (max-width: 768px) {
+  .admin-profile-name h5,
+  .admin-profile-name-active h5 {
     display: none;
   }
 
   .admin-profile-name {
- display: none;
+    display: none;
   }
-
-
 
   .profile-container-dropdown {
     right: -15px;

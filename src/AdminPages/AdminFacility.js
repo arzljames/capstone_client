@@ -8,7 +8,7 @@ import {
   HiPlus,
   HiOutlineSortDescending,
   HiOutlineFilter,
-  HiOutlineSearch
+  HiOutlineSearch,
 } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
 import AddFacilityForm from "../AdminComponents/AddFacilityForm";
@@ -27,7 +27,6 @@ const AdminFacility = () => {
   const [showHospitalModal, setShowHospitalModal] = useState(false);
   const [hospital, setHospital] = useState([]);
 
-
   return (
     <>
       <AnimatePresence>
@@ -40,7 +39,12 @@ const AdminFacility = () => {
           />
         )}
 
-        {showHospitalModal && <AdminHospitalModal hospital={hospital} setShowHospitalModal={setShowHospitalModal}/>}
+        {showHospitalModal && (
+          <AdminHospitalModal
+            hospital={hospital}
+            setShowHospitalModal={setShowHospitalModal}
+          />
+        )}
       </AnimatePresence>
       <div className="container">
         <AnimatePresence>
@@ -54,24 +58,26 @@ const AdminFacility = () => {
         <div className="content">
           <AdminHeader />
           <div className="content-body">
-            <div className="admin-subheading">
-              <h2>Facilities & Specializations</h2>
+            <div className="container-heading">
+              <h2>Hospitals & Specializations</h2>
               <motion.button
-                  className="add-fac-btn"
-                  onClick={() => setShowModal(true)}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <p><HiPlus /></p>
-                  Add Hospital
-                </motion.button>
+                className="green-cta"
+                onClick={() => setShowModal(true)}
+                whileTap={{ scale: 0.9 }}
+              >
+                <p>
+                  <HiPlus />
+                </p>
+                Add Hospital
+              </motion.button>
             </div>
             <div className="above-table">
-            <div className="patient-input-container">
-                  <input type="search" placeholder="Search facilities" />
-                  <div className="patient-input-icon">
-                    <HiOutlineSearch />
-                  </div>
+              <div className="patient-input-container">
+                <input type="search" placeholder="Search facilities" />
+                <div className="patient-input-icon">
+                  <HiOutlineSearch />
                 </div>
+              </div>
               <div className="above-table-right">
                 <button className="fac-btns">
                   <p>
@@ -85,7 +91,6 @@ const AdminFacility = () => {
                   </p>
                   Sort by
                 </button>
-                
               </div>
             </div>
 
@@ -116,7 +121,6 @@ const AdminFacility = () => {
                     );
                   })}
               </div>
-
             </div>
           </div>
         </div>

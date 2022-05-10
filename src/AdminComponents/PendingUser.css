@@ -3,7 +3,7 @@
   min-height: 50px;
   border-radius: 3px;
   cursor: pointer;
-  padding: 15px;
+  padding: 10px;
   display: flex;
   margin-bottom: 5px;
   transition: 0.1s ease-in-out;
@@ -14,28 +14,29 @@
 .pending-user-card-active {
   width: 100%;
   min-height: 50px;
-  border-radius: 3px;
+  border-radius: 8px;
   cursor: pointer;
-  padding: 15px;
+  padding: 10px;
   display: flex;
   margin-bottom: 5px;
   transition: 0.1s ease-in-out;
   align-items: center;
   position: relative;
+
   background: #f1f3f1;
 }
 
 .pending-user-card:hover {
   background: #f1f3f1;
   transition: 0.1s ease-in-out;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .pending-user-profile-container {
   width: auto;
   height: auto;
   position: relative;
-  margin-right: 15px;
+  margin-right: 10px;
 }
 
 .pending-user-profile {
@@ -69,19 +70,19 @@
 
 .pending-user-name h5 {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   color: #272727;
 }
 
 .pending-user-name p {
-  color: #808080;
+  color: #464646;
   font-size: 12px;
   font-weight: 300;
 }
 
 .option-icon-container {
   position: absolute;
-  right: 10px;
+  right: 0;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -92,18 +93,13 @@
 
 .option-icon-container-active {
   position: absolute;
-  right: 10px;
+  right: 0;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
-}
-
-.option-icon-container:hover {
-  background: rgb(255, 255, 255);
 }
 
 .option-dropdown {
@@ -114,9 +110,10 @@
   top: 110%;
   right: 0;
   z-index: 2;
-  border-radius: 2px;
+  border-radius: 8px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 5px;
+  border-radius: 4px;
 }
 
 .option-dropdown ul {
@@ -128,10 +125,10 @@
   height: 35px;
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 13px;
   padding: 5px;
   color: #808080;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .option-dropdown ul li:hover {

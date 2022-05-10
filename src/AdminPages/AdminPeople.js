@@ -31,10 +31,10 @@ const AdminPeople = () => {
         <div className="content">
           <AdminHeader />
           <div className="content-body">
-            <div className="admin-subheading">
+            <div className="container-heading">
               <h2>List of Doctors</h2>
               <motion.button
-                className="add-fac-btn"
+                className="green-cta"
                 onClick={() => setShowModal(true)}
                 variants={buttonVariant}
                 whileTap="tap"

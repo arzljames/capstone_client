@@ -69,7 +69,7 @@ export const DataProvider = ({ children }) => {
     if (response.data) {
       setFacilities(response.data);
     }
-  };
+  }; 
 
   const fetchPatients = async () => {
     let response = await api.get("/api/patient/");

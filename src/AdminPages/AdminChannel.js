@@ -13,9 +13,7 @@ const AdminChannel = () => {
         <div className="content">
           <AdminHeader />
           <div className="content-body">
-            <div className="admin-subheading">
-              <h2>Channels</h2>
-            </div>
+            <h2 className="heading">Reports</h2>
           </div>
         </div>
       </div>

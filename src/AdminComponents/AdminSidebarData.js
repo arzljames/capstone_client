@@ -6,9 +6,8 @@ import {
   IoDocumentTextOutline,
   IoDocumentText,
   IoBusinessOutline,
-  IoBusiness
+  IoBusiness,
 } from "react-icons/io5";
-
 
 export const AdminSidebarData = [
   {
@@ -18,7 +17,7 @@ export const AdminSidebarData = [
     activeIcon: <IoHome />,
   },
   {
-    name: "People",
+    name: "Users",
     link: "/people",
     icon: <IoPeopleOutline />,
     activeIcon: <IoPeople />,

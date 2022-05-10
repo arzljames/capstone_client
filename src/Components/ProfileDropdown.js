@@ -15,11 +15,13 @@ import PulseLoader from "react-spinners/PulseLoader";
 import ProfileModal from "./ProfileModal";
 import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import DpModal from "./DpModal";
 
 const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
   const { user, facilities, setAppState, setToast, setIsError, setMessage } =
     useAuth();
   const [dropdown, setDropdown] = useState(false);
+  const [dp, setDp] = useState(false);
 
   let domNode = useClickOutside(() => {
     setDropdown(false);
@@ -110,12 +112,13 @@ const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
       )}
 
       <AnimatePresence>
-      {profileModal && <ProfileModal setProfileModal={setProfileModal}/>}
+        {profileModal && <ProfileModal setProfileModal={setProfileModal} />}
+        {dp && <DpModal setDp={setDp} />}
       </AnimatePresence>
       <div className="profile-container-dropdown">
         <div className="profile-name-picture">
           <div className="profile-name-picture-container">
-            <span onClick={() => onBtnClick()}>
+            <span onClick={() => setDp(true)}>
               <HiPencil />
             </span>
             <input
@@ -156,7 +159,7 @@ const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
             </p>
             Account Settings
           </li>
-          <li>
+          <li onClick={() => navigate("/user-manual")}>
             <p>
               <IoBookOutline />
             </p>

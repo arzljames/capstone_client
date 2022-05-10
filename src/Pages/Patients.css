@@ -125,7 +125,6 @@
   position: relative;
 }
 
-
 .patient-input-container div.advance-search {
   width: 100%;
   height: auto;
@@ -136,7 +135,7 @@
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-  rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   display: flex;
   justify-content: center;
   padding: 10px 0px;
@@ -157,15 +156,13 @@
   width: 100%;
   padding: 0px 10px;
   cursor: pointer;
-  transition: .1s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
 
 .patient-input-container div.advance-search div:hover {
-  transition: .1s ease-in-out;
-text-decoration: underline;
+  transition: 0.1s ease-in-out;
+  text-decoration: underline;
 }
-
-
 
 .patient-input-icon {
   width: 30px;
@@ -177,7 +174,6 @@ text-decoration: underline;
   align-items: center;
   justify-content: center;
   color: #808080;
-
 }
 
 .patient-input-container input {
@@ -195,7 +191,7 @@ text-decoration: underline;
 .patient-input-container input:focus {
   transition: 0.2s ease-in-out;
   background: #f1f3f1;
-  border: 1px solid #a5a5a5
+  border: 1px solid #a5a5a5;
 }
 
 .patient-input-container input::placeholder {
@@ -233,12 +229,12 @@ text-decoration: underline;
 }
 
 .add-patient-btn {
-  background: #1CB45D;
+  background: #1cb45d;
   color: #fff;
   border: none;
   box-shadow: rgba(9, 66, 12, 0.25) 0px 1px 1px,
     rgba(9, 66, 12, 0.13) 0px 0px 1px 1px;
-    transition: 0.1s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
 
 .add-patient-btn p {
@@ -246,13 +242,12 @@ text-decoration: underline;
 }
 
 .add-case-btn {
-  background: #1CB45D;
+  background: #1cb45d;
   color: #fff;
   border: none;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
     rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
-
 
 .add-case-btn p {
   color: #fff;
@@ -285,11 +280,9 @@ text-decoration: underline;
   padding-left: 10px;
 }
 
-
- 
 .pt-name p {
   cursor: pointer;
-    color: rgb(45, 109, 206);
+  color: rgb(45, 109, 206);
 }
 
 .pt-name p:hover {
@@ -311,7 +304,6 @@ text-decoration: underline;
   align-items: center;
   justify-content: flex-start;
   padding-left: 10px;
-  
 }
 
 .pt-hospital {
@@ -321,15 +313,15 @@ text-decoration: underline;
   align-items: center;
   justify-content: flex-start;
   padding-left: 10px;
-  
 }
 
-.pt-sex, .pt-age {
-   width: 100px;
-   height: 100%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+.pt-sex,
+.pt-age {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pt-total {
@@ -338,7 +330,6 @@ text-decoration: underline;
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .pt-action {
@@ -435,7 +426,6 @@ text-decoration: underline;
   border: none;
 
   position: relative;
-
 }
 
 .above-patient-profile-btns button.action-btn-active {
@@ -453,8 +443,8 @@ text-decoration: underline;
   background: #f3f3f3;
 }
 
- .above-patient-profile-btns button.action-btn-active div.dropdown {
-padding: 10px 0px;
+.above-patient-profile-btns button.action-btn-active div.dropdown {
+  padding: 10px 0px;
   position: absolute;
   right: 0;
   top: 32px;
@@ -478,12 +468,15 @@ padding: 10px 0px;
   font-weight: 500;
 }
 
-
 .above-patient-profile-btns button.action-btn-active div.dropdown ul li.delete {
   color: red;
 }
 
-.above-patient-profile-btns button.action-btn-active div.dropdown ul li.delete:hover {
+.above-patient-profile-btns
+  button.action-btn-active
+  div.dropdown
+  ul
+  li.delete:hover {
   color: red;
 }
 
@@ -492,7 +485,8 @@ padding: 10px 0px;
   background: #eee;
 }
 
-.above-patient-profile-btns button.action-btn p, .above-patient-profile-btns button.action-btn-active p {
+.above-patient-profile-btns button.action-btn p,
+.above-patient-profile-btns button.action-btn-active p {
   margin-right: 0px;
   margin-left: 5px;
 }
@@ -534,11 +528,11 @@ button.deactive-btn:hover {
 }
 
 .delete-patient-btn-disable p {
-  color: #e72222
+  color: #e72222;
 }
 
 .delete-patient-btn p {
-  color: #e72222
+  color: #e72222;
 }
 
 .delete-patient-btn:hover {
@@ -909,28 +903,26 @@ button.deactive-btn:hover {
   font-weight: 400;
 }
 
-
 .import-patient-btn {
-  background: #1CB45D;
+  background: #1cb45d;
   color: #fff;
   border: none;
   box-shadow: rgba(9, 66, 12, 0.25) 0px 1px 1px,
     rgba(9, 66, 12, 0.13) 0px 0px 1px 1px;
-    width: 30px;
-    height: 30px;
-    border-radius: 4px;
-    margin-left: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    cursor: pointer;
-    transition: .1s ease-in-out;
-    position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  margin-left: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  position: relative;
 }
 
 .import-patient-btn:hover {
-
   background: #199b51;
   transition: 0.1s ease-in-out;
 }
@@ -959,21 +951,20 @@ button.deactive-btn:hover {
   position: absolute;
 }
 .import-patient-container:hover {
-  transition: .1s ease-in-out;
-  background: #F1F3F1;
+  transition: 0.1s ease-in-out;
+  background: #f1f3f1;
 }
 
 .import-patient-container p {
   margin-right: 5px;
   font-size: 12px;
-  color: #05793b
+  color: #05793b;
 }
 
 .import-patient-container div {
   display: flex;
   align-items: center;
 }
-
 
 .import-patient-modal {
   width: 95%;
@@ -989,7 +980,6 @@ button.deactive-btn:hover {
   font-weight: 600;
   margin-bottom: 20px;
 }
-
 
 .import-patient-modal p {
   color: #272727;
@@ -1049,11 +1039,11 @@ button.deactive-btn:hover {
   color: #555555;
   min-width: 80px;
   transition: 0.1s ease-in-out;
-  border: 1px solid #d3d3d3
+  border: 1px solid #d3d3d3;
 }
 
 .import-patient-modal-footer button.cancel:hover {
-  transition: .1s ease-in-out;
+  transition: 0.1s ease-in-out;
   background: rgb(219, 219, 219);
 }
 
@@ -1070,9 +1060,8 @@ button.deactive-btn:hover {
   align-items: flex-end;
   font-size: 14px;
   font-weight: 500;
-  color: #69777c
+  color: #69777c;
 }
-
 
 .page-item {
   width: 28px;
@@ -1110,7 +1099,7 @@ button.deactive-btn:hover {
   border-radius: 4px;
   cursor: pointer;
   background: #1e80f0;
-  color: #fff
+  color: #fff;
 }
 
 .active:hover {
@@ -1126,7 +1115,6 @@ button.deactive-btn:hover {
 /* Patient Advance Search Modal */
 
 /* End Patient Advance Search Modal */
-
 
 /* Patient Modal */
 .patient-modal {
@@ -1190,15 +1178,12 @@ button.deactive-btn:hover {
   display: none;
 }
 
-
-
 .patient-modal-btns {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   margin-bottom: 20px;
 }
-
 
 .patient-modal-btns button {
   outline: none;
@@ -1215,7 +1200,6 @@ button.deactive-btn:hover {
   border: none;
   margin-left: 10px;
 }
-
 
 .edit-profile-btn {
   background: #ffffff;
@@ -1242,15 +1226,14 @@ button.deactive-btn:hover {
   justify-content: center;
   right: 10px;
   top: 10px;
-  transition: .1s ease-in-out;
+  transition: 0.1s ease-in-out;
   cursor: pointer;
   color: #272727;
-
 }
 
 .patient-modal-exit:hover {
   background: #eee;
-  transition: .1s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
 
 .patient-modal-nav {
@@ -1267,19 +1250,19 @@ button.deactive-btn:hover {
   width: 100%;
 }
 
-.patient-modal-nav ul li{
- height: 40px;
- cursor: pointer;
- padding: 0px 10px;
- border-radius: 4px;
- margin-bottom: 5px;
- display: flex;
- align-items: center;
- font-size: 14px;
- width: 100%;
- color: #808080;
- font-weight: 400;
- transition: .1s ease-in-out;
+.patient-modal-nav ul li {
+  height: 40px;
+  cursor: pointer;
+  padding: 0px 10px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  width: 100%;
+  color: #808080;
+  font-weight: 400;
+  transition: 0.1s ease-in-out;
 }
 
 .patient-modal-nav ul li div {
@@ -1293,16 +1276,16 @@ button.deactive-btn:hover {
   font-size: 12px;
   font-weight: 500;
   background: rgb(255, 71, 46);
-  color: #fff
+  color: #fff;
 }
 
 .patient-modal-nav ul li:hover {
-  background: #E8EBF0;
-  transition: .1s ease-in-out;
+  background: #e8ebf0;
+  transition: 0.1s ease-in-out;
 }
 
-.patient-modal-nav ul li.li-active{
-  background: #E8EBF0;
+.patient-modal-nav ul li.li-active {
+  background: #e8ebf0;
   width: 100%;
   color: #143b20;
   font-weight: 500;
@@ -1315,7 +1298,6 @@ button.deactive-btn:hover {
   position: relative;
   overflow-y: scroll;
 }
-
 
 .no-active-case {
   position: absolute;
@@ -1339,10 +1321,10 @@ button.deactive-btn:hover {
   font-size: 14px;
 }
 
-
 .patient-personal {
   width: 100%;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 10px;
@@ -1369,7 +1351,6 @@ button.deactive-btn:hover {
   font-weight: 500;
 }
 
-
 .case-history-table {
   width: 100%;
   background: #fff;
@@ -1377,7 +1358,8 @@ button.deactive-btn:hover {
   padding: 0px 0px;
   border: 1px solid #ebebeb;
   position: relative;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   overflow: hidden;
 }
 
@@ -1425,8 +1407,9 @@ button.deactive-btn:hover {
   cursor: pointer;
 }
 
-.case-history-table-body:hover, .case-history-table-body-2:hover {
-  background:#ced3cf;
+.case-history-table-body:hover,
+.case-history-table-body-2:hover {
+  background: #ced3cf;
 }
 
 .ch-no {
@@ -1445,9 +1428,13 @@ button.deactive-btn:hover {
 }
 /* End Patient Modal */
 
-
 @media screen and (max-width: 768px) {
-  .pt-date, .pt-total, .pt-active, .ch-status, .patient-modal-nav ul li div, .pt-hospital {
+  .pt-date,
+  .pt-total,
+  .pt-active,
+  .ch-status,
+  .patient-modal-nav ul li div,
+  .pt-hospital {
     display: none;
   }
 
@@ -1459,7 +1446,8 @@ button.deactive-btn:hover {
     display: none;
   }
 
-  .pt-sex, .pt-age {
+  .pt-sex,
+  .pt-age {
     width: 60px;
   }
 

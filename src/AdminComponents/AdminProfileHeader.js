@@ -60,24 +60,9 @@ const AdminProfileHeader = () => {
 
   return (
     <div ref={domNode} className="admin-profile-header">
-      <motion.div
-        whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
-        className={
-          path.includes(user.username)
-            ? "admin-profile-name-active"
-            : "admin-profile-name"
-        }
-      >
+      <motion.div className="admin-profile-name">
         <div className="admin-profile-picture">
-          {/* <img src={!user.picture ? NoUser : user.picture} alt="Avatar" /> */}
-          {!user.picture && <p>{initials}</p>}
-          <div
-            className={
-              status === "Online"
-                ? "active-status-online"
-                : "active-status-offline"
-            }
-          ></div>
+          <img src={!user.picture ? NoUser : user.picture} alt="Avatar" />
         </div>
         <h5>{user.firstname}</h5>
       </motion.div>

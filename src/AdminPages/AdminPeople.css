@@ -1,77 +1,74 @@
 .admin-user-no {
-    width: 35px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 35px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .admin-user-hospital {
-    min-width: 300px;
-    display: flex;
-    align-items: center;
-    flex: 0.75;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  flex: 0.75;
 }
 
 .admin-user-spec {
-    min-width: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0.5;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  flex: 0.5;
 }
 
 .admin-user-patients {
-    min-width: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0.5;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0.5;
 }
 
 .admin-user-name {
-    flex: 1;
-    padding: 0px 20px;
-    display: flex;
-    align-items: center;
+  flex: 1;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
 }
 
 .table-body .admin-user-name p {
-    cursor: pointer;
-    color: rgb(45, 109, 206);
-    height: 100%;
-    display: flex;
-    align-items: center;
+  cursor: pointer;
+  color: rgb(45, 109, 206);
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .table-body .admin-user-name p:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-
 .us-status {
-    width: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .table-body .us-status.online {
-    color: #499c69
+  color: #499c69;
 }
 
 .us-status p {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    margin-right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 
 .us-status p.offline {
-    background: #FFCB6A;
+  background: #ffcb6a;
 }
 
 .us-status p.online {
-    background: #4DD965
+  background: #4dd965;
 }
