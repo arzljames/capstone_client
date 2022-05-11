@@ -77,14 +77,19 @@ const AdminDashboard = () => {
 
   const [months, setMonths] = useState(null);
   const [monthsCase, setMonthsCase] = useState(null);
-  const year = new Date().getFullYear();
+
+  const year = [];
+
+  for (let i = 1; i < 100; i++) {
+    year.push(1999 + i);
+  }
 
   useEffect(() => {
     function extract() {
       const groups = {};
       patients
         .filter((e) => yearSelected === parseInt(e.createdAt.substring(0, 4)))
-        .forEach(function(val) {
+        .forEach(function (val) {
           const dates = new Date(val.createdAt);
           const date = dates.toLocaleString("en-us", { month: "short" });
           if (date in groups) {
@@ -102,7 +107,7 @@ const AdminDashboard = () => {
       const groups = {};
       cases
         .filter((e) => yearSelected === parseInt(e.createdAt.substring(0, 4)))
-        .forEach(function(val) {
+        .forEach(function (val) {
           const dates = new Date(val.createdAt);
           const date = dates.toLocaleString("en-us", { month: "short" });
           if (date in groups) {
@@ -118,7 +123,7 @@ const AdminDashboard = () => {
 
     extract();
     extractCase();
-  }, [patients, yearSelected]);
+  }, [patients, cases, yearSelected]);
 
   const data = {
     labels: [
@@ -235,13 +240,17 @@ const AdminDashboard = () => {
                 </div>
                 <div className="chart-container">
                   <div className="year-selected">
-                    <h2>Year:</h2>{" "}
-                    <div onClick={() => setYearSelected(2021)}>
-                      {yearSelected}{" "}
-                      <p>
-                        <HiChevronDown />
-                      </p>
-                    </div>
+                    <h2>Year :</h2>{" "}
+                    <select
+                      onChange={(e) =>
+                        setYearSelected(parseInt(e.target.value))
+                      }
+                      value={yearSelected}
+                    >
+                      {year.map((item) => {
+                        return <option value={item}>{item}</option>;
+                      })}
+                    </select>
                   </div>
                   {months === null && monthsCase === null ? (
                     ""

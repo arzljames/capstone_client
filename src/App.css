@@ -92,6 +92,14 @@ button.green-cta {
   cursor: pointer;
   transition: 0.1s ease-in-out;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.green-cta:hover {
+  background: #199b51;
+  transition: 0.1s ease-in-out;
 }
 
 button.green-cta p {
@@ -101,4 +109,307 @@ button.green-cta p {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+button.gray-cta {
+  background: #fff;
+  color: #555555;
+  min-width: 80px;
+  transition: 0.1s ease-in-out;
+  border: 1px solid #d3d3d3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.1s ease-in-out;
+}
+
+button.gray-cta:hover {
+  transition: 0.1s ease-in-out;
+  background: rgb(219, 219, 219);
+}
+
+.above-table {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #ebebeb;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.above-table-right {
+  display: flex;
+}
+
+.above-table-right button {
+  outline: none;
+  padding: 0px 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  height: 30px;
+  border: none;
+}
+
+.admin-subheading button.add-fac-btn {
+  outline: none;
+  padding: 0px 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  height: 30px;
+  border: none;
+  background: #058e46;
+  color: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.table-container {
+  height: auto;
+  width: 100%;
+  border-radius: 4px;
+  min-height: 500px;
+}
+
+.table {
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0px 0px;
+  border: 1px solid #ebebeb;
+  position: relative;
+  height: 100%;
+  min-height: 500px;
+  margin-bottom: 40px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.table-header {
+  width: 100%;
+  height: 50px;
+  min-height: 50px;
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #414141;
+  border-left: 2px solid #05138e00;
+}
+
+.table-body {
+  width: 100%;
+  min-height: 50px;
+  height: 50px;
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+  text-transform: capitalize;
+  color: #5f5f5f;
+  border-left: 2px solid #05138e00;
+  background: #fff;
+}
+
+.table-body:hover,
+.table-body-2:hover {
+  background: #f5f5f7;
+  border-left: 2px solid #92e3a9;
+}
+
+.table-body-active {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: #5f5f5f;
+  border-left: 2px solid #05138e00;
+  background: #f5f5f7;
+  border-left: 2px solid #92e3a9;
+}
+
+.table-body-2 {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+  text-transform: capitalize;
+  color: #5f5f5f;
+  border-left: 2px solid #05138e00;
+  background: #fff;
+  /* background: #f7f8fc; */
+}
+
+.searchbar-container {
+  width: 50%;
+  max-width: none;
+}
+
+.above-patient-table {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #ebebeb;
+}
+
+.above-patient-table-btns {
+  display: flex;
+}
+
+.above-patient-table button {
+  outline: none;
+  padding: 0px 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  color: #808080;
+  border: 1px solid #6eaf8c00;
+  border-radius: 3px;
+  min-width: 80px;
+}
+
+.above-patient-table .btn-active {
+  background: #f1f3f1;
+  border: 1px solid #9baca3;
+  position: relative;
+}
+
+.above-patient-table .btn-inactive {
+  position: relative;
+}
+
+.above-patient-table button.btn-inactive:hover {
+  background: #f1f3f1;
+  transition: 0.1s ease-in-out;
+}
+
+.above-patient-table button p {
+  color: #057a3c;
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+.patient-input-container {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  position: relative;
+}
+
+.patient-input-container div.advance-search {
+  width: 100%;
+  height: auto;
+  background: rgb(255, 255, 255);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0px;
+  font-size: 14px;
+  color: #272727;
+  font-weight: 500;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.patient-input-container div.advance-search p {
+  font-size: 12px;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.patient-input-container div.advance-search div {
+  width: 100%;
+  padding: 0px 10px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+}
+
+.patient-input-container div.advance-search div:hover {
+  transition: 0.1s ease-in-out;
+  text-decoration: underline;
+}
+
+.patient-input-icon {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #808080;
+}
+
+.patient-input-container input {
+  width: 100%;
+  border: 1px solid rgb(231, 231, 231);
+  outline: none;
+  padding: 10px;
+  padding-left: 30px;
+  height: 30px;
+  border-radius: 5px;
+  transition: 0.2s ease-in-out;
+  background: #f1f3f1;
+}
+
+.patient-input-container input:focus {
+  transition: 0.2s ease-in-out;
+  background: #f1f3f1;
+  border: 1px solid #a5a5a5;
+}
+
+.patient-input-container input::placeholder {
+  font-size: 12px;
+  font-style: italic;
 }

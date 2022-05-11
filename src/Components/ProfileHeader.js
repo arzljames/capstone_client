@@ -41,8 +41,6 @@ const ProfileHeader = () => {
 
   const { notification, pp, setPp, status, setStatus } = useAuth();
 
-
-
   useEffect(() => {
     const fetchStatus = async () => {
       let response = await api.get("/api/user/users");
@@ -76,14 +74,11 @@ const ProfileHeader = () => {
     fetchChat();
   }, [socket]);
 
-
-
-
   useEffect(() => {
     const fetchPP = async () => {
       try {
-        let response = await listUsers
-          .filter((id) => id._id === user.userId)[0].picture
+        let response = await listUsers.filter((id) => id._id === user.userId)[0]
+          .picture;
 
         if (response) {
           setPp(response);
@@ -93,9 +88,6 @@ const ProfileHeader = () => {
 
     fetchPP();
   }, [listUsers]);
-
-
-
 
   return (
     <div ref={domNode} className="admin-profile-header">
@@ -107,7 +99,6 @@ const ProfileHeader = () => {
         }
       >
         <div className="admin-profile-picture">
-         
           <img src={!pp ? NoUser : pp} alt="Avatar" />
           <div
             className={
@@ -117,7 +108,7 @@ const ProfileHeader = () => {
             }
           ></div>
         </div>
-        <h5>{user.firstname}</h5> 
+        <h5>{user.firstname}</h5>
       </motion.div>
       <motion.div
         whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
@@ -133,16 +124,19 @@ const ProfileHeader = () => {
           <IoNotifications />
         </p>
         {notification.filter(
-          (item) => item.specialization === user.specialization && item.active === true
+          (item) =>
+            item.specialization === user.specialization && item.active === true
         ).length !== 0 ? (
           <div className="notif-badge">
             {
               notification.filter(
-                (item) => item.specialization === user.specialization && item.active === true
+                (item) =>
+                  item.specialization === user.specialization &&
+                  item.active === true
               ).length
             }
           </div>
-        ) : null} 
+        ) : null}
       </motion.div>
       <motion.div
         whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
@@ -157,12 +151,17 @@ const ProfileHeader = () => {
         </p>
       </motion.div>
 
-      
-
       {dropdownNotif && (
         <NotificationDropdown setDropdownNotif={setDropdownNotif} />
       )}
-      {dropdown && <ProfileDropdown    profilePicture={profilePicture} users={users} submitLogout={submitLogout} />}
+      {dropdown && (
+        <ProfileDropdown
+          setDropdown2={setDropdown}
+          profilePicture={profilePicture}
+          users={users}
+          submitLogout={submitLogout}
+        />
+      )}
     </div>
   );
 };

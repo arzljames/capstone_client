@@ -115,7 +115,7 @@ const Case = () => {
           <div className="consultation-content">
             <ConsultationNavbar />
             <div className="content-body">
-              <div className="admin-subheading">
+              <div className="container-heading">
                 <h2>Consultation Case</h2>
                 <div className="subheading-btns">
                   {user.designation !== "623ec7fb80a6838424edaa29" && (

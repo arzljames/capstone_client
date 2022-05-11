@@ -7,7 +7,7 @@ import {
 } from "react-icons/io5";
 import useAuth from "../Hooks/useAuth";
 import NoUser from "../Assets/nouser.png";
-import { HiPencil } from "react-icons/hi";
+import { HiCamera } from "react-icons/hi";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { socket } from "./Socket";
 import api from "../API/Api";
@@ -17,7 +17,12 @@ import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import DpModal from "./DpModal";
 
-const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
+const ProfileDropdown = ({
+  submitLogout,
+  users,
+  profilePicture,
+  setDropdown2,
+}) => {
   const { user, facilities, setAppState, setToast, setIsError, setMessage } =
     useAuth();
   const [dropdown, setDropdown] = useState(false);
@@ -35,53 +40,6 @@ const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
 
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
-
-  const changeProfile = async (e) => {
-    try {
-      setLoader(true);
-      const formData = new FormData();
-      formData.append("file", e);
-      formData.append("upload_preset", "qn8bbwmc");
-      formData.append("cloud_name", "ojttelemedicine");
-      fetch("https://api.cloudinary.com/v1_1/ojttelemedicine/upload", {
-        method: "post",
-        body: formData,
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setLoader(false);
-
-          let response = api.put(`/api/user/profile/${user.userId}`, {
-            picture: data.url,
-          });
-
-          if (response) {
-            socket.emit("chat");
-            setLoader(false);
-            setAppState("Change DP");
-            setTimeout(() => setAppState(""));
-            setToast(true);
-            setIsError(false);
-            setMessage("Successfully changed profile picture.");
-          } else {
-            socket.emit("chat");
-            setLoader(false);
-            setAppState("Change DP");
-            setTimeout(() => setAppState(""));
-            setToast(true);
-            setIsError(false);
-            setMessage("Successfully changed profile picture.");
-          }
-        });
-    } catch (error) {
-      setLoader(false);
-      setAppState("Change DP");
-      setTimeout(() => setAppState(""));
-      setToast(true);
-      setIsError(true);
-      setMessage(error.message);
-    }
-  };
 
   const [specc, setSpecc] = useState("");
 
@@ -113,20 +71,24 @@ const ProfileDropdown = ({ submitLogout, users, profilePicture }) => {
 
       <AnimatePresence>
         {profileModal && <ProfileModal setProfileModal={setProfileModal} />}
-        {dp && <DpModal setDp={setDp} />}
+        {dp && (
+          <DpModal
+            image={!users.picture ? NoUser : users.picture}
+            setDp={setDp}
+          />
+        )}
       </AnimatePresence>
       <div className="profile-container-dropdown">
         <div className="profile-name-picture">
           <div className="profile-name-picture-container">
-            <span onClick={() => setDp(true)}>
-              <HiPencil />
+            <span
+              onClick={() => {
+                setDp(true);
+              }}
+            >
+              <HiCamera />
             </span>
-            <input
-              value={profilePicture}
-              type="file"
-              ref={inputFileRef}
-              onChange={(e) => changeProfile(e.target.files[0])}
-            />
+            <input value={profilePicture} type="file" ref={inputFileRef} />
             <img src={!users.picture ? NoUser : users.picture} alt="Avatar" />
             <div
               className={

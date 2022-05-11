@@ -12,16 +12,33 @@ import {
 } from "react-icons/hi";
 import useAuth from "../Hooks/useAuth";
 import { buttonVariant } from "../Animations/Animations";
+import NoUser from "../Assets/nouser.png";
+import { useClickOutside } from "../Hooks/useClickOutside";
+import { AnimatePresence } from "framer-motion";
+import { dropdownVariants } from "../Animations/Animations";
 
 const AdminPeople = () => {
   const [showModal, setShowModal] = useState(false);
 
-  const { listUsers, patients, facilities } = useAuth();
+  const { listUsers, patients, facilities, user } = useAuth();
   const [facility, setFacility] = useState([]);
 
   useEffect(() => {
     setFacility(facilities);
   }, [facilities]);
+
+  const [term, setTerm] = useState("");
+  const [isSort, setIsSort] = useState(false);
+  const [sort, setSort] = useState("Oldest");
+  const [searchDropdown, setSearchDropdown] = useState(false);
+
+  let domNodeSearch = useClickOutside(() => {
+    setSearchDropdown(false);
+  });
+
+  let domNodeSort = useClickOutside(() => {
+    setIsSort(false);
+  });
 
   return (
     <>
@@ -46,25 +63,85 @@ const AdminPeople = () => {
                 Add User
               </motion.button>
             </div>
-            <div className="above-table">
+            <div className="above-patient-table">
               <div className="patient-input-container">
-                <input type="search" placeholder="Search doctors" />
+                <input
+                  value={term}
+                  onChange={(e) => setTerm(e.target.value)}
+                  type="search"
+                  onFocus={() => setSearchDropdown(true)}
+                  placeholder="Search patient (last name, first name)"
+                />
                 <div className="patient-input-icon">
                   <HiOutlineSearch />
                 </div>
+
+                {searchDropdown && (
+                  <div ref={domNodeSearch} className="advance-search">
+                    {!term ? (
+                      <p>Type in the search bar</p>
+                    ) : (
+                      <p>You searched for "{term}"</p>
+                    )}
+                  </div>
+                )}
               </div>
-              <div className="above-table-right">
-                <button className="fac-btns">
-                  <p>
-                    <HiOutlineFilter />
-                  </p>
-                  Filter
-                </button>
-                <button className="fac-btns">
+
+              <div className="above-patient-table-btns">
+                <button
+                  className={isSort ? "btn-active" : "btn-inactive"}
+                  onClick={() => {
+                    setIsSort(!isSort);
+                  }}
+                >
                   <p>
                     <HiOutlineSortDescending />
                   </p>
-                  Sort by
+                  Sort by: {sort}
+                  <AnimatePresence>
+                    {isSort && (
+                      <motion.div
+                        ref={domNodeSort}
+                        variants={dropdownVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        className="sort-dropdown"
+                      >
+                        <ul>
+                          <li
+                            onClick={() => {
+                              setSort("Oldest");
+                            }}
+                          >
+                            Oldest
+                          </li>
+                          <li
+                            onClick={() => {
+                              setSort("Newest");
+                            }}
+                          >
+                            Newest
+                          </li>
+
+                          <li
+                            onClick={() => {
+                              setSort("Name (A-Z)");
+                            }}
+                          >
+                            Name (A-Z)
+                          </li>
+                          <li
+                            onClick={() => {
+                              setSort("Name (Z-A)");
+                            }}
+                          >
+                            Name (Z-A)
+                          </li>
+                        </ul>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </button>
               </div>
             </div>
@@ -84,7 +161,13 @@ const AdminPeople = () => {
                     return (
                       <div key={key} className="table-body">
                         <div className="admin-user-name">
-                          <p> Dr. {item.firstname + " " + item.lastname}</p>
+                          <p>
+                            <img
+                              src={!item.picture ? NoUser : item.picture}
+                              alt="Profile Picture"
+                            />{" "}
+                            Dr. {item.firstname + " " + item.lastname}
+                          </p>
                         </div>
                         <div className="admin-user-patients">
                           {

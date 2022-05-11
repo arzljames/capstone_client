@@ -44,7 +44,6 @@ const PendingUser = ({
 }) => {
   const navigate = useNavigate();
   const [dropdown, setDropdown] = useState("");
-  const [sending, setSending] = useState(false);
 
   let domNode = useClickOutside(() => {
     setDropdown(false);

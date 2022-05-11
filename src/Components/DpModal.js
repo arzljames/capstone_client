@@ -1,12 +1,80 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { containerVariant, formVariant } from "../Animations/Animations";
+import { HiUpload, HiOutlineTrash } from "react-icons/hi";
+import NoUser from "../Assets/nouser.png";
+import useAuth from "../Hooks/useAuth";
+import api from "../API/Api";
+import { socket } from "./Socket";
 
-const DpModal = ({ setDp }) => {
+const DpModal = ({ setDp, image }) => {
   let domNode = useClickOutside(() => {
     setDp(false);
   });
+
+  const { setIsError, setToast, setMessage, setAppState, user } = useAuth();
+  const [loader, setLoader] = useState(false);
+
+  const [picture, setPicture] = useState("");
+
+  useEffect(() => {
+    setPicture(image);
+  }, image);
+
+  const inputFileRef = useRef(null);
+
+  const onBtnClick = () => {
+    inputFileRef.current.click();
+  };
+
+  const changeProfile = async (e) => {
+    try {
+      setLoader(true);
+      const formData = new FormData();
+      formData.append("file", e);
+      formData.append("upload_preset", "qn8bbwmc");
+      formData.append("cloud_name", "ojttelemedicine");
+      fetch("https://api.cloudinary.com/v1_1/ojttelemedicine/upload", {
+        method: "post",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setLoader(false);
+
+          let response = api.put(`/api/user/profile/${user.userId}`, {
+            picture: data.url,
+          });
+
+          if (response) {
+            socket.emit("chat");
+            setLoader(false);
+            setAppState("Change DP");
+            setTimeout(() => setAppState(""));
+            setToast(true);
+            setIsError(false);
+            setMessage("Successfully changed profile picture.");
+          } else {
+            socket.emit("chat");
+            setLoader(false);
+            setAppState("Change DP");
+            setTimeout(() => setAppState(""));
+            setToast(true);
+            setIsError(false);
+            setMessage("Successfully changed profile picture.");
+          }
+        });
+    } catch (error) {
+      setLoader(false);
+      setAppState("Change DP");
+      setTimeout(() => setAppState(""));
+      setToast(true);
+      setIsError(true);
+      setMessage(error.message);
+    }
+  };
+
   return (
     <motion.div
       variants={containerVariant}
@@ -27,6 +95,38 @@ const DpModal = ({ setDp }) => {
         <p>
           It will take some time to reflect profile changes across the system.
         </p>
+
+        <div className="dp-picture">
+          <input
+            type="file"
+            ref={inputFileRef}
+            onChange={(e) => setPicture(URL.createObjectURL(e.target.files[0]))}
+          />
+          <img src={picture} alt="Profile Picture" />
+          <div className="btns">
+            <button onClick={() => onBtnClick()} className="upload">
+              <p>
+                <HiUpload />
+              </p>{" "}
+              Upload Picture
+            </button>
+            <button onClick={() => setPicture(NoUser)} className="remove">
+              <p>
+                <HiOutlineTrash />
+              </p>{" "}
+              Remove Picture
+            </button>
+          </div>
+        </div>
+
+        <div className="dp-footer">
+          <button onClick={() => setDp(false)} className="gray-cta">
+            Cancel
+          </button>
+          <button onClick={() => changeProfile()} className="green-cta">
+            Save
+          </button>
+        </div>
       </motion.div>
     </motion.div>
   );

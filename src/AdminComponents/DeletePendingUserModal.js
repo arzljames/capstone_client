@@ -47,15 +47,13 @@ const DeletePendingUser = ({ setModal, userId }) => {
         exit="exit"
         className="delete-pending-user-modal"
       >
-        <div className="delete-pending-user-modal-header">
-          <h1>Delete User Registration</h1>
-        </div>
-        <div className="delete-pending-user-modal-body">
-          <p>
-            Are you sure you want to delete this pending user registration? You
-            will no longer be able to revert this action.
-          </p>
-        </div>
+        <h1>Delete User Registration</h1>
+
+        <p>
+          Are you sure you want to delete this pending user registration? You
+          will no longer be able to revert this action.
+        </p>
+
         <div className="delete-pending-user-modal-footer">
           <motion.button
             whileTap={{ scale: 0.9 }}

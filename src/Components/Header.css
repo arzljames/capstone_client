@@ -39,10 +39,10 @@
 .profile-name-picture-container span {
   position: absolute;
   font-size: 12px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
   color: #fff;
-  width: 30px;
-  height: 30px;
+  width: 103%;
+  height: 102%;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -54,10 +54,6 @@
   font-size: 16px;
 }
 
-.profile-name-picture-container span:hover {
-  background: #272727;
-  transition: 0.1s ease-in-out;
-}
 .profile-name-picture-container:hover span {
   opacity: 1;
   pointer-events: auto;
@@ -289,21 +285,89 @@
 
 .dp-modal {
   width: 95%;
-  max-width: 500px;
+  max-width: 400px;
   padding: 20px;
   background: #fff;
   border-radius: 8px;
 }
 
 div.dp-modal h1 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #272727;
+  margin-bottom: 5px;
 }
 
 div.dp-modal p {
   font-size: 14px;
   color: #272727;
+  margin-bottom: 20px;
+}
+
+.dp-modal .dp-picture {
+  display: flex;
+  align-items: center;
+}
+
+.dp-modal .dp-picture .btns {
+  flex: 1;
+  margin-left: 20px;
+  flex-direction: column;
+}
+
+.dp-modal .dp-picture .btns button {
+  margin-left: 0px;
+  margin-bottom: 10px;
+  background: transparent;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+
+.dp-modal .dp-picture .btns button p {
+  display: flex;
+  height: 100%;
+  margin: 0px;
+  align-items: center;
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+.dp-modal .dp-picture .btns button.upload {
+  color: #14461e;
+}
+
+.dp-modal .dp-picture .btns button.upload p {
+  color: #14461e;
+}
+
+.dp-modal .dp-picture .btns button.remove {
+  color: #da4545;
+}
+
+.dp-modal .dp-picture .btns button.remove p {
+  color: #da4545;
+}
+
+.dp-modal .dp-picture img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid #d3d3d3;
+  background: #eee;
+  object-fit: cover;
+  object-position: center;
+}
+
+.dp-modal .dp-picture input {
+  display: none;
+}
+
+.dp-footer {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  justify-content: flex-end;
 }
 
 @media screen and (max-width: 768px) {

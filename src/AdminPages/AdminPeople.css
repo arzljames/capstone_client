@@ -35,6 +35,15 @@
   align-items: center;
 }
 
+.admin-user-name img {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #eee;
+  border: 1px solid #d3d3d3;
+  margin-right: 10px;
+}
+
 .table-body .admin-user-name p {
   cursor: pointer;
   color: rgb(45, 109, 206);
