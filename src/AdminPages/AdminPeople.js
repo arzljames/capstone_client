@@ -157,6 +157,17 @@ const AdminPeople = () => {
                 </div>
                 {listUsers
                   .filter((e) => e.userType !== "admin" && e.verified === true)
+                  .filter((val) => {
+                    if (term === "") {
+                      return val;
+                    } else if (
+                      val.fullname
+                        .toLowerCase()
+                        .includes(term.toLocaleLowerCase())
+                    ) {
+                      return val;
+                    }
+                  })
                   .map((item, key) => {
                     return (
                       <div key={key} className="table-body">

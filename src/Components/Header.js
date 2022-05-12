@@ -3,7 +3,6 @@ import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import ProfileHeader from "./ProfileHeader";
 
-
 const Header = () => {
   const navigate = useNavigate();
 

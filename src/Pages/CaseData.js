@@ -25,6 +25,7 @@ import { buttonVariant } from "../Animations/Animations";
 import { ToastContainer, toast } from "react-toastify";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { useClickOutside } from "../Hooks/useClickOutside";
+import NoUser from "../Assets/nouser.png";
 
 const CaseData = () => {
   const [dropdown, setDropdown] = useState(false);
@@ -246,7 +247,216 @@ const CaseData = () => {
                     ))}
                 </div>
               </div>
-              <div className="case-data">
+              <div className="case-container">
+                <div className="case-data">
+                  <div className="cd-box">
+                    <div className="pt-overview">
+                      <img src={NoUser} alt="Patient Profile" />
+                      <div>
+                        <h1>
+                          {patientCase.patient.firstname +
+                            " " +
+                            patientCase.patient.middlename[0] +
+                            "." +
+                            " " +
+                            patientCase.patient.lastname}
+                        </h1>
+                        <p>Patient - Case ID #{patientCase.caseId}</p>
+                      </div>
+                    </div>
+
+                    <div className="col-info">
+                      <div className="col-2">
+                        <div className="liner">
+                          <label>Contact</label>{" "}
+                          <p>{patientCase.patient.contact}</p>
+                        </div>
+
+                        <div className="liner">
+                          <label>Sex</label> <p>{patientCase.patient.sex}</p>
+                        </div>
+
+                        <div className="liner">
+                          <label>Civil Status</label>
+                          <p>{patientCase.patient.civilStatus}</p>
+                        </div>
+
+                        <div className="liner">
+                          <label>Birthday</label>
+                          <p>{patientCase.patient.birthday}</p>
+                        </div>
+
+                        <div className="liner">
+                          <label>Religion</label>
+                          <p>{patientCase.patient.religion}</p>
+                        </div>
+                      </div>
+                      <div className="col-2">
+                        <div className="liner">
+                          <label>Address</label>
+                          <p>
+                            {patientCase.patient.address.barangay +
+                              "," +
+                              " " +
+                              patientCase.patient.address.city}
+                          </p>
+                        </div>
+
+                        <div className="liner">
+                          <label>Birth place</label>
+                          <p>{patientCase.patient.birthplace}</p>
+                        </div>
+
+                        <div className="liner">
+                          <label>Ethnicity</label>
+                          <p>{patientCase.patient.ethnicity}</p>
+                        </div>
+
+                        <div className="liner">
+                          <label>Guardian</label>
+                          <p>{patientCase.patient.guardian.name}</p>
+                        </div>
+
+                        <div className="liner">
+                          <label>Relation</label>
+                          <p>{patientCase.patient.guardian.relationship}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="cd-box">
+                    <h2>Case Information</h2>
+                    <div className="col-info">
+                      <div className="col-3">
+                        <div className="liner">
+                          <label>Chief complaint</label>
+                          <p>{patientCase.cc}</p>
+                        </div>
+
+                        <div className="liner">
+                          <label>Pertinent History of Present Illness</label>
+                          <p>{patientCase.hpi}</p>
+                        </div>
+
+                        <div className="liner">
+                          <label>Pertinent Past Medical History</label>
+                          <p>{patientCase.pmh}</p>
+                        </div>
+                        <div className="liner">
+                          <label>Pertinent Review of Systems</label>
+                          <p>{patientCase.ros}</p>
+                        </div>
+                        <div className="liner">
+                          <label>Pertinent PE Findings</label>
+                          <p>{patientCase.pe}</p>
+                        </div>
+                        <div className="liner">
+                          <label>Pertinent Paraclinicals</label>
+                          <p></p>
+                        </div>
+                        <div className="liner">
+                          <label>Working Impression</label>
+                          <p>{patientCase.wi}</p>
+                        </div>
+
+                        <div className="liner">
+                          <label>Initial Management Done</label>
+                          <p>{patientCase.imd}</p>
+                        </div>
+                        <div className="liner">
+                          <label>Reason for Referral</label>
+                          <p>{patientCase.reason}</p>
+                        </div>
+                      </div>
+
+                      <div className="col-1">
+                        <div className="liner">
+                          <label>Temperature:</label>{" "}
+                          <p> {patientCase.temperature}</p>
+                        </div>
+                        <div className="liner">
+                          <label>Respiratory Rate:</label>
+                          <p> {patientCase.respiratory}</p>
+                        </div>
+                        <div className="liner">
+                          <label>Heart Rate:</label> <p> {patientCase.heart}</p>
+                        </div>
+                        <div className="liner">
+                          <label>Blood Pressure:</label>{" "}
+                          <p> {patientCase.blood}</p>
+                        </div>
+                        <div className="liner">
+                          <label>Oxygen Saturation:</label>{" "}
+                          <p> {patientCase.oxygen}</p>
+                        </div>
+                        <div className="liner">
+                          <label>Weight:</label> <p> {patientCase.weight}</p>
+                        </div>
+                        <div className="liner">
+                          <label>Height: </label> <p>{patientCase.height}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ResponseChat
+                    id={patientCase._id}
+                    user={user}
+                    response={response}
+                    setResponse={setResponse}
+                    active={patientCase.active}
+                  />
+                </div>
+                <div className="case-hospital">
+                  <div className="case-hospital-header">
+                    <h2>Referring Hospital</h2>
+
+                    <label>Hospital</label>
+                    <p>
+                      {facilities
+                        .filter(
+                          (e) => e._id === patientCase.physician.designation
+                        )
+                        .map((f) => {
+                          return f.facility;
+                        })}
+                    </p>
+
+                    <label>Attending Pysician</label>
+                    <p>
+                      Dr.{" "}
+                      {patientCase.physician.firstname +
+                        " " +
+                        patientCase.physician.lastname}
+                    </p>
+
+                    <label>Specialization</label>
+                    <p>
+                      {
+                        facilities
+                          .filter(
+                            (e) => e._id === patientCase.physician.designation
+                          )
+                          .map((f) => {
+                            return f.specialization.filter(
+                              (g) =>
+                                g._id === patientCase.physician.specialization
+                            )[0];
+                          })[0].name
+                      }
+                    </p>
+
+                    <label>Date & Time</label>
+                    <p>
+                      {getDate(patientCase.createdAt) +
+                        " " +
+                        getTime(patientCase.createdAt)}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {/* <div className="case-data">
                 <div className="case-data-profile">
                   <h1>Patient Information</h1>
 
@@ -348,9 +558,8 @@ const CaseData = () => {
                       getTime(patientCase.createdAt)}
                   </p>
                 </div>
-              </div>
-
-              <div className="case-information">
+              </div> */}
+              {/* <div className="case-information">
                 <h1>Case {patientCase.caseId}</h1>
 
                 <div className="case-data-separator">
@@ -395,13 +604,7 @@ const CaseData = () => {
                   </div>
                 </div>
               </div>
-              <ResponseChat
-                id={patientCase._id}
-                user={user}
-                response={response}
-                setResponse={setResponse}
-                active={patientCase.active}
-              />
+               */}
             </div>
           </div>
         </div>

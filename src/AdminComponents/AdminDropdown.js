@@ -1,55 +1,67 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import {
-    IoPersonOutline,
-    IoSettingsOutline,
-    IoExitOutline,
-    IoBookOutline,
-    IoCodeSlash,
-  } from "react-icons/io5";
+  IoPersonOutline,
+  IoSettingsOutline,
+  IoExitOutline,
+  IoBookOutline,
+  IoCodeSlash,
+} from "react-icons/io5";
+import NoUser from "../Assets/nouser.png";
+import useAuth from "../Hooks/useAuth";
+import { HiCamera } from "react-icons/hi";
+import { AnimatePresence } from "framer-motion";
+import DpModal from "../Components/DpModal";
 
-const AdminDropdown = ({submitLogout}) => {
+const AdminDropdown = ({ submitLogout, users }) => {
+  const [dp, setDp] = useState(false);
+  const { user } = useAuth();
   return (
-    <div 
-            className="profile-container-dropdown"
-          >
-            <ul>
-              <li>
-                <p>
-                  <IoPersonOutline />
-                </p>
-                Your Profile
-              </li>
-              <li>
-                <p>
-                  <IoSettingsOutline />
-                </p>
-                Account Settings
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <p>
-                  <IoCodeSlash />
-                </p>
-                About
-              </li>
-              <li>
-                <p>
-                  <IoBookOutline />
-                </p>
-                User Guide
-              </li>
-            </ul>
-            <ul style={{ border: "none" }}>
-              <li onClick={() => submitLogout()}>
-                <p>
-                  <IoExitOutline />
-                </p>
-                Sign Out
-              </li>
-            </ul>
-          </div>
-  )
-}
+    <>
+      <AnimatePresence>
+        {dp && (
+          <DpModal
+            image={!users.picture ? NoUser : users.picture}
+            setDp={setDp}
+          />
+        )}
+      </AnimatePresence>
+      <div className="profile-container-dropdown">
+        <div className="profile-name-picture">
+          <div className="profile-name-picture-container">
+            <span
+              onClick={() => {
+                setDp(true);
+              }}
+            >
+              <HiCamera />
+            </span>
 
-export default AdminDropdown
+            <img src={!users.picture ? NoUser : users.picture} alt="Avatar" />
+          </div>
+          <div className="text-wrapper">
+            <h5>
+              {user.firstname} {user.lastname}
+            </h5>
+            <p className="p-active-status">System Administrator</p>
+          </div>
+        </div>
+        <ul style={{ border: "none" }}>
+          <li>
+            <p>
+              <IoCodeSlash />
+            </p>
+            Account Settings
+          </li>
+          <li onClick={() => submitLogout()}>
+            <p>
+              <IoExitOutline />
+            </p>
+            Sign Out
+          </li>
+        </ul>
+      </div>
+    </>
+  );
+};
+
+export default AdminDropdown;

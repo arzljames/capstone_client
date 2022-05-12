@@ -8,16 +8,16 @@ import ConsultationNavbar from "../Components/ConsultationNavbar";
 import OutgoingCaseActive from "../Components/OutgoingCaseActive";
 import { AnimatePresence } from "framer-motion";
 import useAuth from "../Hooks/useAuth";
-import {Helmet} from 'react-helmet'
+import { Helmet } from "react-helmet";
 
 const OutgoingConsult = () => {
   const { cases, user, toast } = useAuth();
 
   return (
     <>
-     <Helmet>
-      <title>Outgoing Request | ZCMC Telemedicine</title>
-    </Helmet>
+      <Helmet>
+        <title>Outgoing Request | ZCMC Telemedicine</title>
+      </Helmet>
       <div className="container">
         <AnimatePresence>{toast && <Toast />}</AnimatePresence>
         <Sidebar />
@@ -26,7 +26,7 @@ const OutgoingConsult = () => {
           <div className="consultation-content">
             <ConsultationNavbar />
             <div className="content-body">
-              <div className="admin-subheading">
+              <div className="container-heading">
                 <div>
                   <h2>All Outgoing Requests</h2>
                   <p>

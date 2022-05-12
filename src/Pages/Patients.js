@@ -48,18 +48,6 @@ const Patients = () => {
 
   const [showImport, setShowImport] = useState(false);
 
-  // const sortAsc = () => {
-  //   setPatients(
-  //     patients.sort((a, b) => a.firstname.localeCompare(b.firstname))
-  //   );
-  // };
-
-  // const sortDsc = () => {
-  //   setPatients(
-  //     patients.sort((b, a) => a.firstname.localeCompare(b.firstname))
-  //   );
-  // };
-
   const [term, setTerm] = useState("");
 
   let domNodeSort = useClickOutside(() => {

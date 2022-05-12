@@ -4,7 +4,6 @@ import "./AdminHeader.css";
 import AdminProfileHeader from "./AdminProfileHeader";
 
 const AdminHeader = () => {
- 
   const navigate = useNavigate();
   return (
     <div className="admin-header">

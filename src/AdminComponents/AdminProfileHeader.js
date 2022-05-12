@@ -1,18 +1,13 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./AdminHeader.css";
 import NoUser from "../Assets/nouser.png";
 import api from "../API/Api";
 import AdminDropdown from "./AdminDropdown";
 import DataContext from "../Context/DataContext";
 import { motion } from "framer-motion";
-import {
-  HiDotsHorizontal,
-  HiCheck,
-  HiOutlineClock,
-  HiOutlineX,
-} from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
+import { HiDotsHorizontal } from "react-icons/hi";
 import useAuth from "../Hooks/useAuth";
+import { socket } from "../Components/Socket";
 
 let useClickOutside = (handler) => {
   let domNode = useRef();
@@ -38,10 +33,6 @@ const AdminProfileHeader = () => {
   const { user, appState, setAppState, status, setStatus } = useAuth();
   const firstname = `${user.firstname} `;
   const fullName = firstname.split(" ");
-  const initials = fullName.shift().charAt(0) + fullName.pop().charAt(0);
-
-  const navigate = useNavigate();
-  const path = window.location.pathname;
 
   const submitLogout = async () => {
     try {
@@ -58,11 +49,24 @@ const AdminProfileHeader = () => {
     setDropdown(false);
   });
 
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchChat = () => {
+      socket.emit("chat");
+      socket.on("get_chat", (data) => {
+        setUsers(data.filter((e) => e._id === user.userId)[0]);
+      });
+    };
+
+    fetchChat();
+  }, [socket]);
+
   return (
     <div ref={domNode} className="admin-profile-header">
       <motion.div className="admin-profile-name">
         <div className="admin-profile-picture">
-          <img src={!user.picture ? NoUser : user.picture} alt="Avatar" />
+          <img src={!users.picture ? NoUser : users.picture} alt="Avatar" />
         </div>
         <h5>{user.firstname}</h5>
       </motion.div>
@@ -76,7 +80,7 @@ const AdminProfileHeader = () => {
         </p>
       </motion.div>
 
-      {dropdown && <AdminDropdown submitLogout={submitLogout} />}
+      {dropdown && <AdminDropdown users={users} submitLogout={submitLogout} />}
     </div>
   );
 };

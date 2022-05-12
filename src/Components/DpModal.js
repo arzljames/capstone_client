@@ -17,6 +17,7 @@ const DpModal = ({ setDp, image }) => {
   const [loader, setLoader] = useState(false);
 
   const [picture, setPicture] = useState("");
+  const [pictureFile, setPictureFile] = useState(null);
 
   useEffect(() => {
     setPicture(image);
@@ -28,11 +29,11 @@ const DpModal = ({ setDp, image }) => {
     inputFileRef.current.click();
   };
 
-  const changeProfile = async (e) => {
+  const changeProfile = () => {
     try {
       setLoader(true);
       const formData = new FormData();
-      formData.append("file", e);
+      formData.append("file", pictureFile);
       formData.append("upload_preset", "qn8bbwmc");
       formData.append("cloud_name", "ojttelemedicine");
       fetch("https://api.cloudinary.com/v1_1/ojttelemedicine/upload", {
@@ -100,7 +101,10 @@ const DpModal = ({ setDp, image }) => {
           <input
             type="file"
             ref={inputFileRef}
-            onChange={(e) => setPicture(URL.createObjectURL(e.target.files[0]))}
+            onChange={(e) => {
+              setPicture(URL.createObjectURL(e.target.files[0]));
+              setPictureFile(e.target.files[0]);
+            }}
           />
           <img src={picture} alt="Profile Picture" />
           <div className="btns">
