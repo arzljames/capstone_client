@@ -67,11 +67,7 @@ const DeletePendingUser = ({ setModal, userId }) => {
             onClick={() => handleDelete()}
             className={isClick ? "dpum-delete-btn-disable" : "dpum-delete-btn"}
           >
-            {isClick ? (
-              <PulseLoader size={5} margin={2} color="#fff" />
-            ) : (
-              "Delete Request"
-            )}
+            Delete Request
           </motion.button>
         </div>
       </motion.div>
