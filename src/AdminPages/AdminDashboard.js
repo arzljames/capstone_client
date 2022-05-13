@@ -89,7 +89,7 @@ const AdminDashboard = () => {
       const groups = {};
       patients
         .filter((e) => yearSelected === parseInt(e.createdAt.substring(0, 4)))
-        .forEach(function (val) {
+        .map(function (val) {
           const dates = new Date(val.createdAt);
           const date = dates.toLocaleString("en-us", { month: "short" });
           if (date in groups) {
@@ -144,6 +144,28 @@ const AdminDashboard = () => {
       {
         label: "Patients",
         data: [
+          months === null ? 0 : months.Jan ? months.Jan.length : 0,
+          months === null ? 0 : months.Feb ? months.Feb.length : 0,
+          months === null ? 0 : months.Mar ? months.Mar.length : 0,
+          months === null ? 0 : months.Apr ? months.Apr.length : 0,
+          months === null ? 0 : months.May ? months.May.length : 0,
+          months === null ? 0 : months.Jun ? months.Jun.length : 0,
+          months === null ? 0 : months.Jul ? months.Jul.length : 0,
+          months === null ? 0 : months.Aug ? months.Aug.length : 0,
+          months === null ? 0 : months.Sep ? months.Sep.length : 0,
+          months === null ? 0 : months.Oct ? months.Oct.length : 0,
+          months === null ? 0 : months.Nov ? months.Nov.length : 0,
+          months === null ? 0 : months.Dec ? months.Dec.length : 0,
+        ],
+        borderColor: "#FF959E",
+        backgroundColor: "#FFE2E4",
+        borderWidth: 2,
+        spanGaps: true,
+        showLine: true,
+      },
+      {
+        label: "Cases",
+        data: [
           monthsCase === null ? 0 : monthsCase.Jan ? monthsCase.Jan.length : 0,
           monthsCase === null ? 0 : monthsCase.Feb ? monthsCase.Feb.length : 0,
           monthsCase === null ? 0 : monthsCase.Mar ? monthsCase.Mar.length : 0,
@@ -156,28 +178,6 @@ const AdminDashboard = () => {
           monthsCase === null ? 0 : monthsCase.Oct ? monthsCase.Oct.length : 0,
           monthsCase === null ? 0 : monthsCase.Nov ? monthsCase.Nov.length : 0,
           monthsCase === null ? 0 : monthsCase.Dec ? monthsCase.Dec.length : 0,
-        ],
-        borderColor: "#FF959E",
-        backgroundColor: "#FFE2E4",
-        borderWidth: 2,
-        spanGaps: true,
-        showLine: true,
-      },
-      {
-        label: "Cases",
-        data: [
-          monthsCase === null ? 0 : months.Jan ? months.Jan.length : 0,
-          months === null ? 0 : months.Feb ? months.Feb.length : 0,
-          months === null ? 0 : months.Mar ? months.Mar.length : 0,
-          months === null ? 0 : months.Apr ? months.Apr.length : 0,
-          months === null ? 0 : months.May ? months.May.length : 0,
-          months === null ? 0 : months.Jun ? months.Jun.length : 0,
-          months === null ? 0 : months.Jul ? months.Jul.length : 0,
-          months === null ? 0 : months.Aug ? months.Aug.length : 0,
-          months === null ? 0 : months.Sep ? months.Sep.length : 0,
-          months === null ? 0 : months.Oct ? months.Oct.length : 0,
-          months === null ? 0 : months.Nov ? months.Nov.length : 0,
-          months === null ? 0 : months.Dec ? months.Dec.length : 0,
         ],
         borderColor: "#7DBFFF",
         backgroundColor: "#DCEEFF",

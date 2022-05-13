@@ -1,36 +1,36 @@
 .cs-id {
-width: 175px;
+  width: 175px;
   height: 100%;
   display: flex;
   align-items: center;
-  padding-left: 10px;
+  padding-left: 20px;
 }
-
-
 
 .cs-name {
-    flex: 1;
+  flex: 1;
   height: 100%;
   display: flex;
   align-items: center;
   padding-left: 10px;
-
 }
 
-.table-body .cs-name p, .table-body .cs-id  p{
-    cursor: pointer;
-    color: rgb(45, 109, 206);
-    height: 100%;
-    display: flex;
-    align-items: center;
+.table-body .cs-name p,
+.table-body .cs-id p {
+  cursor: pointer;
+  color: rgb(45, 109, 206);
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
-.table-body .cs-name p:hover, .table-body .cs-id p:hover  {
-text-decoration: underline;
+.table-body .cs-name p:hover,
+.table-body .cs-id p:hover {
+  text-decoration: underline;
 }
 
-.cs-department, .cs-date {
-    width: 200px;
+.cs-department,
+.cs-date {
+  width: 200px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -38,62 +38,62 @@ text-decoration: underline;
 }
 
 .cs-status {
-    width: 150px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 150px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cs-status p.active {
-    color: #058e46;
-    width: auto;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    padding: 4px 8px;
-    background: #dcf1e5;
-    border-radius: 4px;
+  color: #058e46;
+  width: auto;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  background: #dcf1e5;
+  border-radius: 4px;
 }
 
 .cs-status p.done {
-    color: #ff831d;
-    width: auto;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    padding: 4px 8px;
-    background: #ffeee0;
-    border-radius: 4px;
+  color: #ff831d;
+  width: auto;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  background: #ffeee0;
+  border-radius: 4px;
 }
 
-.cs-status  .indicator{
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    margin-right: 5px;
+.cs-status .indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 5px;
 }
 
 .cs-status .indicator.done {
-    background: #ff831d;
+  background: #ff831d;
 }
 
 .cs-status .indicator.active {
-    background: #058e46;
+  background: #058e46;
 }
-
 
 @media screen and (max-width: 768px) {
-    
-.cs-department, .cs-date, .cs-status {
+  .cs-department,
+  .cs-date,
+  .cs-status {
     display: none;
-}
+  }
 
-.cs-id {
+  .cs-id {
     width: 50%;
-}
+  }
 
-.cs-name {
+  .cs-name {
     width: 50%;
-}
+  }
 }

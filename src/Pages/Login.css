@@ -210,6 +210,17 @@ button.login-form-btn {
   justify-content: center;
 }
 
+button.login-form-btn a,
+button.login-form-btn-disable a {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
 .login-form-btn-disable {
   opacity: 50%;
   pointer-events: none;
@@ -557,6 +568,10 @@ div.hospital-input:hover {
   cursor: pointer;
   transition: 0.1s ease-in-out;
   font-weight: 500;
+  margin-left: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .register-successful button:hover {

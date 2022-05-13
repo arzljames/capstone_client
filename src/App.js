@@ -40,6 +40,7 @@ import GenerateReport from "./Components/GenerateReport";
 import "react-toastify/dist/ReactToastify.css";
 import AccountSettings from "./Pages/AccountSettings";
 import UserManual from "./Pages/UserManual";
+import PageNotFound from "./Pages/PageNotFound";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -115,7 +116,7 @@ function App() {
           <Route path="reset-password" element={<ForgotPassword />} />
         </Route>
 
-        <Route path="*" element={<ForgotPassword />} />
+        <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
   );

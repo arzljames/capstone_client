@@ -15,6 +15,7 @@ import { IoNotifications } from "react-icons/io5";
 import NotificationDropdown from "./NotificationDropdown";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { socket } from "./Socket";
+import { IoCaretDown } from "react-icons/io5";
 
 const ProfileHeader = () => {
   const { user, appState, setAppState, listUsers } = useAuth();
@@ -147,7 +148,7 @@ const ProfileHeader = () => {
         className={dropdown ? "profile-settings-active" : "profile-settings"}
       >
         <p>
-          <HiDotsHorizontal />
+          <IoCaretDown />
         </p>
       </motion.div>
 

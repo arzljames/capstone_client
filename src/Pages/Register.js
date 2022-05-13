@@ -132,7 +132,7 @@ const Register = () => {
         } else {
           setSuccess(true);
           clearForm();
-          setLoader(true);
+          setLoader(false);
         }
       }
     } catch (error) {
@@ -208,6 +208,7 @@ const Register = () => {
             First name <i>*</i>
           </label>
           <input
+            id={firstnameErr ? "error-input" : ""}
             className={firstnameErr ? "error-input" : ""}
             value={register.firstname}
             onChange={(e) => {
@@ -407,11 +408,14 @@ const Register = () => {
           {retypeError && <p className="error-input-text">{retypMsg}</p>}
 
           <button
-            onClick={() => handleRegister()}
+            onClick={() => {
+              handleRegister();
+            }}
             className={loader ? "login-form-btn-disable" : "login-form-btn"}
           >
-            Sign Up
+            <a href="#error-input">Sign Up</a>
           </button>
+
           <div className="form-link">
             <p onClick={() => navigate("/login")}>
               Already have an account? <span>Sign in.</span>

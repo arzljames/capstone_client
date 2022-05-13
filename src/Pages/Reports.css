@@ -1,24 +1,22 @@
 .reports-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin: 20px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 20px 0px;
 }
 
-
-
 .reports-header h2 {
-    color: #272727;
-    font-size: 22px;
-    font-weight: 500;
+  color: #272727;
+  font-size: 22px;
+  font-weight: 500;
 }
 
 .reports-header-btns {
-    display: flex;
+  display: flex;
 }
 
 .reports-header-btns button {
-    outline: none;
+  outline: none;
   padding: 0px 6px;
   cursor: pointer;
   font-size: 12px;
@@ -32,20 +30,18 @@
   transition: 0.1s ease-in-out;
 }
 
-
-
 .reports-header button p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 5px;
-    font-size: 16px;
-    margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+  font-size: 16px;
+  margin-top: 0;
 }
 
 .reports-header button.create-report {
-    border: none;
-    background: #1CB45D;
+  border: none;
+  background: #1cb45d;
   color: #fff;
   border: none;
   box-shadow: rgba(9, 66, 12, 0.25) 0px 1px 1px,
@@ -53,13 +49,13 @@
 }
 
 .reports-header button.create-report:hover {
-    background: #199b51;
-    transition: 0.1s ease-in-out;
+  background: #199b51;
+  transition: 0.1s ease-in-out;
 }
 
 .above-patient-profile-btns button.export-csv {
-    border: none;
-    background: #1CB45D;
+  border: none;
+  background: #1cb45d;
   color: #fff;
   border: none;
   box-shadow: rgba(9, 66, 12, 0.25) 0px 1px 1px,
@@ -67,180 +63,166 @@
 }
 
 .above-patient-profile-btns button.export-csv:hover {
-    background: #199b51;
-    transition: 0.1s ease-in-out;
-}
-
-
-.above-patient-profile-btns button.edit-filter {
-    background: #ffffff;
-    color: #058e46;
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
-      rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-    transition: 0.1s ease-in-out;
-    border: none;
-}
-
-
-
-.reports-header button.edit-filter:hover {
-    transition: 0.1s ease-in-out;
-    background: #f3f3f3;
-}
-
-.filter-modal {
-    width: 100%;
-    max-width: 600px;
-    border-radius: 8px;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    justify-content: space-between;
-}
-
-.filter-modal-header {
-    width: 100%;
-    height: 60px;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    color: #272727;
-    padding: 0px 20px;
-    justify-content: space-between;
-}
-
-.filter-modal-header  h1 {
-    color: #272727;
-    font-weight: 600;
-    font-size: 18px;
-  }
-
-.filter-modal-body {
-    padding: 20px;
-    overflow-y: scroll;
-    flex: 1;
-}
-
-
-
-.filter-modal-footer {
-    width: 100%;
-    height: 60px;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px 20px;
-    background: #eee;
-}
-
-.filter-modal .filter-modal-body label {
-    font-size: 14px;
-    color: #272727;
-    margin-bottom: 10px;
-    font-weight: 500;
-}
-
-.filter-modal select {
-    width: 100%;
-    border: 1px solid #949494;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    margin-top: 5px;
-}
-
-.filter-modal .date-range {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-.filter-modal .date-range div {
-    width: 48%;
-}
-
-.date-range div input, .date-range div select {
-    width: 100%;
-    border: 1px solid #949494;
-    padding: 10px;
-    border-radius: 4px;
-    margin-top: 5px;
-    margin-bottom: 0px;
-}
-
-
-.filter-modal .btns {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-
-}
-
-
-.filter-modal .btns button {
-    outline: none;
-    padding: 0px 6px;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 500;
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    height: 30px;
-    min-width: 90px;
-    border: none;
-    
-
-}
-
-.filter-modal .btns button.apply {
-    background: #1CB45D;
-  color: #fff;
-  border: none;
-  box-shadow: rgba(9, 66, 12, 0.25) 0px 1px 1px,
-    rgba(9, 66, 12, 0.13) 0px 0px 1px 1px;
-    transition: 0.1s ease-in-out;
-}
-
-
-.filter-modal .btns button.apply-disable {
-    background: #1CB45D;
-  color: #fff;
-  border: none;
-  box-shadow: rgba(9, 66, 12, 0.25) 0px 1px 1px,
-    rgba(9, 66, 12, 0.13) 0px 0px 1px 1px;
-    transition: 0.1s ease-in-out;
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-
-
-.filter-modal .btns button.apply:hover {
-    background: #199b51;
+  background: #199b51;
   transition: 0.1s ease-in-out;
 }
 
+.above-patient-profile-btns button.edit-filter {
+  background: #ffffff;
+  color: #058e46;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  transition: 0.1s ease-in-out;
+  border: none;
+}
+
+.reports-header button.edit-filter:hover {
+  transition: 0.1s ease-in-out;
+  background: #f3f3f3;
+}
+
+.filter-modal {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.filter-modal-header {
+  width: 100%;
+  height: 60px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  color: #272727;
+  padding: 0px 20px;
+  justify-content: space-between;
+}
+
+.filter-modal-header h1 {
+  color: #272727;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.filter-modal-body {
+  padding: 20px;
+  overflow-y: scroll;
+  flex: 1;
+}
+
+.filter-modal-footer {
+  width: 100%;
+  height: 60px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  background: #eee;
+}
+
+.filter-modal .filter-modal-body label {
+  font-size: 14px;
+  color: #272727;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.filter-modal select {
+  width: 100%;
+  border: 1px solid #949494;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+.filter-modal .date-range {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.filter-modal .date-range div {
+  width: 48%;
+}
+
+.date-range div input,
+.date-range div select {
+  width: 100%;
+  border: 1px solid #949494;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.filter-modal .btns {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.filter-modal .btns button {
+  outline: none;
+  padding: 0px 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  height: 30px;
+  min-width: 90px;
+  border: none;
+}
+
+.filter-modal .btns button.apply {
+  background: #1cb45d;
+  color: #fff;
+  border: none;
+  box-shadow: rgba(9, 66, 12, 0.25) 0px 1px 1px,
+    rgba(9, 66, 12, 0.13) 0px 0px 1px 1px;
+  transition: 0.1s ease-in-out;
+}
+
+.filter-modal .btns button.apply-disable {
+  background: #1cb45d;
+  color: #fff;
+  border: none;
+  box-shadow: rgba(9, 66, 12, 0.25) 0px 1px 1px,
+    rgba(9, 66, 12, 0.13) 0px 0px 1px 1px;
+  transition: 0.1s ease-in-out;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.filter-modal .btns button.apply:hover {
+  background: #199b51;
+  transition: 0.1s ease-in-out;
+}
 
 .filter-modal .btns button.close {
-    background: #fff;
-    color: #555555;
-    min-width: 80px;
-    transition: 0.1s ease-in-out;
-    border: 1px solid #d3d3d3
-} 
-
+  background: #fff;
+  color: #555555;
+  min-width: 80px;
+  transition: 0.1s ease-in-out;
+  border: 1px solid #d3d3d3;
+}
 
 .filter-modal .btns button.close:hover {
-    transition: .1s ease-in-out;
-    background: rgb(219, 219, 219);
+  transition: 0.1s ease-in-out;
+  background: rgb(219, 219, 219);
 }
 
 .rp-no {
-    width: 50px;
+  width: 50px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -248,70 +230,68 @@
 }
 
 .rp-id {
-    flex: 1;
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
+  flex: 1;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
 }
 
-
 .rp-id p {
-    cursor: pointer;
-    color: rgb(45, 109, 206);
-    height: 100%;
-    display: flex;
-    align-items: center;
+  cursor: pointer;
+  color: rgb(45, 109, 206);
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .rp-id p:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .rp-date {
-    width: 200px;
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
+  width: 200px;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .rp-modified {
-    width: 200px;
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
-
+  width: 200px;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .table-body .rp-modified {
-    text-transform: lowercase;
+  text-transform: lowercase;
 }
 
 .reports-container {
-    width: 100%;
-    height: 100px;
-    margin-top: 10px;
-    display: flex;
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+  display: flex;
 }
 
-
 .reports-overview-container {
-    width: 400px;
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
+  width: 400px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .rp-ov-1 {
-    width: 100%;
-    background: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .rp-ov-1 h2 {
-    font-size: 16px;
+  font-size: 16px;
   font-weight: 600;
   color: #272727;
   margin-bottom: 20px;
@@ -319,82 +299,77 @@
 }
 
 .rp-ov-1 h3 {
-    font-size: 14px;
+  font-size: 14px;
   font-weight: 400;
   color: #5a5a5a;
   margin-bottom: 12px;
-
 }
 
 .rp-ov-1 h4 {
-    color: #272727;
-    font-weight: 600;
+  color: #272727;
+  font-weight: 600;
 }
 
 .rp-ov-1 p {
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 5px;
-    color: #272727;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #272727;
 }
 
 .rp-ov-1 p label {
-    font-weight: 400;
+  font-weight: 400;
 }
 
-.rp-ov-1  p i {
-    color: #808080;
-    font-weight: 300;
+.rp-ov-1 p i {
+  color: #808080;
+  font-weight: 300;
 }
 
 .reports-container .table {
-    min-height: 0px;
+  min-height: 0px;
 }
 
 .reports-container .table-header {
-    background: #5FA56F;
-    color: #fff;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+  background: #5fa56f;
+  color: #fff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .reports-container .table-body {
-    border-left: none;
+  border-left: none;
 }
 
 .reports-container .table-body-2 {
-    background: #e9f1eb;
-    border-left: none;
-
+  background: #e9f1eb;
+  border-left: none;
 }
 
-.reports-container .table-body-2:hover, .reports-container .table-body:hover {
-    background:#ced3cf;
-    border-left:none;
+.reports-container .table-body-2:hover,
+.reports-container .table-body:hover {
+  background: #ced3cf;
+  border-left: none;
 }
-
-
-
 
 @media screen and (max-width: 768px) {
-    .filter-modal {
-        width: 100%;
-        height: 100vh;
-        max-width: none;
-        overflow-y: scroll;
-        padding-bottom: 70px;
+  .filter-modal {
+    width: 100%;
+    height: 100vh;
+    max-width: none;
+    overflow-y: scroll;
+    padding-bottom: 70px;
 
-border-radius: 0px;
-        min-height: 500px;
-        
-    }
+    border-radius: 0px;
+    min-height: 500px;
+  }
 
-    .rp-date, .rp-modified {
-        display: none;
-    }
+  .rp-date,
+  .rp-modified {
+    display: none;
+  }
 
-
-    .container-modal {
-        display: none;
-    }
+  .container-modal {
+    display: none;
+  }
 }

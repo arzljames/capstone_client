@@ -85,6 +85,31 @@ button {
   border-radius: 5px;
 }
 
+button.back-btn {
+  border: none;
+  outline: none;
+  font-weight: 500;
+  height: auto;
+  width: auto;
+  cursor: pointer;
+  background: transparent;
+  transition: 0.1s ease-in-out;
+  border-radius: 2px;
+  color: #272727;
+  margin-left: 0px;
+  padding: 0px;
+  min-width: 0px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+button.back-btn p {
+  margin-left: 5px;
+  color: #272727;
+  font-size: 14px;
+}
+
 button.green-cta {
   background: #1cb45d;
   color: #fff;
@@ -271,7 +296,6 @@ button.gray-cta:hover {
 }
 
 .searchbar-container {
-  width: 50%;
   max-width: none;
 }
 
@@ -412,4 +436,20 @@ button.gray-cta:hover {
 .patient-input-container input::placeholder {
   font-size: 12px;
   font-style: italic;
+}
+
+@media screen and (max-width: 768px) {
+  .above-patient-table {
+    flex-direction: column;
+  }
+
+  .patient-input-container {
+    margin-bottom: 10px;
+    max-width: none;
+  }
+
+  .patient-input-container input {
+    width: 100%;
+    max-width: none;
+  }
 }

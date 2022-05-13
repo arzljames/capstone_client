@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
-import {
-  HiChevronLeft,
-  HiDocumentText,
-  HiX,
-  HiCheck,
-  HiDownload,
-  HiTrash,
-} from "react-icons/hi";
+import { HiArrowNarrowLeft, HiChevronDown, HiChevronUp } from "react-icons/hi";
 import "./Homepage.css";
 import ConsultationNavbar from "../Components/ConsultationNavbar";
 import useAuth from "../Hooks/useAuth";
@@ -21,7 +14,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import Toast from "../Components/Toast";
 import DeleteCaseModal from "../Components/DeleteCaseModal";
 import { DocumentGenerator } from "../Components/DocumentGenerator";
-import { buttonVariant } from "../Animations/Animations";
+import { buttonVariant, dropdownVariants } from "../Animations/Animations";
 import { ToastContainer, toast } from "react-toastify";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { useClickOutside } from "../Hooks/useClickOutside";
@@ -193,11 +186,34 @@ const CaseData = () => {
             <div className="content-body">
               <div className="above-patient-profile">
                 <button onClick={() => navigate(-1)} className="back-btn">
-                  <HiChevronLeft /> <p>Back</p>
+                  <HiArrowNarrowLeft /> <p>Back</p>
                 </button>
 
                 <div className="above-patient-profile-btns">
-                  {patientCase.physician._id === user.userId && (
+                  <motion.button
+                    ref={domNode}
+                    onClick={() => setDropdown(!dropdown)}
+                    className={
+                      dropdown
+                        ? "action-dropdown-btn-active"
+                        : "action-dropdown-btn"
+                    }
+                  >
+                    Actions
+                    <p>{dropdown ? <HiChevronUp /> : <HiChevronDown />}</p>
+                    <AnimatePresence>
+                      {dropdown && (
+                        <motion.div
+                          variants={dropdownVariants}
+                          initial="hidden"
+                          animate="visible"
+                          exit="exit"
+                          className="action-dropdown"
+                        ></motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.button>
+                  {/* {patientCase.physician._id === user.userId && (
                     <motion.button
                       variants={buttonVariant}
                       whileTap="tap"
@@ -244,7 +260,7 @@ const CaseData = () => {
                           <HiCheck />
                         </p>
                       </motion.button>
-                    ))}
+                    ))} */}
                 </div>
               </div>
               <div className="case-container">
@@ -327,7 +343,7 @@ const CaseData = () => {
 
                   <div className="cd-box">
                     <h2>Case Information</h2>
-                    <div className="col-info">
+                    <div className="col-info info-2">
                       <div className="col-3">
                         <div className="liner">
                           <label>Chief complaint</label>
