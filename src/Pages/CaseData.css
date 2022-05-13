@@ -31,7 +31,6 @@ button.action-dropdown-btn-active p {
 
 .action-dropdown {
   width: 100%;
-  height: 100px;
   position: absolute;
   right: 0px;
   top: 32px;
@@ -41,6 +40,33 @@ button.action-dropdown-btn-active p {
   border-radius: 4px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border: 1px solid #ebebeb;
+  padding: 10px 0px;
+}
+
+.action-dropdown ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-dropdown ul li {
+  list-style: none;
+  width: 100%;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.action-dropdown ul li.delete {
+  color: rgb(255, 43, 43);
+}
+
+.action-dropdown ul li.delete:hover {
+  background: rgb(255, 238, 238);
+}
+
+.action-dropdown ul li:hover {
+  background: #eee;
 }
 
 .pt-overview {

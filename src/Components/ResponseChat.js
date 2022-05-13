@@ -152,13 +152,6 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
                           })[0].name
                       }
                       <br />
-                      {facilities
-                        .filter(
-                          (hospital) => hospital._id === e.user.designation
-                        )
-                        .map((item) => {
-                          return item.facility;
-                        })}
                     </h2>
                     <div className="response-content-container">
                       <p>{e.content}</p>

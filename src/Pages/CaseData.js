@@ -209,7 +209,23 @@ const CaseData = () => {
                           animate="visible"
                           exit="exit"
                           className="action-dropdown"
-                        ></motion.div>
+                        >
+                          <ul>
+                            {patientCase.physician._id === user.userId &&
+                              (patientCase.active === true ? (
+                                <li onClick={() => handleDeactivate()}>
+                                  Deactivate
+                                </li>
+                              ) : (
+                                <li onClick={() => handleActivate()}>
+                                  Activate
+                                </li>
+                              ))}
+                            <li>Download File</li>
+                            <li>Edit</li>
+                            <li className="delete">Delete</li>
+                          </ul>
+                        </motion.div>
                       )}
                     </AnimatePresence>
                   </motion.button>
@@ -277,7 +293,7 @@ const CaseData = () => {
                             " " +
                             patientCase.patient.lastname}
                         </h1>
-                        <p>Patient - Case ID #{patientCase.caseId}</p>
+                        <p>Case ID #{patientCase.caseId}</p>
                       </div>
                     </div>
 
@@ -424,6 +440,7 @@ const CaseData = () => {
                     active={patientCase.active}
                   />
                 </div>
+
                 <div className="case-hospital">
                   <div className="case-hospital-header">
                     <h2>Referring Hospital</h2>
