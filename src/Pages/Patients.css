@@ -1181,13 +1181,17 @@ button.deactive-btn:hover {
 /* End Patient Modal */
 
 @media screen and (max-width: 768px) {
-  .pt-date,
   .pt-total,
   .pt-active,
   .ch-status,
   .patient-modal-nav ul li div,
   .pt-hospital {
     display: none;
+  }
+
+  .pt-date {
+    width: 40%;
+    min-width: 120px;
   }
 
   .pt-sex,

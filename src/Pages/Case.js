@@ -249,7 +249,7 @@ const Case = () => {
               <div className="table-container">
                 <div className="table">
                   <div className="table-header">
-                    <div className="cs-id">Case No.</div>
+                    <div className="cs-id">Case ID</div>
                     <div className="cs-name">Patient</div>
 
                     <div className="cs-department">Service</div>

@@ -248,7 +248,8 @@
   text-decoration: underline;
 }
 
-.rp-date {
+.rp-date,
+.rp-created {
   width: 200px;
   padding-left: 10px;
   display: flex;
@@ -364,9 +365,14 @@
     min-height: 500px;
   }
 
-  .rp-date,
-  .rp-modified {
+  .rp-modified,
+  .rp-created {
     display: none;
+  }
+
+  .rp-date {
+    width: 40%;
+    min-width: 120px;
   }
 
   .container-modal {

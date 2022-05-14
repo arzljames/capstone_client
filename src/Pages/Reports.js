@@ -40,17 +40,17 @@ const Reports = () => {
       </Helmet>
 
       <div className="container">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable={false}
-        pauseOnHover
-      />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable={false}
+          pauseOnHover
+        />
         <AnimatePresence>
           {filterModal && <FilterReportModal setFilterModal={setFilterModal} />}
         </AnimatePresence>
@@ -76,7 +76,7 @@ const Reports = () => {
             <div className="table">
               <div className="table-header">
                 <div className="rp-id">Report ID</div>
-                <div className="rp-date">Created By</div>
+                <div className="rp-created">Created By</div>
                 <div className="rp-date">Date Created</div>
                 <div className="rp-modified">Last modified</div>
               </div>
@@ -92,7 +92,9 @@ const Reports = () => {
                         {item.reportId}
                       </p>
                     </div>
-                    <div className="rp-date">Dr. {item.creator.firstname + " " + item.creator.lastname}</div>
+                    <div className="rp-created">
+                      Dr. {item.creator.firstname + " " + item.creator.lastname}
+                    </div>
                     <div className="rp-date">{getDate(item.createdAt)}</div>
                     <div className="rp-modified">
                       {
