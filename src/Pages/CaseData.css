@@ -37,10 +37,10 @@ button.action-dropdown-btn-active p {
   z-index: 2;
   min-width: 150px;
   background: #fff;
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border: 1px solid #ebebeb;
-  padding: 10px 0px;
+  padding: 8px 0px;
 }
 
 .action-dropdown ul {
@@ -51,10 +51,25 @@ button.action-dropdown-btn-active p {
 .action-dropdown ul li {
   list-style: none;
   width: 100%;
-  height: 25px;
+  height: 28px;
   display: flex;
   align-items: center;
-  padding-left: 20px;
+  padding-left: 15px;
+  font-size: 13px;
+  color: #5f5f5f;
+}
+
+.action-dropdown ul li.disable {
+  list-style: none;
+  width: 100%;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  font-size: 13px;
+  color: #5f5f5f;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .action-dropdown ul li.delete {
@@ -75,6 +90,29 @@ button.action-dropdown-btn-active p {
   margin-bottom: 20px;
   border-bottom: 1px solid #e9e9e9;
   padding-bottom: 20px;
+  position: relative;
+}
+
+.cs-status.absolute {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.cs-status.absolute h5 {
+  font-weight: 400;
+  color: #272727;
+  font-size: 14px;
+}
+
+.cs-status.absolute .active,
+.cs-status.absolute .done {
+  background: transparent;
+  font-weight: 500;
 }
 
 .pt-overview img {
@@ -84,6 +122,7 @@ button.action-dropdown-btn-active p {
   border: 2px solid #d3d3d3;
   background: #eee;
   margin-right: 10px;
+  display: none;
 }
 
 .pt-overview div {
@@ -114,13 +153,30 @@ button.action-dropdown-btn-active p {
   margin-right: 20px;
 }
 
-.case-hospital {
+/* .case-hospital {
   flex: 1;
   min-width: 270px;
   border: 1px solid #d3d3d3;
   padding: 20px;
   border-radius: 8px;
-  background: #f0eef1;
+} */
+
+.case-hospital-active {
+  flex: 1;
+  min-width: 270px;
+  border: 1px solid #058e454f;
+  padding: 20px;
+  border-radius: 8px;
+  background: #dcf1e5;
+}
+
+.case-hospital-inactive {
+  flex: 1;
+  min-width: 270px;
+  border: 1px solid #ff831d48;
+  padding: 20px;
+  border-radius: 8px;
+  background: #ffeee0;
 }
 
 .case-hospital-header h2 {
@@ -130,12 +186,14 @@ button.action-dropdown-btn-active p {
   margin-bottom: 20px;
 }
 
-.case-hospital label {
+.case-hospital-active label,
+.case-hospital-inactive label {
   font-size: 14px;
   color: #808080;
   font-style: italic;
 }
-.case-hospital p {
+.case-hospital-active p,
+.case-hospital-inactive p {
   font-size: 14px;
   color: #272727;
   margin-bottom: 15px;
@@ -484,7 +542,8 @@ button.action-dropdown-btn-active p {
     flex-direction: column-reverse;
   }
 
-  .case-hospital {
+  .case-hospital-active,
+  .case-hospital-inactive {
     position: relative;
     width: 100%;
     margin-bottom: 20px;

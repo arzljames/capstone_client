@@ -191,7 +191,6 @@ const CaseData = () => {
 
                 <div className="above-patient-profile-btns">
                   <motion.button
-                    ref={domNode}
                     onClick={() => setDropdown(!dropdown)}
                     className={
                       dropdown
@@ -210,20 +209,48 @@ const CaseData = () => {
                           exit="exit"
                           className="action-dropdown"
                         >
-                          <ul>
-                            {patientCase.physician._id === user.userId &&
-                              (patientCase.active === true ? (
-                                <li onClick={() => handleDeactivate()}>
-                                  Deactivate
-                                </li>
-                              ) : (
-                                <li onClick={() => handleActivate()}>
-                                  Activate
-                                </li>
-                              ))}
+                          <ul ref={domNode}>
+                            {patientCase.active === true ? (
+                              <li
+                                className={
+                                  patientCase.physician._id !== user.userId &&
+                                  "disable"
+                                }
+                                onClick={() => handleDeactivate()}
+                              >
+                                Deactivate
+                              </li>
+                            ) : (
+                              <li
+                                className={
+                                  patientCase.physician._id !== user.userId &&
+                                  "disable"
+                                }
+                                on
+                                onClick={() => handleActivate()}
+                              >
+                                Activate
+                              </li>
+                            )}
                             <li>Download File</li>
-                            <li>Edit</li>
-                            <li className="delete">Delete</li>
+                            <li
+                              className={
+                                patientCase.physician._id !== user.userId &&
+                                "disable"
+                              }
+                            >
+                              Edit
+                            </li>
+                            <li
+                              onClick={() => setDeleteModal(true)}
+                              className={
+                                patientCase.physician._id !== user.userId
+                                  ? "disable"
+                                  : "delete"
+                              }
+                            >
+                              Delete
+                            </li>
                           </ul>
                         </motion.div>
                       )}
@@ -294,6 +321,13 @@ const CaseData = () => {
                             patientCase.patient.lastname}
                         </h1>
                         <p>Case ID #{patientCase.caseId}</p>
+                      </div>
+
+                      <div className="cs-status absolute">
+                        <h5>Status: </h5>
+                        <p className={patientCase.active ? "active" : "done"}>
+                          {patientCase.active ? "Active" : "Done"}
+                        </p>
                       </div>
                     </div>
 
@@ -441,7 +475,13 @@ const CaseData = () => {
                   />
                 </div>
 
-                <div className="case-hospital">
+                <div
+                  className={
+                    patientCase.active
+                      ? "case-hospital-active"
+                      : "case-hospital-inactive"
+                  }
+                >
                   <div className="case-hospital-header">
                     <h2>Referring Hospital</h2>
 

@@ -95,7 +95,7 @@ button.back-btn {
   background: transparent;
   transition: 0.1s ease-in-out;
   border-radius: 2px;
-  color: #272727;
+  color: #808080;
   margin-left: 0px;
   padding: 0px;
   min-width: 0px;
@@ -106,7 +106,7 @@ button.back-btn {
 
 button.back-btn p {
   margin-left: 5px;
-  color: #272727;
+  color: #808080;
   font-size: 14px;
 }
 
@@ -338,15 +338,18 @@ button.gray-cta:hover {
   background: #f1f3f1;
   border: 1px solid #9baca3;
   position: relative;
+  border-radius: 4px;
 }
 
 .above-patient-table .btn-inactive {
   position: relative;
+  border-radius: 4px;
 }
 
 .above-patient-table button.btn-inactive:hover {
   background: #f1f3f1;
   transition: 0.1s ease-in-out;
+  border-radius: 4px;
 }
 
 .above-patient-table button p {
@@ -360,7 +363,6 @@ button.gray-cta:hover {
 .patient-input-container {
   width: 100%;
   max-width: 350px;
-  height: auto;
   position: relative;
 }
 
@@ -404,8 +406,8 @@ button.gray-cta:hover {
 }
 
 .patient-input-icon {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   position: absolute;
   left: 0;
   top: 0;
@@ -413,6 +415,7 @@ button.gray-cta:hover {
   align-items: center;
   justify-content: center;
   color: #808080;
+  border-radius: 50%;
 }
 
 .patient-input-container input {
@@ -421,8 +424,8 @@ button.gray-cta:hover {
   outline: none;
   padding: 10px;
   padding-left: 30px;
-  height: 30px;
-  border-radius: 5px;
+  height: 32px;
+  border-radius: 100px;
   transition: 0.2s ease-in-out;
   background: #f1f3f1;
 }

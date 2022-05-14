@@ -9,7 +9,7 @@
   padding: 0px 20px;
   background: #fff;
   z-index: 2;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-bottom: 1px solid #d3d3d3;
 }
 
 .admin-header-brand {
@@ -198,11 +198,11 @@
 .profile-container-dropdown {
   position: absolute;
   right: 0px;
-  top: 50px;
+  top: 51px;
   width: 300px;
   min-height: 150px;
   height: auto;
-  z-index: 3;
+  z-index: 2;
   background: rgb(255, 255, 255);
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 0px 4px;
@@ -210,7 +210,7 @@
   flex-direction: column;
   border: 1px solid #ececec;
   padding-bottom: 0px;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .profile-container-dropdown ul {

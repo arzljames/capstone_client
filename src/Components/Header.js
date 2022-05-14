@@ -7,7 +7,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="admin-header user">
+    <div className="admin-header">
       <h1 onClick={() => navigate("/")}>Telemedicine</h1>
 
       <ProfileHeader />

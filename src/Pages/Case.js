@@ -57,7 +57,7 @@ const Case = () => {
     setIsFilter(false);
   });
 
-  const { cases, facilities, user, toast, patients } = useAuth();
+  const { cases, facilities, user, toast, patients, hospitalSpec } = useAuth();
 
   const getDate = (date) => {
     let dates = new Date(date);
@@ -160,7 +160,7 @@ const Case = () => {
                   <button
                     className={isFilter ? "btn-active" : "btn-inactive"}
                     onClick={() => {
-                      setIsFilter(!isFilter);
+                      setIsFilter(true);
                       setIsSort(false);
                     }}
                   >
@@ -178,22 +178,34 @@ const Case = () => {
                           exit="exit"
                           className="filter-dropdown"
                         >
+                          <h5>Status</h5>
                           <ul>
-                            <li onClick={() => setFilter("None")}>None</li>
                             <li
                               onClick={() => {
                                 setFilter("Active");
                               }}
                             >
-                              Active
+                              <input type="checkbox" /> Active
                             </li>
                             <li
                               onClick={() => {
                                 setFilter("Done");
                               }}
                             >
-                              Done
+                              <input type="checkbox" /> Done
                             </li>
+                          </ul>
+
+                          <h5>Service</h5>
+                          <ul>
+                            {hospitalSpec.map((e) => {
+                              return (
+                                <li key={e._id}>
+                                  <input type="checkbox" />
+                                  {e.name}
+                                </li>
+                              );
+                            })}
                           </ul>
                         </motion.div>
                       )}

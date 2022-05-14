@@ -78,7 +78,6 @@ const Notification = () => {
                       key={key}
                       onClick={() => {
                         handleNotif(item._id);
-                        navigate(item.link);
                       }}
                       className="notification-container"
                     >
@@ -117,10 +116,7 @@ const Notification = () => {
                 .reverse()
                 .map((item) => {
                   return (
-                    <div
-                      onClick={() => navigate(item.link)}
-                      className="notification-container"
-                    >
+                    <div onClick={() => {}} className="notification-container">
                       <div className="notification-avatar">
                         <IoNotificationsOutline />
                       </div>

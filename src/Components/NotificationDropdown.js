@@ -38,6 +38,11 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
     return today;
   };
 
+  const navigateRefresh = (link) => {
+    navigate(link);
+    window.location.reload();
+  };
+
   const [tab, setTab] = useState("All");
   return (
     <div className="notification-dropdown">
@@ -104,7 +109,7 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
                 key={key}
                 onClick={() => {
                   handleNotif(item._id);
-                  navigate(item.link);
+                  navigateRefresh(item.link);
                   setDropdownNotif(false);
                 }}
                 className={
@@ -160,7 +165,7 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
             return (
               <div
                 onClick={() => {
-                  navigate(item.link);
+                  navigateRefresh(item.link);
                   setDropdownNotif(false);
                 }}
                 className={
