@@ -167,7 +167,7 @@ const Case = () => {
                     <p>
                       <HiOutlineFilter />
                     </p>
-                    Filter by: {filter}
+                    Filter
                     <AnimatePresence>
                       {isFilter && (
                         <motion.div
@@ -246,107 +246,123 @@ const Case = () => {
                 </div>
               </div>
 
-              <div className="table-container">
-                <div className="table">
-                  <div className="table-header">
-                    <div className="cs-id">Case ID</div>
-                    <div className="cs-name">Patient</div>
+              <div className="table">
+                <div className="table-header">
+                  <div className="cs-id">Case ID</div>
+                  <div className="cs-name">Patient</div>
 
-                    <div className="cs-department">Service</div>
-                    <div className="cs-date">Date & Time</div>
-                    <div className="cs-status">Status</div>
-                  </div>
-
-                  {cases
-                    .filter((vals) => {
-                      if (term === "") {
-                        return vals;
-                      } else if (
-                        vals.caseId
-                          .toLowerCase()
-                          .includes(term.toLocaleLowerCase()) ||
-                        vals.patient.fullname
-                          .toLowerCase()
-                          .includes(term.toLocaleLowerCase())
-                      ) {
-                        return vals;
-                      }
-                    })
-                    .filter((e) =>
-                      filter === "None"
-                        ? e
-                        : filter === "Active"
-                        ? e.active === true
-                        : e.active === false
-                    )
-                    .filter((val) => {
-                      if (
-                        user.designation === "623ec7fb80a6838424edaa29" &&
-                        user.specialization === val.specialization
-                      ) {
-                        return val;
-                      } else if (user.userId === val.physician._id) {
-                        return val;
-                      }
-                    })
-                    .map((item, index) => {
-                      return (
-                        <div className="table-body">
-                          <div className="cs-id">
-                            <p
-                              onClick={() => {
-                                navigate(
-                                  `/consultation/case/case-data/${item._id}`
-                                );
-                              }}
-                            >
-                              {item.caseId}
-                            </p>
-                          </div>
-                          <div className="cs-name">
-                            <p
-                              onClick={(e) => {
-                                filterPatient(item.patient._id);
-                                setPatientModal(true);
-                                e.stopPropagation();
-                              }}
-                            >
-                              {item.patient.firstname +
-                                " " +
-                                item.patient.lastname}
-                            </p>
-                          </div>
-
-                          <div className="cs-department">
-                            {
-                              facilities
-                                .filter((e) => e._id === item.designation._id)
-                                .map((f) => {
-                                  return f.specialization.filter(
-                                    (g) => g._id === item.specialization
-                                  )[0];
-                                })[0].name
-                            }
-                          </div>
-                          <div className="cs-date">
-                            {getDate(item.createdAt)} {getTime(item.createdAt)}
-                          </div>
-                          <div className="cs-status">
-                            <p className={item.active ? "active" : "done"}>
-                              <div
-                                className={
-                                  item.active
-                                    ? "indicator active"
-                                    : "indicator done"
-                                }
-                              ></div>
-                              {item.active ? "Active" : "Done"}
-                            </p>
-                          </div>
-                        </div>
-                      );
-                    })}
+                  <div className="cs-department">Service</div>
+                  <div className="cs-date">Date & Time</div>
+                  <div className="cs-status">Status</div>
                 </div>
+
+                {cases
+                  .filter((vals) => {
+                    if (term === "") {
+                      return vals;
+                    } else if (
+                      vals.caseId
+                        .toLowerCase()
+                        .includes(term.toLocaleLowerCase()) ||
+                      vals.patient.fullname
+                        .toLowerCase()
+                        .includes(term.toLocaleLowerCase())
+                    ) {
+                      return vals;
+                    }
+                  })
+                  .filter((e) =>
+                    filter === "None"
+                      ? e
+                      : filter === "Active"
+                      ? e.active === true
+                      : e.active === false
+                  )
+                  .filter((val) => {
+                    if (
+                      user.designation === "623ec7fb80a6838424edaa29" &&
+                      user.specialization === val.specialization
+                    ) {
+                      return val;
+                    } else if (user.userId === val.physician._id) {
+                      return val;
+                    }
+                  })
+                  .map((item, index) => {
+                    return (
+                      <div className="table-body">
+                        <div className="cs-id">
+                          <p
+                            onClick={() => {
+                              navigate(
+                                `/consultation/case/case-data/${item._id}`
+                              );
+                            }}
+                          >
+                            {item.caseId}
+                          </p>
+                        </div>
+                        <div className="cs-name">
+                          <p
+                            onClick={(e) => {
+                              filterPatient(item.patient._id);
+                              setPatientModal(true);
+                              e.stopPropagation();
+                            }}
+                          >
+                            {item.patient.firstname +
+                              " " +
+                              item.patient.lastname}
+                          </p>
+                        </div>
+
+                        <div className="cs-department">
+                          {
+                            facilities
+                              .filter((e) => e._id === item.designation._id)
+                              .map((f) => {
+                                return f.specialization.filter(
+                                  (g) => g._id === item.specialization
+                                )[0];
+                              })[0].name
+                          }
+                        </div>
+                        <div className="cs-date">
+                          {getDate(item.createdAt)} {getTime(item.createdAt)}
+                        </div>
+                        <div className="cs-status">
+                          <p className={item.active ? "active" : "done"}>
+                            <div
+                              className={
+                                item.active
+                                  ? "indicator active"
+                                  : "indicator done"
+                              }
+                            ></div>
+                            {item.active ? "Active" : "Done"}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+
+              <div className="pagination-container">
+                {/* <ReactPaginate
+                      previousLabel={<HiChevronLeft size={20} />}
+                      nextLabel={<HiChevronRight size={20} />}
+                      breakLabel="..."
+                      pageCount={pageCount}
+                      marginPagesDisplayed={3}
+                      containerClassName="pagination"
+                      pageClassName="page-item"
+                      pageLinkClassName="page-link"
+                      breakClassName="page-item"
+                      nextClassName="page-item"
+                      previousClassName="page-item"
+                      activeClassName="active"
+                      onPageChange={changePage}
+                    /> */}
               </div>
             </div>
           </div>

@@ -136,7 +136,7 @@ button.action-dropdown-btn-active p {
 
 .pt-overview div p {
   font-size: 14px;
-  color: #272727;
+  color: #696969;
 }
 
 .case-container {
@@ -298,6 +298,20 @@ button.action-dropdown-btn-active p {
   transition: 0.1 ease-in-out;
 }
 
+.case-data-response textarea.inactive {
+  resize: none;
+  width: 100%;
+  padding: 10px;
+  background: rgb(238, 238, 238);
+  border-radius: 10px;
+  min-height: 100px;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  border: 1px solid #a5a5a5;
+  transition: 0.1 ease-in-out;
+  pointer-events: none;
+}
+
 .case-data-response-btns {
   display: flex;
   justify-content: space-between;
@@ -323,6 +337,7 @@ button.action-dropdown-btn-active p {
   display: flex;
   align-items: center;
   width: auto;
+  border-radius: 4px;
 }
 
 .case-data-response-btns .sort-response-btn p {
@@ -365,10 +380,19 @@ button.action-dropdown-btn-active p {
   outline: none;
   border: none;
   color: #fff;
-  border-radius: 4px;
-  font-weight: 500;
+  border-radius: 5px;
+  font-weight: 400;
   margin-left: 10px;
   transition: 0.1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-data-response form button p {
+  display: flex;
+  font-size: 14px;
+  margin-left: 5px;
 }
 
 .case-data-response form button.disable {
@@ -378,12 +402,15 @@ button.action-dropdown-btn-active p {
   outline: none;
   border: none;
   color: #fff;
-  border-radius: 2px;
-  font-weight: 500;
+  border-radius: 5px;
+  font-weight: 400;
   margin-left: 10px;
   transition: 0.1s ease-in-out;
   opacity: 0.5;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .case-data-response form button:hover {

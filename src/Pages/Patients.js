@@ -198,238 +198,242 @@ const Patients = () => {
           <div className="consultation-content">
             <ConsultationNavbar />
             <div className="content-body">
-              <div className="container-heading">
-                <h2>Patients</h2>
+              <div className="content-wrapper">
+                <div className="container-heading">
+                  <h2>Patients</h2>
 
-                <div className="subheading-btns">
-                  {patientsId.length !== 0 && (
-                    <button
-                      onClick={() => setDeleteModal(true)}
-                      className={
-                        patientsId.length === 0
-                          ? "delete-patient-btn-disable"
-                          : "delete-patient-btn"
+                  <div className="subheading-btns">
+                    {patientsId.length !== 0 && (
+                      <button
+                        onClick={() => setDeleteModal(true)}
+                        className={
+                          patientsId.length === 0
+                            ? "delete-patient-btn-disable"
+                            : "delete-patient-btn"
+                        }
+                      >
+                        <p>
+                          <HiTrash />
+                        </p>
+                        Delete ({patientsId.length} selected)
+                      </button>
+                    )}
+                    <motion.button
+                      onClick={() =>
+                        navigate("/consultation/patients/admission")
                       }
+                      className="add-patient-btn"
+                      whileTap={{
+                        scale: 0.99,
+                        y: 2,
+                        x: 2,
+                        transition: {
+                          delay: 0,
+                          duration: 0.2,
+                          ease: "easeInOut",
+                        },
+                      }}
                     >
                       <p>
-                        <HiTrash />
+                        <HiPlus />
                       </p>
-                      Delete ({patientsId.length} selected)
-                    </button>
-                  )}
-                  <motion.button
-                    onClick={() => navigate("/consultation/patients/admission")}
-                    className="add-patient-btn"
-                    whileTap={{
-                      scale: 0.99,
-                      y: 2,
-                      x: 2,
-                      transition: {
-                        delay: 0,
-                        duration: 0.2,
-                        ease: "easeInOut",
-                      },
-                    }}
-                  >
-                    <p>
-                      <HiPlus />
-                    </p>
-                    Add Patient
-                  </motion.button>
-                  <div
-                    onClick={() => setShowImport(!showImport)}
-                    className="import-patient-btn"
-                  >
-                    <AiFillCaretDown />
-                    {showImport && (
-                      <motion.div
-                        ref={domNodeImport}
-                        variants={dropdownVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        className="import-patient-container"
-                      >
-                        <div onClick={() => onBtnClick()}>
-                          <p>
-                            <HiUpload />
-                          </p>
-                          Import CSV
-                        </div>
-                      </motion.div>
-                    )}
-
-                    <input
-                      ref={inputFileRef}
-                      className="import-patient-input"
-                      type="file"
-                      onChange={async (e) => {
-                        const text = await e.target.files[0].text();
-                        const result = parse(text, { header: true });
-                        if (e.target.files[0].type !== "text/csv") {
-                          setToast(true);
-                          setMessage("Not a CSV file.");
-                          setIsError(true);
-
-                          return;
-                        }
-
-                        setCSV([
-                          ...CSV,
-                          result.data.map((e) => {
-                            return {
-                              firstname: e.FIRST_NAME,
-                              middlename: e.MIDDLE_NAME,
-                              lastname: e.LAST_NAME,
-                              fullname:
-                                e.LAST_NAME +
-                                "," +
-                                " " +
-                                e.FIRST_NAME +
-                                " " +
-                                e.MIDDLE_NAME[0] +
-                                ".",
-                              contact: e.CONTACT,
-                              sex: e.SEX,
-                              birthday: e.BIRTHDAY,
-                              civilStatus: e.CIVIL_STATUS,
-                              religion: e.RELIGION,
-                              birthplace: e.PLACE_OF_BIRTH,
-                              address: {
-                                street: e.STREET,
-                                barangay: e.BARANGAY,
-                                city: e.CITY,
-                              },
-                              ethnicity: e.ETHNICITY,
-                              guardian: {
-                                name: e.GUARDIAN_FULLNAME,
-                                relationship: e.RELATION,
-                              },
-                              physician: user.userId,
-                            };
-                          }),
-                        ]);
-
-                        e.target.value = null;
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="above-patient-table">
-                <div className="patient-input-container">
-                  <input
-                    value={term}
-                    onChange={(e) => setTerm(e.target.value)}
-                    type="search"
-                    onFocus={() => setSearchDropdown(true)}
-                    placeholder="Search patient (last name, first name)"
-                  />
-                  <div className="patient-input-icon">
-                    <HiOutlineSearch />
-                  </div>
-
-                  {searchDropdown && (
-                    <div ref={domNodeSearch} className="advance-search">
-                      {!term ? (
-                        <p>Type in the search bar</p>
-                      ) : (
-                        <p>You searched for "{term}"</p>
-                      )}
-                    </div>
-                  )}
-                </div>
-
-                <div className="above-patient-table-btns">
-                  <button
-                    className={isSort ? "btn-active" : "btn-inactive"}
-                    onClick={() => {
-                      setIsSort(!isSort);
-                    }}
-                  >
-                    <p>
-                      <HiOutlineSortDescending />
-                    </p>
-                    Sort by: {sort}
-                    <AnimatePresence>
-                      {isSort && (
+                      Add Patient
+                    </motion.button>
+                    <div
+                      onClick={() => setShowImport(!showImport)}
+                      className="import-patient-btn"
+                    >
+                      <AiFillCaretDown />
+                      {showImport && (
                         <motion.div
-                          ref={domNodeSort}
+                          ref={domNodeImport}
                           variants={dropdownVariants}
                           initial="hidden"
                           animate="visible"
                           exit="exit"
-                          className="sort-dropdown"
+                          className="import-patient-container"
                         >
-                          <ul>
-                            <li
-                              onClick={() => {
-                                setSort("Oldest");
-                              }}
-                            >
-                              Oldest
-                            </li>
-                            <li
-                              onClick={() => {
-                                setSort("Newest");
-                              }}
-                            >
-                              Newest
-                            </li>
-
-                            <li
-                              onClick={() => {
-                                setSort("Name (A-Z)");
-                              }}
-                            >
-                              Name (A-Z)
-                            </li>
-                            <li
-                              onClick={() => {
-                                setSort("Name (Z-A)");
-                              }}
-                            >
-                              Name (Z-A)
-                            </li>
-                          </ul>
+                          <div onClick={() => onBtnClick()}>
+                            <p>
+                              <HiUpload />
+                            </p>
+                            Import CSV
+                          </div>
                         </motion.div>
                       )}
-                    </AnimatePresence>
-                  </button>
+
+                      <input
+                        ref={inputFileRef}
+                        className="import-patient-input"
+                        type="file"
+                        onChange={async (e) => {
+                          const text = await e.target.files[0].text();
+                          const result = parse(text, { header: true });
+                          if (e.target.files[0].type !== "text/csv") {
+                            setToast(true);
+                            setMessage("Not a CSV file.");
+                            setIsError(true);
+
+                            return;
+                          }
+
+                          setCSV([
+                            ...CSV,
+                            result.data.map((e) => {
+                              return {
+                                firstname: e.FIRST_NAME,
+                                middlename: e.MIDDLE_NAME,
+                                lastname: e.LAST_NAME,
+                                fullname:
+                                  e.LAST_NAME +
+                                  "," +
+                                  " " +
+                                  e.FIRST_NAME +
+                                  " " +
+                                  e.MIDDLE_NAME[0] +
+                                  ".",
+                                contact: e.CONTACT,
+                                sex: e.SEX,
+                                birthday: e.BIRTHDAY,
+                                civilStatus: e.CIVIL_STATUS,
+                                religion: e.RELIGION,
+                                birthplace: e.PLACE_OF_BIRTH,
+                                address: {
+                                  street: e.STREET,
+                                  barangay: e.BARANGAY,
+                                  city: e.CITY,
+                                },
+                                ethnicity: e.ETHNICITY,
+                                guardian: {
+                                  name: e.GUARDIAN_FULLNAME,
+                                  relationship: e.RELATION,
+                                },
+                                physician: user.userId,
+                              };
+                            }),
+                          ]);
+
+                          e.target.value = null;
+                        }}
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <PatientTableData
-                sortAscDate={sortAscDate}
-                sortDscDate={sortDscDate}
-                sortAscName={sortAscName}
-                sortDscName={sortDscName}
-                setPatientState={setPatientState}
-                patientState={patientState}
-                term={term}
-                usersPerPage={usersPerPage}
-                pagesVisited={pagesVisited}
-                sort={sort}
-                setPatientId={setPatientId}
-                setPatientModal={setPatientModal}
-                filterPatient={filterPatient}
-              />
-              <br />
-              <div className="pagination-container">
-                <ReactPaginate
-                  previousLabel={<HiChevronLeft size={20} />}
-                  nextLabel={<HiChevronRight size={20} />}
-                  breakLabel="..."
-                  pageCount={pageCount}
-                  marginPagesDisplayed={3}
-                  containerClassName="pagination"
-                  pageClassName="page-item"
-                  pageLinkClassName="page-link"
-                  breakClassName="page-item"
-                  nextClassName="page-item"
-                  previousClassName="page-item"
-                  activeClassName="active"
-                  onPageChange={changePage}
+                <div className="above-patient-table">
+                  <div className="patient-input-container">
+                    <input
+                      value={term}
+                      onChange={(e) => setTerm(e.target.value)}
+                      type="search"
+                      onFocus={() => setSearchDropdown(true)}
+                      placeholder="Search patient (last name, first name)"
+                    />
+                    <div className="patient-input-icon">
+                      <HiOutlineSearch />
+                    </div>
+
+                    {searchDropdown && (
+                      <div ref={domNodeSearch} className="advance-search">
+                        {!term ? (
+                          <p>Type in the search bar</p>
+                        ) : (
+                          <p>You searched for "{term}"</p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="above-patient-table-btns">
+                    <button
+                      className={isSort ? "btn-active" : "btn-inactive"}
+                      onClick={() => {
+                        setIsSort(!isSort);
+                      }}
+                    >
+                      <p>
+                        <HiOutlineSortDescending />
+                      </p>
+                      Sort by: {sort}
+                      <AnimatePresence>
+                        {isSort && (
+                          <motion.div
+                            ref={domNodeSort}
+                            variants={dropdownVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                            className="sort-dropdown"
+                          >
+                            <ul>
+                              <li
+                                onClick={() => {
+                                  setSort("Oldest");
+                                }}
+                              >
+                                Oldest
+                              </li>
+                              <li
+                                onClick={() => {
+                                  setSort("Newest");
+                                }}
+                              >
+                                Newest
+                              </li>
+
+                              <li
+                                onClick={() => {
+                                  setSort("Name (A-Z)");
+                                }}
+                              >
+                                Name (A-Z)
+                              </li>
+                              <li
+                                onClick={() => {
+                                  setSort("Name (Z-A)");
+                                }}
+                              >
+                                Name (Z-A)
+                              </li>
+                            </ul>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </button>
+                  </div>
+                </div>
+                <PatientTableData
+                  sortAscDate={sortAscDate}
+                  sortDscDate={sortDscDate}
+                  sortAscName={sortAscName}
+                  sortDscName={sortDscName}
+                  setPatientState={setPatientState}
+                  patientState={patientState}
+                  term={term}
+                  usersPerPage={usersPerPage}
+                  pagesVisited={pagesVisited}
+                  sort={sort}
+                  setPatientId={setPatientId}
+                  setPatientModal={setPatientModal}
+                  filterPatient={filterPatient}
                 />
+                <br />
+                <div className="pagination-container">
+                  <ReactPaginate
+                    previousLabel={<HiChevronLeft size={20} />}
+                    nextLabel={<HiChevronRight size={20} />}
+                    breakLabel="..."
+                    pageCount={pageCount}
+                    marginPagesDisplayed={3}
+                    containerClassName="pagination"
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    breakClassName="page-item"
+                    nextClassName="page-item"
+                    previousClassName="page-item"
+                    activeClassName="active"
+                    onPageChange={changePage}
+                  />
+                </div>
               </div>
             </div>
           </div>

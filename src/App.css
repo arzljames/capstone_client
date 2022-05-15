@@ -202,13 +202,6 @@ button.gray-cta:hover {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.table-container {
-  height: auto;
-  width: 100%;
-  border-radius: 4px;
-  min-height: 500px;
-}
-
 .table {
   width: 100%;
   background: #fff;
@@ -216,10 +209,8 @@ button.gray-cta:hover {
   padding: 0px 0px;
   border: 1px solid #ebebeb;
   position: relative;
-  height: 100%;
-  min-height: 500px;
-  margin-bottom: 40px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  min-height: 500px;
 }
 
 .table-header {
@@ -292,6 +283,7 @@ button.gray-cta:hover {
   color: #5f5f5f;
   border-left: 2px solid #05138e00;
   background: #fff;
+
   /* background: #f7f8fc; */
 }
 
@@ -432,13 +424,54 @@ button.gray-cta:hover {
 
 .patient-input-container input:focus {
   transition: 0.2s ease-in-out;
-  background: #f1f3f1;
+  background: #ffffff;
   border: 1px solid #a5a5a5;
 }
 
 .patient-input-container input::placeholder {
   font-size: 12px;
   font-style: italic;
+}
+
+.delete-modal {
+  width: 95%;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 2px;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.delete-modal h1 {
+  color: #272727;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.delete-modal p {
+  color: #272727;
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+
+.delete-modal p b {
+  color: #ff3131;
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+
+.delete-modal-btns {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.delete-modal-btns button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 768px) {

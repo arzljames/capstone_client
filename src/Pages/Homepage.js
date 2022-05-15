@@ -1,20 +1,18 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
 import "./Homepage.css";
 import Welcome from "../Assets/Welcome.svg";
-import {Helmet} from 'react-helmet'
+import { Helmet } from "react-helmet";
 import ConsultationNavbar from "../Components/ConsultationNavbar";
 
-
 const Homepage = () => {
-
   return (
     <>
-    <Helmet>
-      <title>Consultation | ZCMC Telemedicine</title>
-    </Helmet>
-    
+      <Helmet>
+        <title>Consultation | ZCMC Telemedicine</title>
+      </Helmet>
+
       <div className="container">
         <Sidebar />
         <div className="content">

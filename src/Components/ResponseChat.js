@@ -5,6 +5,7 @@ import { socket } from "./Socket";
 import { motion } from "framer-motion";
 import useAuth from "../Hooks/useAuth";
 import NoUser from "../Assets/nouser.png";
+import { IoSend } from "react-icons/io5";
 
 const ResponseChat = ({ id, user, response, setResponse, active }) => {
   const [file, setFile] = useState("");
@@ -87,6 +88,7 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
           disabled={active === false ? true : false}
           value={temp}
           onChange={(e) => setTemp(e.target.value)}
+          className={active === false ? "inactive" : ""}
           placeholder={
             active === true
               ? "Write your response here"
@@ -114,7 +116,10 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
               className={active === false ? "disable" : null}
               onClick={() => sendResponse()}
             >
-              Submit
+              Submit{" "}
+              <p>
+                <IoSend />
+              </p>
             </button>
           </div>
         </div>
@@ -141,6 +146,15 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
                     <h1>Dr. {e.user.firstname}</h1>
                     <h2>
                       {
+                        facilities.filter(
+                          (hospital) => hospital._id === e.user.designation
+                        )[0].facility
+                      }
+                      <br />
+                    </h2>
+
+                    {/* <h2>
+                      {
                         facilities
                           .filter(
                             (hospital) => hospital._id === e.user.designation
@@ -151,8 +165,7 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
                             )[0];
                           })[0].name
                       }
-                      <br />
-                    </h2>
+                    </h2> */}
                     <div className="response-content-container">
                       <p>{e.content}</p>
                     </div>

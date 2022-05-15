@@ -121,11 +121,11 @@ const ProfileDropdown = ({
             </p>
             Account Settings
           </li>
-          <li onClick={() => navigate("/user-manual")}>
+          <li onClick={() => navigate("/user-manual/guide/introduction")}>
             <p>
               <IoBookOutline />
             </p>
-            User Manual
+            Documentation
           </li>
         </ul>
         <ul style={{ border: "none" }}>

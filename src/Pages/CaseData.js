@@ -5,7 +5,7 @@ import { HiArrowNarrowLeft, HiChevronDown, HiChevronUp } from "react-icons/hi";
 import "./Homepage.css";
 import ConsultationNavbar from "../Components/ConsultationNavbar";
 import useAuth from "../Hooks/useAuth";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./CaseData.css";
 import api from "../API/Api";
 import { AnimatePresence, motion } from "framer-motion";

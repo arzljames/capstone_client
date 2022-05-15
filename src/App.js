@@ -39,8 +39,9 @@ import Reports from "./Pages/Reports";
 import GenerateReport from "./Components/GenerateReport";
 import "react-toastify/dist/ReactToastify.css";
 import AccountSettings from "./Pages/AccountSettings";
-import UserManual from "./Pages/UserManual";
 import PageNotFound from "./Pages/PageNotFound";
+import Introduction from "./Pages/UserManual/Introduction";
+import QuickStart from "./Pages/UserManual/QuickStart";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -83,7 +84,14 @@ function App() {
           <Route path="profile/:username" element={<Profile />} />
           <Route path="consultation/patients" element={<Patients />} />
           <Route path="settings/account" element={<AccountSettings />} />
-          <Route path="user-manual" element={<UserManual />} />
+          <Route
+            path="user-manual/guide/introduction"
+            element={<Introduction />}
+          />
+          <Route
+            path="user-manual/guide/quick-start"
+            element={<QuickStart />}
+          />
           <Route
             path="consultation/patients/admission"
             element={<PatientAdmission />}

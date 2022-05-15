@@ -51,7 +51,6 @@
   margin-bottom: 40px;
   position: relative;
   min-height: 500px;
-
 }
 
 .case-body div.no-active-cases {
@@ -63,7 +62,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align:center;
+  text-align: center;
 }
 
 .case-body div.no-active-cases h1 {
@@ -74,11 +73,11 @@
 }
 
 .case-body div.no-active-cases p {
-  font-size: 14px;
+  font-size: 13px;
   color: #808080;
   font-weight: 400;
+  font-style: italic;
 }
-
 
 .case-content {
   width: 100%;
@@ -95,10 +94,7 @@
   align-items: center;
   font-size: 40px;
   border: 1px solid #eee;
-  
 }
-
-
 
 .case-content-avatar {
   width: 45px;
@@ -156,7 +152,6 @@
   font-size: 11px;
   color: #808080;
   margin-left: 10px;
-
 }
 
 .case-content:hover {
@@ -173,8 +168,7 @@
   justify-content: flex-end;
 }
 
-
-@media screen  and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .case-content div.case-content-date {
     display: none;
   }
