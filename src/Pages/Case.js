@@ -15,7 +15,6 @@ import NewCase from "../Components/NewCase";
 import useAuth from "../Hooks/useAuth";
 import api from "../API/Api";
 import { useNavigate } from "react-router-dom";
-import Toast from "../Components/Toast";
 import "./Case.css";
 import PatientModal from "../Components/PatientModal";
 
@@ -57,7 +56,7 @@ const Case = () => {
     setIsFilter(false);
   });
 
-  const { cases, facilities, user, toast, patients, hospitalSpec } = useAuth();
+  const { cases, facilities, user, patients, hospitalSpec } = useAuth();
 
   const getDate = (date) => {
     let dates = new Date(date);
@@ -104,7 +103,7 @@ const Case = () => {
       <div className="container">
         <AnimatePresence>
           {showCase && <NewCase setShowCase={setShowCase} />}
-          {toast && <Toast />}
+
           {patientModal && (
             <PatientModal patient={patient} setPatientModal={setPatientModal} />
           )}

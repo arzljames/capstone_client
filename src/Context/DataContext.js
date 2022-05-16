@@ -5,6 +5,7 @@ import { createContext, useState, useEffect } from "react";
 import api from "../API/Api";
 import axios from "axios";
 import { socket } from "../Components/Socket";
+import { toast, ToastContainer } from "react-toastify";
 
 const DataContext = createContext({});
 
@@ -17,7 +18,6 @@ export const DataProvider = ({ children }) => {
   const [patients, setPatients] = useState([]);
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
-  const [toast, setToast] = useState(false);
   const [tab, setTab] = useState("General");
   const [cases, setCases] = useState([]);
   const [patientCases, setPatientCases] = useState([]);
@@ -69,7 +69,7 @@ export const DataProvider = ({ children }) => {
     if (response.data) {
       setFacilities(response.data);
     }
-  }; 
+  };
 
   const fetchPatients = async () => {
     let response = await api.get("/api/patient/");
@@ -103,15 +103,13 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-
   const fetchReports = async () => {
     let response = await api.get("/api/report");
 
-
-    if(response.data) {
-      setReports(response.data)
+    if (response.data) {
+      setReports(response.data);
     }
-  }
+  };
 
   useEffect(() => {
     fetchLogin();
@@ -137,7 +135,7 @@ export const DataProvider = ({ children }) => {
   const [hospital, setHospital] = useState("");
   const [department, setDepartment] = useState("");
 
-  const [showCreateChat, setShowCreateChat] = useState(false)
+  const [showCreateChat, setShowCreateChat] = useState(false);
 
   return (
     <DataContext.Provider
@@ -155,8 +153,7 @@ export const DataProvider = ({ children }) => {
         setPatients,
         message,
         setMessage,
-        toast,
-        setToast,
+
         isError,
         setIsError,
         tab,
@@ -184,7 +181,9 @@ export const DataProvider = ({ children }) => {
         chatUsers,
         reports,
         setShowCreateChat,
-        showCreateChat
+        showCreateChat,
+        toast,
+        ToastContainer,
       }}
     >
       {children}

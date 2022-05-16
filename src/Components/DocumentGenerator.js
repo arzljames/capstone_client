@@ -11,112 +11,65 @@ import {
   TextDirection,
   WidthType,
   BorderStyle,
+  TextRun,
+  Column,
 } from "docx";
 import { saveAs } from "file-saver";
 
 export const DocumentGenerator = (patientCase) => {
+  const table = new Table({
+    columnWidths: [3505, 5505],
+    rows: [
+      new TableRow({
+        children: [
+          new TableCell({
+            width: {
+              size: 3505,
+              type: WidthType.DXA,
+            },
+            children: [new Paragraph("Hello")],
+          }),
+          new TableCell({
+            width: {
+              size: 5505,
+              type: WidthType.DXA,
+            },
+            children: [],
+          }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          new TableCell({
+            width: {
+              size: 3505,
+              type: WidthType.DXA,
+            },
+            children: [],
+          }),
+          new TableCell({
+            width: {
+              size: 5505,
+              type: WidthType.DXA,
+            },
+            children: [new Paragraph("World")],
+          }),
+        ],
+      }),
+    ],
+  });
+
   const doc = new Document({
     sections: [
       {
-        children: [
-          new Table({
-            rows: [
-              new TableRow({
-                children: [
-                  new TableCell({
-                    children: [],
-                  }),
-                  new TableCell({
-                    children: [],
-                  }),
-                  new TableCell({
-                    children: [],
-                  }),
-                  new TableCell({
-                    children: [],
-                  }),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  new TableCell({
-                    children: [],
-                  }),
-                  new TableCell({
-                    children: [new Paragraph("Hello")],
-                    borders: {
-                      top: {
-                        style: BorderStyle.DASH_DOT_STROKED,
-                        size: 3,
-                        color: "FF0000",
-                      },
-                      bottom: {
-                        style: BorderStyle.DOUBLE,
-                        size: 3,
-                        color: "0000FF",
-                      },
-                      left: {
-                        style: BorderStyle.DASH_DOT_STROKED,
-                        size: 3,
-                        color: "00FF00",
-                      },
-                      right: {
-                        style: BorderStyle.DASH_DOT_STROKED,
-                        size: 3,
-                        color: "#ff8000",
-                      },
-                    },
-                  }),
-                  new TableCell({
-                    children: [],
-                  }),
-                  new TableCell({
-                    children: [],
-                  }),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  new TableCell({
-                    children: [],
-                  }),
-                  new TableCell({
-                    children: [],
-                  }),
-                  new TableCell({
-                    children: [],
-                  }),
-                  new TableCell({
-                    children: [],
-                  }),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  new TableCell({
-                    children: [],
-                  }),
-                  new TableCell({
-                    children: [],
-                  }),
-                  new TableCell({
-                    children: [],
-                  }),
-                  new TableCell({
-                    children: [],
-                  }),
-                ],
-              }),
-            ],
-          }),
-        ],
+        children: [new Paragraph({ text: "Table with skewed widths" }), table],
       },
     ],
   });
 
   if (doc) {
     Packer.toBlob(doc).then((blob) => {
-      saveAs(blob, `Case_#${patientCase.caseId}.docx`);
+      saveAs(blob, `Case_#${patientCase._id}.docx`);
     });
   }
 };

@@ -11,7 +11,7 @@ import api from "../API/Api";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponseChat from "../Components/ResponseChat";
 import PulseLoader from "react-spinners/PulseLoader";
-import Toast from "../Components/Toast";
+
 import DeleteCaseModal from "../Components/DeleteCaseModal";
 import { DocumentGenerator } from "../Components/DocumentGenerator";
 import { buttonVariant, dropdownVariants } from "../Animations/Animations";
@@ -35,7 +35,6 @@ const CaseData = () => {
     setToast,
     setMessage,
     setIsError,
-    toast,
     facilities,
   } = useAuth();
 
@@ -77,16 +76,12 @@ const CaseData = () => {
       );
 
       if (response.data.ok) {
-        setToast(true);
-        setMessage("Successfully deactivated one (1) case.");
-        setIsError(false);
+        toast.success("Successfully deactivated one (1) case.");
         setAppState(response.data.ok);
         setTimeout(() => setAppState(""), 500);
       }
     } catch (error) {
-      setToast(true);
-      setMessage(error.message);
-      setIsError(true);
+      toast.error(error.message);
       setAppState(error.message);
       setTimeout(() => setAppState(""), 500);
     }
@@ -99,16 +94,12 @@ const CaseData = () => {
       );
 
       if (response.data.ok) {
-        setToast(true);
-        setMessage("Successfully activated one (1) case.");
-        setIsError(false);
+        toast.success("Successfully activated one (1) case.");
         setAppState(response.data.ok);
         setTimeout(() => setAppState(""), 500);
       }
     } catch (error) {
-      setToast(true);
-      setMessage(error.message);
-      setIsError(true);
+      toast.error(error.message);
       setAppState(error.message);
       setTimeout(() => setAppState(""), 500);
     }
@@ -170,14 +161,13 @@ const CaseData = () => {
           position="top-right"
           autoClose={5000}
           hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
+          newestOnTop
+          closeOnClick={true}
           rtl={false}
-          pauseOnFocusLoss={false}
+          pauseOnFocusLoss
           draggable={false}
           pauseOnHover
         />
-        <AnimatePresence>{toast && <Toast />}</AnimatePresence>
         <Sidebar />
         <div className="content">
           <Header />
@@ -232,7 +222,9 @@ const CaseData = () => {
                                 Activate
                               </li>
                             )}
-                            <li>Download File</li>
+                            <li onClick={() => DocumentGenerator(patientCase)}>
+                              Download File
+                            </li>
                             <li
                               className={
                                 patientCase.physician._id !== user.userId &&
@@ -349,7 +341,11 @@ const CaseData = () => {
 
                         <div className="liner">
                           <label>Birthday</label>
-                          <p>{patientCase.patient.birthday}</p>
+                          <p>
+                            {getDate(patientCase.patient.birthday)}
+                            {" " + "("}
+                            {getAge(patientCase.patient.birthday) + "yrs)"}
+                          </p>
                         </div>
 
                         <div className="liner">
@@ -419,7 +415,20 @@ const CaseData = () => {
                         </div>
                         <div className="liner">
                           <label>Pertinent Paraclinicals</label>
-                          <p></p>
+                          {patientCase.paraclinical.file ? (
+                            <p>
+                              <a
+                                href={patientCase.paraclinical.file}
+                                target="_blank"
+                              >
+                                Attachment File
+                              </a>
+                            </p>
+                          ) : (
+                            <em>
+                              <p>No attached file</p>
+                            </em>
+                          )}
                         </div>
                         <div className="liner">
                           <label>Working Impression</label>

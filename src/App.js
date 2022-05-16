@@ -1,3 +1,4 @@
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Axios from "axios";
 import Homepage from "./Pages/Homepage";

@@ -7,9 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { HiPlus, HiX } from "react-icons/hi";
 import { socket } from "./Socket";
 import { useClickOutside } from "../Hooks/useClickOutside";
-import { AnimatePresence } from "framer-motion";
-import Toast from "./Toast";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 const formVariant = {
   hidden: {
@@ -62,16 +60,8 @@ const NewCase = ({ setShowCase }) => {
 
   const navigate = useNavigate();
 
-  const {
-    user,
-    patients,
-    facilities,
-    setTab,
-    message,
-    setMessage,
-    setIsError,
-    setAppState,
-  } = useAuth();
+  const { user, patients, facilities, setTab, message, toast, setAppState } =
+    useAuth();
   const [patientData, setPatientData] = useState("");
   const {
     patientId,
@@ -155,15 +145,7 @@ const NewCase = ({ setShowCase }) => {
         !imd ||
         !reason
       ) {
-        toast.error("Please check empty fields", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: false,
-          progress: undefined,
-        });
+        toast.error("Please check empty fields");
         setIsClick(false);
 
         return;
@@ -208,34 +190,16 @@ const NewCase = ({ setShowCase }) => {
                   setAppState(result.data.ok);
                   setTimeout(() => {
                     setAppState("");
-                    setMessage("")
                   }, 5000);
                   clearForm();
                   setTab("Active Case");
-                  setMessage('Created new case')
-                  toast.success(message, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: false,
-                    progress: undefined,
-                  });
+                  toast.success(message);
                   setAppState(result.data.ok);
                   navigate(`/consultation/outgoing/${result.data.ok._id}`, {
                     state: patientData[0],
                   });
                 } else {
-                  toast.error("Request failed with status code 404", {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: false,
-                    progress: undefined,
-                  });
+                  toast.error("Request failed with status code 404");
                   setIsClick(false);
                 }
               });
@@ -512,9 +476,11 @@ const NewCase = ({ setShowCase }) => {
               </p>
             </div>
           )}
-          <button onClick={() => onBtnClick()} id="custom-file">
-            <HiPlus /> <p>Add File</p>
-          </button>
+          {!paraclinical.name && (
+            <button onClick={() => onBtnClick()} id="custom-file">
+              <HiPlus /> <p>Add File</p>
+            </button>
+          )}
           <input
             ref={inputFileRef}
             type="file"

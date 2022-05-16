@@ -8,7 +8,7 @@ import useAuth from "../Hooks/useAuth";
 import api from "../API/Api";
 import { socket } from "./Socket";
 
-const DpModal = ({ setDp, image }) => {
+const DpModal = ({ setDp, image, toast }) => {
   let domNode = useClickOutside(() => {
     setDp(false);
   });
@@ -53,26 +53,20 @@ const DpModal = ({ setDp, image }) => {
             setLoader(false);
             setAppState("Change DP");
             setTimeout(() => setAppState(""));
-            setToast(true);
-            setIsError(false);
-            setMessage("Successfully changed profile picture.");
+            toast.success("Successfully changed profile picture.");
+            setDp(false);
           } else {
             socket.emit("chat");
             setLoader(false);
             setAppState("Change DP");
             setTimeout(() => setAppState(""));
-            setToast(true);
-            setIsError(false);
-            setMessage("Successfully changed profile picture.");
           }
         });
     } catch (error) {
       setLoader(false);
       setAppState("Change DP");
       setTimeout(() => setAppState(""));
-      setToast(true);
-      setIsError(true);
-      setMessage(error.message);
+      toast.error("Failed to change profile picture.");
     }
   };
 

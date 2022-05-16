@@ -13,6 +13,14 @@ hr {
   border-top: 1px solid #dfdfdf;
 }
 
+.Toastify__toast {
+  font-size: 14px;
+}
+
+button.Toastify__close-button {
+  min-width: 0px;
+}
+
 .wait-spinner-container {
   width: 100%;
   height: 100vh;
@@ -417,7 +425,7 @@ button.gray-cta:hover {
   padding: 10px;
   padding-left: 30px;
   height: 32px;
-  border-radius: 100px;
+  border-radius: 4px;
   transition: 0.2s ease-in-out;
   background: #f1f3f1;
 }
@@ -433,7 +441,8 @@ button.gray-cta:hover {
   font-style: italic;
 }
 
-.delete-modal {
+.delete-modal,
+.popup-modal {
   width: 95%;
   max-width: 500px;
   background: #fff;
@@ -442,14 +451,22 @@ button.gray-cta:hover {
   border-radius: 8px;
 }
 
-.delete-modal h1 {
+.delete-modal {
   color: #272727;
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 30px;
 }
 
-.delete-modal p {
+div.popup-modal h1 {
+  color: #272727;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.delete-modal,
+.popup-modal p {
   color: #272727;
   font-size: 15px;
   margin-bottom: 40px;
@@ -461,14 +478,16 @@ button.gray-cta:hover {
   margin-bottom: 40px;
 }
 
-.delete-modal-btns {
+.delete-modal-btns,
+.popup-modal-btns {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
 
-.delete-modal-btns button {
+.delete-modal-btns button,
+.popup-modal-btns button {
   display: flex;
   align-items: center;
   justify-content: center;

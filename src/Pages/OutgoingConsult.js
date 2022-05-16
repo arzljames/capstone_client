@@ -3,15 +3,13 @@ import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
 import "./Homepage.css";
 import "./OutgoingConsult.css";
-import Toast from "../Components/Toast";
 import ConsultationNavbar from "../Components/ConsultationNavbar";
 import OutgoingCaseActive from "../Components/OutgoingCaseActive";
-import { AnimatePresence } from "framer-motion";
 import useAuth from "../Hooks/useAuth";
 import { Helmet } from "react-helmet";
 
 const OutgoingConsult = () => {
-  const { cases, user, toast } = useAuth();
+  const { cases, user } = useAuth();
 
   return (
     <>
@@ -19,7 +17,6 @@ const OutgoingConsult = () => {
         <title>Outgoing Request | ZCMC Telemedicine</title>
       </Helmet>
       <div className="container">
-        <AnimatePresence>{toast && <Toast />}</AnimatePresence>
         <Sidebar />
         <div className="content">
           <Header />

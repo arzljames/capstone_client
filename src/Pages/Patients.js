@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 import AddPatientForm from "../Components/AddPatientForm";
 import { AnimatePresence } from "framer-motion";
 import useAuth from "../Hooks/useAuth";
-import Toast from "../Components/Toast";
 import { AiFillCaretDown } from "react-icons/ai";
 import { HiUpload, HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { useClickOutside } from "../Hooks/useClickOutside";
@@ -37,10 +36,10 @@ const Patients = () => {
     patients,
     cases,
     appState,
-    setToast,
     setMessage,
     setIsError,
     toast,
+    ToastContainer,
   } = useAuth();
 
   const [isSort, setIsSort] = useState(false);
@@ -163,9 +162,20 @@ const Patients = () => {
         <title>Patients | ZCMC Telemedicine</title>
       </Helmet>
       <div className="container">
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick={true}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable={false}
+          pauseOnHover
+        />
         <AnimatePresence>
           {CSV.length !== 0 && <ImportModal setCSV={setCSV} CSV={CSV} />}
-          {toast && <Toast />}
+
           {deleteModal && (
             <DeleteMultiplePatientModal
               setDeleteModal={setDeleteModal}
@@ -270,9 +280,7 @@ const Patients = () => {
                           const text = await e.target.files[0].text();
                           const result = parse(text, { header: true });
                           if (e.target.files[0].type !== "text/csv") {
-                            setToast(true);
-                            setMessage("Not a CSV file.");
-                            setIsError(true);
+                            toast.error("Not a CSV file.");
 
                             return;
                           }

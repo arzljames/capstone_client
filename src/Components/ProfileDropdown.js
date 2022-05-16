@@ -16,6 +16,8 @@ import ProfileModal from "./ProfileModal";
 import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import DpModal from "./DpModal";
+import { ToastContainer, toast } from "react-toastify";
+import LogoutModal from "./LogoutModal";
 
 const ProfileDropdown = ({
   submitLogout,
@@ -60,6 +62,7 @@ const ProfileDropdown = ({
   }, []);
 
   const [profileModal, setProfileModal] = useState(false);
+  const [logout, setLogout] = useState(false);
 
   return (
     <>
@@ -71,13 +74,28 @@ const ProfileDropdown = ({
 
       <AnimatePresence>
         {profileModal && <ProfileModal setProfileModal={setProfileModal} />}
+        {logout && (
+          <LogoutModal setLogout={setLogout} submitLogout={submitLogout} />
+        )}
         {dp && (
           <DpModal
             image={!users.picture ? NoUser : users.picture}
             setDp={setDp}
+            toast={toast}
           />
         )}
       </AnimatePresence>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick={true}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable={false}
+        pauseOnHover
+      />
       <div className="profile-container-dropdown">
         <div className="profile-name-picture">
           <div className="profile-name-picture-container">
@@ -129,7 +147,7 @@ const ProfileDropdown = ({
           </li>
         </ul>
         <ul style={{ border: "none" }}>
-          <li onClick={() => submitLogout()}>
+          <li onClick={() => setLogout(true)}>
             <p>
               <IoExitOutline />
             </p>
