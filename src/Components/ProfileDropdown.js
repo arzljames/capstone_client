@@ -25,8 +25,7 @@ const ProfileDropdown = ({
   profilePicture,
   setDropdown2,
 }) => {
-  const { user, facilities, setAppState, setToast, setIsError, setMessage } =
-    useAuth();
+  const { user, facilities, cases, patients } = useAuth();
   const [dropdown, setDropdown] = useState(false);
   const [dp, setDp] = useState(false);
 
@@ -44,6 +43,9 @@ const ProfileDropdown = ({
   const navigate = useNavigate();
 
   const [specc, setSpecc] = useState("");
+  const [desig, setDesig] = useState("");
+  const [totalPt, setTotalPt] = useState(0);
+  const [totalCs, setTotalCs] = useState(0);
 
   useEffect(() => {
     const fetchSpecc = async () => {
@@ -58,8 +60,48 @@ const ProfileDropdown = ({
       } catch (error) {}
     };
 
+    const fetchDesig = async () => {
+      try {
+        let response = await facilities.filter(
+          (id) => id._id === user.designation
+        )[0].facility;
+
+        if (response) {
+          setDesig(response);
+        }
+      } catch (error) {}
+    };
+
+    const fetchTotalPt = async () => {
+      try {
+        let response = await patients.filter(
+          (e) => e.physician._id === user.userId
+        );
+
+        if (response) {
+          setTotalPt(response.length);
+          console.log(patients);
+        }
+      } catch (error) {}
+    };
+
+    const fetchTotalCs = async () => {
+      try {
+        let response = await cases.filter(
+          (id) => id.physician._id === user.userId
+        );
+
+        if (response) {
+          setTotalCs(response.length);
+        }
+      } catch (error) {}
+    };
+
+    fetchTotalPt();
+    fetchTotalCs();
+    fetchDesig();
     fetchSpecc();
-  }, []);
+  }, [patients, cases]);
 
   const [profileModal, setProfileModal] = useState(false);
   const [logout, setLogout] = useState(false);
@@ -73,7 +115,17 @@ const ProfileDropdown = ({
       )}
 
       <AnimatePresence>
-        {profileModal && <ProfileModal setProfileModal={setProfileModal} />}
+        {profileModal && (
+          <ProfileModal
+            image={!users.picture ? NoUser : users.picture}
+            setProfileModal={setProfileModal}
+            users={users}
+            specc={specc}
+            desig={desig}
+            totalCs={totalCs}
+            totalPt={totalPt}
+          />
+        )}
         {logout && (
           <LogoutModal setLogout={setLogout} submitLogout={submitLogout} />
         )}

@@ -13,7 +13,7 @@ const DpModal = ({ setDp, image, toast }) => {
     setDp(false);
   });
 
-  const { setIsError, setToast, setMessage, setAppState, user } = useAuth();
+  const { setAppState, user } = useAuth();
   const [loader, setLoader] = useState(false);
 
   const [picture, setPicture] = useState("");
@@ -30,6 +30,7 @@ const DpModal = ({ setDp, image, toast }) => {
   };
 
   const changeProfile = () => {
+    setLoader(true);
     try {
       setLoader(true);
       const formData = new FormData();
@@ -108,12 +109,12 @@ const DpModal = ({ setDp, image, toast }) => {
               </p>{" "}
               Upload Picture
             </button>
-            <button onClick={() => setPicture(NoUser)} className="remove">
+            {/* <button onClick={() => setPicture(NoUser)} className="remove">
               <p>
                 <HiOutlineTrash />
               </p>{" "}
               Remove Picture
-            </button>
+            </button> */}
           </div>
         </div>
 
@@ -121,7 +122,10 @@ const DpModal = ({ setDp, image, toast }) => {
           <button onClick={() => setDp(false)} className="gray-cta">
             Cancel
           </button>
-          <button onClick={() => changeProfile()} className="green-cta">
+          <button
+            onClick={() => changeProfile()}
+            className={loader ? "green-cta-disable" : "green-cta"}
+          >
             Save
           </button>
         </div>

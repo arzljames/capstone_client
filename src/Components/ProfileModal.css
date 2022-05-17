@@ -1,0 +1,78 @@
+.profile-modal {
+  background: #fff;
+  width: 95%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.profile-modal-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #d3d3d3;
+  padding-bottom: 20px;
+}
+
+.profile-modal-info img {
+  width: 100px;
+  border-radius: 50%;
+  margin-right: 30px;
+  border: 2px solid #d3d3d3;
+  background: #eee;
+}
+
+.profile-modal-info-name {
+  flex: 1;
+}
+
+div.profile-modal-info-name h1 {
+  color: #272727;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.profile-modal-info-name p {
+  color: #272727;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.profile-modal-info-name h1 div {
+  width: 18px;
+  height: 18px;
+  background: #3a67fc;
+  margin-left: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.total-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.total-section div {
+  margin: 0px 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.total-section div p {
+  color: #4b4b4b;
+  font-size: 13px;
+}
+
+.total-section div h5 {
+  color: #272727;
+  font-size: 15px;
+  margin-bottom: 4px;
+}

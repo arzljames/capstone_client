@@ -130,6 +130,20 @@ button.green-cta {
   justify-content: center;
 }
 
+button.green-cta-disable {
+  background: #1cb45d;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 button.green-cta:hover {
   background: #199b51;
   transition: 0.1s ease-in-out;

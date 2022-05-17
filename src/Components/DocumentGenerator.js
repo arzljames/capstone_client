@@ -59,7 +59,7 @@ export const DocumentGenerator = (patientCase) => {
         children: [
           new TableCell({
             width: {
-              size: 3505,
+              size: 5505,
               type: WidthType.DXA,
             },
             children: [
@@ -71,7 +71,7 @@ export const DocumentGenerator = (patientCase) => {
                     text: "Contact: ",
                     bold: true,
                   }),
-                  new TextRun(patientCase.patient.contact),
+                  new TextRun(`${patientCase.patient.contact}`),
                 ],
               }),
 
@@ -115,7 +115,7 @@ export const DocumentGenerator = (patientCase) => {
                     text: "Age: ",
                     bold: true,
                   }),
-                  new TextRun(getAge(patientCase.patient.birthday)),
+                  new TextRun(`${getAge(patientCase.patient.birthday)}`),
                 ],
               }),
 
@@ -182,7 +182,7 @@ export const DocumentGenerator = (patientCase) => {
           }),
           new TableCell({
             width: {
-              size: 5505,
+              size: 3505,
               type: WidthType.DXA,
             },
             children: [
@@ -249,24 +249,6 @@ export const DocumentGenerator = (patientCase) => {
           }),
         ],
       }),
-      new TableRow({
-        children: [
-          new TableCell({
-            width: {
-              size: 3505,
-              type: WidthType.DXA,
-            },
-            children: [],
-          }),
-          new TableCell({
-            width: {
-              size: 5505,
-              type: WidthType.DXA,
-            },
-            children: [],
-          }),
-        ],
-      }),
     ],
   });
 
@@ -294,6 +276,175 @@ export const DocumentGenerator = (patientCase) => {
           }),
           new Paragraph(""),
           table,
+          new Paragraph(""),
+          new Paragraph(""),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Temperature: ",
+                bold: true,
+              }),
+              new TextRun(patientCase.temperature),
+            ],
+          }),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Respiratory Rate: ",
+                bold: true,
+              }),
+
+              new TextRun(patientCase.respiratory),
+            ],
+          }),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Heart Rate: ",
+                bold: true,
+              }),
+
+              new TextRun(patientCase.heart),
+            ],
+          }),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Blood Pressure: ",
+                bold: true,
+              }),
+
+              new TextRun(patientCase.blood),
+            ],
+          }),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Oxygen Saturation: ",
+                bold: true,
+              }),
+
+              new TextRun(patientCase.oxygen),
+            ],
+          }),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Weight: ",
+                bold: true,
+              }),
+
+              new TextRun(patientCase.weight),
+            ],
+          }),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Height: ",
+                bold: true,
+              }),
+
+              new TextRun(patientCase.height),
+            ],
+          }),
+
+          new Paragraph(""),
+          new Paragraph(""),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Chief complaint:",
+                bold: true,
+              }),
+            ],
+          }),
+          new Paragraph(`  ${patientCase.cc}`),
+          new Paragraph(""),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Pertinent History of Present Illness:",
+                bold: true,
+              }),
+            ],
+          }),
+          new Paragraph(`  ${patientCase.hpi}`),
+          new Paragraph(""),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Pertinent Past Medical History:",
+                bold: true,
+              }),
+            ],
+          }),
+          new Paragraph(`  ${patientCase.pmh}`),
+          new Paragraph(""),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Pertinent Review of Systems:",
+                bold: true,
+              }),
+            ],
+          }),
+          new Paragraph(`  ${patientCase.ros}`),
+          new Paragraph(""),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Pertinent PE Findings:",
+                bold: true,
+              }),
+            ],
+          }),
+          new Paragraph(`  ${patientCase.pe}`),
+          new Paragraph(""),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Working Impression:",
+                bold: true,
+              }),
+            ],
+          }),
+          new Paragraph(`  ${patientCase.wi}`),
+          new Paragraph(""),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Initial Management Done:",
+                bold: true,
+              }),
+            ],
+          }),
+          new Paragraph(`  ${patientCase.imd}`),
+          new Paragraph(""),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "  Reason for Referral:",
+                bold: true,
+              }),
+            ],
+          }),
+          new Paragraph(`  ${patientCase.reason}`),
+          new Paragraph(""),
         ],
       },
     ],

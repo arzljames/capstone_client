@@ -8,6 +8,8 @@ import {
   HiOutlineSearch,
   HiOutlineSortDescending,
   HiOutlineFilter,
+  HiChevronLeft,
+  HiChevronRight,
 } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useClickOutside } from "../Hooks/useClickOutside";
@@ -17,6 +19,7 @@ import api from "../API/Api";
 import { useNavigate } from "react-router-dom";
 import "./Case.css";
 import PatientModal from "../Components/PatientModal";
+import ReactPaginate from "react-paginate";
 
 const dropdownVariants = {
   hidden: {
@@ -95,6 +98,15 @@ const Case = () => {
     setSearchDropdown(false);
   });
 
+  const [pageNumber, setPageNumber] = useState(0);
+  const [usersPerPage, setUsersPerPage] = useState(10);
+  const pagesVisited = pageNumber * usersPerPage;
+
+  const pageCount = Math.ceil(cases.length / usersPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
+
   return (
     <>
       <Helmet>
@@ -114,254 +126,260 @@ const Case = () => {
           <div className="consultation-content">
             <ConsultationNavbar />
             <div className="content-body">
-              <div className="container-heading">
-                <h2>Consultation Case</h2>
-                <div className="subheading-btns">
-                  {user.designation !== "623ec7fb80a6838424edaa29" && (
-                    <button
-                      onClick={() => setShowCase(true)}
-                      className="add-case-btn"
-                    >
-                      <p>
-                        <HiPlus />
-                      </p>
-                      Add Case
-                    </button>
-                  )}
+              <div className="content-wrapper">
+                <div className="container-heading">
+                  <h2>Consultation Case</h2>
+                  <div className="subheading-btns">
+                    {user.designation !== "623ec7fb80a6838424edaa29" && (
+                      <button
+                        onClick={() => setShowCase(true)}
+                        className="add-case-btn"
+                      >
+                        <p>
+                          <HiPlus />
+                        </p>
+                        Add Case
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              <div className="above-patient-table">
-                <div className="patient-input-container">
-                  <input
-                    value={term}
-                    onChange={(e) => setTerm(e.target.value)}
-                    type="search"
-                    onFocus={() => setSearchDropdown(true)}
-                    placeholder="Search case (ID, Patient, Service)"
-                  />
-                  <div className="patient-input-icon">
-                    <HiOutlineSearch />
+                <div className="above-patient-table">
+                  <div className="patient-input-container">
+                    <input
+                      value={term}
+                      onChange={(e) => setTerm(e.target.value)}
+                      type="search"
+                      onFocus={() => setSearchDropdown(true)}
+                      placeholder="Search case (ID, Patient, Service)"
+                    />
+                    <div className="patient-input-icon">
+                      <HiOutlineSearch />
+                    </div>
+
+                    {searchDropdown && (
+                      <div ref={domNodeSearch} className="advance-search">
+                        {!term ? (
+                          <p>Type in the search bar</p>
+                        ) : (
+                          <p>You searched for "{term}"</p>
+                        )}
+                      </div>
+                    )}
                   </div>
 
-                  {searchDropdown && (
-                    <div ref={domNodeSearch} className="advance-search">
-                      {!term ? (
-                        <p>Type in the search bar</p>
-                      ) : (
-                        <p>You searched for "{term}"</p>
-                      )}
-                    </div>
-                  )}
+                  <div className="above-patient-table-btns">
+                    <button
+                      className={isFilter ? "btn-active" : "btn-inactive"}
+                      onClick={() => {
+                        setIsFilter(true);
+                        setIsSort(false);
+                      }}
+                    >
+                      <p>
+                        <HiOutlineFilter />
+                      </p>
+                      Filter
+                      <AnimatePresence>
+                        {isFilter && (
+                          <motion.div
+                            ref={domNodeFilter}
+                            variants={dropdownVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                            className="filter-dropdown"
+                          >
+                            <h5>Status</h5>
+                            <ul>
+                              <li
+                                onClick={() => {
+                                  setFilter("Active");
+                                }}
+                              >
+                                <input type="checkbox" /> Active
+                              </li>
+                              <li
+                                onClick={() => {
+                                  setFilter("Done");
+                                }}
+                              >
+                                <input type="checkbox" /> Done
+                              </li>
+                            </ul>
+
+                            <h5>Service</h5>
+                            <ul>
+                              {hospitalSpec.map((e) => {
+                                return (
+                                  <li key={e._id}>
+                                    <input type="checkbox" />
+                                    {e.name}
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </button>
+                    <button
+                      className={isSort ? "btn-active" : "btn-inactive"}
+                      onClick={() => {
+                        setIsSort(!isSort);
+                        setIsFilter(false);
+                      }}
+                    >
+                      <p>
+                        <HiOutlineSortDescending />
+                      </p>
+                      Sort by: {sort}
+                      <AnimatePresence>
+                        {isSort && (
+                          <motion.div
+                            ref={domNodeSort}
+                            variants={dropdownVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                            className="sort-dropdown"
+                          >
+                            <ul>
+                              <li>Oldest</li>
+                              <li>Newest</li>
+
+                              <li>Name (A-Z)</li>
+                              <li>Name (Z-A)</li>
+                            </ul>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </button>
+                  </div>
                 </div>
 
-                <div className="above-patient-table-btns">
-                  <button
-                    className={isFilter ? "btn-active" : "btn-inactive"}
-                    onClick={() => {
-                      setIsFilter(true);
-                      setIsSort(false);
-                    }}
-                  >
-                    <p>
-                      <HiOutlineFilter />
-                    </p>
-                    Filter
-                    <AnimatePresence>
-                      {isFilter && (
-                        <motion.div
-                          ref={domNodeFilter}
-                          variants={dropdownVariants}
-                          initial="hidden"
-                          animate="visible"
-                          exit="exit"
-                          className="filter-dropdown"
-                        >
-                          <h5>Status</h5>
-                          <ul>
-                            <li
+                <div className="table">
+                  <div className="table-header">
+                    <div className="cs-id">Case ID</div>
+                    <div className="cs-name">Patient</div>
+
+                    <div className="cs-department">Service</div>
+                    <div className="cs-date">Date & Time</div>
+                    <div className="cs-status">Status</div>
+                  </div>
+
+                  {cases
+                    .filter((vals) => {
+                      if (term === "") {
+                        return vals;
+                      } else if (
+                        vals.caseId
+                          .toLowerCase()
+                          .includes(term.toLocaleLowerCase()) ||
+                        vals.patient.fullname
+                          .toLowerCase()
+                          .includes(term.toLocaleLowerCase())
+                      ) {
+                        return vals;
+                      }
+                    })
+                    .filter((e) =>
+                      filter === "None"
+                        ? e
+                        : filter === "Active"
+                        ? e.active === true
+                        : e.active === false
+                    )
+                    .filter((val) => {
+                      if (
+                        user.designation === "623ec7fb80a6838424edaa29" &&
+                        user.specialization === val.specialization
+                      ) {
+                        return val;
+                      } else if (user.userId === val.physician._id) {
+                        return val;
+                      }
+                    })
+                    .slice(
+                      term === "" ? pagesVisited : 0,
+                      term === "" ? pagesVisited + usersPerPage : cases.length
+                    )
+                    .map((item, index) => {
+                      return (
+                        <div className="table-body">
+                          <div className="cs-id">
+                            <p
                               onClick={() => {
-                                setFilter("Active");
+                                navigate(
+                                  `/consultation/case/case-data/${item._id}`
+                                );
                               }}
                             >
-                              <input type="checkbox" /> Active
-                            </li>
-                            <li
-                              onClick={() => {
-                                setFilter("Done");
+                              {item.caseId}
+                            </p>
+                          </div>
+                          <div className="cs-name">
+                            <p
+                              onClick={(e) => {
+                                filterPatient(item.patient._id);
+                                setPatientModal(true);
+                                e.stopPropagation();
                               }}
                             >
-                              <input type="checkbox" /> Done
-                            </li>
-                          </ul>
+                              {item.patient.firstname +
+                                " " +
+                                item.patient.lastname}
+                            </p>
+                          </div>
 
-                          <h5>Service</h5>
-                          <ul>
-                            {hospitalSpec.map((e) => {
-                              return (
-                                <li key={e._id}>
-                                  <input type="checkbox" />
-                                  {e.name}
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </button>
-                  <button
-                    className={isSort ? "btn-active" : "btn-inactive"}
-                    onClick={() => {
-                      setIsSort(!isSort);
-                      setIsFilter(false);
-                    }}
-                  >
-                    <p>
-                      <HiOutlineSortDescending />
-                    </p>
-                    Sort by: {sort}
-                    <AnimatePresence>
-                      {isSort && (
-                        <motion.div
-                          ref={domNodeSort}
-                          variants={dropdownVariants}
-                          initial="hidden"
-                          animate="visible"
-                          exit="exit"
-                          className="sort-dropdown"
-                        >
-                          <ul>
-                            <li>Oldest</li>
-                            <li>Newest</li>
-
-                            <li>Name (A-Z)</li>
-                            <li>Name (Z-A)</li>
-                          </ul>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </button>
+                          <div className="cs-department">
+                            {
+                              facilities
+                                .filter((e) => e._id === item.designation._id)
+                                .map((f) => {
+                                  return f.specialization.filter(
+                                    (g) => g._id === item.specialization
+                                  )[0];
+                                })[0].name
+                            }
+                          </div>
+                          <div className="cs-date">
+                            {getDate(item.createdAt)} {getTime(item.createdAt)}
+                          </div>
+                          <div className="cs-status">
+                            <p className={item.active ? "active" : "done"}>
+                              <div
+                                className={
+                                  item.active
+                                    ? "indicator active"
+                                    : "indicator done"
+                                }
+                              ></div>
+                              {item.active ? "Active" : "Done"}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
                 </div>
-              </div>
-
-              <div className="table">
-                <div className="table-header">
-                  <div className="cs-id">Case ID</div>
-                  <div className="cs-name">Patient</div>
-
-                  <div className="cs-department">Service</div>
-                  <div className="cs-date">Date & Time</div>
-                  <div className="cs-status">Status</div>
+                <br />
+                <div className="pagination-container">
+                  <ReactPaginate
+                    previousLabel={<HiChevronLeft size={20} />}
+                    nextLabel={<HiChevronRight size={20} />}
+                    breakLabel="..."
+                    pageCount={pageCount}
+                    marginPagesDisplayed={3}
+                    containerClassName="pagination"
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    breakClassName="page-item"
+                    nextClassName="page-item"
+                    previousClassName="page-item"
+                    activeClassName="active"
+                    onPageChange={changePage}
+                  />
                 </div>
-
-                {cases
-                  .filter((vals) => {
-                    if (term === "") {
-                      return vals;
-                    } else if (
-                      vals.caseId
-                        .toLowerCase()
-                        .includes(term.toLocaleLowerCase()) ||
-                      vals.patient.fullname
-                        .toLowerCase()
-                        .includes(term.toLocaleLowerCase())
-                    ) {
-                      return vals;
-                    }
-                  })
-                  .filter((e) =>
-                    filter === "None"
-                      ? e
-                      : filter === "Active"
-                      ? e.active === true
-                      : e.active === false
-                  )
-                  .filter((val) => {
-                    if (
-                      user.designation === "623ec7fb80a6838424edaa29" &&
-                      user.specialization === val.specialization
-                    ) {
-                      return val;
-                    } else if (user.userId === val.physician._id) {
-                      return val;
-                    }
-                  })
-                  .map((item, index) => {
-                    return (
-                      <div className="table-body">
-                        <div className="cs-id">
-                          <p
-                            onClick={() => {
-                              navigate(
-                                `/consultation/case/case-data/${item._id}`
-                              );
-                            }}
-                          >
-                            {item.caseId}
-                          </p>
-                        </div>
-                        <div className="cs-name">
-                          <p
-                            onClick={(e) => {
-                              filterPatient(item.patient._id);
-                              setPatientModal(true);
-                              e.stopPropagation();
-                            }}
-                          >
-                            {item.patient.firstname +
-                              " " +
-                              item.patient.lastname}
-                          </p>
-                        </div>
-
-                        <div className="cs-department">
-                          {
-                            facilities
-                              .filter((e) => e._id === item.designation._id)
-                              .map((f) => {
-                                return f.specialization.filter(
-                                  (g) => g._id === item.specialization
-                                )[0];
-                              })[0].name
-                          }
-                        </div>
-                        <div className="cs-date">
-                          {getDate(item.createdAt)} {getTime(item.createdAt)}
-                        </div>
-                        <div className="cs-status">
-                          <p className={item.active ? "active" : "done"}>
-                            <div
-                              className={
-                                item.active
-                                  ? "indicator active"
-                                  : "indicator done"
-                              }
-                            ></div>
-                            {item.active ? "Active" : "Done"}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
-              </div>
-
-              <div className="pagination-container">
-                {/* <ReactPaginate
-                      previousLabel={<HiChevronLeft size={20} />}
-                      nextLabel={<HiChevronRight size={20} />}
-                      breakLabel="..."
-                      pageCount={pageCount}
-                      marginPagesDisplayed={3}
-                      containerClassName="pagination"
-                      pageClassName="page-item"
-                      pageLinkClassName="page-link"
-                      breakClassName="page-item"
-                      nextClassName="page-item"
-                      previousClassName="page-item"
-                      activeClassName="active"
-                      onPageChange={changePage}
-                    /> */}
               </div>
             </div>
           </div>
