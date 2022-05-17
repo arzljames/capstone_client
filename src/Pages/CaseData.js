@@ -179,7 +179,7 @@ const CaseData = () => {
                   <HiArrowNarrowLeft /> <p>Back</p>
                 </button>
 
-                <div className="above-patient-profile-btns">
+                <div ref={domNode} className="above-patient-profile-btns">
                   <motion.button
                     onClick={() => setDropdown(!dropdown)}
                     className={
@@ -199,7 +199,7 @@ const CaseData = () => {
                           exit="exit"
                           className="action-dropdown"
                         >
-                          <ul ref={domNode}>
+                          <ul>
                             {patientCase.active === true ? (
                               <li
                                 className={

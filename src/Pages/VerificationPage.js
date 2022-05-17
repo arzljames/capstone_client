@@ -48,9 +48,7 @@ const VerificationPage = () => {
           className="verification-modal"
         >
           <img src={hooray} alt="Welcome" />
-          <h1>
-            Welcome to <span>TeleMedicine</span>
-          </h1>
+          <h1>Account Activated!</h1>
           <p>
             Let's get started. You and your team can now use the ZCMC
             TeleMedicine System. Explore our documentation guide or jump right

@@ -37,8 +37,6 @@ ChartJS.register(
 );
 
 const AdminDashboard = () => {
-  const navigate = useNavigate();
-
   const {
     pending,
     facilities,
@@ -211,7 +209,11 @@ const AdminDashboard = () => {
         />
         <AnimatePresence>
           {modal && (
-            <DeletePendingUserModal setModal={setModal} userId={userId} />
+            <DeletePendingUserModal
+              toast={toast}
+              setModal={setModal}
+              userId={userId}
+            />
           )}
           <AdminSidebar />
         </AnimatePresence>

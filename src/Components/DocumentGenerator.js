@@ -16,9 +16,44 @@ import {
 } from "docx";
 import { saveAs } from "file-saver";
 
+function getAge(dateString) {
+  var today = new Date();
+  var birthDate = new Date(dateString);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+}
+
+const getDate = (date) => {
+  let today = new Date(date);
+  let createdAt =
+    today.toLocaleString("en-us", { month: "short" }) +
+    " " +
+    today.getDate() +
+    "," +
+    " " +
+    today.getFullYear();
+
+  return createdAt;
+};
+
+const getTime = (date) => {
+  var options = {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  };
+  let today = new Date(date).toLocaleString("en-US", options);
+
+  return today;
+};
+
 export const DocumentGenerator = (patientCase) => {
   const table = new Table({
-    columnWidths: [3505, 5505],
+    columnWidths: [5505, 3505],
     rows: [
       new TableRow({
         children: [
@@ -27,14 +62,190 @@ export const DocumentGenerator = (patientCase) => {
               size: 3505,
               type: WidthType.DXA,
             },
-            children: [new Paragraph("Hello")],
+            children: [
+              new Paragraph(""),
+              new Paragraph({
+                children: [
+                  new TextRun("  "),
+                  new TextRun({
+                    text: "Contact: ",
+                    bold: true,
+                  }),
+                  new TextRun(patientCase.patient.contact),
+                ],
+              }),
+
+              new Paragraph({
+                children: [
+                  new TextRun("  "),
+                  new TextRun({
+                    text: "Sex: ",
+                    bold: true,
+                  }),
+                  new TextRun(patientCase.patient.sex),
+                ],
+              }),
+
+              new Paragraph({
+                children: [
+                  new TextRun("  "),
+                  new TextRun({
+                    text: "Civil Status: ",
+                    bold: true,
+                  }),
+                  new TextRun(patientCase.patient.civilStatus),
+                ],
+              }),
+
+              new Paragraph({
+                children: [
+                  new TextRun("  "),
+                  new TextRun({
+                    text: "Birthday: ",
+                    bold: true,
+                  }),
+                  new TextRun(getDate(patientCase.patient.birthday)),
+                ],
+              }),
+
+              new Paragraph({
+                children: [
+                  new TextRun("  "),
+                  new TextRun({
+                    text: "Age: ",
+                    bold: true,
+                  }),
+                  new TextRun(getAge(patientCase.patient.birthday)),
+                ],
+              }),
+
+              new Paragraph({
+                children: [
+                  new TextRun("  "),
+                  new TextRun({
+                    text: "Religion: ",
+                    bold: true,
+                  }),
+                  new TextRun(patientCase.patient.religion),
+                ],
+              }),
+
+              new Paragraph({
+                children: [
+                  new TextRun("  "),
+                  new TextRun({
+                    text: "Address: ",
+                    bold: true,
+                  }),
+                  new TextRun(
+                    patientCase.patient.address.barangay +
+                      "," +
+                      " " +
+                      patientCase.patient.address.city
+                  ),
+                ],
+              }),
+
+              new Paragraph({
+                children: [
+                  new TextRun("  "),
+                  new TextRun({
+                    text: "Birth Place: ",
+                    bold: true,
+                  }),
+                  new TextRun(patientCase.patient.birthplace),
+                ],
+              }),
+
+              new Paragraph({
+                children: [
+                  new TextRun("  "),
+                  new TextRun({
+                    text: "Ethnicity: ",
+                    bold: true,
+                  }),
+                  new TextRun(patientCase.patient.ethnicity),
+                ],
+              }),
+
+              new Paragraph({
+                children: [
+                  new TextRun("  "),
+                  new TextRun({
+                    text: "Legal Guardian: ",
+                    bold: true,
+                  }),
+                  new TextRun(patientCase.patient.guardian.name),
+                ],
+              }),
+            ],
           }),
           new TableCell({
             width: {
               size: 5505,
               type: WidthType.DXA,
             },
-            children: [],
+            children: [
+              new Paragraph(""),
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "  Hospital",
+                    bold: true,
+                  }),
+                ],
+              }),
+
+              new Paragraph("  na"),
+              new Paragraph(""),
+
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "  Attending Pysician",
+                    bold: true,
+                  }),
+                ],
+              }),
+
+              new Paragraph(
+                `  Dr. ${
+                  patientCase.physician.firstname +
+                  " " +
+                  patientCase.physician.lastname
+                }`
+              ),
+              new Paragraph(""),
+
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "  Specialization",
+                    bold: true,
+                  }),
+                ],
+              }),
+
+              new Paragraph("  na"),
+              new Paragraph(""),
+
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "  Date & Time",
+                    bold: true,
+                  }),
+                ],
+              }),
+
+              new Paragraph(
+                "  " +
+                  getDate(patientCase.createdAt) +
+                  " " +
+                  getTime(patientCase.createdAt)
+              ),
+              new Paragraph(""),
+            ],
           }),
         ],
       }),
@@ -52,7 +263,7 @@ export const DocumentGenerator = (patientCase) => {
               size: 5505,
               type: WidthType.DXA,
             },
-            children: [new Paragraph("World")],
+            children: [],
           }),
         ],
       }),
@@ -62,7 +273,28 @@ export const DocumentGenerator = (patientCase) => {
   const doc = new Document({
     sections: [
       {
-        children: [new Paragraph({ text: "Table with skewed widths" }), table],
+        children: [
+          new Paragraph({
+            children: [
+              new TextRun({
+                text:
+                  patientCase.patient.firstname +
+                  " " +
+                  patientCase.patient.middlename[0] +
+                  "." +
+                  " " +
+                  patientCase.patient.lastname,
+                bold: true,
+                size: 42,
+              }),
+            ],
+          }),
+          new Paragraph({
+            children: [new TextRun({ text: `CASE ID #${patientCase.caseId}` })],
+          }),
+          new Paragraph(""),
+          table,
+        ],
       },
     ],
   });

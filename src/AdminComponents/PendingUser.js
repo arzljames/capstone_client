@@ -8,6 +8,7 @@ import {
   HiOutlineUser,
 } from "react-icons/hi";
 import api from "../API/Api";
+import { motion, transform } from "framer-motion";
 
 let useClickOutside = (handler) => {
   let domNode = useRef();
@@ -55,15 +56,14 @@ const PendingUser = ({
       });
 
       if (response.data.ok) {
-        // setMessage("Email verification link sent.");
         toast.success("Email verification link sent.");
 
         setDropdown(false);
       } else {
-        // setMessage("There's a problem sending the email verification link.");
+        toast.error("There's a problem sending the email verification link.");
       }
     } catch (error) {
-      // setMessage("There's a problem sending the email verification link.");
+      toast.error("There's a problem sending the email verification link.");
     }
   };
 
@@ -109,12 +109,12 @@ const PendingUser = ({
                 </p>
                 View Profile
               </li>
-              <li onClick={() => handleVerify()}>
+              <motion.li onClick={() => handleVerify()}>
                 <p>
                   <HiOutlineLink className="check-icon" />
                 </p>
                 Send Verification Link
-              </li>
+              </motion.li>
               <li
                 onClick={() => {
                   handleId(id);
