@@ -25,9 +25,6 @@ import {
   Legend,
 } from "chart.js";
 import { Chart, Line } from "react-chartjs-2";
-import { month } from "javascript-time-ago/gradation";
-import { date } from "yup";
-import { get } from "react-hook-form";
 
 ChartJS.register(
   CategoryScale,
@@ -42,8 +39,15 @@ ChartJS.register(
 const AdminDashboard = () => {
   const navigate = useNavigate();
 
-  const { pending, facilities, listUsers, patients, cases } = useAuth();
-  const [toast, setToast] = useState(false);
+  const {
+    pending,
+    facilities,
+    listUsers,
+    patients,
+    cases,
+    toast,
+    ToastContainer,
+  } = useAuth();
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
 
   //State for user verification status
@@ -194,19 +198,24 @@ const AdminDashboard = () => {
         <title>Admin - Dashboard | ZCMC Telemedicine</title>
       </Helmet>
       <div className="container">
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick={true}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable={false}
+          pauseOnHover
+        />
         <AnimatePresence>
           {modal && (
             <DeletePendingUserModal setModal={setModal} userId={userId} />
           )}
-        </AnimatePresence>
-        <AnimatePresence>
           <AdminSidebar />
         </AnimatePresence>
-        <AnimatePresence>
-          {toast && (
-            <Toast setToast={setToast} message={message} isError={isError} />
-          )}
-        </AnimatePresence>
+
         <div className="content">
           <AdminHeader />
           <div className="content-body">
@@ -285,11 +294,9 @@ const AdminDashboard = () => {
                             firstname={item.firstname}
                             id={item._id}
                             picture={!item.picture ? NoUser : item.picture}
-                            setToast={setToast}
-                            setMessage={setMessage}
-                            setIsError={setIsError}
                             setModal={setModal}
                             handleId={handleId}
+                            toast={toast}
                           />
                         );
                       })

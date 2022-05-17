@@ -36,14 +36,12 @@ const PendingUser = ({
   email,
   picture,
   id,
-  setToast,
-  setMessage,
-  setIsError,
   setModal,
   handleId,
+  toast,
 }) => {
   const navigate = useNavigate();
-  const [dropdown, setDropdown] = useState("");
+  const [dropdown, setDropdown] = useState(false);
 
   let domNode = useClickOutside(() => {
     setDropdown(false);
@@ -57,31 +55,15 @@ const PendingUser = ({
       });
 
       if (response.data.ok) {
-        setMessage("Email verification link sent.");
-        setIsError(false);
-        setToast(true);
+        // setMessage("Email verification link sent.");
+        toast.success("Email verification link sent.");
+
         setDropdown(false);
-        setTimeout(() => {
-          setToast(false);
-          setMessage("");
-        }, 10000);
       } else {
-        setMessage("There's a problem sending the email verification link.");
-        setIsError(true);
-        setToast(true);
-        setTimeout(() => {
-          setToast(false);
-          setMessage("");
-        }, 10000);
+        // setMessage("There's a problem sending the email verification link.");
       }
     } catch (error) {
-      setMessage("There's a problem sending the email verification link.");
-      setIsError(true);
-      setToast(true);
-      setTimeout(() => {
-        setToast(false);
-        setMessage("");
-      }, 10000);
+      // setMessage("There's a problem sending the email verification link.");
     }
   };
 

@@ -80,13 +80,15 @@ const DeleteCaseModal = ({ setDeleteModal, id }) => {
         animate="visible"
         exit="exit"
         ref={domNode}
-        className="delete-modal"
+        className="popup-modal"
       >
         <h1>Are you really sure about this?</h1>
         <p>
           You are about to delete this case permanently. Once{" "}
-          <b className="deleted-b">deleted</b> you will no longer be able to
-          retrieve this record.
+          <b style={{ color: "#e72222" }} className="deleted-b">
+            deleted
+          </b>{" "}
+          you will no longer be able to retrieve this record.
         </p>
 
         <div className="delete-modal-btns">

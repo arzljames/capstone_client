@@ -1,30 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "./VerificationPage.css";
 import { motion } from "framer-motion";
-import {
-  useNavigate,
-  useParams,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
-import { HiOutlineArrowNarrowRight } from "react-icons/hi";
-import Verified from "../Assets/Verified.svg";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
+import hooray from "../Assets/hooray.svg";
+import { HiArrowNarrowRight } from "react-icons/hi";
+import { containerVariant, formVariant } from "../Animations/Animations";
 
 const VerificationPage = () => {
   const [loader, setLoader] = useState(true);
   const [verified, setVerified] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
-  const location = useLocation();
   const [message, setMessage] = useState("");
-  const { user } = useAuth();
 
   useEffect(() => {
     const handleVerification = async () => {
       let response = await api.put(`/api/user/verify/${id}`);
-
       if (response.data.err) {
         setVerified(true);
       } else if (response.data.already) {
@@ -40,18 +33,37 @@ const VerificationPage = () => {
   }, []);
   return (
     <>
-      {verified && <Navigate to="/login" state={{ from: location }} replace />}
-      <div className="verification-page">
-        <img src={Verified} alt="Verified Icon" />
-        <p>{message}</p>
-        <motion.button
-          onClick={() => navigate("/login")}
-          whileTap={{ scale: 0.9 }}
+      <motion.div
+        variants={containerVariant}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        className="modal-container"
+      >
+        <motion.div
+          variants={formVariant}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className="verification-modal"
         >
-          Proceed to Sign In
-          <HiOutlineArrowNarrowRight id="proceed-login-arrow" />
-        </motion.button>
-      </div>
+          <img src={hooray} alt="Welcome" />
+          <h1>
+            Welcome to <span>TeleMedicine</span>
+          </h1>
+          <p>
+            Let's get started. You and your team can now use the ZCMC
+            TeleMedicine System. Explore our documentation guide or jump right
+            into your dashboard.
+          </p>
+          <button onClick={() => navigate("/login")}>
+            Proceed to Sign In{" "}
+            <p>
+              <HiArrowNarrowRight />
+            </p>
+          </button>
+        </motion.div>
+      </motion.div>
     </>
   );
 };

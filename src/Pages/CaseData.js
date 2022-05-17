@@ -76,7 +76,7 @@ const CaseData = () => {
       );
 
       if (response.data.ok) {
-        toast.success("Successfully deactivated one (1) case.");
+        toast.warning("Deactivated one case.");
         setAppState(response.data.ok);
         setTimeout(() => setAppState(""), 500);
       }
@@ -94,7 +94,7 @@ const CaseData = () => {
       );
 
       if (response.data.ok) {
-        toast.success("Successfully activated one (1) case.");
+        toast.success("Activated one case.");
         setAppState(response.data.ok);
         setTimeout(() => setAppState(""), 500);
       }
