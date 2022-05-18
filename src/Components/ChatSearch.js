@@ -12,12 +12,17 @@ const ChatSearch = ({ term }) => {
   return (
     <>
       <div className="recent-p-container">
-        {term !== "" && <p className="status-label">Search Results</p>}
+        <p className="status-label">Search Results</p>
         {chatUsers
-          .filter((e) => e._id !== user.userId && e.userType !== "admin" && e.verified === true)
+          .filter(
+            (e) =>
+              e._id !== user.userId &&
+              e.userType !== "admin" &&
+              e.verified === true
+          )
           .filter((val) => {
             if (term === "") {
-              return val;
+              return null;
             } else if (
               val.firstname.toLowerCase().includes(term.toLocaleLowerCase()) ||
               val.lastname.toLowerCase().includes(term.toLocaleLowerCase())
@@ -27,7 +32,14 @@ const ChatSearch = ({ term }) => {
           })
           .map((item) => {
             return (
-              <div onClick={() => navigate(`/chat/${user.userId}/${item._id}`)} className={path.includes(item._id) ? "chat-users chat-users-active" : "chat-users"}>
+              <div
+                onClick={() => navigate(`/chat/${user.userId}/${item._id}`)}
+                className={
+                  path.includes(item._id)
+                    ? "chat-users chat-users-active"
+                    : "chat-users"
+                }
+              >
                 <div className="avatar">
                   <div
                     className={

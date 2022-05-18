@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import "./Case.css";
 import PatientModal from "../Components/PatientModal";
 import ReactPaginate from "react-paginate";
+import DeletePatientModal from "../Components/DeletePatientModal";
 
 const dropdownVariants = {
   hidden: {
@@ -59,7 +60,15 @@ const Case = () => {
     setIsFilter(false);
   });
 
-  const { cases, facilities, user, patients, hospitalSpec } = useAuth();
+  const {
+    cases,
+    facilities,
+    user,
+    patients,
+    hospitalSpec,
+    toast,
+    ToastContainer,
+  } = useAuth();
 
   const getDate = (date) => {
     let dates = new Date(date);
@@ -107,17 +116,44 @@ const Case = () => {
     setPageNumber(selected);
   };
 
+  const [deleteModal, setDeleteModal] = useState(false);
+
   return (
     <>
       <Helmet>
         <title>Consultation Case | ZCMC Telemedicine</title>
       </Helmet>
       <div className="container">
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick={true}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable={false}
+          pauseOnHover
+        />
         <AnimatePresence>
           {showCase && <NewCase setShowCase={setShowCase} />}
 
           {patientModal && (
-            <PatientModal patient={patient} setPatientModal={setPatientModal} />
+            <PatientModal
+              patient={patient}
+              setPatientModal={setPatientModal}
+              setDeleteModal={setDeleteModal}
+            />
+          )}
+
+          {deleteModal && (
+            <DeletePatientModal
+              id={patient._id}
+              name={patient.firstname}
+              setDeleteModal={setDeleteModal}
+              toast={toast}
+              ToastContainer={ToastContainer}
+            />
           )}
         </AnimatePresence>
         <Sidebar />

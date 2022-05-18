@@ -3,99 +3,28 @@ import { motion } from "framer-motion";
 import useAuth from "../Hooks/useAuth";
 import api from "../API/Api";
 import { useNavigate } from "react-router-dom";
+import { containerVariant, formVariant } from "../Animations/Animations";
 
-let useClickOutside = (handler) => {
-  let domNode = useRef();
-
-  useEffect(() => {
-    let maybeHandler = (event) => {
-      if (!domNode.current.contains(event.target)) {
-        handler();
-      }
-    };
-
-    document.addEventListener("mousedown", maybeHandler);
-    document.addEventListener("scroll", maybeHandler);
-
-    return () => {
-      document.removeEventListener("mousedown", maybeHandler);
-      document.removeEventListener("scroll", maybeHandler);
-    };
-  });
-
-  return domNode;
-};
-
-const formVariant = {
-  hidden: {
-    opacity: 0,
-    y: "-20px",
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.3,
-      ease: "easeInOut",
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: "-20px",
-    transition: {
-      duration: 0.2,
-      ease: "easeInOut",
-    },
-  },
-};
-
-const containerVariant = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-    },
-  },
-  exit: {
-    opacity: 1,
-  },
-};
-
-const DeletePatientModal = ({ setDeleteModal, id, name }) => {
-  let domNode = useClickOutside(() => {
-    setDeleteModal(false);
-  });
+const DeletePatientModal = ({ setDeleteModal, id, name, toast }) => {
   const [confirm, setConfirm] = useState("");
-  const { user, toast, setToast, message, setMessage, isError, setIsError, setAppState } =
-    useAuth();
-
-  const navigate = useNavigate();
+  const { setAppState } = useAuth();
+  const [loader, setLoader] = useState(false);
 
   const handleDelete = async () => {
+    setLoader(true);
     try {
-      let response = await api.delete(
-        `/api/patient/delete/${id}`
-      );
+      let response = await api.delete(`/api/patient/delete/${id}`);
 
       if (response.data.ok) {
-        setToast(true);
-        setMessage(`You have successfully removed one (1) patient.`);
-        setIsError(false);
-        navigate(-1);
-        setAppState(id)
-        console.log(response)
-
+        toast.success(`Deleted one patient`);
+        setDeleteModal(false);
+        setAppState(id);
+        setLoader(false);
       }
     } catch (error) {
-      setToast(true);
-      setMessage(error.message);
-      setIsError(true);
-      setAppState(id)
-
-
+      toast.error(error.message);
+      setLoader(false);
+      setAppState(id);
     }
   };
   return (
@@ -111,22 +40,24 @@ const DeletePatientModal = ({ setDeleteModal, id, name }) => {
         initial="hidden"
         animate="visible"
         exit="exit"
-        ref={domNode}
-        className="delete-patient-modal"
+        className="popup-modal"
       >
-        <div className="delete-patient-modal-body">
-          <h1>Are you really sure about this?</h1>
-          <p>
-            You are about to delete this patient permanently. Once{" "}
-            <b className="deleted-b">deleted</b> you will no longer be able to
-            retrieve all data, information, and medical records of <b>{name}</b>
-            . <br />
-            <br />
-            Please type <b>{name}</b> to confirm.
-          </p>
-          <input type="text" onChange={(e) => setConfirm(e.target.value)} />
-        </div>
-        <div className="delete-patient-modal-btns">
+        <h1>Are you really sure about this?</h1>
+        <p style={{ marginBottom: "20px" }}>
+          You are about to delete this patient permanently. Once{" "}
+          <b className="deleted-b">deleted</b> you will no longer be able to
+          retrieve all data, information, and medical records of <b>{name}</b>
+          . <br />
+          <br />
+          Please type <b>{name}</b> to confirm.
+        </p>
+        <input
+          style={{ marginBottom: "40px" }}
+          type="text"
+          onChange={(e) => setConfirm(e.target.value)}
+        />
+
+        <div className="popup-modal-btns">
           <button
             onClick={() => setDeleteModal(false)}
             className="cancel-delete-patient-btn"
@@ -136,7 +67,7 @@ const DeletePatientModal = ({ setDeleteModal, id, name }) => {
           <button
             onClick={() => handleDelete()}
             className={
-              confirm === name
+              confirm === name && loader === false
                 ? "delete-patient-btn2"
                 : "delete-patient-btn2-disable"
             }

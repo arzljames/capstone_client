@@ -1,0 +1,145 @@
+.dev {
+  width: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.dev-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.dev-header h1 {
+  color: #65806e;
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.dev-header h2 {
+  color: #75b687;
+  font-weight: 300;
+  font-size: 22px;
+}
+
+.dev-card-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.dev-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  margin: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.dev-card:hover {
+  transition: 0.3s ease-in-out;
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
+}
+
+.dev-card img {
+  width: 100%;
+  margin-bottom: 16px;
+  border-radius: 4px;
+}
+
+.dev-card h5 {
+  font-size: 20px;
+  color: #272727;
+  font-weight: 600;
+}
+
+.dev-card p {
+  font-size: 15px;
+  color: #808080;
+  font-weight: 300;
+}
+
+.social-btns {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.social-btns .btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #eee;
+  margin-right: 15px;
+  transition: 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-btns .btn p {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: grey;
+}
+
+.social-btns .btn.fb:hover {
+  background: #0e81da;
+  transition: 0.2s ease-in-out;
+}
+
+.social-btns .btn.fb:hover p {
+  color: #fff;
+}
+
+.social-btns .btn.ig:hover {
+  background: #da2259;
+  transition: 0.2s ease-in-out;
+}
+
+.social-btns .btn.ig:hover p {
+  color: #fff;
+}
+
+.social-btns .btn.gh:hover {
+  background: #6e5494;
+  transition: 0.2s ease-in-out;
+}
+
+.social-btns .btn.gh:hover p {
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .dev-header h1 {
+    font-weight: 600;
+    font-size: 30px;
+  }
+
+  .dev-header h2 {
+    font-weight: 300;
+    font-size: 16px;
+  }
+  .dev-card-container {
+    flex-direction: column;
+    padding: 0px;
+  }
+
+  .dev-card {
+    width: 100%;
+    max-width: none;
+    margin: 0px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+}

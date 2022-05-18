@@ -4,6 +4,20 @@
   height: 100%;
 }
 
+.chat-wrapper {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.chat-wrapper p.no-active {
+  font-style: italic;
+  color: #272727;
+  font-size: 14px;
+}
+
 /* Chat Navbar Styling */
 
 .chat-nav {
@@ -167,10 +181,10 @@ p.nothing-to-show-p {
 
 .chat-users {
   width: 100%;
-  height: 45px;
+  height: 50px;
   cursor: pointer;
   transition: 0.1s ease-in-out;
-  border-radius: 4px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   padding: 0px 10px;
@@ -258,8 +272,6 @@ p.nothing-to-show-p {
   flex-direction: column;
 }
 
-
-
 .chat-main-body-content .chat-header {
   width: 100%;
   height: 60px;
@@ -335,8 +347,6 @@ p.nothing-to-show-p {
   justify-content: center;
   width: 100%;
 }
-
-
 
 .chat-main-body-content .chats-body .chat-user-info h1 {
   color: #272727;
@@ -453,7 +463,6 @@ p.nothing-to-show-p {
   margin-top: 15px;
   align-self: flex-start;
   display: flex;
-  
 }
 
 .chat-message-container .sender-avatar {
@@ -503,15 +512,13 @@ p.nothing-to-show-p {
   align-items: flex-end;
 }
 
-.chat-message-container-me .sender-message-container span, 
-.chat-message-container .sender-message-container span
- {
+.chat-message-container-me .sender-message-container span,
+.chat-message-container .sender-message-container span {
   font-size: 11px;
   margin: 5px;
   color: #272727;
   font-weight: 500;
 }
-
 
 .chat-main-body-content .chat-footer {
   width: 100%;
@@ -539,25 +546,26 @@ p.nothing-to-show-p {
   align-items: center;
 }
 
-.attachment-file.img p.close, .attachment-file.file p.close {
+.attachment-file.img p.close,
+.attachment-file.file p.close {
   position: absolute;
   min-width: 20px;
   min-height: 20px;
   border-radius: 50%;
   background: #fff;
   top: -5px;
-  right: -5px;;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  right: -5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   font-size: 12px;
-  border: 1px solid #d3d3d3
+  border: 1px solid #d3d3d3;
 }
 
-
-.attachment-file.img{
+.attachment-file.img {
   background: #fff;
-height: 60px;
-width: 60px;
-max-width: 60px;
+  height: 60px;
+  width: 60px;
+  max-width: 60px;
   border-radius: 8px;
   position: relative;
   display: flex;
@@ -574,7 +582,6 @@ max-width: 60px;
   object-position: center;
   border-radius: 0px;
   border-radius: 8px;
-  
 }
 
 .attachment-file.file {
@@ -586,10 +593,9 @@ max-width: 60px;
   display: flex;
   align-items: center;
   margin-right: 10px;
-border: 1px solid #d3d3d3;
+  border: 1px solid #d3d3d3;
   cursor: pointer;
   padding: 10px;
-  
 }
 
 .attachment-file.file h2 {
@@ -599,7 +605,6 @@ border: 1px solid #d3d3d3;
   text-overflow: ellipsis;
   width: 100%;
   overflow: hidden;
-  
 }
 
 .attachment-file.file p {
@@ -609,15 +614,13 @@ border: 1px solid #d3d3d3;
   min-width: 35px;
   min-height: 35px;
   border-radius: 50%;
-
 }
 
 .chat-input-file {
-display: none;
+  display: none;
 }
 
 .chat-main-body-content .chat-footer p {
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -626,7 +629,6 @@ display: none;
   transition: 0.1s ease-in-out;
   color: #26531e;
 }
-
 
 .chat-main-body-content .chat-footer p.attach {
   min-width: 35px;
@@ -691,7 +693,7 @@ display: none;
   cursor: pointer;
   transition: 0.1s ease-in-out;
   margin: none;
-  opacity: .5;
+  opacity: 0.5;
   pointer-events: none;
 }
 
@@ -699,8 +701,8 @@ display: none;
   color: #fff;
   margin-left: 5px;
   cursor: pointer;
-width: auto;
-height: auto;
+  width: auto;
+  height: auto;
 }
 
 .chat-main-body-content .chat-footer div.send-btn:hover {
@@ -710,8 +712,8 @@ height: auto;
   color: #fff;
   margin-left: 5px;
   cursor: pointer;
-width: auto;
-height: auto;
+  width: auto;
+  height: auto;
 }
 
 .chat-main-body-content .chat-footer div.send-btn p:hover {
@@ -719,11 +721,9 @@ height: auto;
 }
 /* End of main chat body content styling */
 
-
 .chat-body2 {
   display: none;
 }
-
 
 .create-chat-modal {
   width: 100%;
@@ -782,7 +782,6 @@ height: auto;
   margin-bottom: 20px;
   position: relative;
 }
-
 
 .to-container div.receiver {
   flex: 1;
@@ -854,7 +853,7 @@ height: auto;
   font-size: 14px;
   padding: 5px 10px;
   cursor: pointer;
-  transition: .1s ease-in-out;
+  transition: 0.1s ease-in-out;
   color: #272727;
   font-weight: 500;
   width: 100%;
@@ -868,11 +867,10 @@ height: auto;
   padding-left: 10px;
 }
 
-.to-container-dropdown .user:hover{
-  transition: .1s ease-in-out;
+.to-container-dropdown .user:hover {
+  transition: 0.1s ease-in-out;
   background: #eee;
 }
-
 
 .to-container label {
   font-size: 14px;
@@ -881,7 +879,6 @@ height: auto;
   display: flex;
   align-items: center;
 }
-
 
 .create-chat-modal-body textarea {
   width: 100%;
@@ -896,7 +893,6 @@ height: auto;
 .create-chat-modal-body textarea:focus {
   border: 1px solid #272727;
 }
-
 
 .to-container input {
   flex: 1;
@@ -913,7 +909,6 @@ height: auto;
   align-items: center;
   padding: 0px 20px;
   justify-content: flex-end;
-
 }
 
 .create-chat-modal-footer button {
@@ -930,7 +925,7 @@ height: auto;
   outline-style: none;
   border: none;
   min-width: 80px;
-  transition: .1s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
 
 .create-chat-modal-footer button.send {
@@ -948,7 +943,7 @@ height: auto;
 }
 
 .create-chat-modal-footer button.send:hover {
-  transition: .1s ease-in-out;
+  transition: 0.1s ease-in-out;
   background: #057a3c;
   transition: 0.1s ease-in-out;
 }
@@ -958,7 +953,7 @@ height: auto;
   color: #555555;
   min-width: 80px;
   transition: 0.1s ease-in-out;
-  border: 1px solid #d3d3d3
+  border: 1px solid #d3d3d3;
 }
 
 .create-chat-modal-footer button.cancel:hover {
@@ -966,18 +961,15 @@ height: auto;
   transition: 0.1s ease-in-out;
 }
 
-
 @media screen and (max-width: 768px) {
   .chat-nav {
     display: none;
   }
 
-
   .chat-body2 {
     display: flex;
     flex-direction: column;
   }
-
 
   .chat-content .no-content {
     display: none;
@@ -989,5 +981,4 @@ height: auto;
     max-width: none;
     border-radius: 0px;
   }
-
 }

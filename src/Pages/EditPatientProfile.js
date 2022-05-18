@@ -190,6 +190,7 @@ const EditPatientProfile = () => {
                     </button>
                   </div>
                 </div>
+                <hr />
                 <div className="patient-admission">
                   <div className="admission-form">
                     <h5>Personal Information</h5>

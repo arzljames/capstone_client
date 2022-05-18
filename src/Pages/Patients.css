@@ -1075,8 +1075,7 @@ button.deactive-btn:hover {
 
 .patient-personal {
   width: 100%;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 10px;
@@ -1202,7 +1201,6 @@ button.deactive-btn:hover {
   .patient-modal {
     width: 100%;
     height: 100vh;
-    padding-bottom: 50px;
     border-radius: 0px;
     max-height: none;
     max-width: none;

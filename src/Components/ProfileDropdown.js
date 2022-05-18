@@ -7,7 +7,7 @@ import {
 } from "react-icons/io5";
 import useAuth from "../Hooks/useAuth";
 import NoUser from "../Assets/nouser.png";
-import { HiCamera } from "react-icons/hi";
+import { HiCamera, HiCode } from "react-icons/hi";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { socket } from "./Socket";
 import api from "../API/Api";
@@ -80,7 +80,6 @@ const ProfileDropdown = ({
 
         if (response) {
           setTotalPt(response.length);
-          console.log(patients);
         }
       } catch (error) {}
     };
@@ -185,7 +184,9 @@ const ProfileDropdown = ({
             </p>
             View Profile
           </li>
-          <li onClick={() => navigate("/settings/account")}>
+          <li
+            onClick={() => navigate("/settings/account", { state: { users } })}
+          >
             <p>
               <IoSettingsOutline />
             </p>
@@ -196,6 +197,16 @@ const ProfileDropdown = ({
               <IoBookOutline />
             </p>
             Documentation
+          </li>
+          <li
+            onClick={() => {
+              window.open("/team", "_blank");
+            }}
+          >
+            <p>
+              <HiCode />
+            </p>
+            Credits
           </li>
         </ul>
         <ul style={{ border: "none" }}>

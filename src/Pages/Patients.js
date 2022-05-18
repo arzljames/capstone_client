@@ -27,6 +27,7 @@ import PatientTableData from "../Components/PatientTableData";
 import ReactPaginate from "react-paginate";
 import { Helmet } from "react-helmet";
 import PatientModal from "../Components/PatientModal";
+import DeletePatientModal from "../Components/DeletePatientModal";
 
 const Patients = () => {
   const [searchDropdown, setSearchDropdown] = useState(false);
@@ -34,10 +35,7 @@ const Patients = () => {
   const {
     user,
     patients,
-    cases,
-    appState,
-    setMessage,
-    setIsError,
+
     toast,
     ToastContainer,
   } = useAuth();
@@ -177,9 +175,12 @@ const Patients = () => {
           {CSV.length !== 0 && <ImportModal setCSV={setCSV} CSV={CSV} />}
 
           {deleteModal && (
-            <DeleteMultiplePatientModal
+            <DeletePatientModal
+              id={patient._id}
+              name={patient.firstname}
               setDeleteModal={setDeleteModal}
-              patientsId={patientsId}
+              toast={toast}
+              ToastContainer={ToastContainer}
             />
           )}
           {showAdvance && (
@@ -191,15 +192,9 @@ const Patients = () => {
               patient={patient}
               setPatientModal={setPatientModal}
               patientId={patientId}
+              setDeleteModal={setDeleteModal}
             />
           )}
-          {/* {deleteModal && (
-          <DeletePatientModal
-            id={patient._id}
-            name={patient.firstname}
-            setDeleteModal={setDeleteModal}
-          />
-        )} */}
         </AnimatePresence>
 
         <Sidebar />
@@ -422,6 +417,7 @@ const Patients = () => {
                   sort={sort}
                   setPatientId={setPatientId}
                   setPatientModal={setPatientModal}
+                  setDeleteModal={setDeleteModal}
                   filterPatient={filterPatient}
                 />
                 <br />

@@ -43,6 +43,7 @@ import AccountSettings from "./Pages/AccountSettings";
 import PageNotFound from "./Pages/PageNotFound";
 import Introduction from "./Pages/UserManual/Introduction";
 import QuickStart from "./Pages/UserManual/QuickStart";
+import DevTeam from "./Pages/DevTeam";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -67,6 +68,7 @@ function App() {
           path="account/verification/:code/:id"
           element={<VerificationPage />}
         />
+        <Route path="team" element={<DevTeam />} />
         <Route element={<ProtectedRoutes user={user} role="admin" />}>
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="people" element={<AdminPeople />} />

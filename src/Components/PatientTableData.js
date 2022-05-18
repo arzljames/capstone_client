@@ -16,6 +16,7 @@ const PatientTableData = ({
   setPatientId,
   setPatientModal,
   filterPatient,
+  setDeleteModal,
 }) => {
   const navigate = useNavigate();
   const { cases } = useAuth();
@@ -37,8 +38,9 @@ const PatientTableData = ({
     <>
       <div className="table">
         <div className="table-header">
- 
-          <div className="pt-name">Patient Name</div>
+          <div onClick={() => setDeleteModal(true)} className="pt-name">
+            Patient Name
+          </div>
           <div className="pt-active">Active Case</div>
           <div className="pt-total">Total Case</div>
           <div className="pt-date">Date Admitted</div>

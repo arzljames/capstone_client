@@ -231,7 +231,7 @@ const CaseData = () => {
                                 "disable"
                               }
                             >
-                              Edit
+                              Edit Case
                             </li>
                             <li
                               onClick={() => setDeleteModal(true)}
@@ -241,7 +241,7 @@ const CaseData = () => {
                                   : "delete"
                               }
                             >
-                              Delete
+                              Delete Case
                             </li>
                           </ul>
                         </motion.div>

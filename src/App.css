@@ -492,6 +492,24 @@ div.popup-modal h1 {
   margin-bottom: 40px;
 }
 
+.popup-modal p b.deleted-b {
+  color: #ff3131;
+}
+
+.popup-modal input {
+  width: 100%;
+  border: 1px solid #acacac;
+  height: 35px;
+  border-radius: 4px;
+  padding: 10px;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.popup-modal input:focus {
+  border: 1px solid #4b4b4b;
+}
+
 .delete-modal-btns,
 .popup-modal-btns {
   width: 100%;
