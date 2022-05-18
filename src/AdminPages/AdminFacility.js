@@ -78,7 +78,7 @@ const AdminFacility = () => {
                   <HiOutlineSearch />
                 </div>
               </div>
-              <div className="above-table-right">
+              {/* <div className="above-table-right">
                 <button className="fac-btns">
                   <p>
                     <HiOutlineFilter />
@@ -91,7 +91,7 @@ const AdminFacility = () => {
                   </p>
                   Sort by
                 </button>
-              </div>
+              </div> */}
             </div>
 
             <div className="table-container">

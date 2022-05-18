@@ -3,13 +3,14 @@ import { useClickOutside } from "../Hooks/useClickOutside";
 import PulseLoader from "react-spinners/PulseLoader";
 import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
+import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers";
 
-const ImportModal = ({ setCSV, CSV }) => {
+const ImportModal = ({ setCSV, CSV, toast }) => {
   let domNode = useClickOutside(() => {
     setCSV([]);
   });
 
-  const { setToast, setMessage, setIsError, setAppState } = useAuth();
+  const { setAppState } = useAuth();
 
   const [isClick, setIsClick] = useState(false);
 
@@ -20,18 +21,14 @@ const ImportModal = ({ setCSV, CSV }) => {
       });
 
       if (response) {
-        setToast(true);
-        setMessage(`Imported ${CSV[0].length} patients.`);
-        setIsError(false);
+        toast.success(`Imported ${CSV[0].length} patients.`);
         setCSV([]);
         setAppState(response.data.ok);
-
         setTimeout(() => setAppState(""), 500);
+        setIsClick(false);
       }
     } catch (error) {
-      setToast(true);
-      setIsError(true);
-      setMessage(error.message);
+      toast.error(error.message);
       setCSV([]);
       setIsClick(false);
     }
@@ -43,14 +40,14 @@ const ImportModal = ({ setCSV, CSV }) => {
 
   return (
     <div className="modal-container">
-      <div ref={domNode} className="import-patient-modal">
+      <div ref={domNode} className="popup-modal">
         <h1>Import Patients</h1>
         <p>
           Importing <b>{CSV[0].length}</b> existing patients. Make sure that you
           are uploading a .csv file and followed the correct format.
         </p>
-        <div className="import-patient-modal-footer">
-          <button onClick={() => setCSV([])} className="cancel">
+        <div className="popup-modal-btns">
+          <button onClick={() => setCSV([])} className="gray-cta">
             Cancel
           </button>
           <button
@@ -58,13 +55,9 @@ const ImportModal = ({ setCSV, CSV }) => {
               setIsClick(true);
               handleSubmit();
             }}
-            className={isClick ? "save disable" : "save"}
+            className={isClick ? "green-cta-disable" : "green-cta"}
           >
-            {isClick ? (
-              <PulseLoader size={7} margin={2} color="#fff" />
-            ) : (
-              "Save"
-            )}
+            Save
           </button>
         </div>
       </div>

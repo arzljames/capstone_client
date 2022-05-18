@@ -88,7 +88,7 @@ const AdminPeople = () => {
               </div>
 
               <div className="above-patient-table-btns">
-                <button
+                {/* <button
                   className={isSort ? "btn-active" : "btn-inactive"}
                   onClick={() => {
                     setIsSort(!isSort);
@@ -142,7 +142,7 @@ const AdminPeople = () => {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </button>
+                </button> */}
               </div>
             </div>
 

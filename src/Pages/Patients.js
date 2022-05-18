@@ -172,7 +172,9 @@ const Patients = () => {
           pauseOnHover
         />
         <AnimatePresence>
-          {CSV.length !== 0 && <ImportModal setCSV={setCSV} CSV={CSV} />}
+          {CSV.length !== 0 && (
+            <ImportModal setCSV={setCSV} CSV={CSV} toast={toast} />
+          )}
 
           {deleteModal && (
             <DeletePatientModal
