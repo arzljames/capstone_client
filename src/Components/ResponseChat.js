@@ -96,14 +96,15 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
           }
         ></textarea>
         <div className="case-data-response-btns">
-          <button className="sort-response-btn">
+          {/* <button className="sort-response-btn">
             Sort by: {sort}
             <p>
               <HiOutlineChevronDown />
             </p>
-          </button>
+          </button> */}
+          <p></p>
           <div>
-            <div
+            {/* <div
               onClick={() => onBtnClick()}
               className={
                 active === false ? "attach-file-btn disable" : "attach-file-btn"
@@ -111,7 +112,7 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
             >
               <HiOutlinePaperClip />
               <input ref={inputFileRef} type="file" />
-            </div>
+            </div> */}
             <button
               className={active === false ? "disable" : null}
               onClick={() => sendResponse()}

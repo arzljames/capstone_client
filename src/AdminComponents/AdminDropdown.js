@@ -11,10 +11,15 @@ import useAuth from "../Hooks/useAuth";
 import { HiCamera } from "react-icons/hi";
 import { AnimatePresence } from "framer-motion";
 import DpModal from "../Components/DpModal";
+import LogoutModal from "../Components/LogoutModal";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const AdminDropdown = ({ submitLogout, users }) => {
   const [dp, setDp] = useState(false);
+  const [logout, setLogout] = useState(false);
   const { user } = useAuth();
+
+  const navigate = useNavigate();
   return (
     <>
       <AnimatePresence>
@@ -23,6 +28,10 @@ const AdminDropdown = ({ submitLogout, users }) => {
             image={!users.picture ? NoUser : users.picture}
             setDp={setDp}
           />
+        )}
+
+        {logout && (
+          <LogoutModal setLogout={setLogout} submitLogout={submitLogout} />
         )}
       </AnimatePresence>
       <div className="profile-container-dropdown">
@@ -46,13 +55,13 @@ const AdminDropdown = ({ submitLogout, users }) => {
           </div>
         </div>
         <ul style={{ border: "none" }}>
-          <li>
+          <li onClick={() => navigate("/settings/admin-account")}>
             <p>
               <IoCodeSlash />
             </p>
             Account Settings
           </li>
-          <li onClick={() => submitLogout()}>
+          <li onClick={() => setLogout(true)}>
             <p>
               <IoExitOutline />
             </p>

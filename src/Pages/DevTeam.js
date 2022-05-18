@@ -77,6 +77,7 @@ const DevTeam = () => {
         <div className="dev-card">
           <img src="" alt="Militante" />
           <h5>Rina Militante</h5>
+          <p>Project Manager/Archivist</p>
           <div className="social-btns">
             <div className="btn fb">
               <p

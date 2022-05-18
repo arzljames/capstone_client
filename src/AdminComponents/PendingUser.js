@@ -103,12 +103,12 @@ const PendingUser = ({
             className="option-dropdown"
           >
             <ul>
-              <li onClick={() => navigate(`/people/${id}`)}>
+              {/* <li onClick={() => navigate(`/people/${id}`)}>
                 <p>
                   <HiOutlineUser className="user-icon" />
                 </p>
                 View Profile
-              </li>
+              </li> */}
               <motion.li onClick={() => handleVerify()}>
                 <p>
                   <HiOutlineLink className="check-icon" />

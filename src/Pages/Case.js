@@ -205,7 +205,7 @@ const Case = () => {
                   </div>
 
                   <div className="above-patient-table-btns">
-                    <button
+                    {/* <button
                       className={isFilter ? "btn-active" : "btn-inactive"}
                       onClick={() => {
                         setIsFilter(true);
@@ -258,8 +258,8 @@ const Case = () => {
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </button>
-                    <button
+                    </button> */}
+                    {/* <button
                       className={isSort ? "btn-active" : "btn-inactive"}
                       onClick={() => {
                         setIsSort(!isSort);
@@ -290,7 +290,7 @@ const Case = () => {
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </button>
+                    </button> */}
                   </div>
                 </div>
 

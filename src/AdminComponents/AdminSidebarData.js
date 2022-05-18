@@ -30,7 +30,7 @@ export const AdminSidebarData = [
   },
   {
     name: "Reports",
-    link: "/channels",
+    link: "/admin-reports",
     icon: <IoDocumentTextOutline />,
     activeIcon: <IoDocumentText />,
   },

@@ -16,7 +16,8 @@ const FilterReportModal = ({ setFilterModal }) => {
   const [to, setTo] = useState("");
   const [refer, setRefer] = useState("");
   const [specialization, setSpecialization] = useState("");
-  const [age, setAge] = useState("");
+  const [minage, setMinage] = useState(0);
+  const [maxage, setMaxage] = useState(0);
   const [gender, setGender] = useState("");
   const [isClick, setIsClick] = useState(false);
 
@@ -57,7 +58,7 @@ const FilterReportModal = ({ setFilterModal }) => {
       return result;
     }
     setReportId(getDate() + "-" + makeid(5));
-  }, [from, to, age]);
+  }, [from, to, minage, maxage]);
 
   const handleSubmit = async () => {
     setIsClick(true);
@@ -66,7 +67,8 @@ const FilterReportModal = ({ setFilterModal }) => {
         from,
         to,
         gender,
-        age,
+        maxage,
+        minage,
         refer,
         specialization,
         reportId,
@@ -122,9 +124,10 @@ const FilterReportModal = ({ setFilterModal }) => {
           <h1>Create Report</h1>
         </div>
         <div className="filter-modal-body">
+          <label>Date Range</label>
           <div className="date-range">
             <div>
-              <label>From</label>
+              <p>From</p>
               <input
                 value={from}
                 onChange={(e) => setFrom(e.target.value)}
@@ -132,7 +135,7 @@ const FilterReportModal = ({ setFilterModal }) => {
               />
             </div>
             <div>
-              <label>To</label>{" "}
+              <p>To</p>{" "}
               <input
                 value={to}
                 onChange={(e) => setTo(e.target.value)}
@@ -140,29 +143,34 @@ const FilterReportModal = ({ setFilterModal }) => {
               />
             </div>
           </div>
-
+          <label>
+            Age Bracket ({minage} - {maxage} yrs old)
+          </label>
           <div className="date-range">
             <div>
-              <label>Sex</label>
-              <select
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-              >
-                <option value="">Not set</option>
-                <option value="Female">Female</option>
-                <option value="Male">Male</option>
-              </select>
+              <p>From</p>
+              <input
+                value={minage}
+                onChange={(e) => setMinage(e.target.value)}
+                type="number"
+              />
             </div>
             <div>
-              <label>Age Bracket (0 - {age} )</label>{" "}
+              <p>To</p>{" "}
               <input
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
+                value={maxage}
+                onChange={(e) => setMaxage(e.target.value)}
                 type="number"
               />
             </div>
           </div>
 
+          <label>Sex</label>
+          <select value={gender} onChange={(e) => setGender(e.target.value)}>
+            <option value="">Not set</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+          </select>
           <label>Referring Hospital</label>
           <select value={refer} onChange={(e) => setRefer(e.target.value)}>
             <option value="">Not set</option>

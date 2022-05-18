@@ -27,10 +27,10 @@ const UserManualNavbar = () => {
 
       <h5>Modules</h5>
       <ul>
-        <li>Adding Patient</li>
-        <li>Adding Case</li>
-        <li>Chat</li>
-        <li>Reports</li>
+        <li onClick={() => navigate("/constructions")}>Adding Patient</li>
+        <li onClick={() => navigate("/constructions")}>Adding Case</li>
+        <li onClick={() => navigate("/constructions")}>Chat</li>
+        <li onClick={() => navigate("/constructions")}>Reports</li>
       </ul>
     </div>
   );

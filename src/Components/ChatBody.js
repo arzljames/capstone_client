@@ -257,12 +257,12 @@ const ChatBody = ({ users, socket }) => {
           })}
         </div>
         <div className="chat-input-container">
-          <p className="attach" onClick={() => onBtnClick()}>
+          {/* <p className="attach" onClick={() => onBtnClick()}>
             <HiOutlinePaperClip />
           </p>
           <p className="attach" onClick={() => onBtnClick()}>
             <HiOutlinePhotograph />
-          </p>
+          </p> */}
           <input
             ref={inputFileRef}
             className="chat-input-file"

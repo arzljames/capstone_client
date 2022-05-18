@@ -225,14 +225,14 @@ const CaseData = () => {
                             <li onClick={() => DocumentGenerator(patientCase)}>
                               Download File
                             </li>
-                            <li
+                            {/* <li
                               className={
                                 patientCase.physician._id !== user.userId &&
                                 "disable"
                               }
                             >
                               Edit Case
-                            </li>
+                            </li> */}
                             <li
                               onClick={() => setDeleteModal(true)}
                               className={

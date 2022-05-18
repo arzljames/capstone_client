@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <div className="admin-header">
-      <h1 onClick={() => navigate("/")}>Telemedicine</h1>
+      <h1 onClick={() => navigate("/")}>TeleMedicine</h1>
 
       <ProfileHeader />
     </div>

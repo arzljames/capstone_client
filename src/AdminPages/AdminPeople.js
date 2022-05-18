@@ -50,7 +50,7 @@ const AdminPeople = () => {
           <div className="content-body">
             <div className="container-heading">
               <h2>List of Doctors</h2>
-              <motion.button
+              {/* <motion.button
                 className="green-cta"
                 onClick={() => setShowModal(true)}
                 variants={buttonVariant}
@@ -61,7 +61,7 @@ const AdminPeople = () => {
                   <HiPlus />
                 </p>
                 Add User
-              </motion.button>
+              </motion.button> */}
             </div>
             <div className="above-patient-table">
               <div className="patient-input-container">

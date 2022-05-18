@@ -30,7 +30,8 @@ let useClickOutside = (handler) => {
 };
 
 const AdminProfileHeader = () => {
-  const { user, appState, setAppState, status, setStatus } = useAuth();
+  const { user, appState, setAppState, status, setStatus, users, setUsers } =
+    useAuth();
   const firstname = `${user.firstname} `;
   const fullName = firstname.split(" ");
 
@@ -48,8 +49,6 @@ const AdminProfileHeader = () => {
   let domNode = useClickOutside(() => {
     setDropdown(false);
   });
-
-  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchChat = () => {

@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { HiDocumentDownload, HiFilter, HiChevronLeft } from "react-icons/hi";
 import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
+import AdminSidebar from "../AdminComponents/AdminSidebar";
+import AdminHeader from "../AdminComponents/AdminHeader";
 import PulseLoader from "react-spinners/PulseLoader";
 import api from "../API/Api";
 
-const GenerateReport = ({ setFilterModal }) => {
+const AdminGenerateReport = ({ setFilterModal }) => {
   const { patients, facilities, reports, cases } = useAuth();
   const [report, setReport] = useState([]);
   const [facility, setFacility] = useState("");
@@ -82,23 +82,6 @@ const GenerateReport = ({ setFilterModal }) => {
     }
   };
 
-  const getDates = (e) => {
-    const dates = new Date(e);
-
-    return dates;
-  };
-
-  const filterDate = (e) => {
-    if (report.from && report.to) {
-      return (
-        getDates(e.createdAt) >= getDates(report.from) &&
-        getDates(e.createdAt) <= getDates(report.to)
-      );
-    } else {
-      return e;
-    }
-  };
-
   const filterAge = (e) => {
     if (report.minage || report.maxage) {
       return (
@@ -141,32 +124,14 @@ const GenerateReport = ({ setFilterModal }) => {
   return (
     <>
       <div className="container">
-        <Sidebar />
+        <AdminSidebar />
         <div className="content">
-          <Header />
+          <AdminHeader />
           <div className="content-body">
             <div className="above-patient-profile">
               <button onClick={() => navigate(-1)} className="back-btn">
                 <HiChevronLeft /> <p>Back</p>
               </button>
-
-              {/* <div className="above-patient-profile-btns">
-                <button
-                  onClick={() => setFilterModal(true)}
-                  className="edit-filter"
-                >
-                  <p>
-                    <HiFilter />
-                  </p>
-                  Edit Filter
-                </button>
-                <button className="export-csv">
-                  <p>
-                    <HiDocumentDownload />
-                  </p>
-                  Export to CSV
-                </button>
-              </div> */}
             </div>
 
             <div className="reports-container">
@@ -175,9 +140,9 @@ const GenerateReport = ({ setFilterModal }) => {
                   <div className="pt-name">Patient Name</div>
                   <div className="pt-date">Physician</div>
                   <div className="pt-hospital">Hospital</div>
-                </div>{" "}
+                </div>
+
                 {patients
-                  .filter(filterDate)
                   .filter(filterGender)
                   .filter(filterHospital)
                   .filter(filterSpec)
@@ -271,7 +236,6 @@ const GenerateReport = ({ setFilterModal }) => {
                     Total Patients:{" "}
                     {
                       patients
-                        .filter(filterDate)
                         .filter(filterGender)
                         .filter(filterHospital)
                         .filter(filterSpec)
@@ -288,4 +252,4 @@ const GenerateReport = ({ setFilterModal }) => {
   );
 };
 
-export default GenerateReport;
+export default AdminGenerateReport;

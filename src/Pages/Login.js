@@ -178,11 +178,11 @@ const Login = () => {
             {loader ? "Signing in..." : "Sign In"}
           </button>
           <div className="form-link">
-            <p>
+            {/* <p>
               <span onClick={() => navigate("/reset-password")}>
                 Forgot password?
               </span>
-            </p>
+            </p> */}
             <p>
               Don't have an account?{" "}
               <span onClick={() => navigate("/register")}>Create one.</span>

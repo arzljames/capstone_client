@@ -30,6 +30,7 @@ export const DataProvider = ({ children }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [chatUsers, setChatUsers] = useState([]);
   const [reports, setReports] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const fetchLogin = async () => {
     let response = await api.get("/api/auth/login");
@@ -184,6 +185,8 @@ export const DataProvider = ({ children }) => {
         showCreateChat,
         toast,
         ToastContainer,
+        users,
+        setUsers,
       }}
     >
       {children}

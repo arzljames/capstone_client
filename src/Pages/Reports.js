@@ -58,56 +58,59 @@ const Reports = () => {
         <div className="content">
           <Header />
           <div className="content-body">
-            <div className="reports-header">
-              <h2>Reports</h2>
-              <div className="reports-header-btns">
-                <button
-                  onClick={() => setFilterModal(true)}
-                  className="create-report"
-                >
-                  <p>
-                    <HiPlus />
-                  </p>
-                  Create Report
-                </button>
+            <div className="content-wrapper">
+              <div className="reports-header">
+                <h2>Reports</h2>
+                <div className="reports-header-btns">
+                  <button
+                    onClick={() => setFilterModal(true)}
+                    className="create-report"
+                  >
+                    <p>
+                      <HiPlus />
+                    </p>
+                    Create Report
+                  </button>
+                </div>
               </div>
-            </div>
 
-            <div className="table">
-              <div className="table-header">
-                <div className="rp-id">Report ID</div>
-                <div className="rp-created">Created By</div>
-                <div className="rp-date">Date Created</div>
-                <div className="rp-modified">Last modified</div>
-              </div>
-              {reports.map((item, index) => {
-                return (
-                  <div key={index} className="table-body">
-                    <div className="rp-id">
-                      <p
-                        onClick={() =>
-                          navigate(`/reports/${item._id}/${item.reportId}`)
+              <div className="table">
+                <div className="table-header">
+                  <div className="rp-id">Report ID</div>
+                  <div className="rp-created">Created By</div>
+                  <div className="rp-date">Date Created</div>
+                  <div className="rp-modified">Last modified</div>
+                </div>
+                {reports.map((item, index) => {
+                  return (
+                    <div key={index} className="table-body">
+                      <div className="rp-id">
+                        <p
+                          onClick={() =>
+                            navigate(`/reports/${item._id}/${item.reportId}`)
+                          }
+                        >
+                          {item.reportId}
+                        </p>
+                      </div>
+                      <div className="rp-created">
+                        Dr.{" "}
+                        {item.creator.firstname + " " + item.creator.lastname}
+                      </div>
+                      <div className="rp-date">{getDate(item.createdAt)}</div>
+                      <div className="rp-modified">
+                        {
+                          <ReactTimeAgo
+                            date={item.updatedAt}
+                            locale="en-US"
+                            timeStyle="round-minute"
+                          />
                         }
-                      >
-                        {item.reportId}
-                      </p>
+                      </div>
                     </div>
-                    <div className="rp-created">
-                      Dr. {item.creator.firstname + " " + item.creator.lastname}
-                    </div>
-                    <div className="rp-date">{getDate(item.createdAt)}</div>
-                    <div className="rp-modified">
-                      {
-                        <ReactTimeAgo
-                          date={item.updatedAt}
-                          locale="en-US"
-                          timeStyle="round-minute"
-                        />
-                      }
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

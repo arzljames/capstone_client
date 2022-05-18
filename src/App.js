@@ -44,6 +44,9 @@ import PageNotFound from "./Pages/PageNotFound";
 import Introduction from "./Pages/UserManual/Introduction";
 import QuickStart from "./Pages/UserManual/QuickStart";
 import DevTeam from "./Pages/DevTeam";
+import PageConstruction from "./Pages/PageConstruction";
+import AdminGenerateReport from "./AdminPages/AdminGenerateReport";
+import AdminAccountSetttings from "./AdminPages/AdminAccountSetttings";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -69,12 +72,21 @@ function App() {
           element={<VerificationPage />}
         />
         <Route path="team" element={<DevTeam />} />
+        <Route path="constructions" element={<PageConstruction />} />
         <Route element={<ProtectedRoutes user={user} role="admin" />}>
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="people" element={<AdminPeople />} />
           <Route path="people/:id" element={<AdminUserProfile />} />
           <Route path="hospital" element={<AdminFacility />} />
-          <Route path="channels" element={<AdminChannel />} />
+          <Route path="admin-reports" element={<AdminChannel />} />
+          <Route
+            path="admin-reports/:id/:reportId"
+            element={<AdminGenerateReport />}
+          />
+          <Route
+            path="settings/admin-account"
+            element={<AdminAccountSetttings />}
+          />
         </Route>
 
         <Route element={<ProtectedRoutes user={user} role="user" />}>
