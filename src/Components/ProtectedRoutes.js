@@ -1,10 +1,10 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import Loader from "../Pages/Loader"
+import Loader from "../Pages/Loader";
 
 const ProtectedRoutes = ({ user, role }) => {
   const location = useLocation();
   if (user === null) {
-    return <Loader />
+    return <Loader />;
   }
 
   if (user.loggedIn && user.userType === role) {

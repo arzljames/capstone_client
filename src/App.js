@@ -66,7 +66,72 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      {/* Public Routes */}
+      <Route
+        path="/account/verification/:code/:id"
+        element={<VerificationPage />}
+      />
+      <Route path="/constructions" element={<PageConstruction />} />
+      <Route path="/team" element={<DevTeam />} />
+
+      {/* Protected Routes for Admin */}
+      <Route path="/dashboard" element={<AdminDashboard />} />
+      <Route path="/people" element={<AdminPeople />} />
+      <Route path="/people/:id" element={<AdminUserProfile />} />
+      <Route path="/hospital" element={<AdminFacility />} />
+      <Route path="/admin-reports" element={<AdminChannel />} />
+      <Route
+        path="/admin-reports/:id/:reportId"
+        element={<AdminGenerateReport />}
+      />
+      <Route
+        path="/settings/admin-account"
+        element={<AdminAccountSetttings />}
+      />
+
+      {/* Protected Routes for Users */}
+      <Route path="/" element={<Navigate to="/consultation" replace />} />
+      <Route path="/consultation" element={<Homepage />} />
+      <Route path="/notifications" element={<Notification />} />
+      <Route path="/chat/:userId/:id" element={<ChatUser />} />
+      <Route path="/chat" element={<Chat />} />
+      <Route path="/telechannel" element={<TeleChannel />} />
+      <Route path="/profile/:username" element={<Profile />} />
+      <Route path="/consultation/patients" element={<Patients />} />
+      <Route path="/settings/account" element={<AccountSettings />} />
+      <Route
+        path="/user-manual/guide/introduction"
+        element={<Introduction />}
+      />
+      <Route path="/user-manual/guide/quick-start" element={<QuickStart />} />
+      <Route
+        path="/consultation/patients/admission"
+        element={<PatientAdmission />}
+      />
+      <Route
+        path="/consultation/patients/edit-profile/:id"
+        element={<EditPatientProfile />}
+      />
+      <Route path="/consultation/patients/:id" element={<PatientsData />} />
+      <Route path="/consultation/incoming" element={<IncomingConsult />} />
+      <Route path="/consultation/outgoing" element={<OutgoingConsult />} />
+      <Route path="/consultation/case" element={<Case />} />
+      <Route path="/consultation/case/case-data/:id" element={<CaseData />} />
+      <Route path="/consultation/outgoing/:id" element={<CaseData />} />
+      <Route
+        path="/consultation/incoming/case/case-data/:id"
+        element={<CaseData />}
+      />
+      <Route path="/consultation/patients/case/:id" element={<CaseData />} />
+      <Route path="/reports" element={<Reports />} />
+      <Route path="/reports/:id/:reportId" element={<GenerateReport />} />
+
+      {/* Login Route */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/reset-password" element={<ForgotPassword />} />
+
+      {/* <Route path="/" element={<Layout />}>
         <Route
           path="account/verification/:code/:id"
           element={<VerificationPage />}
@@ -89,8 +154,7 @@ function App() {
         </Route>
 
         <Route element={<ProtectedRoutes user={user} role="user" />}>
-          {/* <Route path="/" element={<Navigate to="/consultation" replace />} /> */}
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<Navigate to="/consultation" replace />} />
           <Route path="/consultation" element={<Homepage />} />
           <Route path="notifications" element={<Notification />} />
           <Route path="chat/:userId/:id" element={<ChatUser />} />
@@ -140,7 +204,7 @@ function App() {
         </Route>
 
         <Route path="*" element={<PageNotFound />} />
-      </Route>
+      </Route> */}
     </Routes>
   );
 }
