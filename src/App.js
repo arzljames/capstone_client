@@ -66,8 +66,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<DevTeam />} />
-      {/* <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Layout />}>
         <Route
           path="account/verification/:code/:id"
           element={<VerificationPage />}
@@ -90,7 +89,8 @@ function App() {
         </Route>
 
         <Route element={<ProtectedRoutes user={user} role="user" />}>
-          <Route path="/" element={<Navigate to="/consultation" replace />} />
+          {/* <Route path="/" element={<Navigate to="/consultation" replace />} /> */}
+          <Route path="/" element={<Homepage />} />
           <Route path="/consultation" element={<Homepage />} />
           <Route path="notifications" element={<Notification />} />
           <Route path="chat/:userId/:id" element={<ChatUser />} />
@@ -140,7 +140,7 @@ function App() {
         </Route>
 
         <Route path="*" element={<PageNotFound />} />
-      </Route> */}
+      </Route>
     </Routes>
   );
 }
