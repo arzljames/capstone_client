@@ -18,9 +18,9 @@ const Homepage = () => {
     return <Loader />;
   }
 
-  if (!user.loggedIn && user.userType !== "user") {
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
+  // if (!user.loggedIn && user.userType !== "user") {
+  //   return <Navigate to="/login" state={{ from: location }} replace />;
+  // }
   return (
     <>
       <Helmet>
