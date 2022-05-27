@@ -66,7 +66,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<p>sds</p>} />
+      <Route path="/" element={<Homepage />} />
       {/* <Route
         path="/account/verification/:code/:id"
         element={<VerificationPage />}
