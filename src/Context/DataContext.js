@@ -33,7 +33,7 @@ export const DataProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
 
   const fetchLogin = async () => {
-    let response = await api.get("/api/auth/login");
+    let response = await api.get("/api/auth/login/");
 
     if (response.data.loggedIn) {
       setUser(response.data);
@@ -47,7 +47,7 @@ export const DataProvider = ({ children }) => {
   };
 
   const fetchUsers = async () => {
-    let response = await api.get("/api/user/users");
+    let response = await api.get("/api/user/users/");
 
     if (response.data) {
       setListUsers(response.data);
@@ -57,7 +57,7 @@ export const DataProvider = ({ children }) => {
   };
 
   const fetchChatUsers = async () => {
-    let response = await api.get("/api/user/users");
+    let response = await api.get("/api/user/users/");
 
     if (response.data) {
       setChatUsers(response.data);
@@ -81,7 +81,7 @@ export const DataProvider = ({ children }) => {
   };
 
   const fetchCases = async () => {
-    let response = await api.get("/api/patient/case");
+    let response = await api.get("/api/patient/case/");
 
     if (response.data) {
       setCases(response.data);
@@ -89,7 +89,7 @@ export const DataProvider = ({ children }) => {
   };
 
   const getSpec = async () => {
-    let response = await api.get("/api/facility/get-spec");
+    let response = await api.get("/api/facility/get-spec/");
 
     if (response.data) {
       setHospitalSpec(response.data);
@@ -97,7 +97,7 @@ export const DataProvider = ({ children }) => {
   };
 
   const fetchRecentChats = async () => {
-    let response = await api.get("/api/chat");
+    let response = await api.get("/api/chat/");
 
     if (response.data) {
       setRecentChat(response.data);
@@ -105,7 +105,7 @@ export const DataProvider = ({ children }) => {
   };
 
   const fetchReports = async () => {
-    let response = await api.get("/api/report");
+    let response = await api.get("/api/report/");
 
     if (response.data) {
       setReports(response.data);
