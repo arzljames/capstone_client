@@ -66,15 +66,14 @@ function App() {
 
   return (
     <Routes>
-      {/* Public Routes */}
-      <Route
+      <Route path="/" element={<p>sds</p>} />
+      {/* <Route
         path="/account/verification/:code/:id"
         element={<VerificationPage />}
       />
       <Route path="/constructions" element={<PageConstruction />} />
       <Route path="/team" element={<DevTeam />} />
 
-      {/* Protected Routes for Admin */}
       <Route path="/dashboard" element={<AdminDashboard />} />
       <Route path="/people" element={<AdminPeople />} />
       <Route path="/people/:id" element={<AdminUserProfile />} />
@@ -89,7 +88,6 @@ function App() {
         element={<AdminAccountSetttings />}
       />
 
-      {/* Protected Routes for Users */}
       <Route path="/" element={<Navigate to="/consultation" replace />} />
       <Route path="/consultation" element={<Homepage />} />
       <Route path="/notifications" element={<Notification />} />
@@ -126,10 +124,9 @@ function App() {
       <Route path="/reports" element={<Reports />} />
       <Route path="/reports/:id/:reportId" element={<GenerateReport />} />
 
-      {/* Login Route */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/reset-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ForgotPassword />} /> */}
 
       {/* <Route path="/" element={<Layout />}>
         <Route
