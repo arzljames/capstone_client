@@ -249,7 +249,7 @@ const AdminDashboard = () => {
                     iconBg="#ffe2e4"
                   />
                 </div>
-                <div className="chart-container">
+                {/* <div className="chart-container">
                   <div className="year-selected">
                     <h2>Year :</h2>{" "}
                     <select
@@ -268,7 +268,7 @@ const AdminDashboard = () => {
                   ) : (
                     <Line options={options} data={data} />
                   )}
-                </div>
+                </div> */}
               </div>
               <div className="admin-right-panel">
                 <div className="calendar-container">
