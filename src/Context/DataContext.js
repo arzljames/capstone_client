@@ -47,7 +47,9 @@ export const DataProvider = ({ children }) => {
   };
 
   const fetchUsers = async () => {
-    let response = await api.get("/api/user/users/");
+    let response = await api.get(
+      "/api/user/users/" + "?nocache=" + new Date().getTime()
+    );
 
     if (response.data) {
       setListUsers(response.data);
