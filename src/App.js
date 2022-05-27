@@ -2,7 +2,13 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Axios from "axios";
 import Homepage from "./Pages/Homepage";
-import { Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import ForgotPassword from "./Pages/ForgotPassword";
@@ -65,83 +71,91 @@ function App() {
   }, [user]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route
-          path="account/verification/:code/:id"
-          element={<VerificationPage />}
-        />
-        <Route path="constructions" element={<PageConstruction />} />
-        <Route element={<ProtectedRoutes user={user} role="admin" />}>
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="people" element={<AdminPeople />} />
-          <Route path="people/:id" element={<AdminUserProfile />} />
-          <Route path="hospital" element={<AdminFacility />} />
-          <Route path="admin-reports" element={<AdminChannel />} />
+    <>
+      <Routes>
+        <Route path="/" element={<DevTeam />} />
+        <Route path="/" element={<Layout />}>
           <Route
-            path="admin-reports/:id/:reportId"
-            element={<AdminGenerateReport />}
+            path="account/verification/:code/:id"
+            element={<VerificationPage />}
           />
-          <Route
-            path="settings/admin-account"
-            element={<AdminAccountSetttings />}
-          />
-        </Route>
+          <Route path="constructions" element={<PageConstruction />} />
+          <Route element={<ProtectedRoutes user={user} role="admin" />}>
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="people" element={<AdminPeople />} />
+            <Route path="people/:id" element={<AdminUserProfile />} />
+            <Route path="hospital" element={<AdminFacility />} />
+            <Route path="admin-reports" element={<AdminChannel />} />
+            <Route
+              path="admin-reports/:id/:reportId"
+              element={<AdminGenerateReport />}
+            />
+            <Route
+              path="settings/admin-account"
+              element={<AdminAccountSetttings />}
+            />
+          </Route>
 
-        <Route element={<ProtectedRoutes user={user} role="user" />}>
-          <Route path="/" element={<Navigate to="/consultation" replace />} />
-          <Route path="/consultation" element={<Homepage />} />
-          <Route path="notifications" element={<Notification />} />
-          <Route path="chat/:userId/:id" element={<ChatUser />} />
-          <Route path="chat" element={<Chat />} />
-          <Route path="telechannel" element={<TeleChannel />} />
-          <Route path="profile/:username" element={<Profile />} />
-          <Route path="consultation/patients" element={<Patients />} />
-          <Route path="settings/account" element={<AccountSettings />} />
-          <Route
-            path="user-manual/guide/introduction"
-            element={<Introduction />}
-          />
-          <Route
-            path="user-manual/guide/quick-start"
-            element={<QuickStart />}
-          />
-          <Route
-            path="consultation/patients/admission"
-            element={<PatientAdmission />}
-          />
-          <Route
-            path="consultation/patients/edit-profile/:id"
-            element={<EditPatientProfile />}
-          />
-          <Route path="consultation/patients/:id" element={<PatientsData />} />
-          <Route path="consultation/incoming" element={<IncomingConsult />} />
-          <Route path="consultation/outgoing" element={<OutgoingConsult />} />
-          <Route path="consultation/case" element={<Case />} />
-          <Route
-            path="consultation/case/case-data/:id"
-            element={<CaseData />}
-          />
-          <Route path="consultation/outgoing/:id" element={<CaseData />} />
-          <Route
-            path="consultation/incoming/case/case-data/:id"
-            element={<CaseData />}
-          />
-          <Route path="consultation/patients/case/:id" element={<CaseData />} />
-          <Route path="reports" element={<Reports />} />
-          <Route path="reports/:id/:reportId" element={<GenerateReport />} />
-        </Route>
+          <Route element={<ProtectedRoutes user={user} role="user" />}>
+            <Route path="/" element={<Navigate to="/consultation" replace />} />
+            <Route path="/consultation" element={<Homepage />} />
+            <Route path="notifications" element={<Notification />} />
+            <Route path="chat/:userId/:id" element={<ChatUser />} />
+            <Route path="chat" element={<Chat />} />
+            <Route path="telechannel" element={<TeleChannel />} />
+            <Route path="profile/:username" element={<Profile />} />
+            <Route path="consultation/patients" element={<Patients />} />
+            <Route path="settings/account" element={<AccountSettings />} />
+            <Route
+              path="user-manual/guide/introduction"
+              element={<Introduction />}
+            />
+            <Route
+              path="user-manual/guide/quick-start"
+              element={<QuickStart />}
+            />
+            <Route
+              path="consultation/patients/admission"
+              element={<PatientAdmission />}
+            />
+            <Route
+              path="consultation/patients/edit-profile/:id"
+              element={<EditPatientProfile />}
+            />
+            <Route
+              path="consultation/patients/:id"
+              element={<PatientsData />}
+            />
+            <Route path="consultation/incoming" element={<IncomingConsult />} />
+            <Route path="consultation/outgoing" element={<OutgoingConsult />} />
+            <Route path="consultation/case" element={<Case />} />
+            <Route
+              path="consultation/case/case-data/:id"
+              element={<CaseData />}
+            />
+            <Route path="consultation/outgoing/:id" element={<CaseData />} />
+            <Route
+              path="consultation/incoming/case/case-data/:id"
+              element={<CaseData />}
+            />
+            <Route
+              path="consultation/patients/case/:id"
+              element={<CaseData />}
+            />
+            <Route path="reports" element={<Reports />} />
+            <Route path="reports/:id/:reportId" element={<GenerateReport />} />
+          </Route>
 
-        <Route element={<ProtectedLoginRoutes user={user} />}>
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="reset-password" element={<ForgotPassword />} />
-        </Route>
+          <Route element={<ProtectedLoginRoutes user={user} />}>
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="reset-password" element={<ForgotPassword />} />
+          </Route>
 
-        <Route path="/team" element={<DevTeam />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Route>
-    </Routes>
+          <Route path="*" element={<PageNotFound />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
