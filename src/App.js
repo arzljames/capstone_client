@@ -66,13 +66,12 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/team" element={<DevTeam />} />
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<DevTeam />} />
+      {/* <Route path="/" element={<Layout />}>
         <Route
           path="account/verification/:code/:id"
           element={<VerificationPage />}
         />
-        {/* <Route path="/team" element={<DevTeam />} /> */}
         <Route path="constructions" element={<PageConstruction />} />
         <Route element={<ProtectedRoutes user={user} role="admin" />}>
           <Route path="dashboard" element={<AdminDashboard />} />
@@ -141,7 +140,7 @@ function App() {
         </Route>
 
         <Route path="*" element={<PageNotFound />} />
-      </Route>
+      </Route> */}
     </Routes>
   );
 }
