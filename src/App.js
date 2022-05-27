@@ -74,7 +74,8 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<DevTeam />} />
-        <Route path="/" element={<Layout />}>
+        <Route path="*" element={<PageNotFound />} />
+        {/* <Route path="/" element={<Layout />}>
           <Route
             path="account/verification/:code/:id"
             element={<VerificationPage />}
@@ -152,8 +153,8 @@ function App() {
             <Route path="reset-password" element={<ForgotPassword />} />
           </Route>
 
-          <Route path="*" element={<PageNotFound />} />
-        </Route>
+         
+        </Route> */}
       </Routes>
     </>
   );
