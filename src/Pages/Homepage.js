@@ -5,8 +5,22 @@ import "./Homepage.css";
 import Welcome from "../Assets/Welcome.svg";
 import { Helmet } from "react-helmet";
 import ConsultationNavbar from "../Components/ConsultationNavbar";
+import { useLocation } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
+import Loader from "../Pages/Loader";
+import { Navigate } from "react-router-dom";
 
 const Homepage = () => {
+  const { user } = useAuth();
+  const location = useLocation();
+
+  if (user === null) {
+    return <Loader />;
+  }
+
+  if (!user.loggedIn && user.userType !== "user") {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
   return (
     <>
       <Helmet>

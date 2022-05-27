@@ -73,7 +73,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<DevTeam />} />
+        {/* <Route path="/" element={<DevTeam />} /> */}
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />
         {/* <Route path="/" element={<Layout />}>
           <Route
