@@ -71,7 +71,7 @@ function App() {
           path="account/verification/:code/:id"
           element={<VerificationPage />}
         />
-        <Route path="team" element={<DevTeam />} />
+        <Route path="/team" element={<DevTeam />} />
         <Route path="constructions" element={<PageConstruction />} />
         <Route element={<ProtectedRoutes user={user} role="admin" />}>
           <Route path="dashboard" element={<AdminDashboard />} />
