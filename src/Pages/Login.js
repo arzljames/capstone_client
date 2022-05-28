@@ -4,7 +4,7 @@ import Axios from "axios";
 import { HiEyeOff, HiEye, HiLockClosed, HiUser } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
 import api from "../API/Api";
-// import PendingModal from "../Components/PendingModal";
+import PendingModal from "../Components/PendingModal";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { formVariant } from "../Animations/Animations";
@@ -80,14 +80,14 @@ const Login = () => {
         <title>Sign in to ZCMC Telemedicine | ZCMC Telemedicine</title>
       </Helmet>
       <div className="login-container">
-        {/* <AnimatePresence>
-          {verification && (
+        <AnimatePresence>
+          {verification === true && userEmail !== "" ? (
             <PendingModal
               userEmail={userEmail}
               setVerification={setVerification}
             />
-          )}
-        </AnimatePresence> */}
+          ) : null}
+        </AnimatePresence>
         <div className="login-header">
           <h1>Sign in</h1>
           <p>Enter your credentials to continue</p>
