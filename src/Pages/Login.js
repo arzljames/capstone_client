@@ -76,6 +76,35 @@ const Login = () => {
     }
   };
 
+  if (!navigator.cookieEnabled) {
+    return (
+      <div className="modal-container">
+        <div className="popup-modal">
+          <h1>Allow Third Party Cookies</h1>
+          <p>
+            The TeleMedicine is using a third party cookies in order to work all
+            the functionalities of the System. Please consider unchecking the{" "}
+            <em>"Block 3rd party cookies"</em> option in your browser settings
+            to proceed. <br />
+            <br />
+            If you're accessing this on{" "}
+            <strong style={{ fontWeight: 600 }}>Mac</strong> or{" "}
+            <strong style={{ fontWeight: 600 }}>IOS</strong>: <br />
+            <br />
+            1. Open the <strong style={{ fontWeight: 600 }}>
+              Settings
+            </strong>{" "}
+            App. <br />
+            2. Go to <strong style={{ fontWeight: 600 }}>Safari</strong> {"> "}
+            <strong style={{ fontWeight: 600 }}>Block Cookies</strong>. <br />
+            3. Select{" "}
+            <strong style={{ fontWeight: 600 }}>“Always Allow”</strong>.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <Helmet>
