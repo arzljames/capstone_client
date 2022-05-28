@@ -75,11 +75,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route element={<ProtectedRoutes user={user} role="user" />}>
-            <Route path="/" element={<Navigate to="/consultation" replace />} />
+            {/* <Route path="/" element={<Navigate to="/consultation" replace />} /> */}
+            <Route path="/" element={<Login />} />
             <Route path="/consultation" element={<Homepage />} />
           </Route>
 
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<p>login</p>} />
+          {/* <Route path="/login" element={<Login />} /> */}
 
           {/* <Route
             path="account/verification/:code/:id"
