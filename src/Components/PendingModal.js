@@ -4,14 +4,20 @@ import { motion } from "framer-motion";
 import { HiX } from "react-icons/hi";
 import { formVariant, containerVariant } from "../Animations/Animations";
 
-const PendingModal = () => {
-  // const regex = /(?<!^)./g;
-  // const splitBefore =
-  //   userEmail !== "" ? userEmail.substring(userEmail.indexOf("@")) : "";
-  // const splitAfter =
-  //   userEmail !== "" ? userEmail.substring(0, userEmail.indexOf("@")) : "";
-  // const replacedEmail =
-  //   userEmail !== "" ? splitAfter.replace(regex, "*") + splitBefore : "";
+const PendingModal = (props) => {
+  const regex = /(?<!^)./g;
+  const splitBefore =
+    props.userEmail !== ""
+      ? props.userEmail.substring(userEmail.indexOf("@"))
+      : "";
+  const splitAfter =
+    props.userEmail !== ""
+      ? props.userEmail.substring(0, userEmail.indexOf("@"))
+      : "";
+  const replacedEmail =
+    props.userEmail !== ""
+      ? props.splitAfter.replace(regex, "*") + splitBefore
+      : "";
 
   return (
     <motion.div
