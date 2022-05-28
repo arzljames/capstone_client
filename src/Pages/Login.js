@@ -80,14 +80,14 @@ const Login = () => {
         <title>Sign in to ZCMC Telemedicine | ZCMC Telemedicine</title>
       </Helmet>
       <div className="login-container">
-        <AnimatePresence>
-          {verification === true && userEmail !== "" ? (
-            <PendingModal
-              userEmail={userEmail}
-              setVerification={setVerification}
-            />
-          ) : null}
-        </AnimatePresence>
+        {/* <AnimatePresence> */}
+        {verification === true && userEmail !== "" ? (
+          <PendingModal
+            userEmail={userEmail}
+            setVerification={setVerification}
+          />
+        ) : null}
+        {/* </AnimatePresence> */}
         <div className="login-header">
           <h1>Sign in</h1>
           <p>Enter your credentials to continue</p>
