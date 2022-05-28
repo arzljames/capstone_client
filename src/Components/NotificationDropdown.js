@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { socket } from "./Socket";
 import { IoNotifications, IoNotificationsOutline } from "react-icons/io5";
@@ -9,7 +9,7 @@ import ReactTimeAgo from "react-time-ago";
 
 const NotificationDropdown = ({ setDropdownNotif }) => {
   const { user, notification } = useAuth();
-  let history = useHistory();
+  const navigate = useNavigate();
 
   const handleNotif = async (id) => {
     try {
@@ -39,7 +39,7 @@ const NotificationDropdown = ({ setDropdownNotif }) => {
   };
 
   const navigateRefresh = (link) => {
-    history.push(link);
+    navigate(link);
     window.location.reload();
   };
 

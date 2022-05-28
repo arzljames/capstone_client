@@ -14,10 +14,10 @@ import api from "../API/Api";
 import PulseLoader from "react-spinners/PulseLoader";
 import ProfileModal from "./ProfileModal";
 import { AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
 import DpModal from "./DpModal";
 import { ToastContainer, toast } from "react-toastify";
 import LogoutModal from "./LogoutModal";
+import { useNavigate } from "react-router-dom";
 
 const ProfileDropdown = ({
   submitLogout,
@@ -25,6 +25,7 @@ const ProfileDropdown = ({
   profilePicture,
   setDropdown2,
 }) => {
+  const navigate = useNavigate();
   const { user, facilities, cases, patients } = useAuth();
   const [dropdown, setDropdown] = useState(false);
   const [dp, setDp] = useState(false);
@@ -183,22 +184,20 @@ const ProfileDropdown = ({
             </p>
             View Profile
           </li>
-          {/* <Link to="/settings/account"> */}
-          <li>
+
+          <li onClick={() => navigate("/settings/account")}>
             <p>
               <IoSettingsOutline />
             </p>
             Account Settings
           </li>
-          {/* </Link> */}
-          {/* <Link to="/user-manual/guide/introduction"> */}
-          <li>
+
+          <li onClick={() => navigate("/user-manual/guide/introduction")}>
             <p>
               <IoBookOutline />
             </p>
             Documentation
           </li>
-          {/* </Link> */}
 
           <li
             onClick={() => {
