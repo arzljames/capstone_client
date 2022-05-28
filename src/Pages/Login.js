@@ -8,6 +8,7 @@ import api from "../API/Api";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { formVariant } from "../Animations/Animations";
+import useAuth from "../Hooks/useAuth";
 
 const formVariants = {
   hidden: {
@@ -27,6 +28,7 @@ const formVariants = {
 
 const Login = () => {
   Axios.defaults.withCredentials = true;
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
   const [loader, setLoader] = useState(false);
@@ -88,11 +90,11 @@ const Login = () => {
           />
         ) : null}
         </AnimatePresence> */}
+        {user === null || user.loggedIn === false ? "not login" : user.userId}
         <div className="login-header">
           <h1>Sign in</h1>
           <p>Enter your credentials to continue</p>
         </div>
-
         <form className="login-form" onSubmit={(e) => e.preventDefault()}>
           <label>
             Username <i>*</i>
