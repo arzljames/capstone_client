@@ -20,7 +20,7 @@ const ConsultationNavbar = () => {
       </div>
 
       <ul>
-        {user.designation !== "623ec7fb80a6838424edaa29" && (
+        {user !== null && user.designation !== "623ec7fb80a6838424edaa29" ? (
           <li
             onClick={() => navigate("/consultation/patients")}
             className={
@@ -36,7 +36,7 @@ const ConsultationNavbar = () => {
             </p>
             <span> Patients</span>
           </li>
-        )}
+        ) : null}
 
         <li
           onClick={() => navigate("/consultation/case")}
@@ -52,7 +52,7 @@ const ConsultationNavbar = () => {
           <span> Consultation Case</span>
         </li>
 
-        {user.designation !== "623ec7fb80a6838424edaa29" && (
+        {user !== null && user.designation !== "623ec7fb80a6838424edaa29" ? (
           <li
             onClick={() => navigate("/consultation/outgoing")}
             className={
@@ -75,8 +75,8 @@ const ConsultationNavbar = () => {
               </div>
             )}
           </li>
-        )}
-        {user.designation === "623ec7fb80a6838424edaa29" && (
+        ) : null}
+        {user !== null && user.designation === "623ec7fb80a6838424edaa29" ? (
           <li
             onClick={() => navigate("/consultation/incoming")}
             className={
@@ -102,7 +102,7 @@ const ConsultationNavbar = () => {
               </div>
             )}
           </li>
-        )}
+        ) : null}
       </ul>
     </div>
   );

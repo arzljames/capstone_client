@@ -93,7 +93,7 @@ const ProfileHeader = () => {
     <div ref={domNode} className="admin-profile-header">
       <motion.div
         className={
-          path.includes(user.username)
+          path.includes(user !== null ? user.username : "")
             ? "admin-profile-name-active"
             : "admin-profile-name"
         }
@@ -108,7 +108,7 @@ const ProfileHeader = () => {
             }
           ></div>
         </div>
-        <h5>{user.firstname}</h5>
+        <h5>{user !== null ? user.firstname : ""}</h5>
       </motion.div>
       <motion.div
         whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}

@@ -5,6 +5,7 @@ import "./Homepage.css";
 import Welcome from "../Assets/Welcome.svg";
 import { Helmet } from "react-helmet";
 import ConsultationNavbar from "../Components/ConsultationNavbar";
+import useAuth from "../Hooks/useAuth";
 
 const Homepage = () => {
   return (

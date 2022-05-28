@@ -73,7 +73,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Homepage />} />
+        {/* <Route path="/" element={<Layout />}>
           <Route
             path="account/verification/:code/:id"
             element={<VerificationPage />}
@@ -152,7 +153,7 @@ function App() {
           </Route>
         </Route>
         <Route path="/team" element={<DevTeam />} />
-        <Route path="*" element={<PageNotFound />} />
+        <Route path="*" element={<PageNotFound />} /> */}
       </Routes>
     </Router>
   );

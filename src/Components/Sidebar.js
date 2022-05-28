@@ -21,7 +21,9 @@ const Sidebar = () => {
       });
     };
 
-    fetchNotif();
+    if (user !== null) {
+      fetchNotif();
+    }
   }, [socket]);
 
   return (
