@@ -35,7 +35,7 @@ const PendingModal = (props) => {
       >
         <div className="register-successful-header">
           <h1>Check Your Email</h1>
-          <p onClick={() => props.setVerification(false)}>
+          <p onClick={() => {}}>
             <HiX />
           </p>
         </div>
@@ -48,7 +48,7 @@ const PendingModal = (props) => {
             can verify and activate your account.
           </p>
         </div>
-        <button onClick={() => props.setVerification(false)}>Confirm</button>
+        <button onClick={() => {}}>Confirm</button>
       </motion.div>
     </motion.div>
   );
