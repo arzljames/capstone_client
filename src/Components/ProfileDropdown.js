@@ -14,7 +14,7 @@ import api from "../API/Api";
 import PulseLoader from "react-spinners/PulseLoader";
 import ProfileModal from "./ProfileModal";
 import { AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DpModal from "./DpModal";
 import { ToastContainer, toast } from "react-toastify";
 import LogoutModal from "./LogoutModal";
@@ -40,7 +40,6 @@ const ProfileDropdown = ({
   };
 
   const [loader, setLoader] = useState(false);
-  const navigate = useNavigate();
 
   const [specc, setSpecc] = useState("");
   const [desig, setDesig] = useState("");
@@ -184,20 +183,23 @@ const ProfileDropdown = ({
             </p>
             View Profile
           </li>
-          <li
-            onClick={() => navigate("/settings/account", { state: { users } })}
-          >
+          {/* <Link to="/settings/account"> */}
+          <li>
             <p>
               <IoSettingsOutline />
             </p>
             Account Settings
           </li>
-          <li onClick={() => navigate("/user-manual/guide/introduction")}>
+          {/* </Link> */}
+          {/* <Link to="/user-manual/guide/introduction"> */}
+          <li>
             <p>
               <IoBookOutline />
             </p>
             Documentation
           </li>
+          {/* </Link> */}
+
           <li
             onClick={() => {
               window.open("/team", "_blank");

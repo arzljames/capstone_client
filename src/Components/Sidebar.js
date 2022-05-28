@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { SidebarData } from "./SidebarData";
-import { useNavigate } from "react-router-dom";
+import "../AdminComponents/AdminSidebar.css";
+import { Link } from "react-router-dom";
 import "./Sidebar.css";
 import useAuth from "../Hooks/useAuth";
 import { socket } from "./Socket";
@@ -9,7 +10,6 @@ import { IoMedkitOutline, IoMedkit } from "react-icons/io5";
 
 const Sidebar = () => {
   const path = window.location.pathname;
-  const navigate = useNavigate();
   const { notification, user, setNotification } = useAuth();
 
   useEffect(() => {
@@ -27,9 +27,9 @@ const Sidebar = () => {
     <div className="admin-sidebar">
       {SidebarData.map((item) => {
         return (
-          <div
+          <Link
+            to={item.link}
             key={item.name}
-            onClick={() => navigate(item.link)}
             className={
               item.link === path ||
               path.includes(item.link2) ||
@@ -50,7 +50,7 @@ const Sidebar = () => {
                 : item.icon}
             </div>
             <p>{item.name}</p>
-          </div>
+          </Link>
         );
       })}
     </div>

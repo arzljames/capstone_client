@@ -8,7 +8,7 @@ import {
   HiOutlineClock,
   HiOutlineX,
 } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import ProfileDropdown from "./ProfileDropdown";
 import { IoNotifications } from "react-icons/io5";
@@ -20,7 +20,6 @@ import { IoCaretDown } from "react-icons/io5";
 const ProfileHeader = () => {
   const { user, appState, setAppState, listUsers } = useAuth();
 
-  const navigate = useNavigate();
   const path = window.location.pathname;
 
   const submitLogout = async () => {

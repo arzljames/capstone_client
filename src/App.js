@@ -2,57 +2,58 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Axios from "axios";
 import Homepage from "./Pages/Homepage";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+// import {
+//   BrowserRouter as Router,
+//   Routes,
+//   Route,
+//   Navigate,
+// } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Login from "./Pages/Login";
-import Register from "./Pages/Register";
-import ForgotPassword from "./Pages/ForgotPassword";
-import Notification from "./Pages/Notification";
-import AdminChannel from "./AdminPages/AdminChannel";
-import AdminFacility from "./AdminPages/AdminFacility";
-import AdminPeople from "./AdminPages/AdminPeople";
-import AdminUserProfile from "./AdminPages/AdminUserProfile";
-import AdminDashboard from "./AdminPages/AdminDashboard";
-import Layout from "./Components/Layout";
+// import Register from "./Pages/Register";
+// import ForgotPassword from "./Pages/ForgotPassword";
+// import Notification from "./Pages/Notification";
+// import AdminChannel from "./AdminPages/AdminChannel";
+// import AdminFacility from "./AdminPages/AdminFacility";
+// import AdminPeople from "./AdminPages/AdminPeople";
+// import AdminUserProfile from "./AdminPages/AdminUserProfile";
+// import AdminDashboard from "./AdminPages/AdminDashboard";
+// import Layout from "./Components/Layout";
 import useAuth from "./Hooks/useAuth";
-import ProtectedRoutes from "./Components/ProtectedRoutes";
-import ProtectedLoginRoutes from "./Components/ProtectedLoginRoute";
-import VerificationPage from "./Pages/VerificationPage";
-import Chat from "./Pages/Chat";
-import Profile from "./Pages/Profile";
-import Patients from "./Pages/Patients";
-import IncomingConsult from "./Pages/IncomingConsult";
-import OutgoingConsult from "./Pages/OutgoingConsult";
-import TeleChannel from "./Pages/TeleChannel";
-import PatientsData from "./Pages/PatientsData";
+// import ProtectedRoutes from "./Components/ProtectedRoutes";
+// import ProtectedLoginRoutes from "./Components/ProtectedLoginRoute";
+// import VerificationPage from "./Pages/VerificationPage";
+// import Chat from "./Pages/Chat";
+// import Profile from "./Pages/Profile";
+// import Patients from "./Pages/Patients";
+// import IncomingConsult from "./Pages/IncomingConsult";
+// import OutgoingConsult from "./Pages/OutgoingConsult";
+// import TeleChannel from "./Pages/TeleChannel";
+// import PatientsData from "./Pages/PatientsData";
 import { useEffect } from "react";
 
-import PatientAdmission from "./Pages/PatientAdmission";
-import CaseData from "./Pages/CaseData";
-import EditPatientProfile from "./Pages/EditPatientProfile";
+// import PatientAdmission from "./Pages/PatientAdmission";
+// import CaseData from "./Pages/CaseData";
+// import EditPatientProfile from "./Pages/EditPatientProfile";
 import { socket } from "./Components/Socket";
-import ChatUser from "./Pages/ChatUser";
-import Case from "./Pages/Case";
+// import ChatUser from "./Pages/ChatUser";
+// import Case from "./Pages/Case";
 
 import TimeAgo from "javascript-time-ago";
 
 import en from "javascript-time-ago/locale/en.json";
-import Reports from "./Pages/Reports";
-import GenerateReport from "./Components/GenerateReport";
+// import Reports from "./Pages/Reports";
+// import GenerateReport from "./Components/GenerateReport";
 import "react-toastify/dist/ReactToastify.css";
-import AccountSettings from "./Pages/AccountSettings";
-import PageNotFound from "./Pages/PageNotFound";
-import Introduction from "./Pages/UserManual/Introduction";
-import QuickStart from "./Pages/UserManual/QuickStart";
+// import AccountSettings from "./Pages/AccountSettings";
+// import PageNotFound from "./Pages/PageNotFound";
+// import Introduction from "./Pages/UserManual/Introduction";
+// import QuickStart from "./Pages/UserManual/QuickStart";
 import DevTeam from "./Pages/DevTeam";
-import PageConstruction from "./Pages/PageConstruction";
-import AdminGenerateReport from "./AdminPages/AdminGenerateReport";
-import AdminAccountSetttings from "./AdminPages/AdminAccountSetttings";
+// import PageConstruction from "./Pages/PageConstruction";
+// import AdminGenerateReport from "./AdminPages/AdminGenerateReport";
+// import AdminAccountSetttings from "./AdminPages/AdminAccountSetttings";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -72,7 +73,19 @@ function App() {
 
   return (
     <Router>
-      <Routes>
+      <Switch>
+        <Route path="/" exact>
+          <Homepage />
+        </Route>
+        <Route path="/team" exact>
+          <DevTeam />
+        </Route>
+
+        <Route path="/login" exact>
+          <Login />
+        </Route>
+      </Switch>
+      {/* <Routes>
         <Route path="/" element={<Layout />}>
           <Route
             path="account/verification/:code/:id"
@@ -153,7 +166,7 @@ function App() {
         </Route>
         <Route path="/team" element={<DevTeam />} />
         <Route path="*" element={<PageNotFound />} />
-      </Routes>
+      </Routes> */}
     </Router>
   );
 }
