@@ -5,7 +5,7 @@ import { HiEyeOff, HiEye, HiLockClosed, HiUser } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
 import api from "../API/Api";
 import PendingModal from "../Components/PendingModal";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 const formVariants = {
@@ -26,6 +26,7 @@ const formVariants = {
 
 const Login = () => {
   Axios.defaults.withCredentials = true;
+  const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
   const [loader, setLoader] = useState(false);
   const [prompt, setPrompt] = useState(false);
@@ -182,7 +183,8 @@ const Login = () => {
               </span>
             </p> */}
             <p>
-              Don't have an account? <Link to="/register">Create one.</Link>
+              Don't have an account?{" "}
+              <span onClick={() => navigate("/register")}>Create one.</span>
             </p>
           </div>
         </motion.form>

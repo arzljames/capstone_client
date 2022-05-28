@@ -79,6 +79,8 @@ function App() {
             <Route path="/consultation" element={<Homepage />} />
           </Route>
 
+          <Route path="/login" element={<Login />} />
+
           {/* <Route
             path="account/verification/:code/:id"
             element={<VerificationPage />}
