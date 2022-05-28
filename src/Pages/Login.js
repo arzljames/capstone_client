@@ -9,21 +9,21 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { formVariant } from "../Animations/Animations";
 
-// const formVariants = {
-//   hidden: {
-//     opacity: 0,
-//   },
-//   visible: {
-//     opacity: 1,
-//     transition: {
-//       duration: 0.5,
-//       ease: "easeInOut",
-//     },
-//   },
-//   exit: {
-//     opacity: 0,
-//   },
-// };
+const formVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeInOut",
+    },
+  },
+  exit: {
+    opacity: 0,
+  },
+};
 
 const Login = () => {
   Axios.defaults.withCredentials = true;
@@ -80,14 +80,14 @@ const Login = () => {
         <title>Sign in to ZCMC Telemedicine | ZCMC Telemedicine</title>
       </Helmet>
       <div className="login-container">
-        {/* <AnimatePresence> */}
+        {/* <AnimatePresence>
         {verification === true && userEmail !== "" ? (
           <PendingModal
             userEmail={userEmail}
             setVerification={setVerification}
           />
         ) : null}
-        {/* </AnimatePresence> */}
+        </AnimatePresence> */}
         <div className="login-header">
           <h1>Sign in</h1>
           <p>Enter your credentials to continue</p>
