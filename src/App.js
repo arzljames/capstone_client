@@ -73,9 +73,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/" element={<Navigate to="/consultation" replace />} /> */}
-        <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<p>sds</p>} />
+        <Route path="/" element={<Navigate to="/consultation" replace />} />
+        <Route path="/consultation" element={<Homepage />} />
+        <Route path="/login" element={<Login />} />
         {/* <Route path="/" element={<Layout />}>
           <Route
             path="account/verification/:code/:id"

@@ -7,22 +7,23 @@ import api from "../API/Api";
 import PendingModal from "../Components/PendingModal";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { formVariant } from "../Animations/Animations";
 
-const formVariants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      ease: "easeInOut",
-    },
-  },
-  exit: {
-    opacity: 0,
-  },
-};
+// const formVariants = {
+//   hidden: {
+//     opacity: 0,
+//   },
+//   visible: {
+//     opacity: 1,
+//     transition: {
+//       duration: 0.5,
+//       ease: "easeInOut",
+//     },
+//   },
+//   exit: {
+//     opacity: 0,
+//   },
+// };
 
 const Login = () => {
   Axios.defaults.withCredentials = true;
@@ -79,27 +80,26 @@ const Login = () => {
         <title>Sign in to ZCMC Telemedicine | ZCMC Telemedicine</title>
       </Helmet>
       <div className="login-container">
+        <AnimatePresence>
+          {verification && (
+            <PendingModal
+              userEmail={userEmail}
+              setVerification={setVerification}
+            />
+          )}
+        </AnimatePresence>
         <div className="login-header">
           <h1>Sign in</h1>
           <p>Enter your credentials to continue</p>
         </div>
 
         <motion.form
-          variants={formVariants}
+          variants={formVariant}
           initial="hidden"
           animate="visible"
           className="login-form"
           onSubmit={(e) => e.preventDefault()}
         >
-          <AnimatePresence>
-            {verification && (
-              <PendingModal
-                userEmail={userEmail}
-                setVerification={setVerification}
-              />
-            )}
-          </AnimatePresence>
-
           <label>
             Username <i>*</i>
           </label>
@@ -112,7 +112,7 @@ const Login = () => {
             }
           >
             <motion.input
-              variants={formVariants}
+              variants={formVariant}
               initial="hidden"
               animate="visible"
               exit="exit"
@@ -134,11 +134,11 @@ const Login = () => {
           </div>
 
           <AnimatePresence>
-            {usernameError && (
+            {usernameError ? (
               <p style={{ marginTop: "5px" }} className="error-input-text">
                 {message}
               </p>
-            )}
+            ) : null}
           </AnimatePresence>
 
           <label>
