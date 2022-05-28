@@ -5,13 +5,13 @@ import { HiX } from "react-icons/hi";
 import { formVariant, containerVariant } from "../Animations/Animations";
 
 const PendingModal = (props) => {
-  // const regex = /(?<!^)./g;
+  const regex = /(?<!^)./g;
 
-  // const splitBefore = props.userEmail.substring(props.userEmail.indexOf("@"));
+  const splitBefore = props.userEmail.substring(props.userEmail.indexOf("@"));
 
-  // const splitAfter = props.userEmail.substring(0, props.userEmail.indexOf("@"));
+  const splitAfter = props.userEmail.substring(0, props.userEmail.indexOf("@"));
 
-  // const email = splitAfter.replace(regex, "*") + splitBefore;
+  const email = splitAfter.replace(regex, "*") + splitBefore;
 
   return (
     <motion.div
@@ -36,7 +36,13 @@ const PendingModal = (props) => {
         </div>
 
         <div className="register-successful-body">
-          <p></p> <br />
+          <p>
+            {props.userEmail
+              .substring(0, props.userEmail.indexOf("@"))
+              .replace(regex, "*") +
+              props.userEmail.substring(props.userEmail.indexOf("@"))}
+          </p>{" "}
+          <br />
           <p>
             Your account is currently in the queue list for account
             verification. We will send you an email with instructions on how you
