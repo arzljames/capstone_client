@@ -30,14 +30,14 @@ const PendingModal = (props) => {
         </div>
 
         <div className="register-successful-body">
-          <p>
+          {/* <p>
             {props.userEmail !== ""
               ? props.userEmail
                   .substring(0, props.userEmail.indexOf("@"))
                   .replace(regex, "*") +
                 props.userEmail.substring(props.userEmail.indexOf("@"))
               : ""}
-          </p>{" "}
+          </p>{" "} */}
           <br />
           <p>
             Your account is currently in the queue list for account
