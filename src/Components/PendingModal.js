@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { HiX } from "react-icons/hi";
 import { formVariant, containerVariant } from "../Animations/Animations";
 
-const PendingModal = ({ setVerification, userEmail }) => {
+const PendingModal = () => {
   // const regex = /(?<!^)./g;
   // const splitBefore =
   //   userEmail !== "" ? userEmail.substring(userEmail.indexOf("@")) : "";
@@ -30,9 +30,9 @@ const PendingModal = ({ setVerification, userEmail }) => {
       >
         <div className="register-successful-header">
           <h1>Check Your Email</h1>
-          <p onClick={() => setVerification(false)}>
+          {/* <p onClick={() => setVerification(false)}>
             <HiX />
-          </p>
+          </p> */}
         </div>
 
         <div className="register-successful-body">
@@ -43,7 +43,7 @@ const PendingModal = ({ setVerification, userEmail }) => {
             can verify and activate your account.
           </p>
         </div>
-        <button onClick={() => setVerification(false)}>Confirm</button>
+        {/* <button onClick={() => setVerification(false)}>Confirm</button> */}
       </motion.div>
     </motion.div>
   );
