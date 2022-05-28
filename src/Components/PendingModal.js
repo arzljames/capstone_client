@@ -39,7 +39,7 @@ const PendingModal = ({ setVerification, userEmail }) => {
           </div>
 
           <div className="register-successful-body">
-            <p>{replacedEmail}</p> <br />
+            {/* <p>{replacedEmail}</p> <br /> */}
             <p>
               Your account is currently in the queue list for account
               verification. We will send you an email with instructions on how
