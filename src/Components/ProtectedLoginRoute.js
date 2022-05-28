@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import Loader from "../Pages/Loader"
+import Loader from "../Pages/Loader";
 
 const ProtectedLoginRoutes = ({ user }) => {
   const location = useLocation();
@@ -7,10 +7,10 @@ const ProtectedLoginRoutes = ({ user }) => {
     return <Loader />;
   }
 
-  if (user.userType === 'admin') {
-    return <Navigate to="/dashboard" state={{ from: location }} replace/>;
-  }  else if(user.userType === 'user'){
-    return <Navigate to="/" state={{ from: location }} replace/>;
+  if (user.loggedIn && user.userType === "admin") {
+    return <Navigate to="/dashboard" state={{ from: location }} replace />;
+  } else if (user.loggedIn && user.userType === "user") {
+    return <Navigate to="/" state={{ from: location }} replace />;
   } else {
     return <Outlet />;
   }
