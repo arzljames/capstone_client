@@ -31,10 +31,10 @@ const PendingModal = (props) => {
 
         <div className="register-successful-body">
           <p>
-            {props.userEmail
+            {/* {props.userEmail
               .substring(0, props.userEmail.indexOf("@"))
               .replace(regex, "*") +
-              props.userEmail.substring(props.userEmail.indexOf("@"))}
+              props.userEmail.substring(props.userEmail.indexOf("@"))} */}
           </p>{" "}
           <br />
           <p>
