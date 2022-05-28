@@ -6,9 +6,12 @@ import { formVariant, containerVariant } from "../Animations/Animations";
 
 const PendingModal = ({ setVerification, userEmail }) => {
   const regex = /(?<!^)./g;
-  const splitBefore = userEmail.substring(userEmail.indexOf("@"));
-  const splitAfter = userEmail.substring(0, userEmail.indexOf("@"));
-  const replacedEmail = splitAfter.replace(regex, "*") + splitBefore;
+  const splitBefore =
+    userEmail !== "" ? userEmail.substring(userEmail.indexOf("@")) : "";
+  const splitAfter =
+    userEmail !== "" ? userEmail.substring(0, userEmail.indexOf("@")) : "";
+  const replacedEmail =
+    userEmail !== "" ? splitAfter.replace(regex, "*") + splitBefore : "";
 
   return (
     <motion.div
