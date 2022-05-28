@@ -76,7 +76,7 @@ const Login = () => {
     }
   };
 
-  if (!navigator.cookieEnabled) {
+  if (window.navigator.cookieEnabled === false) {
     return (
       <div className="modal-container">
         <div className="popup-modal">
@@ -119,7 +119,7 @@ const Login = () => {
             />
           ) : null}
         </AnimatePresence>
-        {user === null || user.loggedIn === false ? "not login" : user.userId}
+
         <div className="login-header">
           <h1>Sign in</h1>
           <p>Enter your credentials to continue</p>
