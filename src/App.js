@@ -71,13 +71,9 @@ function App() {
   }, [user]);
 
   return (
-    <>
+    <Router>
       <Routes>
-        {/* <Route path="/" element={<DevTeam />} /> */}
-        <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<PageNotFound />} />
-        {/* <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout />}>
           <Route
             path="account/verification/:code/:id"
             element={<VerificationPage />}
@@ -154,11 +150,11 @@ function App() {
             <Route path="register" element={<Register />} />
             <Route path="reset-password" element={<ForgotPassword />} />
           </Route>
-
-         
-        </Route> */}
+        </Route>
+        <Route path="/team" element={<DevTeam />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
-    </>
+    </Router>
   );
 }
 

@@ -8,13 +8,18 @@ import Axios from "axios";
 
 Axios.defaults.withCredentials = true;
 ReactDOM.render(
-  <BrowserRouter>
-    <DataProvider>
-      <CaseDataProvider>
-        <App />
-      </CaseDataProvider>
-    </DataProvider>
-  </BrowserRouter>,
+  // <BrowserRouter>
+  //   <DataProvider>
+  //     <CaseDataProvider>
+  //       <App />
+  //     </CaseDataProvider>
+  //   </DataProvider>
+  // </BrowserRouter>,
+  <DataProvider>
+    <CaseDataProvider>
+      <App />
+    </CaseDataProvider>
+  </DataProvider>,
 
   document.getElementById("root")
 );
