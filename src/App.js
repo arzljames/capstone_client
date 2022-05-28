@@ -75,8 +75,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route element={<ProtectedRoutes user={user} role="user" />}>
-            {/* <Route path="/" element={<Navigate to="/consultation" replace />} /> */}
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<Navigate to="/consultation" replace />} />
             <Route path="/consultation" element={<Homepage />} />
           </Route>
 
