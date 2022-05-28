@@ -4,7 +4,7 @@ import Axios from "axios";
 import { HiEyeOff, HiEye, HiLockClosed, HiUser } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
 import api from "../API/Api";
-import PendingModal from "../Components/PendingModal";
+// import PendingModal from "../Components/PendingModal";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { formVariant } from "../Animations/Animations";

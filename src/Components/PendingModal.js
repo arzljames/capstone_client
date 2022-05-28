@@ -13,40 +13,44 @@ const PendingModal = ({ setVerification, userEmail }) => {
   const replacedEmail =
     userEmail !== "" ? splitAfter.replace(regex, "*") + splitBefore : "";
 
-  return (
-    <motion.div
-      variants={containerVariant}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      className="modal-container"
-    >
+  if (userEmail === "" || userEmail) {
+    return null;
+  } else {
+    return (
       <motion.div
-        variants={formVariant}
+        variants={containerVariant}
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="register-successful"
+        className="modal-container"
       >
-        <div className="register-successful-header">
-          <h1>Check Your Email</h1>
-          <p onClick={() => setVerification(false)}>
-            <HiX />
-          </p>
-        </div>
+        <motion.div
+          variants={formVariant}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className="register-successful"
+        >
+          <div className="register-successful-header">
+            <h1>Check Your Email</h1>
+            <p onClick={() => setVerification(false)}>
+              <HiX />
+            </p>
+          </div>
 
-        <div className="register-successful-body">
-          <p>{replacedEmail}</p> <br />
-          <p>
-            Your account is currently in the queue list for account
-            verification. We will send you an email with instructions on how you
-            can verify and activate your account.
-          </p>
-        </div>
-        <button onClick={() => setVerification(false)}>Confirm</button>
+          <div className="register-successful-body">
+            <p>{replacedEmail}</p> <br />
+            <p>
+              Your account is currently in the queue list for account
+              verification. We will send you an email with instructions on how
+              you can verify and activate your account.
+            </p>
+          </div>
+          <button onClick={() => setVerification(false)}>Confirm</button>
+        </motion.div>
       </motion.div>
-    </motion.div>
-  );
+    );
+  }
 };
 
 export default PendingModal;
