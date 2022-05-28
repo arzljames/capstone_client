@@ -6,18 +6,11 @@ import { formVariant, containerVariant } from "../Animations/Animations";
 
 const PendingModal = (props) => {
   const regex = /(?<!^)./g;
-  const splitBefore =
-    props.userEmail !== ""
-      ? props.userEmail.substring(userEmail.indexOf("@"))
-      : "";
-  const splitAfter =
-    props.userEmail !== ""
-      ? props.userEmail.substring(0, userEmail.indexOf("@"))
-      : "";
-  const replacedEmail =
-    props.userEmail !== ""
-      ? props.splitAfter.replace(regex, "*") + splitBefore
-      : "";
+  const splitBefore = props.userEmail.substring(userEmail.indexOf("@"));
+
+  const splitAfter = props.userEmail.substring(0, userEmail.indexOf("@"));
+
+  const replacedEmail = splitAfter.replace(regex, "*") + splitBefore;
 
   return (
     <motion.div
@@ -36,20 +29,20 @@ const PendingModal = (props) => {
       >
         <div className="register-successful-header">
           <h1>Check Your Email</h1>
-          {/* <p onClick={() => setVerification(false)}>
+          <p onClick={() => props.setVerification(false)}>
             <HiX />
-          </p> */}
+          </p>
         </div>
 
         <div className="register-successful-body">
-          {/* <p>{replacedEmail}</p> <br /> */}
+          <p>{replacedEmail}</p> <br />
           <p>
             Your account is currently in the queue list for account
             verification. We will send you an email with instructions on how you
             can verify and activate your account.
           </p>
         </div>
-        {/* <button onClick={() => setVerification(false)}>Confirm</button> */}
+        <button onClick={() => props.setVerification(false)}>Confirm</button>
       </motion.div>
     </motion.div>
   );
