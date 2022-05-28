@@ -74,19 +74,11 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/login" element={<Login />} />
           <Route element={<ProtectedRoutes user={user} role="user" />}>
             <Route path="/" element={<Navigate to="/consultation" replace />} />
             <Route path="/consultation" element={<Homepage />} />
-            {/* <Route path="/notifications" element={<Notification />} />
-            <Route path="/chat/:userId/:id" element={<ChatUser />} /> */}
           </Route>
 
-          {/* <Route element={<ProtectedLoginRoutes user={user} />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/reset-password" element={<ForgotPassword />} />
-          </Route> */}
           {/* <Route
             path="account/verification/:code/:id"
             element={<VerificationPage />}
