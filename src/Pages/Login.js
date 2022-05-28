@@ -4,7 +4,7 @@ import Axios from "axios";
 import { HiEyeOff, HiEye, HiLockClosed, HiUser } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
 import api from "../API/Api";
-import PendingModal from "../Components/PendingModal";
+// import PendingModal from "../Components/PendingModal";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { formVariant } from "../Animations/Animations";
@@ -80,26 +80,20 @@ const Login = () => {
         <title>Sign in to ZCMC Telemedicine | ZCMC Telemedicine</title>
       </Helmet>
       <div className="login-container">
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {verification && (
             <PendingModal
               userEmail={userEmail}
               setVerification={setVerification}
             />
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
         <div className="login-header">
           <h1>Sign in</h1>
           <p>Enter your credentials to continue</p>
         </div>
 
-        <motion.form
-          variants={formVariant}
-          initial="hidden"
-          animate="visible"
-          className="login-form"
-          onSubmit={(e) => e.preventDefault()}
-        >
+        <form className="login-form" onSubmit={(e) => e.preventDefault()}>
           <label>
             Username <i>*</i>
           </label>
@@ -111,11 +105,7 @@ const Login = () => {
                 : "login-username-container"
             }
           >
-            <motion.input
-              variants={formVariant}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
+            <input
               className={usernameError ? "error-input" : "username"}
               name="username"
               value={login.username}
@@ -187,7 +177,7 @@ const Login = () => {
               <span onClick={() => navigate("/register")}>Create one.</span>
             </p>
           </div>
-        </motion.form>
+        </form>
       </div>
     </>
   );
