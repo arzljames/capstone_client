@@ -7,12 +7,6 @@ import { formVariant, containerVariant } from "../Animations/Animations";
 const PendingModal = (props) => {
   const regex = /(?<!^)./g;
 
-  const splitBefore = props.userEmail.substring(props.userEmail.indexOf("@"));
-
-  const splitAfter = props.userEmail.substring(0, props.userEmail.indexOf("@"));
-
-  const email = splitAfter.replace(regex, "*") + splitBefore;
-
   return (
     <motion.div
       variants={containerVariant}
