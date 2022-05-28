@@ -80,7 +80,6 @@ function App() {
             <Route path="/consultation" element={<Homepage />} />
           </Route>
 
-          <Route path="/login" element={<p>login</p>} />
           {/* <Route path="/login" element={<Login />} /> */}
 
           {/* <Route
