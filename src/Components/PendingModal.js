@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./PendingModal.css";
 import { motion } from "framer-motion";
 import { HiX } from "react-icons/hi";
@@ -6,11 +6,17 @@ import { formVariant, containerVariant } from "../Animations/Animations";
 
 const PendingModal = (props) => {
   const regex = /(?<!^)./g;
-  const splitBefore = props.userEmail.substring(props.userEmail.indexOf("@"));
 
-  const splitAfter = props.userEmail.substring(0, props.userEmail.indexOf("@"));
+  const fetchEmail = () => {
+    const splitBefore = props.userEmail.substring(props.userEmail.indexOf("@"));
 
-  const replacedEmail = splitAfter.replace(regex, "*") + splitBefore;
+    const splitAfter = props.userEmail.substring(
+      0,
+      props.userEmail.indexOf("@")
+    );
+
+    return splitAfter.replace(regex, "*") + splitBefore;
+  };
 
   return (
     <motion.div
@@ -35,7 +41,7 @@ const PendingModal = (props) => {
         </div>
 
         <div className="register-successful-body">
-          <p>{replacedEmail}</p> <br />
+          <p>{fetchEmail()}</p> <br />
           <p>
             Your account is currently in the queue list for account
             verification. We will send you an email with instructions on how you
