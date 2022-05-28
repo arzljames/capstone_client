@@ -5,18 +5,13 @@ import { HiX } from "react-icons/hi";
 import { formVariant, containerVariant } from "../Animations/Animations";
 
 const PendingModal = (props) => {
-  const regex = /(?<!^)./g;
+  // const regex = /(?<!^)./g;
 
-  const fetchEmail = () => {
-    const splitBefore = props.userEmail.substring(props.userEmail.indexOf("@"));
+  // const splitBefore = props.userEmail.substring(props.userEmail.indexOf("@"));
 
-    const splitAfter = props.userEmail.substring(
-      0,
-      props.userEmail.indexOf("@")
-    );
+  // const splitAfter = props.userEmail.substring(0, props.userEmail.indexOf("@"));
 
-    return splitAfter.replace(regex, "*") + splitBefore;
-  };
+  // const email = splitAfter.replace(regex, "*") + splitBefore;
 
   return (
     <motion.div
@@ -35,20 +30,20 @@ const PendingModal = (props) => {
       >
         <div className="register-successful-header">
           <h1>Check Your Email</h1>
-          <p onClick={() => {}}>
+          <p onClick={() => props.setVerification(false)}>
             <HiX />
           </p>
         </div>
 
         <div className="register-successful-body">
-          <p>{fetchEmail()}</p> <br />
+          <p></p> <br />
           <p>
             Your account is currently in the queue list for account
             verification. We will send you an email with instructions on how you
             can verify and activate your account.
           </p>
         </div>
-        <button onClick={() => {}}>Confirm</button>
+        <button onClick={() => props.setVerification(false)}>Confirm</button>
       </motion.div>
     </motion.div>
   );
