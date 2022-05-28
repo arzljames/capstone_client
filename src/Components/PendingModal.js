@@ -6,9 +6,9 @@ import { formVariant, containerVariant } from "../Animations/Animations";
 
 const PendingModal = (props) => {
   const regex = /(?<!^)./g;
-  const splitBefore = props.userEmail.substring(userEmail.indexOf("@"));
+  const splitBefore = props.userEmail.substring(props.userEmail.indexOf("@"));
 
-  const splitAfter = props.userEmail.substring(0, userEmail.indexOf("@"));
+  const splitAfter = props.userEmail.substring(0, props.userEmail.indexOf("@"));
 
   const replacedEmail = splitAfter.replace(regex, "*") + splitBefore;
 
