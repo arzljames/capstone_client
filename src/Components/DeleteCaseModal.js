@@ -47,23 +47,30 @@ const DeleteCaseModal = ({ setDeleteModal, id }) => {
   let domNode = useClickOutside(() => {
     setDeleteModal(false);
   });
-  const { setAppState, setToast, setIsError, setMessage } = useAuth();
+  const { setAppState, setToast, setIsError, setMessage, toast } = useAuth();
+  const [loader, setLoader] = useState(false);
 
   const navigate = useNavigate();
 
   const handleDelete = async () => {
+    setLoader(true);
     try {
       let response = api.delete(`/api/patient/delete-case/${id}`);
 
       if (response) {
-        setToast(true);
-        setIsError(false);
-        setMessage("Successfullly deleted one (1) case.");
+        toast.success("Successfullly deleted one case");
         navigate(-1);
         setAppState("Deleted");
         setTimeout(() => setAppState(""), 500);
+        setLoader(false);
+      } else {
+        toast.error("An error occured");
+        setLoader(false);
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error("An error occured");
+      setLoader(false);
+    }
   };
 
   return (
