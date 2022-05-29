@@ -74,7 +74,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route element={<ProtectedRoutes user={user} role="user" />}>
+          {/* <Route element={<ProtectedRoutes user={user} role="user" />}>
             <Route path="/" element={<Navigate to="/consultation" replace />} />
             <Route path="/consultation" element={<Homepage />} />
           </Route>
@@ -83,8 +83,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/reset-password" element={<ForgotPassword />} />
-          </Route>
-          {/* <Route
+          </Route> */}
+          <Route
             path="account/verification/:code/:id"
             element={<VerificationPage />}
           />
@@ -159,7 +159,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="reset-password" element={<ForgotPassword />} />
-          </Route> */}
+          </Route>
         </Route>
         <Route path="/team" element={<DevTeam />} />
         <Route path="*" element={<PageNotFound />} />
