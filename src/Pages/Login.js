@@ -4,7 +4,7 @@ import Axios from "axios";
 import { HiEyeOff, HiEye, HiLockClosed, HiUser } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
 import api from "../API/Api";
-// import PendingModal from "../Components/PendingModal";
+import PendingModal from "../Components/PendingModal";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { formVariant } from "../Animations/Animations";
@@ -28,7 +28,6 @@ const formVariants = {
 
 const Login = () => {
   Axios.defaults.withCredentials = true;
-  const regex = /(?<!^)./g;
   const { user } = useAuth();
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
@@ -77,6 +76,35 @@ const Login = () => {
     }
   };
 
+  // if (window.navigator.cookieEnabled === false) {
+  //   return (
+  //     <div className="modal-container">
+  //       <div className="popup-modal">
+  //         <h1>Allow Third Party Cookies</h1>
+  //         <p>
+  //           The TeleMedicine is using a third party cookies in order to work all
+  //           the functionalities of the System. Please consider unchecking the{" "}
+  //           <em>"Block 3rd party cookies"</em> option in your browser settings
+  //           to proceed. <br />
+  //           <br />
+  //           If you're accessing this on{" "}
+  //           <strong style={{ fontWeight: 600 }}>Mac</strong> or{" "}
+  //           <strong style={{ fontWeight: 600 }}>IOS</strong>: <br />
+  //           <br />
+  //           1. Open the <strong style={{ fontWeight: 600 }}>
+  //             Settings
+  //           </strong>{" "}
+  //           App. <br />
+  //           2. Go to <strong style={{ fontWeight: 600 }}>Safari</strong> {"> "}
+  //           <strong style={{ fontWeight: 600 }}>Block Cookies</strong>. <br />
+  //           3. Select{" "}
+  //           <strong style={{ fontWeight: 600 }}>“Always Allow”</strong>.
+  //         </p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
+
   return (
     <>
       <Helmet>
@@ -85,46 +113,10 @@ const Login = () => {
       <div className="login-container">
         <AnimatePresence>
           {verification === true && userEmail !== "" ? (
-            <motion.div
-              variants={containerVariant}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="modal-container"
-            >
-              <motion.div
-                variants={formVariant}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="register-successful"
-              >
-                <div className="register-successful-header">
-                  <h1>Check Your Email</h1>
-                  <p onClick={() => setVerification(false)}>
-                    <HiX />
-                  </p>
-                </div>
-
-                <div className="register-successful-body">
-                  <p>
-                    {userEmail !== ""
-                      ? userEmail
-                          .substring(0, userEmail.indexOf("@"))
-                          .replace(regex, "*") +
-                        userEmail.substring(userEmail.indexOf("@"))
-                      : ""}
-                  </p>{" "}
-                  <br />
-                  <p>
-                    Your account is currently in the queue list for account
-                    verification. We will send you an email with instructions on
-                    how you can verify and activate your account.
-                  </p>
-                </div>
-                <button onClick={() => setVerification(false)}>Confirm</button>
-              </motion.div>
-            </motion.div>
+            <PendingModal
+              userEmail={userEmail}
+              setVerification={setVerification}
+            />
           ) : null}
         </AnimatePresence>
 

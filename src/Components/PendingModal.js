@@ -5,7 +5,7 @@ import { HiX } from "react-icons/hi";
 import { formVariant, containerVariant } from "../Animations/Animations";
 
 const PendingModal = (props) => {
-  const regex = /(?<!^)./g;
+  // const regex = /(?<!^)./g;
 
   return (
     <motion.div
@@ -31,12 +31,13 @@ const PendingModal = (props) => {
 
         <div className="register-successful-body">
           <p>
-            {props.userEmail !== ""
+            {/* {props.userEmail !== ""
               ? props.userEmail
                   .substring(0, props.userEmail.indexOf("@"))
                   .replace(regex, "*") +
                 props.userEmail.substring(props.userEmail.indexOf("@"))
-              : ""}
+              : ""} */}
+            {props.userEmail}
           </p>{" "}
           <br />
           <p>
