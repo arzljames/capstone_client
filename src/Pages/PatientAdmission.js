@@ -420,7 +420,6 @@ const PatientAdmission = () => {
                           type="text"
                         />
                       </div>
-                      {birthday}
                     </div>
                     <div className="admission-2col">
                       <div className="div1">
