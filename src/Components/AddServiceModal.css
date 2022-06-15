@@ -1,0 +1,12 @@
+.service-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 14px;
+}
+
+div.service-container input {
+  width: 15px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}

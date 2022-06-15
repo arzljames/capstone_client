@@ -1,0 +1,9 @@
+.user-chart-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid #eee;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  width: 100%;
+  max-width: 1000px;
+}

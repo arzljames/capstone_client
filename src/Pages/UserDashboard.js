@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import AdminSidebar from "../AdminComponents/AdminSidebar";
-import "./AdminDashboard.css";
-import AdminHeader from "../AdminComponents/AdminHeader";
-import StatisticCard from "../AdminComponents/StatisticCard";
-import PendingUser from "../AdminComponents/PendingUser";
-import useAuth from "../Hooks/useAuth";
-import { HiOutlineOfficeBuilding } from "react-icons/hi";
-import { AnimatePresence } from "framer-motion";
-import DeletePendingUserModal from "../AdminComponents/DeletePendingUserModal";
-import { FiUserX } from "react-icons/fi";
-import NoUser from "../Assets/nouser.png";
 import { Helmet } from "react-helmet";
+import Header from "../Components/Header";
+import Sidebar from "../Components/Sidebar";
+import "../AdminPages/AdminDashboard.css";
+import useAuth from "../Hooks/useAuth";
+import StatisticCard from "../AdminComponents/StatisticCard";
 import { IoPeopleOutline, IoMedkitOutline } from "react-icons/io5";
+import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -24,19 +18,9 @@ import {
   Legend,
 } from "chart.js";
 import { Chart, Line } from "react-chartjs-2";
-import PendingUserProfileModal from "../AdminComponents/PendingUserProfileModal";
+import "./UserDashboard.css";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-const AdminDashboard = () => {
+const UserDashboard = () => {
   const {
     pending,
     facilities,
@@ -46,6 +30,7 @@ const AdminDashboard = () => {
     toast,
     ToastContainer,
   } = useAuth();
+
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
 
   const [profileModal, setProfileModal] = useState(false);
@@ -192,40 +177,12 @@ const AdminDashboard = () => {
   return (
     <>
       <Helmet>
-        <title>Admin - Dashboard | ZCMC Telemedicine</title>
+        <title>Dashboard | ZCMC Telemedicine</title>
       </Helmet>
       <div className="container">
-        <AdminSidebar />
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick={true}
-          rtl={false}
-          pauseOnFocusLoss
-          draggable={false}
-          pauseOnHover
-        />
-        <AnimatePresence>
-          {modal && (
-            <DeletePendingUserModal
-              toast={toast}
-              setModal={setModal}
-              userId={userId}
-            />
-          )}
-
-          {profileModal && (
-            <PendingUserProfileModal
-              setProfileModal={setProfileModal}
-              userData={userData}
-            />
-          )}
-        </AnimatePresence>
-
+        <Sidebar />
         <div className="content">
-          <AdminHeader />
+          <Header />
           <div className="content-body">
             <div className="container-heading">
               <h2>Dashboard Overview</h2>
@@ -274,62 +231,24 @@ const AdminDashboard = () => {
                 bg="#FF8657"
               />
             </div>
-            <div className="container-divider">
-              <div className="admin-container-content">
-                <div className="chart-container">
-                  <div className="year-selected">
-                    <h2>Year :</h2>{" "}
-                    <select
-                      onChange={(e) =>
-                        setYearSelected(parseInt(e.target.value))
-                      }
-                      value={yearSelected}
-                    >
-                      {year.map((item) => {
-                        return <option value={item}>{item}</option>;
-                      })}
-                    </select>
-                  </div>
-                  {months === null && monthsCase === null ? (
-                    ""
-                  ) : (
-                    <Line options={options} data={data} />
-                  )}
-                </div>
+
+            <div className="user-chart-container">
+              <div className="year-selected">
+                <h2>Year :</h2>{" "}
+                <select
+                  onChange={(e) => setYearSelected(parseInt(e.target.value))}
+                  value={yearSelected}
+                >
+                  {year.map((item) => {
+                    return <option value={item}>{item}</option>;
+                  })}
+                </select>
               </div>
-              <div className="admin-right-panel">
-                <div className="pending-registration">
-                  <h2>Pending Registration</h2>
-                  <div className="pending-registration-body">
-                    {pending.length === 0 ? (
-                      <div className="no-pending-user">
-                        <p>
-                          <FiUserX />
-                        </p>
-                        <p>No pending user registration</p>
-                      </div>
-                    ) : (
-                      pending.map((item) => {
-                        return (
-                          <PendingUser
-                            key={item._id}
-                            email={item.email}
-                            firstname={item.firstname}
-                            id={item._id}
-                            picture={!item.picture ? NoUser : item.picture}
-                            setModal={setModal}
-                            handleId={handleId}
-                            toast={toast}
-                            setProfileModal={setProfileModal}
-                            item={item}
-                            setUserData={setUserData}
-                          />
-                        );
-                      })
-                    )}
-                  </div>
-                </div>
-              </div>
+              {months === null && monthsCase === null ? (
+                ""
+              ) : (
+                <Line options={options} data={data} />
+              )}
             </div>
           </div>
         </div>
@@ -338,4 +257,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default UserDashboard;

@@ -310,13 +310,23 @@ const PatientModal = ({
                         >
                           <div className="ch-no">{item.caseId}</div>
                           <div className="ch-department">
-                            {
+                            {/* {
                               facilities
                                 .filter((e) => e._id === item.designation._id)
                                 .map((f) => {
                                   return f.specialization.filter(
                                     (g) => g._id === item.specialization
                                   )[0];
+                                })[0].name
+                            } */}
+
+                            {
+                              facilities
+                                .filter(
+                                  (e) => e._id === "623ec7fb80a6838424edaa29"
+                                )[0]
+                                .specialization.filter((f) => {
+                                  return item.specialization.includes(f._id);
                                 })[0].name
                             }
                           </div>

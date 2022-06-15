@@ -8,7 +8,7 @@ import api from "../API/Api";
 import InfoHover from "../Components/InfoHover";
 
 const AdminHospitalModal = ({ setShowHospitalModal, hospital }) => {
-  const { setAppState, appState, facilities } = useAuth();
+  const { setAppState, appState, facilities, toast } = useAuth();
   const [showHover, setShowHover] = useState(false);
   const [name, setName] = useState("");
   const [street, setStreet] = useState("");
@@ -39,6 +39,7 @@ const AdminHospitalModal = ({ setShowHospitalModal, hospital }) => {
   };
 
   const handleSubmit = async () => {
+    setIsClick(true);
     setAppState("Updaing Lists");
     let response = await api.put(`/api/facility/update/${hospital._id}`, {
       name,
@@ -48,16 +49,12 @@ const AdminHospitalModal = ({ setShowHospitalModal, hospital }) => {
     });
 
     if (response.data.err) {
-      setAppState("");
-      // setIsError(true);
-      // setToast(true);
-      // setMessage("Please input the name of facility");
+      toast.error("Please input the name of hospital");
     } else {
-      setAppState("");
       setShowHospitalModal(false);
-      // setIsError(false);
-      // setToast(true);
-      // setMessage("sddd ds sd sds dslsldpl aspdl asld alsdd [pasld[ asld [asld");
+      setAppState("updated");
+      setTimeout(() => setAppState(""), 500);
+      toast.success("Successfully added hospital");
     }
   };
 
@@ -180,7 +177,7 @@ const AdminHospitalModal = ({ setShowHospitalModal, hospital }) => {
 
           <div className="form-body">
             <label>
-              Referring Health Facility Center <i>*</i>
+              Hospital name <i>*</i>
             </label>
             <input
               value={name}
@@ -272,7 +269,9 @@ const AdminHospitalModal = ({ setShowHospitalModal, hospital }) => {
               <motion.button
                 onClick={() => handleSubmit()}
                 whileTap={{ scale: 0.9 }}
-                className="facility-save-btn"
+                className={
+                  name === "" || isClick ? "green-cta-disable" : "green-cta"
+                }
               >
                 Save
               </motion.button>

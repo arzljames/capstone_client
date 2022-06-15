@@ -1,17 +1,24 @@
 import React, { useState, useRef, useEffect } from "react";
-import { HiOutlinePaperClip, HiOutlineChevronDown } from "react-icons/hi";
+import {
+  HiOutlinePaperClip,
+  HiOutlineChevronDown,
+  HiX,
+  HiDocumentText,
+} from "react-icons/hi";
 import api from "../API/Api";
 import { socket } from "./Socket";
 import { motion } from "framer-motion";
 import useAuth from "../Hooks/useAuth";
 import NoUser from "../Assets/nouser.png";
 import { IoSend } from "react-icons/io5";
+import { useClickOutside } from "../Hooks/useClickOutside";
+import "../Pages/Chat.css";
 
 const ResponseChat = ({ id, user, response, setResponse, active }) => {
   const [file, setFile] = useState("");
-
+  const [isClick, setIsClick] = useState(false);
   const [temp, setTemp] = useState("");
-  const [sort, setSort] = useState("New");
+  const [sort, setSort] = useState("Newest");
   const sendResponse = async () => {
     if (temp !== "") {
       const responseData = {
@@ -74,6 +81,66 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
     inputFileRef.current.click();
   };
 
+  const domNode = useClickOutside(() => {
+    setIsClick(false);
+  });
+
+  const sortAscDate = (a, b) => {
+    var dateA = new Date(a.createdAt).getTime();
+    var dateB = new Date(b.createdAt).getTime();
+    return dateA > dateB ? 1 : -1;
+  };
+
+  const sortDscDate = (a, b) => {
+    var dateA = new Date(a.createdAt).getTime();
+    var dateB = new Date(b.createdAt).getTime();
+    return dateA < dateB ? 1 : -1;
+  };
+
+  const path = window.location.pathname;
+
+  useEffect(() => {
+    setFile([]);
+  }, [path]);
+
+  const prevImage = (img) => {
+    const objectURL = URL.createObjectURL(img);
+
+    return objectURL;
+  };
+
+  const formData = new FormData();
+
+  const handleResponse = async () => {
+    try {
+      formData.append("file", file.file);
+      formData.append("upload_preset", "qn8bbwmc");
+      formData.append("cloud_name", "ojttelemedicine");
+
+      fetch("https://api.cloudinary.com/v1_1/ojttelemedicine/upload", {
+        method: "post",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data || temp !== "") {
+            const responseData = {
+              room: id,
+              user: user.userId,
+              content: temp,
+              file: data.url,
+              name: file.name,
+            };
+
+            socket.emit("send_response", responseData);
+            setTemp("");
+            setFile("");
+          }
+        });
+    } catch (error) {}
+  };
+
   return (
     <div className="case-data-response">
       <div className="response-header">
@@ -95,27 +162,88 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
               : "You cannot write response to an inactive case"
           }
         ></textarea>
+
+        <div className="attachment-container">
+          {file.name === "" || !file.name || file.length === 0 ? null : (
+            <div
+              className={
+                file.type === "image/jpeg" ||
+                file.type === "image/jpg" ||
+                file.type === "image/png" ||
+                file.type === "image/gif"
+                  ? "attachment-file img"
+                  : "attachment-file file"
+              }
+            >
+              <p onClick={() => setFile("")} className="close">
+                <HiX />
+              </p>
+              {file.type === "image/jpeg" ||
+              file.type === "image/jpg" ||
+              file.type === "image/png" ||
+              file.type === "image/gif" ? (
+                <img src={prevImage(file.file)} alt={file.name} />
+              ) : (
+                <>
+                  <p
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <HiDocumentText />
+                  </p>
+                  <h2>{file.name}</h2>
+                </>
+              )}
+            </div>
+          )}
+        </div>
+
         <div className="case-data-response-btns">
-          {/* <button className="sort-response-btn">
+          <button
+            ref={domNode}
+            onClick={() => setIsClick(!isClick)}
+            className="sort-response-btn"
+          >
             Sort by: {sort}
             <p>
               <HiOutlineChevronDown />
             </p>
-          </button> */}
-          <p></p>
+            {isClick && (
+              <div className="sort-response-btn-dropdown">
+                <p onClick={() => setSort("Oldest")}>Oldest</p>
+                <p onClick={() => setSort("Newest")}>Newest</p>
+              </div>
+            )}
+          </button>
+
           <div>
-            {/* <div
+            <div
               onClick={() => onBtnClick()}
               className={
                 active === false ? "attach-file-btn disable" : "attach-file-btn"
               }
             >
-              <HiOutlinePaperClip />
-              <input ref={inputFileRef} type="file" />
-            </div> */}
+              <HiOutlinePaperClip />{" "}
+              <p className="p-attach-file">Attach File</p>
+              <input
+                ref={inputFileRef}
+                onChange={(e) => {
+                  setFile({
+                    name: e.target.files[0].name,
+                    type: e.target.files[0].type,
+                    file: e.target.files[0],
+                  });
+                }}
+                type="file"
+              />
+            </div>
             <button
               className={active === false ? "disable" : null}
-              onClick={() => sendResponse()}
+              // onClick={() => sendResponse()}
+              onClick={() => handleResponse()}
             >
               Submit{" "}
               <p>
@@ -128,8 +256,8 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
       <div className="response-body">
         {response
           .filter((item) => item.room === id)
-          .slice(0)
-          .reverse()
+
+          .sort(sort === "Newest" ? sortDscDate : sortAscDate)
           .map((e, key) => {
             return (
               <>
@@ -169,6 +297,15 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
                     </h2> */}
                     <div className="response-content-container">
                       <p>{e.content}</p>
+                      {!e.attachment[0].file ? null : (
+                        <a
+                          target="_blank"
+                          href={e.attachment[0].file}
+                          className="response-attach"
+                        >
+                          {e.attachment[0].name}
+                        </a>
+                      )}
                     </div>
                   </div>
                 </motion.div>

@@ -53,6 +53,7 @@ import DevTeam from "./Pages/DevTeam";
 import PageConstruction from "./Pages/PageConstruction";
 import AdminGenerateReport from "./AdminPages/AdminGenerateReport";
 import AdminAccountSetttings from "./AdminPages/AdminAccountSetttings";
+import UserDashboard from "./Pages/UserDashboard";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -96,8 +97,11 @@ function App() {
           </Route>
 
           <Route element={<ProtectedRoutes user={user} role="user" />}>
-            <Route path="/" element={<Navigate to="/consultation" replace />} />
-            <Route path="/consultation" element={<Homepage />} />
+            <Route path="/" element={<UserDashboard />} />
+            <Route
+              path="/consultation"
+              element={<Navigate to="/consultation/patients" replace />}
+            />
             <Route path="notifications" element={<Notification />} />
             <Route path="chat/:userId/:id" element={<ChatUser />} />
             <Route path="chat" element={<Chat />} />

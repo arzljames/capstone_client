@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
-import "../AdminComponents/AdminHeader.css";
 import ProfileHeader from "./ProfileHeader";
 import { useNavigate } from "react-router-dom";
 

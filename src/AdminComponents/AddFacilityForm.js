@@ -44,13 +44,9 @@ const containerVariant = {
   },
 };
 
-const AddFacilityForm = ({
-  setShowModal,
-  setToast,
-  setMessage,
-  setIsError,
-}) => {
-  const { setAppState } = useAuth();
+const AddFacilityForm = ({ setShowModal }) => {
+  const [isClick, setIsClick] = useState(false);
+  const { setAppState, toast } = useAuth();
   const [showHover, setShowHover] = useState(false);
   const [name, setName] = useState("");
   const [street, setStreet] = useState("");
@@ -77,6 +73,7 @@ const AddFacilityForm = ({
   };
 
   const handleSubmit = async () => {
+    setIsClick(true);
     setAppState("Updaing Lists");
     let response = await api.post("/api/facility/add", {
       name,
@@ -87,24 +84,16 @@ const AddFacilityForm = ({
     });
 
     if (response.data.err) {
-      setAppState("");
-      setIsError(true);
-      setToast(true);
-      setMessage("Please input the name of facility");
-      setTimeout(() => {
-        setToast(false);
-        setMessage("");
-      }, 10000);
+      setAppState("error occure");
+      setTimeout(() => setAppState(""), 500);
+      setIsClick(false);
+      toast.error("Please input the name of hospital");
     } else {
-      setAppState("");
       setShowModal(false);
-      setIsError(false);
-      setToast(true);
-      setMessage("sddd ds sd sds dslsldpl aspdl asld alsdd [pasld[ asld [asld");
-      setTimeout(() => {
-        setToast(false);
-        setMessage("");
-      }, 10000);
+      setIsClick(false);
+      setAppState("hospital added");
+      setTimeout(() => setAppState(""), 500);
+      toast.success("Successfully added hospital");
     }
   };
 
@@ -132,7 +121,7 @@ const AddFacilityForm = ({
 
         <div className="form-body">
           <label>
-            Referring Health Facility Center <i>*</i>
+            Hospital name <i>*</i>
           </label>
           <input
             value={name}
@@ -147,6 +136,7 @@ const AddFacilityForm = ({
               value={street}
               onChange={(e) => setStreet(e.target.value)}
               type="text"
+              placeholder="Complete street address"
             />
 
             <div className="input-divider">
@@ -196,7 +186,9 @@ const AddFacilityForm = ({
               return (
                 <p>
                   {item.name}
-                  <div onClick={() => removeItem(index)} key={index + 1}><HiX /></div>
+                  <div onClick={() => removeItem(index)} key={index + 1}>
+                    <HiX />
+                  </div>
                 </p>
               );
             })}
@@ -204,19 +196,21 @@ const AddFacilityForm = ({
         </div>
         <div className="form-btns">
           <div></div>
-          <div><button
-            onClick={() => setShowModal(false)}
-            className="facility-close-btn"
-          >
-            Cancel
-          </button>
-          <motion.button
-            onClick={() => handleSubmit()}
-            whileTap={{ scale: 0.9 }}
-            className="facility-save-btn"
-          >
-            Save
-          </motion.button></div>
+          <div>
+            <button
+              onClick={() => setShowModal(false)}
+              className="facility-close-btn"
+            >
+              Cancel
+            </button>
+            <motion.button
+              onClick={() => handleSubmit()}
+              whileTap={{ scale: 0.9 }}
+              className={isClick ? "green-cta-disable" : "green-cta"}
+            >
+              Save
+            </motion.button>
+          </div>
         </div>
       </motion.form>
     </motion.div>

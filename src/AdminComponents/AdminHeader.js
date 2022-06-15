@@ -8,7 +8,7 @@ const AdminHeader = () => {
   return (
     <div className="admin-header">
       <div className="admin-header-brand">
-        <h1 onClick={() => navigate("/dashboard")}>Telemedicine</h1>
+        <h1 onClick={() => navigate("/dashboard")}>TeleMedicine</h1>
       </div>
 
       <AdminProfileHeader />

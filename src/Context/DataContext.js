@@ -50,7 +50,11 @@ export const DataProvider = ({ children }) => {
     let response = await api.get("/api/user/users/");
 
     if (response.data) {
-      setListUsers(response.data);
+      setListUsers(
+        response.data.filter(
+          (e) => e.userType !== "admin" && e.verified === true
+        )
+      );
       setPending(response.data.filter((e) => e.verified === false));
       setChatUsers(response.data);
     }

@@ -171,9 +171,18 @@ const ProfileDropdown = ({
             <h5>
               {user.firstname} {user.lastname}
             </h5>
-            <p>{specc ? specc : null}</p>
-            <p className="p-active-status">
-              Active Status: <span>{users.activeStatus}</span>
+            <p>
+              {facilities
+                .filter((e) => e._id === user.designation)
+                .map((f) => {
+                  return f.facility;
+                })
+                ? facilities
+                    .filter((e) => e._id === user.designation)
+                    .map((f) => {
+                      return f.facility;
+                    })
+                : ""}
             </p>
           </div>
         </div>

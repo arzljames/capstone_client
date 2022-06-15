@@ -89,13 +89,14 @@ const ConsultationNavbar = () => {
             <span>Incoming Request</span>
             {cases.filter(
               (e) =>
-                e.specialization === user.specialization && e.active === true
+                e.specialization.includes(user.specialization) &&
+                e.active === true
             ).length === 0 ? null : (
               <div>
                 {
                   cases.filter(
                     (e) =>
-                      e.specialization === user.specialization &&
+                      e.specialization.includes(user.specialization) &&
                       e.active === true
                   ).length
                 }

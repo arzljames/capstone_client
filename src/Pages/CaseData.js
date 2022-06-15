@@ -19,8 +19,10 @@ import { ToastContainer, toast } from "react-toastify";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import NoUser from "../Assets/nouser.png";
+import AddServiceModal from "../Components/AddServiceModal";
 
 const CaseData = () => {
+  const [modal, setModal] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const navigate = useNavigate();
@@ -155,6 +157,14 @@ const CaseData = () => {
             setDeleteModal={setDeleteModal}
           />
         )}
+
+        {modal && (
+          <AddServiceModal
+            setModal={setModal}
+            id={patientCase._id}
+            specArr={patientCase.specialization}
+          />
+        )}
       </AnimatePresence>
       <div className="container">
         <ToastContainer
@@ -200,6 +210,15 @@ const CaseData = () => {
                           className="action-dropdown"
                         >
                           <ul>
+                            <li
+                              className={
+                                patientCase.physician._id !== user.userId &&
+                                "disable"
+                              }
+                              onClick={() => setModal(true)}
+                            >
+                              Add Service
+                            </li>
                             {patientCase.active === true ? (
                               <li
                                 className={
@@ -225,14 +244,7 @@ const CaseData = () => {
                             <li onClick={() => DocumentGenerator(patientCase)}>
                               Download File
                             </li>
-                            {/* <li
-                              className={
-                                patientCase.physician._id !== user.userId &&
-                                "disable"
-                              }
-                            >
-                              Edit Case
-                            </li> */}
+
                             <li
                               onClick={() => setDeleteModal(true)}
                               className={
@@ -248,56 +260,9 @@ const CaseData = () => {
                       )}
                     </AnimatePresence>
                   </motion.button>
-                  {/* {patientCase.physician._id === user.userId && (
-                    <motion.button
-                      variants={buttonVariant}
-                      whileTap="tap"
-                      onClick={() => setDeleteModal(true)}
-                      className="delete-patient-btn"
-                    >
-                      <p>
-                        <HiTrash />
-                      </p>
-                      Delete
-                    </motion.button>
-                  )}
-                  <motion.button
-                    variants={buttonVariant}
-                    whileTap="tap"
-                    onClick={() => DocumentGenerator()}
-                    className="download-btn"
-                  >
-                    <p>
-                      <HiDownload />
-                    </p>
-                    Download File
-                  </motion.button>
-
-                  {patientCase.physician._id === user.userId &&
-                    (patientCase.active === true ? (
-                      <motion.button
-                        variants={buttonVariant}
-                        whileTap="tap"
-                        onClick={() => handleDeactivate()}
-                        className="deactive-btn"
-                      >
-                        Deactivate
-                      </motion.button>
-                    ) : (
-                      <motion.button
-                        variants={buttonVariant}
-                        whileTap="tap"
-                        onClick={() => handleActivate()}
-                        className="active-btn"
-                      >
-                        Activate
-                        <p>
-                          <HiCheck />
-                        </p>
-                      </motion.button>
-                    ))} */}
                 </div>
               </div>
+
               <div className="case-container">
                 <div className="case-data">
                   <div className="cd-box">
@@ -484,57 +449,82 @@ const CaseData = () => {
                   />
                 </div>
 
-                <div
-                  className={
-                    patientCase.active
-                      ? "case-hospital-active"
-                      : "case-hospital-inactive"
-                  }
-                >
-                  <div className="case-hospital-header">
-                    <h2>Referring Hospital</h2>
+                <div>
+                  <div
+                    style={{ marginBottom: "20px" }}
+                    className={
+                      patientCase.active
+                        ? "case-hospital-active"
+                        : "case-hospital-inactive"
+                    }
+                  >
+                    <div className="case-hospital-header">
+                      <h2>Service Type</h2>
 
-                    <label>Hospital</label>
-                    <p>
-                      {facilities
-                        .filter(
-                          (e) => e._id === patientCase.physician.designation
-                        )
-                        .map((f) => {
-                          return f.facility;
-                        })}
-                    </p>
+                      <p>
+                        <p>
+                          {/* {
+                            facilities
+                              .filter(
+                                (e) => e._id === "623ec7fb80a6838424edaa29"
+                              )
+                              .map((f) => {
+                                return f.specialization.filter(
+                                  (g) => g._id === patientCase.specialization
+                                )[0];
+                              })[0].name
+                          } */}
 
-                    <label>Attending Pysician</label>
-                    <p>
-                      Dr.{" "}
-                      {patientCase.physician.firstname +
-                        " " +
-                        patientCase.physician.lastname}
-                    </p>
+                          {facilities
+                            .filter(
+                              (e) => e._id === "623ec7fb80a6838424edaa29"
+                            )[0]
+                            .specialization.filter((f) => {
+                              return patientCase.specialization.includes(f._id);
+                            })
+                            .map((g) => {
+                              return <li>{g.name}</li>;
+                            })}
+                        </p>
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className={
+                      patientCase.active
+                        ? "case-hospital-active"
+                        : "case-hospital-inactive"
+                    }
+                  >
+                    <div className="case-hospital-header">
+                      <h2>Referring Hospital</h2>
 
-                    <label>Specialization</label>
-                    <p>
-                      {
-                        facilities
+                      <label>Hospital</label>
+                      <p>
+                        {facilities
                           .filter(
                             (e) => e._id === patientCase.physician.designation
                           )
                           .map((f) => {
-                            return f.specialization.filter(
-                              (g) =>
-                                g._id === patientCase.physician.specialization
-                            )[0];
-                          })[0].name
-                      }
-                    </p>
+                            return f.facility;
+                          })}
+                      </p>
 
-                    <label>Date & Time</label>
-                    <p>
-                      {getDate(patientCase.createdAt) +
-                        " " +
-                        getTime(patientCase.createdAt)}
-                    </p>
+                      <label>Attending Pysician</label>
+                      <p>
+                        Dr.{" "}
+                        {patientCase.physician.firstname +
+                          " " +
+                          patientCase.physician.lastname}
+                      </p>
+
+                      <label>Date & Time</label>
+                      <p>
+                        {getDate(patientCase.createdAt) +
+                          " " +
+                          getTime(patientCase.createdAt)}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

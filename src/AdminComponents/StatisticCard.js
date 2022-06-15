@@ -1,24 +1,21 @@
 import React from "react";
 import "./StatisticCard.css";
 
-const StatisticCard = ({
-  heading,
-  subHeading,
-  total,
-  icon,
-  iconBg,
-  iconColor,
-}) => {
+const StatisticCard = ({ heading, total, icon, iconColor, bg, subTotal }) => {
   return (
-    <div className="statistic-card">
-      <div className="statistic-card-header">
-        <h2>{heading}</h2>
-        <p style={{ color: iconColor, background: iconBg }}>{icon}</p>
+    <div style={{ background: bg }} className="statistic-card">
+      <div className="card-upper">
+        <div className="card-content">
+          <h2>{total}</h2>
+          <p>{heading}</p>
+        </div>
+        <div className="card-icon">
+          <p>{icon}</p>
+        </div>
       </div>
-      <h1>{total}</h1>
 
-      <div style={{ background: iconBg }} className="footer">
-        <p style={{ background: iconColor }}></p>
+      <div className="card-lower">
+        <p style={{ color: iconColor }}>{subTotal}</p>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ import {
 import { motion } from "framer-motion";
 import "./Patients.css";
 import ConsultationNavbar from "../Components/ConsultationNavbar";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import AddPatientForm from "../Components/AddPatientForm";
 import { AnimatePresence } from "framer-motion";
 import useAuth from "../Hooks/useAuth";
@@ -154,6 +154,10 @@ const Patients = () => {
   };
 
   // const [deleteModal, setDeleteModal] = useState(false);
+
+  if (user.designation === "623ec7fb80a6838424edaa29") {
+    return <Navigate to="/consultation/case" />;
+  }
   return (
     <>
       <Helmet>

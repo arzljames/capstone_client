@@ -39,7 +39,7 @@ const IncomingConsult = () => {
                   {cases
                     .filter(
                       (f) =>
-                        f.specialization === user.specialization &&
+                        f.specialization.includes(user.specialization) &&
                         f.active === true
                     )
                     .map((item) => {
@@ -48,7 +48,7 @@ const IncomingConsult = () => {
 
                   {cases.filter(
                     (e) =>
-                      e.specialization === user.specialization &&
+                      e.specialization.includes(user.specialization) &&
                       e.active === true
                   ).length === 0 && (
                     <div className="no-active-cases">

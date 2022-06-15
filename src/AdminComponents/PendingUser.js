@@ -40,6 +40,9 @@ const PendingUser = ({
   setModal,
   handleId,
   toast,
+  setProfileModal,
+  item,
+  setUserData,
 }) => {
   const navigate = useNavigate();
   const [dropdown, setDropdown] = useState(false);
@@ -103,12 +106,17 @@ const PendingUser = ({
             className="option-dropdown"
           >
             <ul>
-              {/* <li onClick={() => navigate(`/people/${id}`)}>
+              <li
+                onClick={() => {
+                  setProfileModal(true);
+                  setUserData(item);
+                }}
+              >
                 <p>
                   <HiOutlineUser className="user-icon" />
                 </p>
                 View Profile
-              </li> */}
+              </li>
               <motion.li onClick={() => handleVerify()}>
                 <p>
                   <HiOutlineLink className="check-icon" />

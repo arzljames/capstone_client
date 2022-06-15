@@ -546,8 +546,8 @@ p.nothing-to-show-p {
   align-items: center;
 }
 
-.attachment-file.img p.close,
-.attachment-file.file p.close {
+div.attachment-file.img p.close,
+div.attachment-file.file p.close {
   position: absolute;
   min-width: 20px;
   min-height: 20px;
@@ -559,6 +559,9 @@ p.nothing-to-show-p {
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   font-size: 12px;
   border: 1px solid #d3d3d3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .attachment-file.img {
@@ -596,6 +599,7 @@ p.nothing-to-show-p {
   border: 1px solid #d3d3d3;
   cursor: pointer;
   padding: 10px;
+  position: relative;
 }
 
 .attachment-file.file h2 {

@@ -9,6 +9,8 @@ import {
   HiOutlineSortDescending,
   HiOutlineFilter,
   HiOutlineSearch,
+  HiChevronLeft,
+  HiChevronRight,
 } from "react-icons/hi";
 import useAuth from "../Hooks/useAuth";
 import { buttonVariant } from "../Animations/Animations";
@@ -16,11 +18,12 @@ import NoUser from "../Assets/nouser.png";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { AnimatePresence } from "framer-motion";
 import { dropdownVariants } from "../Animations/Animations";
+import ReactPaginate from "react-paginate";
 
 const AdminPeople = () => {
   const [showModal, setShowModal] = useState(false);
 
-  const { listUsers, patients, facilities, user } = useAuth();
+  const { listUsers, patients, facilities, toast, ToastContainer } = useAuth();
   const [facility, setFacility] = useState([]);
 
   useEffect(() => {
@@ -40,6 +43,19 @@ const AdminPeople = () => {
     setIsSort(false);
   });
 
+  const [pageNumber, setPageNumber] = useState(0);
+  const [usersPerPage, setUsersPerPage] = useState(10);
+  const pagesVisited = pageNumber * usersPerPage;
+
+  const pageCount = Math.ceil(listUsers.length / usersPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
+
+  useEffect(() => {
+    console.log(listUsers);
+  });
+
   return (
     <>
       <div className="container">
@@ -47,10 +63,22 @@ const AdminPeople = () => {
 
         <div className="content">
           <AdminHeader />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick={true}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable={false}
+            pauseOnHover
+          />
           <div className="content-body">
-            <div className="container-heading">
-              <h2>List of Doctors</h2>
-              {/* <motion.button
+            <div>
+              <div className="container-heading">
+                <h2>List of Doctors</h2>
+                {/* <motion.button
                 className="green-cta"
                 onClick={() => setShowModal(true)}
                 variants={buttonVariant}
@@ -62,33 +90,33 @@ const AdminPeople = () => {
                 </p>
                 Add User
               </motion.button> */}
-            </div>
-            <div className="above-patient-table">
-              <div className="patient-input-container">
-                <input
-                  value={term}
-                  onChange={(e) => setTerm(e.target.value)}
-                  type="search"
-                  onFocus={() => setSearchDropdown(true)}
-                  placeholder="Search patient (last name, first name)"
-                />
-                <div className="patient-input-icon">
-                  <HiOutlineSearch />
+              </div>
+              <div className="above-patient-table">
+                <div className="patient-input-container">
+                  <input
+                    value={term}
+                    onChange={(e) => setTerm(e.target.value)}
+                    type="search"
+                    onFocus={() => setSearchDropdown(true)}
+                    placeholder="Search patient (last name, first name)"
+                  />
+                  <div className="patient-input-icon">
+                    <HiOutlineSearch />
+                  </div>
+
+                  {searchDropdown && (
+                    <div ref={domNodeSearch} className="advance-search">
+                      {!term ? (
+                        <p>Type in the search bar</p>
+                      ) : (
+                        <p>You searched for "{term}"</p>
+                      )}
+                    </div>
+                  )}
                 </div>
 
-                {searchDropdown && (
-                  <div ref={domNodeSearch} className="advance-search">
-                    {!term ? (
-                      <p>Type in the search bar</p>
-                    ) : (
-                      <p>You searched for "{term}"</p>
-                    )}
-                  </div>
-                )}
-              </div>
-
-              <div className="above-patient-table-btns">
-                {/* <button
+                <div className="above-patient-table-btns">
+                  {/* <button
                   className={isSort ? "btn-active" : "btn-inactive"}
                   onClick={() => {
                     setIsSort(!isSort);
@@ -143,10 +171,9 @@ const AdminPeople = () => {
                     )}
                   </AnimatePresence>
                 </button> */}
+                </div>
               </div>
-            </div>
 
-            <div className="table-container">
               <div className="table">
                 <div className="table-header">
                   <div className="admin-user-name">Full Name</div>
@@ -156,7 +183,7 @@ const AdminPeople = () => {
                   <div className="us-status">Active Status</div>
                 </div>
                 {listUsers
-                  .filter((e) => e.userType !== "admin" && e.verified === true)
+
                   .filter((val) => {
                     if (term === "") {
                       return val;
@@ -168,6 +195,10 @@ const AdminPeople = () => {
                       return val;
                     }
                   })
+                  .slice(
+                    term === "" ? pagesVisited : 0,
+                    term === "" ? pagesVisited + usersPerPage : listUsers.length
+                  )
                   .map((item, key) => {
                     return (
                       <div key={key} className="table-body">
@@ -226,6 +257,24 @@ const AdminPeople = () => {
                       </div>
                     );
                   })}
+              </div>
+              <br />
+              <div className="pagination-container">
+                <ReactPaginate
+                  previousLabel={<HiChevronLeft size={20} />}
+                  nextLabel={<HiChevronRight size={20} />}
+                  breakLabel="..."
+                  pageCount={pageCount}
+                  marginPagesDisplayed={3}
+                  containerClassName="pagination"
+                  pageClassName="page-item"
+                  pageLinkClassName="page-link"
+                  breakClassName="page-item"
+                  nextClassName="page-item"
+                  previousClassName="page-item"
+                  activeClassName="active"
+                  onPageChange={changePage}
+                />
               </div>
             </div>
           </div>

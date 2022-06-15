@@ -1,4 +1,6 @@
 import {
+  IoHomeOutline,
+  IoHome,
   IoMedkitOutline,
   IoMedkit,
   IoChatbubbleEllipsesOutline,
@@ -8,6 +10,12 @@ import {
 } from "react-icons/io5";
 
 export const SidebarData = [
+  {
+    name: "Dashboard",
+    link: "/",
+    icon: <IoHomeOutline />,
+    activeIcon: <IoHome />,
+  },
   {
     name: "Consult",
     link: "/consultation",

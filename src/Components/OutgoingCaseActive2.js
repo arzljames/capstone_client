@@ -49,15 +49,12 @@ const OutgoingCaseActive2 = ({ item, name, patientId }) => {
           <h1>{item.patient.firstname + " " + item.patient.lastname}</h1>
 
           <p>
-            {
-              facilities
-                .filter((e) => e._id === item.designation._id)
-                .map((f) => {
-                  return f.specialization.filter(
-                    (g) => g._id === item.specialization
-                  )[0];
-                })[0].name
-            }
+            {facilities
+              .filter((e) => e._id === "623ec7fb80a6838424edaa29")[0]
+              .specialization.filter((f) => item.specialization.includes(f._id))
+              .map((g) => {
+                return g.name + " ";
+              })}
           </p>
 
           <p>{item.designation.facility}</p>

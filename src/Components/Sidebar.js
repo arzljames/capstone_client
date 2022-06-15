@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { SidebarData } from "./SidebarData";
 import "../AdminComponents/AdminSidebar.css";
 import "./Sidebar.css";
@@ -7,10 +7,15 @@ import { socket } from "./Socket";
 import { IoMdPeople } from "react-icons/io";
 import { IoMedkitOutline, IoMedkit } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import notif from "../Assets/notif.mp3";
+import useSound from "use-sound";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const path = window.location.pathname;
+  const [playbackRate, setPlaybackRate] = useState(1);
+  const [play] = useSound(notif, { playbackRate });
+
   const { notification, user, setNotification } = useAuth();
 
   useEffect(() => {

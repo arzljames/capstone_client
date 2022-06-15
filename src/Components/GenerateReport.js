@@ -118,16 +118,20 @@ const GenerateReport = ({ setFilterModal }) => {
     }
   };
 
+  // const filterSpec = (e) => {
+  //   if (report.specialization) {
+  //     return cases.some((f) => {
+  //       return (
+  //         f.patient._id === e._id && f.specialization === report.specialization
+  //       );
+  //     });
+  //   } else {
+  //     return e;
+  //   }
+  // };
+
   const filterSpec = (e) => {
-    if (report.specialization) {
-      return cases.some((f) => {
-        return (
-          f.patient._id === e._id && f.specialization === report.specialization
-        );
-      });
-    } else {
-      return e;
-    }
+    return e;
   };
 
   if (!report) {
@@ -180,7 +184,7 @@ const GenerateReport = ({ setFilterModal }) => {
                   .filter(filterDate)
                   .filter(filterGender)
                   .filter(filterHospital)
-                  .filter(filterSpec)
+                  // .filter(filterSpec)
                   .filter(filterAge)
                   .map((item, key) => {
                     return (
@@ -274,7 +278,7 @@ const GenerateReport = ({ setFilterModal }) => {
                         .filter(filterDate)
                         .filter(filterGender)
                         .filter(filterHospital)
-                        .filter(filterSpec)
+                        // .filter(filterSpec)
                         .filter(filterAge).length
                     }
                   </h4>
