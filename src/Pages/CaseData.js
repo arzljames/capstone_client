@@ -212,8 +212,8 @@ const CaseData = () => {
                           <ul>
                             <li
                               className={
-                                patientCase.physician._id !== user.userId &&
-                                "disable"
+                                user.designation !==
+                                  "623ec7fb80a6838424edaa29" && "disable"
                               }
                               onClick={() => setModal(true)}
                             >
@@ -222,8 +222,8 @@ const CaseData = () => {
                             {patientCase.active === true ? (
                               <li
                                 className={
-                                  patientCase.physician._id !== user.userId &&
-                                  "disable"
+                                  user.designation !==
+                                    "623ec7fb80a6838424edaa29" && "disable"
                                 }
                                 onClick={() => handleDeactivate()}
                               >
@@ -232,8 +232,8 @@ const CaseData = () => {
                             ) : (
                               <li
                                 className={
-                                  patientCase.physician._id !== user.userId &&
-                                  "disable"
+                                  user.designation !==
+                                    "623ec7fb80a6838424edaa29" && "disable"
                                 }
                                 on
                                 onClick={() => handleActivate()}
@@ -248,7 +248,7 @@ const CaseData = () => {
                             <li
                               onClick={() => setDeleteModal(true)}
                               className={
-                                patientCase.physician._id !== user.userId
+                                user.designation !== "623ec7fb80a6838424edaa29"
                                   ? "disable"
                                   : "delete"
                               }
