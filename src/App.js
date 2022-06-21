@@ -54,6 +54,7 @@ import PageConstruction from "./Pages/PageConstruction";
 import AdminGenerateReport from "./AdminPages/AdminGenerateReport";
 import AdminAccountSetttings from "./AdminPages/AdminAccountSetttings";
 import UserDashboard from "./Pages/UserDashboard";
+import AdminSpecialization from "./AdminPages/AdminSpecialization";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -93,6 +94,10 @@ function App() {
             <Route
               path="settings/admin-account"
               element={<AdminAccountSetttings />}
+            />
+            <Route
+              path="specialization"
+              element={<AdminSpecialization />}
             />
           </Route>
 

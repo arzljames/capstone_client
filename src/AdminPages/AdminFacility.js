@@ -23,7 +23,7 @@ import ReactPaginate from "react-paginate";
 const AdminFacility = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-  const { facilities, toast, ToastContainer } = useAuth();
+  const { facilities, toast, ToastContainer, listUsers } = useAuth();
   const [showHospitalModal, setShowHospitalModal] = useState(false);
   const [hospital, setHospital] = useState([]);
   const [term, setTerm] = useState("");
@@ -36,6 +36,11 @@ const AdminFacility = () => {
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
+
+
+  useEffect(() => {
+    console.log(listUsers.filter(e => e.designation === "624ad37730ec8840f7a32c50").length)
+  }, [])
 
   return (
     <>
@@ -69,7 +74,7 @@ const AdminFacility = () => {
           <div className="content-body">
             <div>
               <div className="container-heading">
-                <h2>Hospitals & Specializations</h2>
+                <h2>List of Hospitals</h2>
                 <motion.button
                   className="green-cta"
                   onClick={() => setShowModal(true)}
@@ -78,7 +83,7 @@ const AdminFacility = () => {
                   <p>
                     <HiPlus />
                   </p>
-                  Add Hospital
+                  Hospital
                 </motion.button>
               </div>
               <div className="above-table">
@@ -128,7 +133,7 @@ const AdminFacility = () => {
                         facility={item.facility}
                         address={item.address}
                         specialization={item.specialization}
-                        users={item.user}
+                        users={listUsers.filter(e => e.designation === item._id).length}
                         setHospital={setHospital}
                         setShowHospitalModal={setShowHospitalModal}
                         item={item}

@@ -25,6 +25,8 @@ const ChatRecent = ({ setId, recent }) => {
     fetchChat();
   }, [socket]);
 
+
+
   return (
     <>
       <div className="recent-p-container">

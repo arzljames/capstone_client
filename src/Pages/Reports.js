@@ -7,12 +7,18 @@ import "./Reports.css";
 import useAuth from "../Hooks/useAuth";
 import { AnimatePresence } from "framer-motion";
 import FilterReportModal from "../Components/FilterReportModal";
-import { HiPlus, HiFilter } from "react-icons/hi";
+import {
+  HiPlus,
+  HiFilter,
+  HiChevronLeft,
+  HiChevronRight,
+} from "react-icons/hi";
 import "./Reports.css";
 import ReactTimeAgo from "react-time-ago";
 import { useNavigate } from "react-router-dom";
 import "./Patients.css";
 import { toast, ToastContainer } from "react-toastify";
+import ReactPaginate from "react-paginate";
 
 const Reports = () => {
   const { reports } = useAuth();
@@ -32,6 +38,17 @@ const Reports = () => {
   };
 
   const navigate = useNavigate();
+
+  const [pageNumber, setPageNumber] = useState(0);
+  const [usersPerPage, setUsersPerPage] = useState(10);
+  const pagesVisited = pageNumber * usersPerPage;
+
+  const pageCount = Math.ceil(reports.length / usersPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
+
+  const [term, setTerm] = useState("");
 
   return (
     <>
@@ -81,35 +98,58 @@ const Reports = () => {
                   <div className="rp-date">Date Created</div>
                   <div className="rp-modified">Last modified</div>
                 </div>
-                {reports.map((item, index) => {
-                  return (
-                    <div key={index} className="table-body">
-                      <div className="rp-id">
-                        <p
-                          onClick={() =>
-                            navigate(`/reports/${item._id}/${item.reportId}`)
+                {reports
+                  .slice(
+                    term === "" ? pagesVisited : 0,
+                    term === "" ? pagesVisited + usersPerPage : reports.length
+                  )
+                  .map((item, index) => {
+                    return (
+                      <div key={index} className="table-body">
+                        <div className="rp-id">
+                          <p
+                            onClick={() =>
+                              navigate(`/reports/${item._id}/${item.reportId}`)
+                            }
+                          >
+                            {item.reportId}
+                          </p>
+                        </div>
+                        <div className="rp-created">
+                          Dr.{" "}
+                          {item.creator.firstname + " " + item.creator.lastname}
+                        </div>
+                        <div className="rp-date">{getDate(item.createdAt)}</div>
+                        <div className="rp-modified">
+                          {
+                            <ReactTimeAgo
+                              date={item.updatedAt}
+                              locale="en-US"
+                              timeStyle="round-minute"
+                            />
                           }
-                        >
-                          {item.reportId}
-                        </p>
+                        </div>
                       </div>
-                      <div className="rp-created">
-                        Dr.{" "}
-                        {item.creator.firstname + " " + item.creator.lastname}
-                      </div>
-                      <div className="rp-date">{getDate(item.createdAt)}</div>
-                      <div className="rp-modified">
-                        {
-                          <ReactTimeAgo
-                            date={item.updatedAt}
-                            locale="en-US"
-                            timeStyle="round-minute"
-                          />
-                        }
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+              </div>
+              <br />
+              <div className="pagination-container">
+                <ReactPaginate
+                  previousLabel={<HiChevronLeft size={20} />}
+                  nextLabel={<HiChevronRight size={20} />}
+                  breakLabel="..."
+                  pageCount={pageCount}
+                  marginPagesDisplayed={3}
+                  containerClassName="pagination"
+                  pageClassName="page-item"
+                  pageLinkClassName="page-link"
+                  breakClassName="page-item"
+                  nextClassName="page-item"
+                  previousClassName="page-item"
+                  activeClassName="active"
+                  onPageChange={changePage}
+                />
               </div>
             </div>
           </div>

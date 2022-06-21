@@ -231,7 +231,6 @@ const UserDashboard = () => {
                 bg="#FF8657"
               />
             </div>
-
             <div className="user-chart-container">
               <div className="year-selected">
                 <h2>Year :</h2>{" "}

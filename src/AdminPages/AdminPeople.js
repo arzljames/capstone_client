@@ -52,10 +52,6 @@ const AdminPeople = () => {
     setPageNumber(selected);
   };
 
-  useEffect(() => {
-    console.log(listUsers);
-  });
-
   return (
     <>
       <div className="container">

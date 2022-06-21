@@ -7,7 +7,10 @@ import {
   IoDocumentText,
   IoBusinessOutline,
   IoBusiness,
+
 } from "react-icons/io5";
+
+import { HiOutlineIdentification, HiIdentification } from "react-icons/hi";
 
 export const AdminSidebarData = [
   {
@@ -17,7 +20,7 @@ export const AdminSidebarData = [
     activeIcon: <IoHome />,
   },
   {
-    name: "Users",
+    name: "User",
     link: "/people",
     icon: <IoPeopleOutline />,
     activeIcon: <IoPeople />,
@@ -29,7 +32,13 @@ export const AdminSidebarData = [
     activeIcon: <IoBusiness />,
   },
   {
-    name: "Reports",
+    name: "Specialization",
+    link: "/specialization",
+    icon: <HiOutlineIdentification />,
+    activeIcon: <HiIdentification />,
+  },
+  {
+    name: "Report",
     link: "/admin-reports",
     icon: <IoDocumentTextOutline />,
     activeIcon: <IoDocumentText />,

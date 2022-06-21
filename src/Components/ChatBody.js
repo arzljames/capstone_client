@@ -11,6 +11,7 @@ import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
 import PulseLoader from "react-spinners/PulseLoader";
 import ReactTimeAgo from "react-time-ago";
+import { useParams } from "react-router-dom";
 
 const ChatBody = ({ users, socket }) => {
   const [message, setMessage] = useState(null);
@@ -19,20 +20,22 @@ const ChatBody = ({ users, socket }) => {
   const { user, hospitalSpec, facilities } = useAuth();
   const path = window.location.pathname;
 
+  let receiverId = useParams()
+
   useEffect(() => {
     socket.on("chat_messages", (data) => {
       setMessage(data);
-      console.log(data);
     });
   }, [socket]);
 
   useEffect(() => {
     const fetchMessages = async () => {
       let result = await api.get(
-        `/api/chat/message/${user.userId}/${users._id}`
+        `/api/chat/message/${user.userId}/${receiverId.id}`
       );
       if (result) {
         setMessage(result.data);
+        console.log(result.data)
       } else {
         setMessage(null);
       }
@@ -97,6 +100,11 @@ const ChatBody = ({ users, socket }) => {
     setFile([]);
   }, [path]);
 
+
+useEffect(() => {
+  console.log(message)
+}, [socket])
+
   if (!message || !users) {
     return (
       <div className="wait-spinner-container">
@@ -121,7 +129,7 @@ const ChatBody = ({ users, socket }) => {
           ></div>
         </div>
         <div className="name-container">
-          <h1>Dr. {users.firstname + " " + users.lastname}</h1>
+          <h1>Dr. {users.firstname + " " + users.lastname}</h1> 
           <p>
             {users.activeStatus === "Online" ? (
               "Online"
@@ -161,7 +169,7 @@ const ChatBody = ({ users, socket }) => {
 
             <h1>Dr. {users.firstname + " " + users.lastname}</h1>
 
-            <p>
+            {/* <p>
               {facilities.length === 0
                 ? null
                 : facilities
@@ -171,7 +179,7 @@ const ChatBody = ({ users, socket }) => {
                         (spec) => spec._id === users.specialization
                       )[0];
                     })[0].name}
-            </p>
+            </p> */}
             <p>
               {facilities.length === 0
                 ? null

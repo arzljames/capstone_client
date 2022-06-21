@@ -171,6 +171,19 @@ const ProfileDropdown = ({
             <h5>
               {user.firstname} {user.lastname}
             </h5>
+            {user.designation === "623ec7fb80a6838424edaa29" ? (
+              <p style={{ marginBottom: "0px" }}>
+                {
+                  facilities
+                    .filter((e) => e._id === "623ec7fb80a6838424edaa29")
+                    .map((items) => {
+                      return items.specialization.filter(
+                        (spec) => spec._id === user.specialization
+                      )[0];
+                    })[0].name
+                }
+              </p>
+            ) : null}
             <p>
               {facilities
                 .filter((e) => e._id === user.designation)

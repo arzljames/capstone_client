@@ -253,11 +253,11 @@ const Patients = () => {
                     <div
                       onClick={() => setShowImport(!showImport)}
                       className="import-patient-btn"
+                      ref={domNodeImport}
                     >
                       <AiFillCaretDown />
                       {showImport && (
                         <motion.div
-                          ref={domNodeImport}
                           variants={dropdownVariants}
                           initial="hidden"
                           animate="visible"
@@ -354,6 +354,7 @@ const Patients = () => {
 
                   <div className="above-patient-table-btns">
                     <button
+                      ref={domNodeSort}
                       className={isSort ? "btn-active" : "btn-inactive"}
                       onClick={() => {
                         setIsSort(!isSort);
@@ -366,7 +367,6 @@ const Patients = () => {
                       <AnimatePresence>
                         {isSort && (
                           <motion.div
-                            ref={domNodeSort}
                             variants={dropdownVariants}
                             initial="hidden"
                             animate="visible"

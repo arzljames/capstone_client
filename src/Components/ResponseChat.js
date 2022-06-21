@@ -141,6 +141,10 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
     } catch (error) {}
   };
 
+  useEffect(() => {
+    console.log(response)
+  })
+
   return (
     <div className="case-data-response">
       <div className="response-header">
@@ -297,7 +301,7 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
                     </h2> */}
                     <div className="response-content-container">
                       <p>{e.content}</p>
-                      {!e.attachment[0].file ? null : (
+                      {e.attachment.length === 0 ? null : (
                         <a
                           target="_blank"
                           href={e.attachment[0].file}

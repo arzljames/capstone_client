@@ -852,10 +852,12 @@ button.deactive-btn:hover {
   cursor: pointer;
   background: #1e80f0;
   color: #fff;
+  /* border: 1px solid #1e80f0 */
 }
 
 .active:hover {
   background: #1e80f0;
+  color: #fff
 }
 
 .page-item a {
