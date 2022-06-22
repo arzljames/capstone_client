@@ -31,7 +31,7 @@ const Register = () => {
   const [usernameMsg, setUsernameMsg] = useState("");
   const [passwordMsg, setPasswordMsg] = useState("");
 
-  const { facilities } = useAuth();
+  const { facilities, specializations } = useAuth();
   const [rePassword, setRePassword] = useState("");
   const [spec, setSpec] = useState([]);
   const [register, setRegister] = useState({
@@ -284,39 +284,45 @@ const Register = () => {
           </select>
           {hospitalErr && <p className="error-input-text">{hospitalMsg}</p>}
 
-          <label>
-            Specialization <i>*</i>
-          </label>
-          <select
-            className={specErr ? "error-input" : "spec"}
-            onChange={(e) => {
-              setSpecErr(false);
-              let value = e.target.value;
-              setRegister({
-                firstname: register.firstname,
-                lastname: register.lastname,
-                specialization: value,
-                designation: register.designation,
-                email: register.email,
-                username: register.username,
-                password: register.password,
-              });
-            }}
-          >
-            <option
-              value=""
-              disabled
-              selected={register.specialization === "" ? true : false}
-            >
-              - Please Select -
-            </option>
+          {register.designation === "623ec7fb80a6838424edaa29" && (
+            <>
+              <label>
+                Specialization <i>*</i>
+              </label>
+              <select
+                className={specErr ? "error-input" : "spec"}
+                onChange={(e) => {
+                  setSpecErr(false);
+                  let value = e.target.value;
+                  setRegister({
+                    firstname: register.firstname,
+                    lastname: register.lastname,
+                    specialization: value,
+                    designation: register.designation,
+                    email: register.email,
+                    username: register.username,
+                    password: register.password,
+                  });
+                }}
+              >
+                <option
+                  value=""
+                  disabled
+                  selected={register.specialization === "" ? true : false}
+                >
+                  - Please Select -
+                </option>
 
-            {spec.map((item) => {
-              return <option value={item._id}>{item.name}</option>;
-            })}
-          </select>
+                {specializations.map((item) => {
+                  return (
+                    <option value={item._id}>{item.specialization}</option>
+                  );
+                })}
+              </select>
 
-          {specErr && <p className="error-input-text spec">{specMsg}</p>}
+              {specErr && <p className="error-input-text spec">{specMsg}</p>}
+            </>
+          )}
 
           <label>
             Email <i>*</i>
