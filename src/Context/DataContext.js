@@ -31,6 +31,7 @@ export const DataProvider = ({ children }) => {
   const [chatUsers, setChatUsers] = useState([]);
   const [reports, setReports] = useState([]);
   const [users, setUsers] = useState([]);
+  const [specializations, setSpecializations] = useState([]);
 
   const fetchLogin = async () => {
     let response = await api.get("/api/auth/login/");
@@ -116,6 +117,14 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  const fetchSpecializations = async () => {
+    let response = await api.get("/api/spec/");
+
+    if (response.data) {
+      setSpecializations(response.data);
+    }
+  };
+
   useEffect(() => {
     fetchLogin();
     fetchUsers();
@@ -125,6 +134,7 @@ export const DataProvider = ({ children }) => {
     fetchRecentChats();
     fetchPatients();
     fetchReports();
+    fetchSpecializations();
   }, [appState]);
 
   useEffect(() => {
@@ -158,7 +168,7 @@ export const DataProvider = ({ children }) => {
         setPatients,
         message,
         setMessage,
-
+        specializations,
         isError,
         setIsError,
         tab,

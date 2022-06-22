@@ -487,6 +487,13 @@ button.gray-cta:hover {
   border-radius: 8px;
 }
 
+.popup-modal label {
+  font-size: 14px;
+  margin-bottom: 50px;
+  font-weight: 600;
+  color: #272727;
+}
+
 .delete-modal {
   color: #272727;
   font-size: 18px;

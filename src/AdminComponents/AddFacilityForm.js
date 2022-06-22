@@ -74,7 +74,7 @@ const AddFacilityForm = ({ setShowModal }) => {
 
   const handleSubmit = async () => {
     setIsClick(true);
-    setAppState("Updaing Lists");
+    setAppState("Updating Lists");
     let response = await api.post("/api/facility/add", {
       name,
       specializations,
