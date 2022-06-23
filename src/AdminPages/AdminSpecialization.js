@@ -9,20 +9,44 @@ import useAuth from "../Hooks/useAuth";
 
 const AdminSpecialization = () => {
   const [modal, setModal] = useState(false);
-  const { specializations } = useAuth();
+  const { specializations, toast, ToastContainer, listUsers } = useAuth();
 
   //Variable for search
   const [term, setTerm] = useState("");
 
+  const getDate = (date) => {
+    let dates = new Date(date);
+    let today =
+      dates.toLocaleString("en-us", { month: "short" }) +
+      " " +
+      dates.getDate() +
+      "," +
+      " " +
+      dates.getFullYear();
+
+    return today;
+  };
+
   return (
     <>
       <AnimatePresence>
-        {modal && <AddSpecModal setModal={setModal} />}
+        {modal && <AddSpecModal setModal={setModal} toast={toast} />}
       </AnimatePresence>
       <div className="container">
         <AdminSidebar />
         <div className="content">
           <AdminHeader />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick={true}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable={false}
+            pauseOnHover
+          />
           <div className="content-body">
             <div>
               <div className="container-heading">
@@ -54,8 +78,9 @@ const AdminSpecialization = () => {
 
               <div className="table">
                 <div className="table-header">
-                  <div className="fac-name">Specialization</div>
-                  <div className="fac-doctors">Description</div>
+                  <div className="spec-name">Specialization</div>
+                  <div className="spec-doctors">Doctors</div>
+                  <div className="spec-date">Date Created</div>
                 </div>
 
                 {specializations
@@ -73,8 +98,13 @@ const AdminSpecialization = () => {
                   .map((e, index) => {
                     return (
                       <div key={index} className="table-body">
-                        <div className="fac-name">{e.specialization}</div>
-                        <div className="fac-doctors">{e.description}</div>
+                        <div className="spec-name">
+                          <p>{e.specialization}</p>
+                        </div>
+                        <div className="spec-doctors">
+                          {/* {listUsers.filter(item => item.specialization === e._id).length} */}
+                        </div>
+                        <div className="spec-date">{getDate(e.createdAt)}</div>
                       </div>
                     );
                   })}

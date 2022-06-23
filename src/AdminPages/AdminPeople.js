@@ -23,7 +23,7 @@ import ReactPaginate from "react-paginate";
 const AdminPeople = () => {
   const [showModal, setShowModal] = useState(false);
 
-  const { listUsers, patients, facilities, toast, ToastContainer } = useAuth();
+  const { listUsers, patients, facilities, ToastContainer } = useAuth();
   const [facility, setFacility] = useState([]);
 
   useEffect(() => {

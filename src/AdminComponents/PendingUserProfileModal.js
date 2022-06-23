@@ -79,7 +79,7 @@ const PendingUserProfileModal = ({ setProfileModal, userData }) => {
           type="text"
         />
 
-        <label>Specializtion</label>
+        <label>Specialization</label>
         <input disabled value={userData.designation} type="text" />
 
         <div className="popup-modal-btns">

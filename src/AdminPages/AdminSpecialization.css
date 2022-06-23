@@ -1,0 +1,25 @@
+.spec-name {
+    width: 100%;
+    padding-left: 20px;
+}
+
+.spec-doctors, .spec-date {
+    width: 25%;
+    max-width: 300px;
+}
+
+.spec-doctors {
+  text-align: center;
+}
+
+
+.spec-name p {
+    cursor: pointer;
+    color: rgb(45, 109, 206);
+  }
+
+
+
+.spec-name p:hover {
+text-decoration: underline;
+  }

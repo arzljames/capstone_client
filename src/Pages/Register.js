@@ -74,7 +74,10 @@ const Register = () => {
         setHospitalErr(true);
         setHospitalMsg("Hospital field required");
         setLoader(false);
-      } else if (register.specialization === "") {
+      } else if (
+        register.designation === "623ec7fb80a6838424edaa29" &&
+        register.specialization === ""
+      ) {
         setSpecErr(true);
         setSpecMsg("Specialization field required");
         setLoader(false);

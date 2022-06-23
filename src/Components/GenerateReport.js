@@ -134,6 +134,10 @@ const GenerateReport = ({ setFilterModal }) => {
     return e;
   };
 
+  useEffect(() => {
+    console.log(patients)
+  })
+
   if (!report) {
     return (
       <div className="wait-spinner-container">
@@ -181,11 +185,11 @@ const GenerateReport = ({ setFilterModal }) => {
                   <div className="pt-hospital">Hospital</div>
                 </div>{" "}
                 {patients
-                  .filter(filterDate)
-                  .filter(filterGender)
-                  .filter(filterHospital)
+                  // .filter(filterDate)
+                  // .filter(filterGender)
+                  // .filter(filterHospital)
                   // .filter(filterSpec)
-                  .filter(filterAge)
+                  // .filter(filterAge)
                   .map((item, key) => {
                     return (
                       <div

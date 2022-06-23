@@ -5,14 +5,14 @@ import { formVariant, containerVariant } from "../Animations/Animations";
 import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
 
-const AddSpecModal = ({ setModal }) => {
+const AddSpecModal = ({ setModal, toast }) => {
   const domNode = useClickOutside(() => {
     setModal(false);
   });
 
   const [specialization, setSpecialization] = useState("");
   const [description, setDescription] = useState("");
-  const { toast, setAppState } = useAuth();
+  const { setAppState } = useAuth();
   const [isClick, setIsClick] = useState(false);
 
   const handleSubmit = async () => {
@@ -23,9 +23,17 @@ const AddSpecModal = ({ setModal }) => {
         description,
       });
 
+
+      if(specialization === "") {
+        toast.error("Input specialization");
+        setIsClick(false);
+        return
+      }
+
       if (response) {
         console.log(response);
         setAppState("Added Successfully");
+        toast.success("Added specialization successfully");
         setTimeout(() => setAppState(""), 500);
         setModal(false);
         setIsClick(false);
@@ -33,6 +41,7 @@ const AddSpecModal = ({ setModal }) => {
     } catch (error) {
       console.log(error);
       setAppState("Error");
+      toast.error("An error occured")
       setTimeout(() => setAppState(""), 500);
       setIsClick(false);
     }
