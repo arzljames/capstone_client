@@ -139,7 +139,7 @@ const Patients = () => {
   };
 
   const [pageNumber, setPageNumber] = useState(0);
-  const [usersPerPage, setUsersPerPage] = useState(10);
+  const [usersPerPage, setUsersPerPage] = useState(20);
   const pagesVisited = pageNumber * usersPerPage;
 
   const pageCount = Math.ceil(patientState.length / usersPerPage);
