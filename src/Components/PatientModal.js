@@ -24,7 +24,7 @@ const PatientModal = ({
   });
 
   const navigate = useNavigate();
-  const { cases, facilities, user } = useAuth();
+  const { cases, facilities, user, specializations } = useAuth();
 
   const [tab, setTab] = useState("Patient Profile");
   const [dropdown, setDropdown] = useState(false);
@@ -52,6 +52,12 @@ const PatientModal = ({
 
     return today;
   };
+
+  useEffect(() => {
+    cases.map((e) => {
+      return console.log(e.specialization[0]);
+    });
+  }, []);
 
   return (
     <>
@@ -289,8 +295,8 @@ const PatientModal = ({
               <div className="patient-modal-content">
                 <div className="case-history-table">
                   <div className="case-history-table-header">
-                    <div className="ch-no">Case No.</div>
-                    <div className="ch-department">Department</div>
+                    <div className="ch-no">Case ID</div>
+                    <div className="ch-department">Service</div>
                     <div className="ch-status">Status</div>
                   </div>
 
@@ -310,24 +316,10 @@ const PatientModal = ({
                         >
                           <div className="ch-no">{item.caseId}</div>
                           <div className="ch-department">
-                            {/* {
-                              facilities
-                                .filter((e) => e._id === item.designation._id)
-                                .map((f) => {
-                                  return f.specialization.filter(
-                                    (g) => g._id === item.specialization
-                                  )[0];
-                                })[0].name
-                            } */}
-
                             {
-                              facilities
-                                .filter(
-                                  (e) => e._id === "623ec7fb80a6838424edaa29"
-                                )[0]
-                                .specialization.filter((f) => {
-                                  return item.specialization.includes(f._id);
-                                })[0].name
+                              specializations.filter(
+                                (e) => e._id === item.specialization[0]
+                              )[0].specialization
                             }
                           </div>
                           <div className="ch-status">

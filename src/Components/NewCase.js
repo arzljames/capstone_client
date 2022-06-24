@@ -471,7 +471,7 @@ const NewCase = ({ setShowCase }) => {
           ></textarea>
 
           <label>
-            Pertinent Paraclinicals <i>*</i>
+            Pertinent Paraclinicals 
           </label>
           {paraclinical.name && (
             <div className="paraclinical-file-container">

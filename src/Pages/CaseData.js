@@ -34,7 +34,8 @@ const CaseData = () => {
     setResponse,
     appState,
     setAppState,
-
+    toast,
+    ToastContainer,
     facilities,
     specializations,
   } = useAuth();
@@ -166,6 +167,8 @@ const CaseData = () => {
             setModal={setModal}
             id={patientCase._id}
             specArr={patientCase.specialization}
+            toast={toast}
+            ToastContainer={ToastContainer}
           />
         )}
       </AnimatePresence>

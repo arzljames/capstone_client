@@ -68,7 +68,7 @@ const Case = () => {
     hospitalSpec,
     toast,
     ToastContainer,
-    specializations
+    specializations,
   } = useAuth();
 
   const getDate = (date) => {
@@ -118,15 +118,6 @@ const Case = () => {
   };
 
   const [deleteModal, setDeleteModal] = useState(false);
-
-
-  // useEffect(() => {
-  //   console.log(specializations.filter(e => e._id === '62b42301fb9b0f2c8bb1bb1a')[0].specialization)
-  // }, [specializations])
-
-  useEffect(() => {
-    console.log(cases)
-  },[cases])
 
   return (
     <>
@@ -361,7 +352,7 @@ const Case = () => {
                                 );
                               }}
                             >
-                              {item.caseId} 
+                              {item.caseId}
                             </p>
                           </div>
                           <div className="cs-name">
@@ -387,11 +378,13 @@ const Case = () => {
                                 .specialization.filter((f) => {
                                   return item.specialization.includes(f._id);
                                 })[0].name
-                            } */} 
+                            } */}
 
-                            {specializations.filter(e => {
-                              return item.specialization.includes(e._id)
-                            })[0].specialization }
+                            {
+                              specializations.filter((e) => {
+                                return item.specialization.includes(e._id);
+                              })[0].specialization
+                            }
                           </div>
                           <div className="cs-date">
                             {getDate(item.createdAt)} {getTime(item.createdAt)}

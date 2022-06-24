@@ -150,7 +150,7 @@ button.action-dropdown-btn-active p {
 }
 
 .case-data {
-  width: 75%;
+  width: 100%;
   margin-right: 20px;
 }
 
@@ -169,6 +169,7 @@ button.action-dropdown-btn-active p {
   padding: 20px;
   border-radius: 8px;
   background: #dcf1e5;
+  width: 100%;
 }
 
 .case-hospital-inactive {

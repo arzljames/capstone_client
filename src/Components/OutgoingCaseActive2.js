@@ -7,7 +7,7 @@ const OutgoingCaseActive2 = ({ item, name, patientId }) => {
   const createdAt = new Date(item.createdAt);
   const navigate = useNavigate();
 
-  const { facilities } = useAuth();
+  const { facilities, specializations } = useAuth();
 
   const getDate = (date) => {
     let today =
@@ -49,12 +49,17 @@ const OutgoingCaseActive2 = ({ item, name, patientId }) => {
           <h1>{item.patient.firstname + " " + item.patient.lastname}</h1>
 
           <p>
-            {facilities
+            {/* {facilities
               .filter((e) => e._id === "623ec7fb80a6838424edaa29")[0]
               .specialization.filter((f) => item.specialization.includes(f._id))
               .map((g) => {
                 return g.name + " ";
-              })}
+              })} */}
+               {
+              specializations.filter((e) => {
+                return item.specialization.includes(e._id);
+              })[0].specialization
+            }
           </p>
 
           <p>{item.designation.facility}</p>
