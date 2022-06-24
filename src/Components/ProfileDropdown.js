@@ -26,7 +26,7 @@ const ProfileDropdown = ({
   setDropdown2,
 }) => {
   const navigate = useNavigate();
-  const { user, facilities, cases, patients } = useAuth();
+  const { user, facilities, cases, patients, specializations } = useAuth();
   const [dropdown, setDropdown] = useState(false);
   const [dp, setDp] = useState(false);
 
@@ -50,14 +50,16 @@ const ProfileDropdown = ({
   useEffect(() => {
     const fetchSpecc = async () => {
       try {
-        let response = await facilities
-          .filter((id) => id._id === user.designation)[0]
-          .specialization.filter((e) => e._id === user.specialization)[0].name;
+        let response = await specializations.filter(
+          (e) => e._id === user.specialization
+        );
 
         if (response) {
-          setSpecc(response);
+          setSpecc(response[0].specialization);
         }
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     const fetchDesig = async () => {
@@ -69,7 +71,9 @@ const ProfileDropdown = ({
         if (response) {
           setDesig(response);
         }
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     const fetchTotalPt = async () => {
@@ -104,6 +108,10 @@ const ProfileDropdown = ({
 
   const [profileModal, setProfileModal] = useState(false);
   const [logout, setLogout] = useState(false);
+
+  useEffect(() => {
+    console.log(user);
+  }, []);
 
   return (
     <>
@@ -171,7 +179,7 @@ const ProfileDropdown = ({
             <h5>
               {user.firstname} {user.lastname}
             </h5>
-            {user.designation === "623ec7fb80a6838424edaa29" ? (
+            {/* {user.designation === "623ec7fb80a6838424edaa29" ? (
               <p style={{ marginBottom: "0px" }}>
                 {
                   facilities
@@ -183,8 +191,11 @@ const ProfileDropdown = ({
                     })[0].name
                 }
               </p>
-            ) : null}
-            <p>
+            ) : null} */}
+            {user.specialization === null ? null : <p>{specc}</p>}
+            <p>{desig}</p>
+
+            {/* <p>
               {facilities
                 .filter((e) => e._id === user.designation)
                 .map((f) => {
@@ -196,7 +207,7 @@ const ProfileDropdown = ({
                       return f.facility;
                     })
                 : ""}
-            </p>
+            </p> */}
           </div>
         </div>
         <ul>

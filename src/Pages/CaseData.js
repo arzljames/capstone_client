@@ -34,10 +34,9 @@ const CaseData = () => {
     setResponse,
     appState,
     setAppState,
-    setToast,
-    setMessage,
-    setIsError,
+
     facilities,
+    specializations,
   } = useAuth();
 
   const { id } = useParams();
@@ -62,6 +61,10 @@ const CaseData = () => {
 
     fetchPatientCase();
   }, [appState]);
+
+  useEffect(() => {
+    console.log(patientCase);
+  }, []);
 
   if (patientCase.length === 0) {
     return (
@@ -475,7 +478,7 @@ const CaseData = () => {
                               })[0].name
                           } */}
 
-                          {facilities
+                          {/* {facilities
                             .filter(
                               (e) => e._id === "623ec7fb80a6838424edaa29"
                             )[0]
@@ -484,6 +487,16 @@ const CaseData = () => {
                             })
                             .map((g) => {
                               return <li>{g.name}</li>;
+                            })} */}
+
+                          {specializations
+                            .filter((e) => {
+                              return patientCase.specialization.includes(e._id);
+                            })
+                            .map((item, index) => {
+                              return (
+                                <li index={index}>{item.specialization}</li>
+                              );
                             })}
                         </p>
                       </p>
@@ -528,7 +541,6 @@ const CaseData = () => {
                   </div>
                 </div>
               </div>
-            
             </div>
           </div>
         </div>

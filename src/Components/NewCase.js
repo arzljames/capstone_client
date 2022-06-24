@@ -60,8 +60,16 @@ const NewCase = ({ setShowCase }) => {
 
   const navigate = useNavigate();
 
-  const { user, patients, facilities, setTab, message, toast, setAppState } =
-    useAuth();
+  const {
+    user,
+    patients,
+    facilities,
+    setTab,
+    message,
+    toast,
+    setAppState,
+    specializations,
+  } = useAuth();
   const [patientData, setPatientData] = useState("");
   const {
     patientId,
@@ -333,17 +341,14 @@ const NewCase = ({ setShowCase }) => {
             <option value="" disabled selected>
               - Please Select -
             </option>
-            {facilities
-              .filter((e) => e._id === "623ec7fb80a6838424edaa29")
-              .map((item) => {
-                return item.specialization.map((f) => {
-                  return (
-                    <option selected value={f._id}>
-                      {f.name}
-                    </option>
-                  );
-                });
-              })}
+
+            {specializations.map((e, index) => {
+              return (
+                <option selected value={e._id}>
+                  {e.specialization}
+                </option>
+              );
+            })}
           </select>
 
           <label>

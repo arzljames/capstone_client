@@ -174,6 +174,28 @@ const UserDashboard = () => {
     ],
   };
 
+  var days = 20; // Days you want to subtract
+  var date = new Date();
+  var last = new Date(date.getTime() - days * 24 * 60 * 60 * 1000);
+  var dayz = last.getDate();
+  var month = last.getMonth() + 1;
+  var yearz = last.getFullYear();
+
+  const subtractedDays = new Date(month + "/" + dayz + "/" + yearz);
+
+  const getDates = (e) => {
+    const dates = new Date(e);
+
+    return dates;
+  };
+
+  const filterDate = (e) => {
+    return (
+      getDates(e.createdAt) >= subtractedDays &&
+      getDates(e.createdAt) <= new Date()
+    );
+  };
+
   return (
     <>
       <Helmet>
@@ -203,7 +225,7 @@ const UserDashboard = () => {
                 iconColor="#fff"
                 subTotal={
                   listUsers.filter(
-                    (e) => e.designation === "623ec7fb80a6838424edaa29"
+                    (e) => e.designation._id === "623ec7fb80a6838424edaa29"
                   ).length + " ZCMC Doctors"
                 }
                 bg="#FE7477"
@@ -213,10 +235,7 @@ const UserDashboard = () => {
                 icon={<IoPeopleOutline />}
                 iconColor="#fff"
                 total={patients.length}
-                subTotal={
-                  cases.filter((e) => e.active === true).length +
-                  " New Patients"
-                }
+                subTotal={patients.filter(filterDate).length + " New Patients"}
                 bg="#3DC1AD"
               />
               <StatisticCard

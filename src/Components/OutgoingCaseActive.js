@@ -57,12 +57,12 @@ const OutgoingCaseActive = ({ caseId, item }) => {
                   )[0];
                 })[0].name
             } */}
-            {facilities
+            {/* {facilities
               .filter((e) => e._id === "623ec7fb80a6838424edaa29")[0]
               .specialization.filter((f) => item.specialization.includes(f._id))
               .map((g) => {
                 return g.name + " ";
-              })}
+              })} */}
           </p>
 
           <div className="case-content-date">
