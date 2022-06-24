@@ -6,6 +6,7 @@ import useAuth from "../Hooks/useAuth";
 const IncomingCaseActive = ({ item, name }) => {
   const createdAt = new Date(item.createdAt);
   const navigate = useNavigate();
+  const { specializations } = useAuth();
   var options = {
     hour: "numeric",
     minute: "numeric",
@@ -29,12 +30,15 @@ const IncomingCaseActive = ({ item, name }) => {
         <div className="case-content-data">
           <h1>{item.patient.firstname + " " + item.patient.lastname}</h1>
           <p>
-            {facilities
-              .filter((e) => e._id === "623ec7fb80a6838424edaa29")[0]
-              .specialization.filter((f) => item.specialization.includes(f._id))
-              .map((g) => {
-                return g.name + " ";
-              })}
+            {/* {specializations.filter((e) => {
+              return item.specialization.includes(e._id);
+            })[0].specialization
+              ? specializations.filter((e) => {
+                  return item.specialization.includes(e._id);
+                })[0].specialization
+              : null} */}
+
+            {item.specialization}
           </p>
           <p>{item.designation.facility}</p>
           <div className="case-content-date">

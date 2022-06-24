@@ -192,7 +192,7 @@ const ProfileDropdown = ({
                 }
               </p>
             ) : null} */}
-            {user.specialization === null ? null : <p>{specc}</p>}
+            {user.specialization === null ? null : <p style={{marginBottom: '0px'}}>{specc}</p>}
             <p>{desig}</p>
 
             {/* <p>

@@ -6,6 +6,7 @@ import { FcDocument } from "react-icons/fc";
 const OutgoingCaseActive = ({ caseId, item }) => {
   const createdAt = new Date(item.createdAt);
   const navigate = useNavigate();
+  const { specializations } = useAuth();
 
   const { facilities } = useAuth();
   const getDate = (date) => {
@@ -63,6 +64,12 @@ const OutgoingCaseActive = ({ caseId, item }) => {
               .map((g) => {
                 return g.name + " ";
               })} */}
+
+            {
+              specializations.filter((e) => {
+                return item.specialization.includes(e._id);
+              })[0].specialization
+            }
           </p>
 
           <div className="case-content-date">

@@ -46,7 +46,7 @@ const ProfileModal = ({
                 <HiCheck />
               </div>
             </h1>
-            <p>{specc}</p>
+            <p style={{marginBottom: '0px'}}>{specc}</p>
             <p>{desig}</p>
           </div>
         </div>

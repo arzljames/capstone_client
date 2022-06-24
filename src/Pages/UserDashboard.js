@@ -235,7 +235,7 @@ const UserDashboard = () => {
                 icon={<IoPeopleOutline />}
                 iconColor="#fff"
                 total={patients.length}
-                subTotal={patients.filter(filterDate).length + " New Patients"}
+                subTotal={patients.filter(filterDate).length + " New Added Patients"}
                 bg="#3DC1AD"
               />
               <StatisticCard

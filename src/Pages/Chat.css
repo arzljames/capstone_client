@@ -457,6 +457,7 @@ p.nothing-to-show-p {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  max-width: 700px;
 }
 
 .chat-message-container {
@@ -478,6 +479,8 @@ p.nothing-to-show-p {
 }
 
 .chat-message-container .sender-avatar img {
+  min-width: 34px;
+  min-height: 34px;
   width: 100%;
   border-radius: 50%;
   height: 100%;
@@ -498,6 +501,7 @@ p.nothing-to-show-p {
   flex-direction: column;
   align-items: flex-end;
   flex: 1;
+  max-width: 700px;
 }
 
 .chat-message-container .sender-message-container {

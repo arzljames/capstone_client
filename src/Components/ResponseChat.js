@@ -73,7 +73,7 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
     return today;
   };
 
-  const { facilities } = useAuth();
+  const { facilities, specializations } = useAuth();
 
   const inputFileRef = useRef(null);
 
@@ -142,8 +142,8 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
   };
 
   useEffect(() => {
-    console.log(response)
-  })
+    console.log(response);
+  });
 
   return (
     <div className="case-data-response">
@@ -277,6 +277,13 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
                       {getDate(e.createdAt) + " " + getTime(e.createdAt)}
                     </div>
                     <h1>Dr. {e.user.firstname}</h1>
+                    <h2 style={{ marginBottom: "0px" }}>
+                      {e.user.specialization === null
+                        ? null
+                        : specializations.filter(
+                            (item) => item._id === e.user.specialization
+                          )[0].specialization}
+                    </h2>
                     <h2>
                       {
                         facilities.filter(
@@ -286,21 +293,10 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
                       <br />
                     </h2>
 
-                    {/* <h2>
-                      {
-                        facilities
-                          .filter(
-                            (hospital) => hospital._id === e.user.designation
-                          )
-                          .map((f) => {
-                            return f.specialization.filter(
-                              (g) => g._id === e.user.specialization
-                            )[0];
-                          })[0].name
-                      }
-                    </h2> */}
                     <div className="response-content-container">
                       <p>{e.content}</p>
+
+                      {/* <p>{e.content}</p>
                       {e.attachment.length === 0 ? null : (
                         <a
                           target="_blank"
@@ -308,6 +304,16 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
                           className="response-attach"
                         >
                           {e.attachment[0].name}
+                        </a>
+                      )} */}
+
+                      {!e.attachment || !e.attachment.file ? null : (
+                        <a
+                          href={e.attachment.file}
+                          target="_blank"
+                          className="response-attach"
+                        >
+                          {e.attachment.name}
                         </a>
                       )}
                     </div>
