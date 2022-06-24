@@ -52,6 +52,10 @@ const AdminPeople = () => {
     setPageNumber(selected);
   };
 
+  useEffect(() => {
+    console.log(listUsers);
+  }, [listUsers]);
+
   return (
     <>
       <div className="container">
@@ -214,24 +218,12 @@ const AdminPeople = () => {
                           }
                         </div>
                         <div className="admin-user-spec">
-                          {facility.length === 0
-                            ? null
-                            : facility
-                                .filter((e) => e._id === item.designation)
-                                .map((items) => {
-                                  return items.specialization.filter(
-                                    (spec) => spec._id === item.specialization
-                                  )[0];
-                                })[0].name}
+                          {item.specialization === null
+                            ? "N/A"
+                            : item.specialization.specialization}
                         </div>
                         <div className="admin-user-hospital">
-                          {facility.length === 0
-                            ? null
-                            : facility
-                                .filter((e) => e._id === item.designation)
-                                .map((item) => {
-                                  return item.facility;
-                                })}
+                          {item.designation.facility}
                         </div>
 
                         <div

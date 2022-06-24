@@ -6,9 +6,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HiPlus, HiOutlineSearch } from "react-icons/hi";
 import AddSpecModal from "../AdminComponents/AddSpecModal";
 import useAuth from "../Hooks/useAuth";
+import AdminEditSpecModal from "../AdminComponents/AdminEditSpecModal";
+import ReactTimeAgo from "react-time-ago";
 
 const AdminSpecialization = () => {
   const [modal, setModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
   const { specializations, toast, ToastContainer, listUsers } = useAuth();
 
   //Variable for search
@@ -27,10 +30,29 @@ const AdminSpecialization = () => {
     return today;
   };
 
+  const [spec, setSpec] = useState("");
+  const [desc, setDesc] = useState("");
+  const [id, setId] = useState("");
+
+  const handleSetter = (e) => {
+    setSpec(e.specialization);
+    setDesc(e.description);
+    setId(e._id);
+  };
+
   return (
     <>
       <AnimatePresence>
         {modal && <AddSpecModal setModal={setModal} toast={toast} />}
+        {editModal && (
+          <AdminEditSpecModal
+            setEditModal={setEditModal}
+            toast={toast}
+            desc={desc}
+            spec={spec}
+            id={id}
+          />
+        )}
       </AnimatePresence>
       <div className="container">
         <AdminSidebar />
@@ -81,6 +103,7 @@ const AdminSpecialization = () => {
                   <div className="spec-name">Specialization</div>
                   <div className="spec-doctors">Doctors</div>
                   <div className="spec-date">Date Created</div>
+                  <div className="spec-date">Last modified</div>
                 </div>
 
                 {specializations
@@ -99,12 +122,32 @@ const AdminSpecialization = () => {
                     return (
                       <div key={index} className="table-body">
                         <div className="spec-name">
-                          <p>{e.specialization}</p>
+                          <p
+                            onClick={() => {
+                              handleSetter(e);
+                              setEditModal(true);
+                            }}
+                          >
+                            {e.specialization}
+                          </p>
                         </div>
                         <div className="spec-doctors">
-                          {/* {listUsers.filter(item => item.specialization === e._id).length} */}
+                          {
+                            listUsers.filter(
+                              (item) => item.specialization === e._id
+                            ).length
+                          }
                         </div>
                         <div className="spec-date">{getDate(e.createdAt)}</div>
+                        <div className="spec-date">
+                          {
+                            <ReactTimeAgo
+                              date={e.updatedAt}
+                              locale="en-US"
+                              timeStyle="round-minute"
+                            />
+                          }
+                        </div>
                       </div>
                     );
                   })}

@@ -135,8 +135,8 @@ const GenerateReport = ({ setFilterModal }) => {
   };
 
   useEffect(() => {
-    console.log(patients)
-  })
+    console.log(patients);
+  });
 
   if (!report) {
     return (

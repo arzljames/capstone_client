@@ -38,9 +38,7 @@ const AdminFacility = () => {
   };
 
 
-  useEffect(() => {
-    console.log(listUsers.filter(e => e.designation === "624ad37730ec8840f7a32c50").length)
-  }, [])
+
 
   return (
     <>
