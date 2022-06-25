@@ -466,45 +466,21 @@ const CaseData = () => {
                   >
                     <div className="case-hospital-header">
                       <h2>Service Type</h2>
-
                       <p>
-                        <p>
-                          {/* {
-                            facilities
-                              .filter(
-                                (e) => e._id === "623ec7fb80a6838424edaa29"
-                              )
-                              .map((f) => {
-                                return f.specialization.filter(
-                                  (g) => g._id === patientCase.specialization
-                                )[0];
-                              })[0].name
-                          } */}
-
-                          {/* {facilities
-                            .filter(
-                              (e) => e._id === "623ec7fb80a6838424edaa29"
-                            )[0]
-                            .specialization.filter((f) => {
-                              return patientCase.specialization.includes(f._id);
-                            })
-                            .map((g) => {
-                              return <li>{g.name}</li>;
-                            })} */}
-
-                          {specializations
-                            .filter((e) => {
-                              return patientCase.specialization.includes(e._id);
-                            })
-                            .map((item, index) => {
-                              return (
-                                <li index={index}>{item.specialization}</li>
-                              );
-                            })}
-                        </p>
+                        {specializations
+                          .filter((e) => {
+                            return patientCase.specialization.includes(e._id);
+                          })
+                          .map((item, index) => {
+                            return <li index={index}>{item.specialization}</li>;
+                          })}
                       </p>
+                      <br />
+                      <h2>Sub-service Type</h2>
+                      <p></p>
                     </div>
                   </div>
+
                   <div
                     className={
                       patientCase.active
@@ -528,7 +504,7 @@ const CaseData = () => {
 
                       <label>Attending Pysician</label>
                       <p>
-                        Dr.{" "}
+                        Dr.
                         {patientCase.physician.firstname +
                           " " +
                           patientCase.physician.lastname}

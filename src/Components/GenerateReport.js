@@ -146,6 +146,7 @@ const GenerateReport = ({ setFilterModal }) => {
     );
   }
 
+
   return (
     <>
       <div className="container">
@@ -201,7 +202,6 @@ const GenerateReport = ({ setFilterModal }) => {
                         <div className="pt-name">
                           {item.firstname + " " + item.lastname}{" "}
                         </div>
-
                         <div className="pt-date">
                           Dr.{" "}
                           {item.physician.firstname +

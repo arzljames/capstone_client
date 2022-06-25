@@ -20,7 +20,7 @@ const ChatBody = ({ users, socket }) => {
   const { user, hospitalSpec, facilities } = useAuth();
   const path = window.location.pathname;
 
-  let receiverId = useParams()
+  let receiverId = useParams();
 
   useEffect(() => {
     socket.on("chat_messages", (data) => {
@@ -35,7 +35,7 @@ const ChatBody = ({ users, socket }) => {
       );
       if (result) {
         setMessage(result.data);
-        console.log(result.data)
+        console.log(result.data);
       } else {
         setMessage(null);
       }
@@ -100,11 +100,6 @@ const ChatBody = ({ users, socket }) => {
     setFile([]);
   }, [path]);
 
-
-useEffect(() => {
-  console.log(message)
-}, [socket])
-
   if (!message || !users) {
     return (
       <div className="wait-spinner-container">
@@ -129,7 +124,7 @@ useEffect(() => {
           ></div>
         </div>
         <div className="name-container">
-          <h1>Dr. {users.firstname + " " + users.lastname}</h1> 
+          <h1>Dr. {users.firstname + " " + users.lastname}</h1>
           <p>
             {users.activeStatus === "Online" ? (
               "Online"

@@ -129,6 +129,7 @@ button.green-cta {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 90px;
 }
 
 button.green-cta-disable {
@@ -142,6 +143,7 @@ button.green-cta-disable {
   align-items: center;
   justify-content: center;
   opacity: 0.5;
+  min-width: 90px;
   pointer-events: none;
 }
 
@@ -486,13 +488,15 @@ button.gray-cta:hover {
   border-radius: 2px;
   padding: 15px;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
 }
 
 .popup-modal label {
   font-size: 14px;
-  margin-bottom: 50px;
   font-weight: 600;
   color: #272727;
+  margin-bottom: 5px;
 }
 
 .delete-modal {
@@ -526,17 +530,17 @@ div.popup-modal h1 {
   color: #ff3131;
 }
 
-.popup-modal input {
+.popup-modal input, .popup-modal select {
   width: 100%;
   border: 1px solid #acacac;
   height: 35px;
   border-radius: 4px;
-  padding: 10px;
+  padding: 0px 10px;
   outline: none;
   margin-bottom: 20px;
 }
 
-.popup-modal input:focus {
+.popup-modal input:focus, .popup-modal select:focus {
   border: 1px solid #4b4b4b;
 }
 

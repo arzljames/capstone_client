@@ -86,7 +86,7 @@ const Reports = () => {
                     <p>
                       <HiPlus />
                     </p>
-                    Create Report
+                    Report
                   </button>
                 </div>
               </div>

@@ -248,7 +248,7 @@ const Patients = () => {
                       <p>
                         <HiPlus />
                       </p>
-                      Add Patient
+                      Patient
                     </motion.button>
                     <div
                       onClick={() => setShowImport(!showImport)}
@@ -351,7 +351,6 @@ const Patients = () => {
                       </div>
                     )}
                   </div>
-
                   <div className="above-patient-table-btns">
                     <button
                       ref={domNodeSort}

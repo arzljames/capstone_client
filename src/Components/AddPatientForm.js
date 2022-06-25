@@ -3,67 +3,9 @@ import { motion } from "framer-motion";
 import PatientTerm from "./PatientTerm";
 import useAuth from "../Hooks/useAuth";
 import api from "../API/Api";
-import {useNavigate} from 'react-router-dom'
-
-let useClickOutside = (handler) => {
-  let domNode = useRef();
-
-  useEffect(() => {
-    let maybeHandler = (event) => {
-      if (!domNode.current.contains(event.target)) {
-        handler();
-      }
-    };
-
-    document.addEventListener("mousedown", maybeHandler);
-    document.addEventListener("scroll", maybeHandler);
-
-    return () => {
-      document.removeEventListener("mousedown", maybeHandler);
-      document.removeEventListener("scroll", maybeHandler);
-    };
-  });
-
-  return domNode;
-};
-
-const formVariant = {
-  hidden: {
-    opacity: 0,
-    y: "-20px",
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.3,
-      ease: "easeInOut",
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: "-20px",
-    transition: {
-      duration: 0.2,
-      ease: "easeInOut",
-    },
-  },
-};
-
-const containerVariant = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-    },
-  },
-  exit: {
-    opacity: 1,
-  },
-};
+import { useNavigate } from "react-router-dom";
+import { formVariant, containerVariant } from "../Animations/Animations";
+import { useClickOutside } from "../Hooks/useClickOutside";
 
 const bodyVariant = {
   hidden: {
@@ -90,7 +32,7 @@ const AddPatientForm = ({
 }) => {
   let domNode = useClickOutside(() => {
     setPatientForm(false);
-    navigate(-1)
+    navigate(-1);
   });
 
   const [civilOther, setCivilOther] = useState(null);

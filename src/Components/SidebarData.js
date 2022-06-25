@@ -35,7 +35,7 @@ export const SidebarData = [
   },
 
   {
-    name: "Reports",
+    name: "Report",
     link: "/reports",
     link2: "reports",
     icon: <IoDocumentTextOutline />,

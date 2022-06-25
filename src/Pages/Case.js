@@ -175,7 +175,7 @@ const Case = () => {
                         <p>
                           <HiPlus />
                         </p>
-                        Add Case
+                        Case
                       </button>
                     )}
                   </div>
@@ -205,94 +205,7 @@ const Case = () => {
                     )}
                   </div>
 
-                  <div className="above-patient-table-btns">
-                    {/* <button
-                      className={isFilter ? "btn-active" : "btn-inactive"}
-                      onClick={() => {
-                        setIsFilter(true);
-                        setIsSort(false);
-                      }}
-                    >
-                      <p>
-                        <HiOutlineFilter />
-                      </p>
-                      Filter
-                      <AnimatePresence>
-                        {isFilter && (
-                          <motion.div
-                            ref={domNodeFilter}
-                            variants={dropdownVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
-                            className="filter-dropdown"
-                          >
-                            <h5>Status</h5>
-                            <ul>
-                              <li
-                                onClick={() => {
-                                  setFilter("Active");
-                                }}
-                              >
-                                <input type="checkbox" /> Active
-                              </li>
-                              <li
-                                onClick={() => {
-                                  setFilter("Done");
-                                }}
-                              >
-                                <input type="checkbox" /> Done
-                              </li>
-                            </ul>
-
-                            <h5>Service</h5>
-                            <ul>
-                              {hospitalSpec.map((e) => {
-                                return (
-                                  <li key={e._id}>
-                                    <input type="checkbox" />
-                                    {e.name}
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </button> */}
-                    {/* <button
-                      className={isSort ? "btn-active" : "btn-inactive"}
-                      onClick={() => {
-                        setIsSort(!isSort);
-                        setIsFilter(false);
-                      }}
-                    >
-                      <p>
-                        <HiOutlineSortDescending />
-                      </p>
-                      Sort by: {sort}
-                      <AnimatePresence>
-                        {isSort && (
-                          <motion.div
-                            ref={domNodeSort}
-                            variants={dropdownVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
-                            className="sort-dropdown"
-                          >
-                            <ul>
-                              <li>Oldest</li>
-                              <li>Newest</li>
-
-                              <li>Name (A-Z)</li>
-                              <li>Name (Z-A)</li>
-                            </ul>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </button> */}
-                  </div>
+                  <div className="above-patient-table-btns"></div>
                 </div>
 
                 <div className="table">
@@ -370,21 +283,11 @@ const Case = () => {
                           </div>
 
                           <div className="cs-department">
-                            {/* {
-                              facilities
-                                .filter(
-                                  (e) => e._id === "623ec7fb80a6838424edaa29"
-                                )[0]
-                                .specialization.filter((f) => {
-                                  return item.specialization.includes(f._id);
-                                })[0].name
-                            } */}
-
-                            {
-                              specializations.filter((e) => {
-                                return item.specialization.includes(e._id);
-                              })[0].specialization
-                            }
+                            {specializations.length === 0
+                              ? null
+                              : specializations.filter((e) => {
+                                  return item.specialization.includes(e._id);
+                                })[0].specialization}
                           </div>
                           <div className="cs-date">
                             {getDate(item.createdAt)} {getTime(item.createdAt)}

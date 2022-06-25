@@ -3,7 +3,6 @@ import "./AdminPeople.css";
 import "./AdminDashboard.css";
 import AdminSidebar from "../AdminComponents/AdminSidebar";
 import AdminHeader from "../AdminComponents/AdminHeader";
-import { motion } from "framer-motion";
 import {
   HiPlus,
   HiOutlineSortDescending,
@@ -19,12 +18,14 @@ import { useClickOutside } from "../Hooks/useClickOutside";
 import { AnimatePresence } from "framer-motion";
 import { dropdownVariants } from "../Animations/Animations";
 import ReactPaginate from "react-paginate";
+import AdminEditdUser from "../AdminComponents/AdminEditdUser";
 
 const AdminPeople = () => {
   const [showModal, setShowModal] = useState(false);
 
-  const { listUsers, patients, facilities, ToastContainer } = useAuth();
+  const { listUsers, patients, facilities, ToastContainer, toast } = useAuth();
   const [facility, setFacility] = useState([]);
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     setFacility(facilities);
@@ -34,6 +35,8 @@ const AdminPeople = () => {
   const [isSort, setIsSort] = useState(false);
   const [sort, setSort] = useState("Oldest");
   const [searchDropdown, setSearchDropdown] = useState(false);
+
+  const [modal, setModal] = useState(false);
 
   let domNodeSearch = useClickOutside(() => {
     setSearchDropdown(false);
@@ -52,15 +55,19 @@ const AdminPeople = () => {
     setPageNumber(selected);
   };
 
-  useEffect(() => {
-    console.log(listUsers);
-  }, [listUsers]);
-
   return (
     <>
       <div className="container">
         <AdminSidebar />
-
+        <AnimatePresence>
+          {modal && (
+            <AdminEditdUser
+              toast={toast}
+              userData={userData}
+              setModal={setModal}
+            />
+          )}
+        </AnimatePresence>
         <div className="content">
           <AdminHeader />
           <ToastContainer
@@ -115,63 +122,7 @@ const AdminPeople = () => {
                   )}
                 </div>
 
-                <div className="above-patient-table-btns">
-                  {/* <button
-                  className={isSort ? "btn-active" : "btn-inactive"}
-                  onClick={() => {
-                    setIsSort(!isSort);
-                  }}
-                >
-                  <p>
-                    <HiOutlineSortDescending />
-                  </p>
-                  Sort by: {sort}
-                  <AnimatePresence>
-                    {isSort && (
-                      <motion.div
-                        ref={domNodeSort}
-                        variants={dropdownVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        className="sort-dropdown"
-                      >
-                        <ul>
-                          <li
-                            onClick={() => {
-                              setSort("Oldest");
-                            }}
-                          >
-                            Oldest
-                          </li>
-                          <li
-                            onClick={() => {
-                              setSort("Newest");
-                            }}
-                          >
-                            Newest
-                          </li>
-
-                          <li
-                            onClick={() => {
-                              setSort("Name (A-Z)");
-                            }}
-                          >
-                            Name (A-Z)
-                          </li>
-                          <li
-                            onClick={() => {
-                              setSort("Name (Z-A)");
-                            }}
-                          >
-                            Name (Z-A)
-                          </li>
-                        </ul>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </button> */}
-                </div>
+                <div className="above-patient-table-btns"></div>
               </div>
 
               <div className="table">
@@ -203,7 +154,12 @@ const AdminPeople = () => {
                     return (
                       <div key={key} className="table-body">
                         <div className="admin-user-name">
-                          <p>
+                          <p
+                            onClick={() => {
+                              setUserData(item);
+                              setModal(true);
+                            }}
+                          >
                             <img
                               src={!item.picture ? NoUser : item.picture}
                               alt="Profile Picture"

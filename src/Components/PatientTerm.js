@@ -10,7 +10,7 @@ const PatientTerm = ({ accept, setAccept, setTerm, setPatientForm }) => {
           been made fully aware of its purpose, scope and limitations. <br />
           <br />I further acknowledge that consent was given to share my medical
           history, records and laboratory results for the purpose of discussion,
-          in accordance with the RA 10173 Data Privace Act.
+          in accordance with the RA 10173 Data Privacy Act.
           <br />
           <br />I further acknowledge that I am aware this virtual encounter
           will be recorded and all details be kept confidential between my
