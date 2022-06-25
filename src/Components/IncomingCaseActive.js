@@ -14,6 +14,19 @@ const IncomingCaseActive = ({ item, name }) => {
   };
 
   const { facilities } = useAuth();
+
+  const getDate = (date) => {
+    let dates = new Date(date);
+    let today =
+      dates.toLocaleString("en-us", { month: "short" }) +
+      " " +
+      dates.getDate() +
+      "," +
+      " " +
+      dates.getFullYear();
+
+    return today;
+  };
   return (
     <>
       <div
@@ -37,12 +50,11 @@ const IncomingCaseActive = ({ item, name }) => {
                   return item.specialization.includes(e._id);
                 })[0].specialization
               : null} */}
-
-            {item.specialization}
+            Case #{item.caseId}
           </p>
           <p>{item.designation.facility}</p>
           <div className="case-content-date">
-            <p>{createdAt.toISOString().substring(0, 10)} </p>
+            <p>{getDate(createdAt)}</p>
             <p>{createdAt.toLocaleString("en-US", options)}</p>
           </div>
         </div>
