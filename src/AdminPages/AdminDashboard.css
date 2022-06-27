@@ -1,16 +1,19 @@
 .content-wrapper {
-  padding-bottom: 50px;
+  padding-bottom: 70px;
+  width: 100%;
+
+
 }
 
 .content-body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
   padding: 20px;
   overflow-x: hidden;
   height: 100%;
   width: 100%;
+  overflow-y: scroll;
 }
 
 .container-divider {

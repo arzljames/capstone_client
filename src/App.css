@@ -252,6 +252,8 @@ button.gray-cta:hover {
   min-height: 550px;
   overflow: hidden;
   height: 100%;
+  padding: 20px 10px;
+  padding-right: 0px;
 }
 
 .table-header {
@@ -268,13 +270,22 @@ button.gray-cta:hover {
   text-transform: uppercase;
   color: #414141;
   border-left: 2px solid #05138e00;
+  padding: 0px 10px;
+  padding-right: 40px;
+}
+
+.table-body-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 10px;
+
 }
 
 .table-body {
   width: 100%;
   height: 50px;
   display: flex;
-  border-bottom: 1px solid #e0e0e0;
   font-size: 14px;
   display: flex;
   align-items: center;
@@ -284,6 +295,8 @@ button.gray-cta:hover {
   color: #5f5f5f;
   border-left: 2px solid #05138e00;
   background: #fff;
+  padding: 0px 10px;
+  border-radius: 4px;
 }
 
 .table-body img {
@@ -295,7 +308,7 @@ button.gray-cta:hover {
 
 .table-body:hover,
 .table-body-2:hover {
-  background: #f5f5f7;
+  background: #e7e7eb;
   border-left: 2px solid #92e3a9;
 }
 
@@ -318,9 +331,8 @@ button.gray-cta:hover {
 
 .table-body-2 {
   width: 100%;
-  min-height: 50px;
+  height: 50px;
   display: flex;
-  border-bottom: 1px solid #e0e0e0;
   font-size: 14px;
   display: flex;
   align-items: center;
@@ -329,9 +341,9 @@ button.gray-cta:hover {
   text-transform: capitalize;
   color: #5f5f5f;
   border-left: 2px solid #05138e00;
-  background: #fff;
-
-  /* background: #f7f8fc; */
+  background: #f5f5f7;
+  padding: 0px 10px;
+  border-radius: 4px;
 }
 
 .searchbar-container {
@@ -340,13 +352,12 @@ button.gray-cta:hover {
 
 .above-patient-table {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 5px;
   background: #fff;
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: 1px solid #ebebeb;
+  margin-bottom: 10px;
+  padding: 0px 10px;
+  padding-right: 20px;
 }
 
 .above-patient-table-btns {
@@ -355,21 +366,20 @@ button.gray-cta:hover {
 
 .above-patient-table button {
   outline: none;
-  padding: 0px 6px;
   cursor: pointer;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   margin-left: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 2px;
-  height: 30px;
+  height: 40px;
   border: none;
   background: transparent;
   color: #808080;
   border: 1px solid #6eaf8c00;
-  border-radius: 3px;
+  border-radius: 4px;
   min-width: 80px;
 }
 
@@ -383,6 +393,7 @@ button.gray-cta:hover {
 .above-patient-table .btn-inactive {
   position: relative;
   border-radius: 4px;
+
 }
 
 .above-patient-table button.btn-inactive:hover {
@@ -399,10 +410,19 @@ button.gray-cta:hover {
   font-size: 16px;
 }
 
+.above-patient-table button p.chevron {
+  color: #808080;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-left: 8px;
+}
+
 .patient-input-container {
   width: 100%;
-  max-width: 350px;
+  max-width:400px;
   position: relative;
+
 }
 
 .patient-input-container div.advance-search {
@@ -445,8 +465,8 @@ button.gray-cta:hover {
 }
 
 .patient-input-icon {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   left: 0;
   top: 0;
@@ -462,11 +482,11 @@ button.gray-cta:hover {
   border: 1px solid rgb(231, 231, 231);
   outline: none;
   padding: 10px;
-  padding-left: 30px;
-  height: 32px;
+  padding-left: 35px;
+  height: 40px;
   border-radius: 4px;
   transition: 0.2s ease-in-out;
-  background: #f1f3f1;
+  background: #fff;
 }
 
 .patient-input-container input:focus {
@@ -562,6 +582,11 @@ div.popup-modal h1 {
 @media screen and (max-width: 768px) {
   .above-patient-table {
     flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .table-header {
+    padding-right: 20px;
   }
 
   .patient-input-container {

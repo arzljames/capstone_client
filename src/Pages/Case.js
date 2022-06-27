@@ -181,34 +181,33 @@ const Case = () => {
                   </div>
                 </div>
 
-                <div className="above-patient-table">
-                  <div className="patient-input-container">
-                    <input
-                      value={term}
-                      onChange={(e) => setTerm(e.target.value)}
-                      type="search"
-                      onFocus={() => setSearchDropdown(true)}
-                      placeholder="Search case (ID, Patient, Service)"
-                    />
-                    <div className="patient-input-icon">
-                      <HiOutlineSearch />
+                <div className="table">
+                  <div className="above-patient-table">
+                    <div className="patient-input-container">
+                      <input
+                        value={term}
+                        onChange={(e) => setTerm(e.target.value)}
+                        type="search"
+                        onFocus={() => setSearchDropdown(true)}
+                        placeholder="Search case (ID, Patient, Service)"
+                      />
+                      <div className="patient-input-icon">
+                        <HiOutlineSearch />
+                      </div>
+
+                      {searchDropdown && (
+                        <div ref={domNodeSearch} className="advance-search">
+                          {!term ? (
+                            <p>Type in the search bar</p>
+                          ) : (
+                            <p>You searched for "{term}"</p>
+                          )}
+                        </div>
+                      )}
                     </div>
 
-                    {searchDropdown && (
-                      <div ref={domNodeSearch} className="advance-search">
-                        {!term ? (
-                          <p>Type in the search bar</p>
-                        ) : (
-                          <p>You searched for "{term}"</p>
-                        )}
-                      </div>
-                    )}
+                    <div className="above-patient-table-btns"></div>
                   </div>
-
-                  <div className="above-patient-table-btns"></div>
-                </div>
-
-                <div className="table">
                   <div className="table-header">
                     <div className="cs-id">Case ID</div>
                     <div className="cs-name">Patient</div>
@@ -217,99 +216,106 @@ const Case = () => {
                     <div className="cs-date">Date & Time</div>
                     <div className="cs-status">Status</div>
                   </div>
+                  <div className="table-body-container">
+                    {cases
+                      .filter((vals) => {
+                        if (term === "") {
+                          return vals;
+                        } else if (
+                          vals.caseId
+                            .toLowerCase()
+                            .includes(term.toLocaleLowerCase()) ||
+                          vals.patient.fullname
+                            .toLowerCase()
+                            .includes(term.toLocaleLowerCase())
+                        ) {
+                          return vals;
+                        }
+                      })
+                      .filter((e) =>
+                        filter === "None"
+                          ? e
+                          : filter === "Active"
+                          ? e.active === true
+                          : e.active === false
+                      )
+                      .filter((val) => {
+                        if (
+                          user.designation === "623ec7fb80a6838424edaa29" &&
+                          val.specialization.includes(user.specialization)
+                        ) {
+                          return val;
+                        } else if (user.userId === val.physician._id) {
+                          return val;
+                        }
+                      })
+                      .slice(
+                        term === "" ? pagesVisited : 0,
+                        term === "" ? pagesVisited + usersPerPage : cases.length
+                      )
+                      .map((item, index) => {
+                        return (
+                          <div
+                            index={index}
+                            className={
+                              index % 2 === 0 ? "table-body" : "table-body-2"
+                            }
+                          >
+                            <div className="cs-id">
+                              <p
+                                onClick={() => {
+                                  navigate(
+                                    `/consultation/case/case-data/${item._id}`
+                                  );
+                                }}
+                              >
+                                {item.caseId}
+                              </p>
+                            </div>
+                            <div className="cs-name">
+                              <p
+                                onClick={(e) => {
+                                  filterPatient(item.patient._id);
+                                  setPatientModal(true);
+                                  e.stopPropagation();
+                                }}
+                              >
+                                {item.patient.firstname +
+                                  " " +
+                                  item.patient.lastname}
+                              </p>
+                            </div>
 
-                  {cases
-                    .filter((vals) => {
-                      if (term === "") {
-                        return vals;
-                      } else if (
-                        vals.caseId
-                          .toLowerCase()
-                          .includes(term.toLocaleLowerCase()) ||
-                        vals.patient.fullname
-                          .toLowerCase()
-                          .includes(term.toLocaleLowerCase())
-                      ) {
-                        return vals;
-                      }
-                    })
-                    .filter((e) =>
-                      filter === "None"
-                        ? e
-                        : filter === "Active"
-                        ? e.active === true
-                        : e.active === false
-                    )
-                    .filter((val) => {
-                      if (
-                        user.designation === "623ec7fb80a6838424edaa29" &&
-                        val.specialization.includes(user.specialization)
-                      ) {
-                        return val;
-                      } else if (user.userId === val.physician._id) {
-                        return val;
-                      }
-                    })
-                    .slice(
-                      term === "" ? pagesVisited : 0,
-                      term === "" ? pagesVisited + usersPerPage : cases.length
-                    )
-                    .map((item, index) => {
-                      return (
-                        <div index={index} className="table-body">
-                          <div className="cs-id">
-                            <p
-                              onClick={() => {
-                                navigate(
-                                  `/consultation/case/case-data/${item._id}`
-                                );
-                              }}
-                            >
-                              {item.caseId}
-                            </p>
+                            <div className="cs-department">
+                              {specializations.length === 0
+                                ? null
+                                : specializations.filter((e) => {
+                                    return item.specialization.includes(e._id);
+                                  })[0].specialization}
+                            </div>
+                            <div className="cs-date">
+                              {getDate(item.createdAt)}{" "}
+                              {getTime(item.createdAt)}
+                            </div>
+                            <div className="cs-status">
+                              <p className={item.active ? "active" : "done"}>
+                                <div
+                                  className={
+                                    item.active
+                                      ? "indicator active"
+                                      : "indicator done"
+                                  }
+                                ></div>
+                                {item.active ? "Active" : "Done"}
+                              </p>
+                            </div>
                           </div>
-                          <div className="cs-name">
-                            <p
-                              onClick={(e) => {
-                                filterPatient(item.patient._id);
-                                setPatientModal(true);
-                                e.stopPropagation();
-                              }}
-                            >
-                              {item.patient.firstname +
-                                " " +
-                                item.patient.lastname}
-                            </p>
-                          </div>
-
-                          <div className="cs-department">
-                            {specializations.length === 0
-                              ? null
-                              : specializations.filter((e) => {
-                                  return item.specialization.includes(e._id);
-                                })[0].specialization}
-                          </div>
-                          <div className="cs-date">
-                            {getDate(item.createdAt)} {getTime(item.createdAt)}
-                          </div>
-                          <div className="cs-status">
-                            <p className={item.active ? "active" : "done"}>
-                              <div
-                                className={
-                                  item.active
-                                    ? "indicator active"
-                                    : "indicator done"
-                                }
-                              ></div>
-                              {item.active ? "Active" : "Done"}
-                            </p>
-                          </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                  </div>
                 </div>
-                <br />
-                <div className="pagination-container">
+
+                {/* <div className="pagination-container">
                   <ReactPaginate
                     previousLabel={<HiChevronLeft size={20} />}
                     nextLabel={<HiChevronRight size={20} />}
@@ -325,7 +331,7 @@ const Case = () => {
                     activeClassName="active"
                     onPageChange={changePage}
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

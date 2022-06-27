@@ -160,13 +160,7 @@ const PatientAdmission = () => {
           <Header />
           <div className="consultation-content">
             <ConsultationNavbar />
-            <motion.div
-              variants={containerVariant}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="content-body"
-            >
+            <motion.div className="content-body">
               <div className="content-wrapper">
                 <div className="above-patient-profile">
                   <button onClick={() => navigate(-1)} className="back-btn">
@@ -185,6 +179,7 @@ const PatientAdmission = () => {
                   </div>
                 </div>
                 <hr />
+
                 <div className="patient-admission">
                   <div className="admission-form">
                     <h5>Personal Information</h5>

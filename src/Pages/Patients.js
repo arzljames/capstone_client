@@ -20,7 +20,6 @@ import { HiUpload, HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { parse } from "papaparse";
 import ImportModal from "../Components/ImportModal";
-import DeleteMultiplePatientModal from "../Components/DeleteMultiplePatientModal";
 import PatientAdvanceSearch from "../Components/PatientAdvanceSearch";
 import { dropdownVariants } from "../Animations/Animations";
 import PatientTableData from "../Components/PatientTableData";
@@ -44,12 +43,6 @@ const Patients = () => {
   const [sort, setSort] = useState("Oldest");
 
   const [showImport, setShowImport] = useState(false);
-
-  const [term, setTerm] = useState("");
-
-  let domNodeSort = useClickOutside(() => {
-    setIsSort(false);
-  });
 
   let domNodeImport = useClickOutside(() => {
     setShowImport(false);
@@ -113,10 +106,6 @@ const Patients = () => {
 
   const [deleteModal, setDeleteModal] = useState(false);
   const [showAdvance, setShowAdvance] = useState(false);
-
-  let domNodeSearch = useClickOutside(() => {
-    setSearchDropdown(false);
-  });
 
   const sortAscName = (a, b) => {
     return a.firstname.localeCompare(b.firstname);
@@ -328,87 +317,7 @@ const Patients = () => {
                     </div>
                   </div>
                 </div>
-                <div className="above-patient-table">
-                  <div className="patient-input-container">
-                    <input
-                      value={term}
-                      onChange={(e) => setTerm(e.target.value)}
-                      type="search"
-                      onFocus={() => setSearchDropdown(true)}
-                      placeholder="Search patient (last name, first name)"
-                    />
-                    <div className="patient-input-icon">
-                      <HiOutlineSearch />
-                    </div>
 
-                    {searchDropdown && (
-                      <div ref={domNodeSearch} className="advance-search">
-                        {!term ? (
-                          <p>Type in the search bar</p>
-                        ) : (
-                          <p>You searched for "{term}"</p>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                  <div className="above-patient-table-btns">
-                    <button
-                      ref={domNodeSort}
-                      className={isSort ? "btn-active" : "btn-inactive"}
-                      onClick={() => {
-                        setIsSort(!isSort);
-                      }}
-                    >
-                      <p>
-                        <HiOutlineSortDescending />
-                      </p>
-                      Sort by: {sort}
-                      <AnimatePresence>
-                        {isSort && (
-                          <motion.div
-                            variants={dropdownVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
-                            className="sort-dropdown"
-                          >
-                            <ul>
-                              <li
-                                onClick={() => {
-                                  setSort("Oldest");
-                                }}
-                              >
-                                Oldest
-                              </li>
-                              <li
-                                onClick={() => {
-                                  setSort("Newest");
-                                }}
-                              >
-                                Newest
-                              </li>
-
-                              <li
-                                onClick={() => {
-                                  setSort("Name (A-Z)");
-                                }}
-                              >
-                                Name (A-Z)
-                              </li>
-                              <li
-                                onClick={() => {
-                                  setSort("Name (Z-A)");
-                                }}
-                              >
-                                Name (Z-A)
-                              </li>
-                            </ul>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </button>
-                  </div>
-                </div>
                 <PatientTableData
                   sortAscDate={sortAscDate}
                   sortDscDate={sortDscDate}
@@ -416,16 +325,20 @@ const Patients = () => {
                   sortDscName={sortDscName}
                   setPatientState={setPatientState}
                   patientState={patientState}
-                  term={term}
                   usersPerPage={usersPerPage}
                   pagesVisited={pagesVisited}
                   sort={sort}
+                  isSort={isSort}
+                  setSort={setSort}
+                  setIsSort={setIsSort}
                   setPatientId={setPatientId}
                   setPatientModal={setPatientModal}
                   setDeleteModal={setDeleteModal}
                   filterPatient={filterPatient}
+                  searchDropdown={searchDropdown}
+                  setSearchDropdown={setSearchDropdown}
                 />
-                <br />
+                {/* <br />
                 <div className="pagination-container">
                   <ReactPaginate
                     previousLabel={<HiChevronLeft size={20} />}
@@ -442,7 +355,7 @@ const Patients = () => {
                     activeClassName="active"
                     onPageChange={changePage}
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

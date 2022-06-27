@@ -3,7 +3,6 @@
   height: 100%;
   display: flex;
   align-items: center;
-  padding-left: 20px;
 }
 
 .cs-name {
@@ -15,7 +14,9 @@
 }
 
 .table-body .cs-name p,
-.table-body .cs-id p {
+.table-body .cs-id p,
+.table-body-2 .cs-name p,
+.table-body-2 .cs-id p {
   cursor: pointer;
   color: rgb(45, 109, 206);
   height: 100%;
@@ -23,8 +24,10 @@
   align-items: center;
 }
 
-.table-body .cs-name p:hover,
-.table-body .cs-id p:hover {
+ .table-body .cs-name p:hover,
+.table-body .cs-id p:hover,
+.table-body-2 .cs-name p:hover,
+.table-body-2 .cs-id p:hover{
   text-decoration: underline;
 }
 
