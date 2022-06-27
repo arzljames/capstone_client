@@ -30,7 +30,6 @@
 
 .admin-user-name {
   flex: 1;
-  padding: 0px 20px;
   display: flex;
   align-items: center;
 }
@@ -44,7 +43,8 @@
   margin-right: 10px;
 }
 
-.table-body .admin-user-name p {
+.table-body .admin-user-name p, 
+.table-body-2 .admin-user-name p  {
   cursor: pointer;
   color: rgb(45, 109, 206);
   height: 100%;
@@ -52,7 +52,8 @@
   align-items: center;
 }
 
-.table-body .admin-user-name p:hover {
+.table-body .admin-user-name p:hover, 
+.table-body-2 .admin-user-name p:hover {
   text-decoration: underline;
 }
 
@@ -63,7 +64,8 @@
   justify-content: center;
 }
 
-.table-body .us-status.online {
+.table-body .us-status.online, 
+.table-body-2 .us-status.online {
   color: #499c69;
 }
 

@@ -29,16 +29,13 @@ const AdminFacility = () => {
   const [term, setTerm] = useState("");
 
   const [pageNumber, setPageNumber] = useState(0);
-  const [usersPerPage, setUsersPerPage] = useState(10);
+  const [usersPerPage, setUsersPerPage] = useState(20);
   const pagesVisited = pageNumber * usersPerPage;
 
   const pageCount = Math.ceil(facilities.length / usersPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-
-
-
 
   return (
     <>
@@ -84,14 +81,16 @@ const AdminFacility = () => {
                   Hospital
                 </motion.button>
               </div>
-              <div className="above-table">
-                <div className="patient-input-container">
-                  <input type="search" placeholder="Search facilities" />
-                  <div className="patient-input-icon">
-                    <HiOutlineSearch />
+
+              <div className="table">
+                <div className="above-table">
+                  <div className="patient-input-container">
+                    <input type="search" placeholder="Search facilities" />
+                    <div className="patient-input-icon">
+                      <HiOutlineSearch />
+                    </div>
                   </div>
-                </div>
-                {/* <div className="above-table-right">
+                  {/* <div className="above-table-right">
                 <button className="fac-btns">
                   <p>
                     <HiOutlineFilter />
@@ -105,9 +104,7 @@ const AdminFacility = () => {
                   Sort by
                 </button>
               </div> */}
-              </div>
-
-              <div className="table">
+                </div>
                 <div className="table-header">
                   <div className="fac-name">Hospital Name</div>
                   <div className="fac-doctors">Doctors</div>
@@ -131,7 +128,10 @@ const AdminFacility = () => {
                         facility={item.facility}
                         address={item.address}
                         specialization={item.specialization}
-                        users={listUsers.filter(e => e.designation === item._id).length}
+                        users={
+                          listUsers.filter((e) => e.designation === item._id)
+                            .length
+                        }
                         setHospital={setHospital}
                         setShowHospitalModal={setShowHospitalModal}
                         item={item}

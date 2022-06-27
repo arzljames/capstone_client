@@ -302,7 +302,8 @@ button.gray-cta:hover {
   border-radius: 4px;
 }
 
-.table-body img {
+.table-body img,
+.table-body-2 img {
   width: 100%;
   height: 100%;
   object-fit: cover;
