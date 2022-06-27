@@ -307,29 +307,24 @@ const Patients = () => {
                 </div>
               </div>
 
-              <div
-                style={{ paddingBottom: "70px" }}
-                className="content-wrapper"
-              >
-                <PatientTable
-                  sortAscDate={sortAscDate}
-                  sortDscDate={sortDscDate}
-                  sortAscName={sortAscName}
-                  sortDscName={sortDscName}
-                  setPatientState={setPatientState}
-                  patientState={patientState}
-                  sort={sort}
-                  isSort={isSort}
-                  setSort={setSort}
-                  setIsSort={setIsSort}
-                  setPatientId={setPatientId}
-                  setPatientModal={setPatientModal}
-                  setDeleteModal={setDeleteModal}
-                  filterPatient={filterPatient}
-                  searchDropdown={searchDropdown}
-                  setSearchDropdown={setSearchDropdown}
-                />
-              </div>
+              <PatientTable
+                sortAscDate={sortAscDate}
+                sortDscDate={sortDscDate}
+                sortAscName={sortAscName}
+                sortDscName={sortDscName}
+                setPatientState={setPatientState}
+                patientState={patientState}
+                sort={sort}
+                isSort={isSort}
+                setSort={setSort}
+                setIsSort={setIsSort}
+                setPatientId={setPatientId}
+                setPatientModal={setPatientModal}
+                setDeleteModal={setDeleteModal}
+                filterPatient={filterPatient}
+                searchDropdown={searchDropdown}
+                setSearchDropdown={setSearchDropdown}
+              />
             </div>
           </div>
         </div>

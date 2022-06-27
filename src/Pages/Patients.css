@@ -833,8 +833,8 @@ button.deactive-btn:hover {
 }
 
 .page-item {
-  width: 28px;
-  height: 28px;
+  width: 25px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -844,8 +844,8 @@ button.deactive-btn:hover {
 }
 
 .page-link {
-  width: 28px;
-  height: 28px;
+  width: 25px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -859,8 +859,8 @@ button.deactive-btn:hover {
 }
 
 .active {
-  width: 28px;
-  height: 28px;
+  width: 25px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;

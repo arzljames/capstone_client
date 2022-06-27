@@ -1,5 +1,5 @@
 .content-wrapper {
-  /* padding-bottom: 50px; */
+  /* padding-bottom: 100px; */
   width: 100%;
   overflow-y: scroll;
   height: 100%;
@@ -29,10 +29,10 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding:  20px;
   padding-bottom: 0px;
   overflow-x: hidden;
-  overflow-y: scroll;
+  margin-bottom: 70px;
 }
 
 .container-divider {

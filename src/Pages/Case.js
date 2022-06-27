@@ -117,7 +117,7 @@ const Case = () => {
                 </div>
               </div>
 
-              <div style={{paddingBottom: '70px'}} className="content-wrapper">
+              <div>
                 <CaseTable
                   setPatient={setPatient}
                   setPatientModal={setPatientModal}
