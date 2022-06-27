@@ -23,10 +23,11 @@ import ImportModal from "../Components/ImportModal";
 import PatientAdvanceSearch from "../Components/PatientAdvanceSearch";
 import { dropdownVariants } from "../Animations/Animations";
 import PatientTableData from "../Components/PatientTableData";
-import ReactPaginate from "react-paginate";
+
 import { Helmet } from "react-helmet";
 import PatientModal from "../Components/PatientModal";
 import DeletePatientModal from "../Components/DeletePatientModal";
+import PatientTable from "../Components/PatientTable";
 
 const Patients = () => {
   const [searchDropdown, setSearchDropdown] = useState(false);
@@ -127,15 +128,6 @@ const Patients = () => {
     return dateA < dateB ? 1 : -1;
   };
 
-  const [pageNumber, setPageNumber] = useState(0);
-  const [usersPerPage, setUsersPerPage] = useState(20);
-  const pagesVisited = pageNumber * usersPerPage;
-
-  const pageCount = Math.ceil(patientState.length / usersPerPage);
-  const changePage = ({ selected }) => {
-    setPageNumber(selected);
-  };
-
   const [patient, setPatient] = useState([]);
 
   const filterPatient = (id) => {
@@ -198,135 +190,134 @@ const Patients = () => {
           <div className="consultation-content">
             <ConsultationNavbar />
             <div className="content-body">
-              <div className="content-wrapper">
-                <div className="container-heading">
-                  <h2>Patients</h2>
+              <div className="container-heading">
+                <h2>Patients</h2>
 
-                  <div className="subheading-btns">
-                    {patientsId.length !== 0 && (
-                      <button
-                        onClick={() => setDeleteModal(true)}
-                        className={
-                          patientsId.length === 0
-                            ? "delete-patient-btn-disable"
-                            : "delete-patient-btn"
-                        }
-                      >
-                        <p>
-                          <HiTrash />
-                        </p>
-                        Delete ({patientsId.length} selected)
-                      </button>
-                    )}
-                    <motion.button
-                      onClick={() =>
-                        navigate("/consultation/patients/admission")
+                <div className="subheading-btns">
+                  {patientsId.length !== 0 && (
+                    <button
+                      onClick={() => setDeleteModal(true)}
+                      className={
+                        patientsId.length === 0
+                          ? "delete-patient-btn-disable"
+                          : "delete-patient-btn"
                       }
-                      className="add-patient-btn"
-                      whileTap={{
-                        scale: 0.99,
-                        y: 2,
-                        x: 2,
-                        transition: {
-                          delay: 0,
-                          duration: 0.2,
-                          ease: "easeInOut",
-                        },
-                      }}
                     >
                       <p>
-                        <HiPlus />
+                        <HiTrash />
                       </p>
-                      Patient
-                    </motion.button>
-                    <div
-                      onClick={() => setShowImport(!showImport)}
-                      className="import-patient-btn"
-                      ref={domNodeImport}
-                    >
-                      <AiFillCaretDown />
-                      {showImport && (
-                        <motion.div
-                          variants={dropdownVariants}
-                          initial="hidden"
-                          animate="visible"
-                          exit="exit"
-                          className="import-patient-container"
-                        >
-                          <div onClick={() => onBtnClick()}>
-                            <p>
-                              <HiUpload />
-                            </p>
-                            Import CSV
-                          </div>
-                        </motion.div>
-                      )}
+                      Delete ({patientsId.length} selected)
+                    </button>
+                  )}
+                  <motion.button
+                    onClick={() => navigate("/consultation/patients/admission")}
+                    className="add-patient-btn"
+                    whileTap={{
+                      scale: 0.99,
+                      y: 2,
+                      x: 2,
+                      transition: {
+                        delay: 0,
+                        duration: 0.2,
+                        ease: "easeInOut",
+                      },
+                    }}
+                  >
+                    <p>
+                      <HiPlus />
+                    </p>
+                    Patient
+                  </motion.button>
+                  <div
+                    onClick={() => setShowImport(!showImport)}
+                    className="import-patient-btn"
+                    ref={domNodeImport}
+                  >
+                    <AiFillCaretDown />
+                    {showImport && (
+                      <motion.div
+                        variants={dropdownVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        className="import-patient-container"
+                      >
+                        <div onClick={() => onBtnClick()}>
+                          <p>
+                            <HiUpload />
+                          </p>
+                          Import CSV
+                        </div>
+                      </motion.div>
+                    )}
 
-                      <input
-                        ref={inputFileRef}
-                        className="import-patient-input"
-                        type="file"
-                        onChange={async (e) => {
-                          const text = await e.target.files[0].text();
-                          const result = parse(text, { header: true });
-                          if (e.target.files[0].type !== "text/csv") {
-                            toast.error("Not a CSV file.");
+                    <input
+                      ref={inputFileRef}
+                      className="import-patient-input"
+                      type="file"
+                      onChange={async (e) => {
+                        const text = await e.target.files[0].text();
+                        const result = parse(text, { header: true });
+                        if (e.target.files[0].type !== "text/csv") {
+                          toast.error("Not a CSV file.");
 
-                            return;
-                          }
+                          return;
+                        }
 
-                          setCSV([
-                            ...CSV,
-                            result.data.map((e) => {
-                              return {
-                                firstname: e.FIRST_NAME,
-                                middlename: e.MIDDLE_NAME,
-                                lastname: e.LAST_NAME,
-                                fullname:
-                                  e.LAST_NAME +
-                                  "," +
-                                  " " +
-                                  e.FIRST_NAME +
-                                  " " +
-                                  e.MIDDLE_NAME[0] +
-                                  ".",
-                                contact: e.CONTACT,
-                                sex: e.SEX,
-                                birthday: e.BIRTHDAY,
-                                civilStatus: e.CIVIL_STATUS,
-                                religion: e.RELIGION,
-                                birthplace: e.PLACE_OF_BIRTH,
-                                address: {
-                                  street: e.STREET,
-                                  barangay: e.BARANGAY,
-                                  city: e.CITY,
-                                },
-                                ethnicity: e.ETHNICITY,
-                                guardian: {
-                                  name: e.GUARDIAN_FULLNAME,
-                                  relationship: e.RELATION,
-                                },
-                                physician: user.userId,
-                              };
-                            }),
-                          ]);
+                        setCSV([
+                          ...CSV,
+                          result.data.map((e) => {
+                            return {
+                              firstname: e.FIRST_NAME,
+                              middlename: e.MIDDLE_NAME,
+                              lastname: e.LAST_NAME,
+                              fullname:
+                                e.LAST_NAME +
+                                "," +
+                                " " +
+                                e.FIRST_NAME +
+                                " " +
+                                e.MIDDLE_NAME[0] +
+                                ".",
+                              contact: e.CONTACT,
+                              sex: e.SEX,
+                              birthday: e.BIRTHDAY,
+                              civilStatus: e.CIVIL_STATUS,
+                              religion: e.RELIGION,
+                              birthplace: e.PLACE_OF_BIRTH,
+                              address: {
+                                street: e.STREET,
+                                barangay: e.BARANGAY,
+                                city: e.CITY,
+                              },
+                              ethnicity: e.ETHNICITY,
+                              guardian: {
+                                name: e.GUARDIAN_FULLNAME,
+                                relationship: e.RELATION,
+                              },
+                              physician: user.userId,
+                            };
+                          }),
+                        ]);
 
-                          e.target.value = null;
-                        }}
-                      />
-                    </div>
+                        e.target.value = null;
+                      }}
+                    />
                   </div>
                 </div>
+              </div>
 
-                <PatientTableData
+              <div
+                style={{ paddingBottom: "70px" }}
+                className="content-wrapper"
+              >
+                <PatientTable
                   sortAscDate={sortAscDate}
                   sortDscDate={sortDscDate}
                   sortAscName={sortAscName}
                   sortDscName={sortDscName}
                   setPatientState={setPatientState}
                   patientState={patientState}
-                  usersPerPage={usersPerPage}
-                  pagesVisited={pagesVisited}
                   sort={sort}
                   isSort={isSort}
                   setSort={setSort}
@@ -338,24 +329,6 @@ const Patients = () => {
                   searchDropdown={searchDropdown}
                   setSearchDropdown={setSearchDropdown}
                 />
-                {/* <br />
-                <div className="pagination-container">
-                  <ReactPaginate
-                    previousLabel={<HiChevronLeft size={20} />}
-                    nextLabel={<HiChevronRight size={20} />}
-                    breakLabel="..."
-                    pageCount={pageCount}
-                    marginPagesDisplayed={3}
-                    containerClassName="pagination"
-                    pageClassName="page-item"
-                    pageLinkClassName="page-link"
-                    breakClassName="page-item"
-                    nextClassName="page-item"
-                    previousClassName="page-item"
-                    activeClassName="active"
-                    onPageChange={changePage}
-                  />
-                </div> */}
               </div>
             </div>
           </div>

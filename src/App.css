@@ -254,6 +254,9 @@ button.gray-cta:hover {
   height: 100%;
   padding: 20px 10px;
   padding-right: 0px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0px;
 }
 
 .table-header {
@@ -276,9 +279,9 @@ button.gray-cta:hover {
 
 .table-body-container {
   width: 100%;
-  height: 100%;
   overflow-y: scroll;
   padding-right: 10px;
+  height: 100%;
 
 }
 

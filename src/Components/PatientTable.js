@@ -7,14 +7,16 @@ import {
   HiChevronDown,
   HiChevronUp,
   HiCheck,
+  HiChevronLeft,
+  HiChevronRight,
 } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import { dropdownVariants } from "../Animations/Animations";
 import { useClickOutside } from "../Hooks/useClickOutside";
+import ReactPaginate from "react-paginate";
 const PatientTableData = ({
   patientState,
-  usersPerPage,
-  pagesVisited,
+
   sortAscDate,
   sortDscDate,
   sortAscName,
@@ -53,6 +55,15 @@ const PatientTableData = ({
   let domNodeSearch = useClickOutside(() => {
     setSearchDropdown(false);
   });
+
+  const [pageNumber, setPageNumber] = useState(0);
+  const [usersPerPage, setUsersPerPage] = useState(20);
+  const pagesVisited = pageNumber * usersPerPage;
+
+  const pageCount = Math.ceil(patientState.length / usersPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   return (
     <>
@@ -247,6 +258,24 @@ const PatientTableData = ({
               //   </p>
               // </div>
               null}
+        </div>
+
+        <div className="pagination-container">
+          <ReactPaginate
+            previousLabel={<HiChevronLeft size={20} />}
+            nextLabel={<HiChevronRight size={20} />}
+            breakLabel="..."
+            pageCount={pageCount}
+            marginPagesDisplayed={3}
+            containerClassName="pagination"
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            breakClassName="page-item"
+            nextClassName="page-item"
+            previousClassName="page-item"
+            activeClassName="active"
+            onPageChange={changePage}
+          />
         </div>
       </div>
     </>

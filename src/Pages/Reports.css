@@ -236,7 +236,6 @@
 
 .rp-id {
   flex: 1;
-  padding-left: 20px;
   display: flex;
   align-items: center;
 }
@@ -268,7 +267,8 @@
   align-items: center;
 }
 
-.table-body .rp-modified {
+.table-body .rp-modified,
+.table-body-2 .rp-modified  {
   text-transform: lowercase;
 }
 

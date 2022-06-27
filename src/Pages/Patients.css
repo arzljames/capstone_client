@@ -814,10 +814,12 @@ button.deactive-btn:hover {
 
 .pagination-container {
   width: 100%;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-bottom: 20px;
+  padding: 0px 20px;
+  border-top: 1px solid #e0e0e0;
 }
 
 .pagination {
@@ -827,7 +829,6 @@ button.deactive-btn:hover {
   font-size: 14px;
   font-weight: 500;
   color: #69777c;
-  margin-bottom: 20px;
   
 }
 
