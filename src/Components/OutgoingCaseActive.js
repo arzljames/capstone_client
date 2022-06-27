@@ -47,7 +47,7 @@ const OutgoingCaseActive = ({ caseId, item }) => {
         </div>
         <div className="case-content-data">
           <h1>{item.patient.firstname + " " + item.patient.lastname}</h1>
-          <p>Case #{item.caseId}</p>
+          <p>Case ID #{item.caseId}</p>
           <p>
             {/* {
               facilities

@@ -2,13 +2,6 @@ import React, { useContext, useState, useRef, useEffect } from "react";
 import NoUser from "../Assets/nouser.png";
 import api from "../API/Api";
 import { motion } from "framer-motion";
-import {
-  HiDotsHorizontal,
-  HiCheck,
-  HiOutlineClock,
-  HiOutlineX,
-} from "react-icons/hi";
-import { Link } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import ProfileDropdown from "./ProfileDropdown";
 import { IoNotifications } from "react-icons/io5";

@@ -50,7 +50,7 @@ const IncomingCaseActive = ({ item, name }) => {
                   return item.specialization.includes(e._id);
                 })[0].specialization
               : null} */}
-            Case #{item.caseId}
+            Case ID #{item.caseId}
           </p>
           <p>{item.designation.facility}</p>
           <div className="case-content-date">

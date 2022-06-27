@@ -211,12 +211,15 @@
   border: 1px solid #ececec;
   padding-bottom: 0px;
   border-radius: 8px;
+
+
 }
 
 .profile-container-dropdown ul {
   list-style: none;
   border-bottom: 1px solid #e6e6e6;
-  margin-bottom: 4px;
+  padding: 5px 0px;
+
 }
 
 .profile-container-dropdown li {

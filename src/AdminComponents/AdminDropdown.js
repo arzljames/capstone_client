@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  IoPersonOutline,
-  IoSettingsOutline,
-  IoExitOutline,
-  IoBookOutline,
-  IoCodeSlash,
-} from "react-icons/io5";
+import { IoSettingsOutline, IoExitOutline } from "react-icons/io5";
 import NoUser from "../Assets/nouser.png";
 import useAuth from "../Hooks/useAuth";
 import { HiCamera } from "react-icons/hi";
@@ -57,7 +51,7 @@ const AdminDropdown = ({ submitLogout, users }) => {
         <ul style={{ border: "none" }}>
           <li onClick={() => navigate("/settings/admin-account")}>
             <p>
-              <IoCodeSlash />
+              <IoSettingsOutline />
             </p>
             Account Settings
           </li>

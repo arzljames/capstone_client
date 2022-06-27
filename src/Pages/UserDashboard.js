@@ -252,7 +252,7 @@ const UserDashboard = () => {
                 bg="#FF8657"
               />
             </div>
-            <div className="user-chart-container">
+            {/* <div className="user-chart-container">
               <div className="year-selected">
                 <h2>Year :</h2>{" "}
                 <select
@@ -269,7 +269,7 @@ const UserDashboard = () => {
               ) : (
                 <Line options={options} data={data} />
               )}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

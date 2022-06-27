@@ -3,11 +3,10 @@ import "./AdminHeader.css";
 import NoUser from "../Assets/nouser.png";
 import api from "../API/Api";
 import AdminDropdown from "./AdminDropdown";
-import DataContext from "../Context/DataContext";
 import { motion } from "framer-motion";
-import { HiDotsHorizontal } from "react-icons/hi";
 import useAuth from "../Hooks/useAuth";
 import { socket } from "../Components/Socket";
+import { IoCaretDown } from "react-icons/io5";
 
 let useClickOutside = (handler) => {
   let domNode = useRef();
@@ -75,7 +74,7 @@ const AdminProfileHeader = () => {
         className={dropdown ? "profile-settings-active" : "profile-settings"}
       >
         <p>
-          <HiDotsHorizontal />
+          <IoCaretDown />
         </p>
       </motion.div>
 
