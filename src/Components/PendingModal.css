@@ -9,7 +9,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+ 
 }
+
+
 
 .pending-modal {
   width: 100%;

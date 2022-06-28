@@ -70,21 +70,22 @@ const AdminSpecialization = () => {
             pauseOnHover
           />
           <div className="content-body">
-            <div>
-              <div className="container-heading">
-                <h2>List of Specializations</h2>
-                <motion.button
-                  className="green-cta"
-                  onClick={() => setModal(true)}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <p>
-                    <HiPlus />
-                  </p>{" "}
-                  Specialization
-                </motion.button>
-              </div>
-              <div className="above-table">
+            <div className="container-heading">
+              <h2>List of Specializations</h2>
+              <motion.button
+                className="green-cta"
+                onClick={() => setModal(true)}
+                whileTap={{ scale: 0.9 }}
+              >
+                <p>
+                  <HiPlus />
+                </p>{" "}
+                Specialization
+              </motion.button>
+            </div>
+
+            <div className="table">
+              <div className="above-patient-table">
                 <div className="patient-input-container">
                   <input
                     type="search"
@@ -97,15 +98,14 @@ const AdminSpecialization = () => {
                   </div>
                 </div>
               </div>
+              <div className="table-header">
+                <div className="spec-name">Specialization</div>
+                <div className="spec-doctors">Doctors</div>
+                <div className="spec-date">Date Created</div>
+                <div className="spec-date">Last modified</div>
+              </div>
 
-              <div className="table">
-                <div className="table-header">
-                  <div className="spec-name">Specialization</div>
-                  <div className="spec-doctors">Doctors</div>
-                  <div className="spec-date">Date Created</div>
-                  <div className="spec-date">Last modified</div>
-                </div>
-
+              <div className="table-body-container">
                 {specializations
                   .filter((val) => {
                     if (term === "") {
@@ -120,7 +120,12 @@ const AdminSpecialization = () => {
                   })
                   .map((e, index) => {
                     return (
-                      <div key={index} className="table-body">
+                      <div
+                        key={index}
+                        className={
+                          index % 2 === 0 ? "table-body" : "table-body-2"
+                        }
+                      >
                         <div className="spec-name">
                           <p
                             onClick={() => {

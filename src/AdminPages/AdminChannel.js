@@ -31,21 +31,26 @@ const AdminChannel = () => {
         <div className="content">
           <AdminHeader />
           <div className="content-body">
-            <div className="content-wrapper">
-              <div className="reports-header">
-                <h2>Reports</h2>
-              </div>
+            <div className="container-heading">
+              <h2>Reports</h2>
+            </div>
 
-              <div className="table">
-                <div className="table-header">
-                  <div className="rp-id">Report ID</div>
-                  <div className="rp-created">Created By</div>
-                  <div className="rp-date">Date Created</div>
-                  <div className="rp-modified">Last modified</div>
-                </div>
+            <div className="table">
+              <div className="table-header">
+                <div className="rp-id">Report ID</div>
+                <div className="rp-created">Created By</div>
+                <div className="rp-date">Date Created</div>
+                <div className="rp-modified">Last modified</div>
+              </div>
+              <div className="table-body-container">
                 {reports.map((item, index) => {
                   return (
-                    <div key={index} className="table-body">
+                    <div
+                      key={index}
+                      className={
+                        index % 2 === 0 ? "table-body" : "table-body-2"
+                      }
+                    >
                       <div className="rp-id">
                         <p
                           onClick={() =>

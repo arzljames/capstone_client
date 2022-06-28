@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineSearch, HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
@@ -51,6 +51,7 @@ const CaseTable = ({ setPatient, setPatientModal }) => {
   const pagesVisited = pageNumber * usersPerPage;
 
   const pageCount = Math.ceil(cases.length / usersPerPage);
+
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
@@ -62,6 +63,7 @@ const CaseTable = ({ setPatient, setPatientModal }) => {
   const filterPatient = (id) => {
     setPatient(patients.filter((e) => e._id === id)[0]);
   };
+
   return (
     <>
       <div className="table">
@@ -72,7 +74,7 @@ const CaseTable = ({ setPatient, setPatientModal }) => {
               onChange={(e) => setTerm(e.target.value)}
               type="search"
               onFocus={() => setSearchDropdown(true)}
-              placeholder="Search case (ID, Patient, Service)"
+              placeholder="Search case (case ID or patient name)"
             />
             <div className="patient-input-icon">
               <HiOutlineSearch />

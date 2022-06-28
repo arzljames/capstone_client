@@ -1,39 +1,7 @@
 .content-wrapper {
-  /* padding-bottom: 100px; */
   width: 100%;
-  overflow-y: scroll;
-  height: 100%;
 }
 
-/* width */
-.content-wrapper::-webkit-scrollbar {
-  width: 0px;
-}
-
-/* Track */
-.content-wrapper::-webkit-scrollbar-track {
-  background: #f1f1f100;
-}
-
-/* Handle */
-.content-wrapper::-webkit-scrollbar-thumb {
-  background: rgba(136, 136, 136, 0);
-}
-
-/* Handle on hover */
-.content-wrapper::-webkit-scrollbar-thumb:hover {
-  background: rgba(85, 85, 85, 0);
-}
-
-.content-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding:  20px;
-  padding-bottom: 0px;
-  overflow-x: hidden;
-  margin-bottom: 70px;
-}
 
 .container-divider {
   display: flex;

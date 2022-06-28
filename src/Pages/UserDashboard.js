@@ -22,13 +22,10 @@ import "./UserDashboard.css";
 
 const UserDashboard = () => {
   const {
-    pending,
     facilities,
     listUsers,
     patients,
     cases,
-    toast,
-    ToastContainer,
   } = useAuth();
 
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());

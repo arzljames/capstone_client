@@ -142,39 +142,41 @@ const AdminGenerateReport = ({ setFilterModal }) => {
                   <div className="pt-hospital">Hospital</div>
                 </div>
 
-                {patients
-                  .filter(filterGender)
-                  .filter(filterHospital)
-                  .filter(filterSpec)
-                  .filter(filterAge)
-                  .map((item, key) => {
-                    return (
-                      <div
-                        key={key + 1}
-                        className={
-                          key % 2 === 0 ? "table-body" : "table-body-2"
-                        }
-                      >
-                        <div className="pt-name">
-                          {item.firstname + " " + item.lastname}{" "}
-                        </div>
-
-                        <div className="pt-date">
-                          Dr.{" "}
-                          {item.physician.firstname +
-                            " " +
-                            item.physician.lastname}
-                        </div>
-                        <div className="pt-hospital">
-                          {
-                            facilities.filter(
-                              (e) => e._id === item.physician.designation
-                            )[0].facility
+                <div className="table-body-container">
+                  {patients
+                    .filter(filterGender)
+                    .filter(filterHospital)
+                    .filter(filterSpec)
+                    .filter(filterAge)
+                    .map((item, key) => {
+                      return (
+                        <div
+                          key={key + 1}
+                          className={
+                            key % 2 === 0 ? "table-body" : "table-body-2"
                           }
+                        >
+                          <div className="pt-name">
+                            {item.firstname + " " + item.lastname}{" "}
+                          </div>
+
+                          <div className="pt-date">
+                            Dr.{" "}
+                            {item.physician.firstname +
+                              " " +
+                              item.physician.lastname}
+                          </div>
+                          <div className="pt-hospital">
+                            {
+                              facilities.filter(
+                                (e) => e._id === item.physician.designation
+                              )[0].facility
+                            }
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                </div>
               </div>
               <div className="reports-overview-container">
                 <div className="rp-ov-1">

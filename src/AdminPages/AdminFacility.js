@@ -67,30 +67,29 @@ const AdminFacility = () => {
         <div className="content">
           <AdminHeader />
           <div className="content-body">
-            <div>
-              <div className="container-heading">
-                <h2>List of Hospitals</h2>
-                <motion.button
-                  className="green-cta"
-                  onClick={() => setShowModal(true)}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <p>
-                    <HiPlus />
-                  </p>
-                  Hospital
-                </motion.button>
-              </div>
+            <div className="container-heading">
+              <h2>List of Hospitals</h2>
+              <motion.button
+                className="green-cta"
+                onClick={() => setShowModal(true)}
+                whileTap={{ scale: 0.9 }}
+              >
+                <p>
+                  <HiPlus />
+                </p>
+                Hospital
+              </motion.button>
+            </div>
 
-              <div className="table">
-                <div className="above-table">
-                  <div className="patient-input-container">
-                    <input type="search" placeholder="Search facilities" />
-                    <div className="patient-input-icon">
-                      <HiOutlineSearch />
-                    </div>
+            <div className="table">
+              <div className="above-patient-table">
+                <div className="patient-input-container">
+                  <input value={term} onChange={(e) => setTerm(e.target.value)} type="search" placeholder="Search facilities" />
+                  <div className="patient-input-icon">
+                    <HiOutlineSearch />
                   </div>
-                  {/* <div className="above-table-right">
+                </div> 
+                {/* <div className="above-table-right">
                 <button className="fac-btns">
                   <p>
                     <HiOutlineFilter />
@@ -104,13 +103,14 @@ const AdminFacility = () => {
                   Sort by
                 </button>
               </div> */}
-                </div>
-                <div className="table-header">
-                  <div className="fac-name">Hospital Name</div>
-                  <div className="fac-doctors">Doctors</div>
-                  <div className="fac-spec">Specializations</div>
-                  <div className="fac-add">Address</div>
-                </div>
+              </div>
+              <div className="table-header">
+                <div className="fac-name">Hospital Name</div>
+                <div className="fac-doctors">Doctors</div>
+                <div className="fac-spec">Specializations</div>
+                <div className="fac-add">Address</div>
+              </div>
+              <div className="table-body-container">
                 {facilities
                   // .sort((a, b) => a.facility.localeCompare(b.facility))
                   .slice(
@@ -139,8 +139,6 @@ const AdminFacility = () => {
                     );
                   })}
               </div>
-
-              <br />
               <div className="pagination-container">
                 <ReactPaginate
                   previousLabel={<HiChevronLeft size={20} />}

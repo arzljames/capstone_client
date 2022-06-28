@@ -100,24 +100,24 @@ const Case = () => {
             <ConsultationNavbar />
 
             <div className="content-body">
-              <div className="container-heading">
-                <h2>Consultation Case</h2>
-                <div className="subheading-btns">
-                  {user.designation !== "623ec7fb80a6838424edaa29" && (
-                    <button
-                      onClick={() => setShowCase(true)}
-                      className="add-case-btn"
-                    >
-                      <p>
-                        <HiPlus />
-                      </p>
-                      Case
-                    </button>
-                  )}
+              <div className="consultation-wrapper">
+                <div className="container-heading">
+                  <h2>Consultation Case</h2>
+                  <div className="subheading-btns">
+                    {user.designation !== "623ec7fb80a6838424edaa29" && (
+                      <button
+                        onClick={() => setShowCase(true)}
+                        className="add-case-btn"
+                      >
+                        <p>
+                          <HiPlus />
+                        </p>
+                        Case
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              <div>
                 <CaseTable
                   setPatient={setPatient}
                   setPatientModal={setPatientModal}

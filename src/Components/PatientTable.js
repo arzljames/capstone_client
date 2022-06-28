@@ -75,7 +75,7 @@ const PatientTableData = ({
               onChange={(e) => setTerm(e.target.value)}
               type="search"
               onFocus={() => setSearchDropdown(true)}
-              placeholder="Search patient (last name, first name)"
+              placeholder="Search patient (e.g Dela Cruz, Juan)"
             />
             <div className="patient-input-icon">
               <HiOutlineSearch />
@@ -188,87 +188,92 @@ const PatientTableData = ({
           <div className="pt-total">Total Case</div>
           <div className="pt-date">Date Admitted</div>
         </div>
+        <div className="table-body-container">
+          {patientState.length !== 0
+            ? patientState
 
-        {patientState.length !== 0
-          ? patientState
+                .filter((val) => {
+                  if (term === "") {
+                    return val;
+                  } else if (
+                    val.fullname
+                      .toLowerCase()
+                      .includes(term.toLocaleLowerCase())
+                  ) {
+                    return val;
+                  }
+                })
+                .sort(
+                  sort === "Newest"
+                    ? sortDscDate
+                    : sort === "Oldest"
+                    ? sortAscDate
+                    : sort === "Name (A-Z)"
+                    ? sortAscName
+                    : sortDscName
+                )
+                .slice(
+                  term === "" ? pagesVisited : 0,
+                  term === ""
+                    ? pagesVisited + usersPerPage
+                    : patientState.length
+                )
+                .map((item, key) => {
+                  return (
+                    <div
+                      key={key + 1}
+                      onClick={() => {
+                        setPatientModal(true);
+                        setPatientId(item._id);
+                        filterPatient(item._id);
+                      }}
+                      className={key % 2 === 0 ? "table-body" : "table-body-2"}
+                    >
+                      <div className="pt-name">
+                        <p>{item.firstname + " " + item.lastname} </p>
+                      </div>
 
-              .filter((val) => {
-                if (term === "") {
-                  return val;
-                } else if (
-                  val.fullname.toLowerCase().includes(term.toLocaleLowerCase())
-                ) {
-                  return val;
-                }
-              })
-              .sort(
-                sort === "Newest"
-                  ? sortDscDate
-                  : sort === "Oldest"
-                  ? sortAscDate
-                  : sort === "Name (A-Z)"
-                  ? sortAscName
-                  : sortDscName
-              )
-              .slice(
-                term === "" ? pagesVisited : 0,
-                term === "" ? pagesVisited + usersPerPage : patientState.length
-              )
-              .map((item, key) => {
-                return (
-                  <div
-                    key={key + 1}
-                    onClick={() => {
-                      setPatientModal(true);
-                      setPatientId(item._id);
-                      filterPatient(item._id);
-                    }}
-                    className={key % 2 === 0 ? "table-body" : "table-body-2"}
-                  >
-                    <div className="pt-name">
-                      <p>{item.firstname + " " + item.lastname} </p>
+                      <div className="pt-active">
+                        {
+                          cases.filter(
+                            (f) =>
+                              f.patient._id === item._id && f.active === true
+                          ).length
+                        }
+                      </div>
+                      <div className="pt-total">
+                        {cases.filter((f) => f.patient._id === item._id).length}
+                      </div>
+                      <div className="pt-date">{getDate(item.createdAt)}</div>
                     </div>
-
-                    <div className="pt-active">
-                      {
-                        cases.filter(
-                          (f) => f.patient._id === item._id && f.active === true
-                        ).length
-                      }
-                    </div>
-                    <div className="pt-total">
-                      {cases.filter((f) => f.patient._id === item._id).length}
-                    </div>
-                    <div className="pt-date">{getDate(item.createdAt)}</div>
-                  </div>
-                );
-              })
-          : // <div className="no-patients">
-            //   <h1>No Patients</h1>
-            //   <p>
-            //     Looks like you don't have a patient to handle. Click the{" "}
-            //     <em>add patient</em> button above to start adding patient.
-            //   </p>
-            // </div>
-            null}
-      </div>
-
-      <div className="pagination-container">
-        <ReactPaginate
-          previousLabel={<HiChevronLeft size={20} />}
-          nextLabel={<HiChevronRight size={20} />}
-          breakLabel="..."
-          pageCount={pageCount}
-          marginPagesDisplayed={3}
-          containerClassName="pagination"
-          pageClassName="page-item"
-          pageLinkClassName="page-link"
-          breakClassName="page-item"
-          nextClassName="page-item"
-          previousClassName="page-item"
-          activeClassName="active"
-          onPageChange={changePage}
-        />
+                  );
+                })
+            : // <div className="no-patients">
+              //   <h1>No Patients</h1>
+              //   <p>
+              //     Looks like you don't have a patient to handle. Click the{" "}
+              //     <em>add patient</em> button above to start adding patient.
+              //   </p>
+              // </div>
+              null}
+        </div>
+        <div className="pagination-container">
+          <ReactPaginate
+            previousLabel={<HiChevronLeft size={20} />}
+            nextLabel={<HiChevronRight size={20} />}
+            breakLabel="..."
+            pageCount={pageCount}
+            marginPagesDisplayed={3}
+            containerClassName="pagination"
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            breakClassName="page-item"
+            nextClassName="page-item"
+            previousClassName="page-item"
+            activeClassName="active"
+            onPageChange={changePage}
+          />
+        </div>
       </div>
     </>
   );

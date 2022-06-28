@@ -704,10 +704,11 @@ button.deactive-btn:hover {
   color: #272727;
   font-size: 12px;
   padding: 6px 10px;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   align-items: center;
   width: 120px;
+  border-radius: 4px;
 }
 
 .import-patient-input {

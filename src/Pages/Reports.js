@@ -17,11 +17,10 @@ import "./Reports.css";
 import ReactTimeAgo from "react-time-ago";
 import { useNavigate } from "react-router-dom";
 import "./Patients.css";
-import { toast, ToastContainer } from "react-toastify";
 import ReactPaginate from "react-paginate";
 
 const Reports = () => {
-  const { reports } = useAuth();
+  const { reports, ToastContainer } = useAuth();
   const [filterModal, setFilterModal] = useState(false);
 
   const getDate = (date) => {
@@ -75,99 +74,85 @@ const Reports = () => {
         <div className="content">
           <Header />
           <div className="content-body">
-            <div className="content-wrapper">
-              <div className="reports-header">
-                <h2>Reports</h2>
-                <div className="reports-header-btns">
-                  <button
-                    onClick={() => setFilterModal(true)}
-                    className="create-report"
-                  >
-                    <p>
-                      <HiPlus />
-                    </p>
-                    Report
-                  </button>
-                </div>
+            <div className="container-heading">
+              <h2>Reports</h2>
+              <div className="reports-header-btns">
+                <button
+                  onClick={() => setFilterModal(true)}
+                  className="create-report"
+                >
+                  <p>
+                    <HiPlus />
+                  </p>
+                  Report
+                </button>
               </div>
-              <div
-                style={{ paddingBottom: "20px" }}
-                className="content-wrapper"
-              >
-                <div className="table">
-                  <div className="table-header">
-                    <div className="rp-id">Report ID</div>
-                    <div className="rp-created">Created By</div>
-                    <div className="rp-date">Date Created</div>
-                    <div className="rp-modified">Last modified</div>
-                  </div>
-                  <div className="table-body-container">
-                    {reports
-                      .slice(
-                        term === "" ? pagesVisited : 0,
-                        term === ""
-                          ? pagesVisited + usersPerPage
-                          : reports.length
-                      )
-                      .map((item, index) => {
-                        return (
-                          <div
-                            key={index}
-                            className={
-                              index % 2 === 0 ? "table-body" : "table-body-2"
+            </div>
+
+            <div className="table">
+              <div className="table-header">
+                <div className="rp-id">Report ID</div>
+                <div className="rp-created">Created By</div>
+                <div className="rp-date">Date Created</div>
+                <div className="rp-modified">Last modified</div>
+              </div>
+              <div className="table-body-container">
+                {reports
+                  .slice(
+                    term === "" ? pagesVisited : 0,
+                    term === "" ? pagesVisited + usersPerPage : reports.length
+                  )
+                  .map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className={
+                          index % 2 === 0 ? "table-body" : "table-body-2"
+                        }
+                      >
+                        <div className="rp-id">
+                          <p
+                            onClick={() =>
+                              navigate(`/reports/${item._id}/${item.reportId}`)
                             }
                           >
-                            <div className="rp-id">
-                              <p
-                                onClick={() =>
-                                  navigate(
-                                    `/reports/${item._id}/${item.reportId}`
-                                  )
-                                }
-                              >
-                                {item.reportId}
-                              </p>
-                            </div>
-                            <div className="rp-created">
-                              Dr.{" "}
-                              {item.creator.firstname +
-                                " " +
-                                item.creator.lastname}
-                            </div>
-                            <div className="rp-date">
-                              {getDate(item.createdAt)}
-                            </div>
-                            <div className="rp-modified">
-                              {
-                                <ReactTimeAgo
-                                  date={item.updatedAt}
-                                  locale="en-US"
-                                  timeStyle="round-minute"
-                                />
-                              }
-                            </div>
-                          </div>
-                        );
-                      })}
-                  </div>
-                  <div className="pagination-container">
-                    <ReactPaginate
-                      previousLabel={<HiChevronLeft size={20} />}
-                      nextLabel={<HiChevronRight size={20} />}
-                      breakLabel="..."
-                      pageCount={pageCount}
-                      marginPagesDisplayed={3}
-                      containerClassName="pagination"
-                      pageClassName="page-item"
-                      pageLinkClassName="page-link"
-                      breakClassName="page-item"
-                      nextClassName="page-item"
-                      previousClassName="page-item"
-                      activeClassName="active"
-                      onPageChange={changePage}
-                    />
-                  </div>
-                </div>
+                            {item.reportId}
+                          </p>
+                        </div>
+                        <div className="rp-created">
+                          Dr.{" "}
+                          {item.creator.firstname + " " + item.creator.lastname}
+                        </div>
+                        <div className="rp-date">{getDate(item.createdAt)}</div>
+                        <div className="rp-modified">
+                          {
+                            <ReactTimeAgo
+                              date={item.updatedAt}
+                              locale="en-US"
+                              timeStyle="round-minute"
+                            />
+                          }
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+              <div className="pagination-container">
+                <ReactPaginate
+                  previousLabel={<HiChevronLeft size={20} />}
+                  nextLabel={<HiChevronRight size={20} />}
+                  breakLabel="..."
+                  pageCount={pageCount}
+                  marginPagesDisplayed={3}
+                  containerClassName="pagination"
+                  pageClassName="page-item"
+                  pageLinkClassName="page-link"
+                  breakClassName="page-item"
+                  nextClassName="page-item"
+                  previousClassName="page-item"
+                  activeClassName="active"
+                  onPageChange={changePage}
+                />
               </div>
             </div>
           </div>

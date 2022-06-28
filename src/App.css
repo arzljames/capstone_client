@@ -47,8 +47,15 @@ select {
   width: auto;
   display: flex;
   flex-direction: column;
-  margin: 0px;
-  height: 100%;
+  
+}
+
+.content-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding:  20px;
+  overflow-x: hidden;
 }
 
 h2.heading {
@@ -243,20 +250,19 @@ button.gray-cta:hover {
 
 .table {
   width: 100%;
+  height: auto;
   background: #fff;
   border-radius: 8px;
-  padding: 0px 0px;
   border: 1px solid #ebebeb;
   position: relative;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  min-height: 550px;
   overflow: hidden;
-  height: 100%;
   padding: 20px 10px;
   padding-right: 0px;
   display: flex;
   flex-direction: column;
   padding-bottom: 0px;
+  flex: 1;
 }
 
 .table-header {
@@ -299,7 +305,7 @@ button.gray-cta:hover {
   border-left: 2px solid #05138e00;
   background: #fff;
   padding: 0px 10px;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 .table-body img,
@@ -313,7 +319,7 @@ button.gray-cta:hover {
 .table-body:hover,
 .table-body-2:hover {
   background: #e7e7eb;
-  border-left: 2px solid #92e3a9;
+  border-left: 3px solid #73ac83;
 }
 
 .table-body-active {
@@ -347,7 +353,7 @@ button.gray-cta:hover {
   border-left: 2px solid #05138e00;
   background: #f5f5f7;
   padding: 0px 10px;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 .searchbar-container {
@@ -483,7 +489,7 @@ button.gray-cta:hover {
 
 .patient-input-container input {
   width: 100%;
-  border: 1px solid rgb(231, 231, 231);
+  border: 1px solid #d3d3d3;
   outline: none;
   padding: 10px;
   padding-left: 35px;
@@ -495,12 +501,11 @@ button.gray-cta:hover {
 
 .patient-input-container input:focus {
   transition: 0.2s ease-in-out;
-  background: #ffffff;
-  border: 1px solid #a5a5a5;
+  border: 1px solid #4b4b4b;
 }
 
 .patient-input-container input::placeholder {
-  font-size: 12px;
+  font-size: 13px;
   font-style: italic;
 }
 
