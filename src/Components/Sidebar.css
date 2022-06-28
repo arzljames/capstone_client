@@ -7,6 +7,17 @@
   flex-direction: column;
   align-items: center;
 }
+
+
+.sidebar-badge {
+  width: 9px;
+  height: 9px;
+  background: rgb(241, 55, 55);
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  border-radius: 50%;
+}
 .notif-badge {
   width: 15px;
   height: 15px;

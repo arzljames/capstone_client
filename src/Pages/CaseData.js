@@ -223,7 +223,7 @@ const CaseData = () => {
                               }
                               onClick={() => setModal(true)}
                             >
-                              Add Service
+                              Add Sub-service
                             </li>
                             {patientCase.active === true ? (
                               <li

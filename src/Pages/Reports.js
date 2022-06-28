@@ -36,6 +36,17 @@ const Reports = () => {
     return today;
   };
 
+  const getTime = (date) => {
+    var options = {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    };
+    let today = new Date(date).toLocaleString("en-US", options);
+
+    return today;
+  };
+
   const navigate = useNavigate();
 
   const [pageNumber, setPageNumber] = useState(0);
@@ -79,7 +90,7 @@ const Reports = () => {
               <div className="reports-header-btns">
                 <button
                   onClick={() => setFilterModal(true)}
-                  className="create-report"
+                  className="add-patient-btn"
                 >
                   <p>
                     <HiPlus />
@@ -93,7 +104,7 @@ const Reports = () => {
               <div className="table-header">
                 <div className="rp-id">Report ID</div>
                 <div className="rp-created">Created By</div>
-                <div className="rp-date">Date Created</div>
+                <div className="rp-date">Date & Time</div>
                 <div className="rp-modified">Last modified</div>
               </div>
               <div className="table-body-container">
@@ -123,7 +134,11 @@ const Reports = () => {
                           Dr.{" "}
                           {item.creator.firstname + " " + item.creator.lastname}
                         </div>
-                        <div className="rp-date">{getDate(item.createdAt)}</div>
+                        <div className="rp-date">
+                          {getDate(item.createdAt) +
+                            " " +
+                            getTime(item.createdAt)}
+                        </div>
                         <div className="rp-modified">
                           {
                             <ReactTimeAgo

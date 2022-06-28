@@ -8,10 +8,9 @@ import PulseLoader from "react-spinners/PulseLoader";
 import api from "../API/Api";
 
 const GenerateReport = ({ setFilterModal }) => {
-  const { patients, facilities, reports, cases } = useAuth();
+  const { patients, facilities, reports, specializations, cases } = useAuth();
   const [report, setReport] = useState([]);
   const [facility, setFacility] = useState("");
-  const [specialization, setSpecialization] = useState("");
 
   const { id, reportId } = useParams();
   const navigate = useNavigate();
@@ -43,36 +42,6 @@ const GenerateReport = ({ setFilterModal }) => {
     }
     return age;
   }
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let fac = await api.get("/api/facility");
-
-        if (fac.data && report.refer) {
-          setFacility(
-            fac.data.filter((e) => e._id === report.refer)[0].facility
-          );
-        }
-
-        if (fac.data && report.specialization) {
-          setSpecialization(
-            fac.data
-              .filter((e) => e._id === "623ec7fb80a6838424edaa29")
-              .map((item) => {
-                return item.specialization.filter(
-                  (f) => f._id === report.specialization
-                )[0];
-              })[0].name
-          );
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData();
-  }, [report]);
 
   const filterGender = (e) => {
     if (report.gender) {
@@ -118,25 +87,17 @@ const GenerateReport = ({ setFilterModal }) => {
     }
   };
 
-  // const filterSpec = (e) => {
-  //   if (report.specialization) {
-  //     return cases.some((f) => {
-  //       return (
-  //         f.patient._id === e._id && f.specialization === report.specialization
-  //       );
-  //     });
-  //   } else {
-  //     return e;
-  //   }
-  // };
-
   const filterSpec = (e) => {
-    return e;
+    if (report.specialization) {
+      return cases.some((f) => {
+        return (
+          f.patient._id === e._id && f.specialization === report.specialization
+        );
+      });
+    } else {
+      return e;
+    }
   };
-
-  useEffect(() => {
-    console.log(patients);
-  });
 
   if (!report) {
     return (
@@ -145,7 +106,6 @@ const GenerateReport = ({ setFilterModal }) => {
       </div>
     );
   }
-
 
   return (
     <>
@@ -186,11 +146,11 @@ const GenerateReport = ({ setFilterModal }) => {
                   <div className="pt-hospital">Hospital</div>
                 </div>{" "}
                 {patients
-                  // .filter(filterDate)
-                  // .filter(filterGender)
-                  // .filter(filterHospital)
-                  // .filter(filterSpec)
-                  // .filter(filterAge)
+                  .filter(filterDate)
+                  .filter(filterGender)
+                  .filter(filterHospital)
+                  .filter(filterSpec)
+                  .filter(filterAge)
                   .map((item, key) => {
                     return (
                       <div
@@ -221,7 +181,7 @@ const GenerateReport = ({ setFilterModal }) => {
               </div>
               <div className="reports-overview-container">
                 <div className="rp-ov-1">
-                  <h2>Report {reportId}</h2>
+                  <h2>Report ID {reportId}</h2>
 
                   {!report.from &&
                   !report.to &&
@@ -235,44 +195,52 @@ const GenerateReport = ({ setFilterModal }) => {
                     <h3>Filtered by:</h3>
                   )}
 
-                  {!report.from ? null : (
-                    <p>
-                      From: <label>{getDate(report.from)}</label>
-                    </p>
-                  )}
+                  <p>
+                    Date range:{" "}
+                    <label>
+                      ({!report.from ? "No date" : getDate(report.from)} -{" "}
+                      {!report.to ? "No date" : getDate(report.to)}){" "}
+                    </label>
+                  </p>
 
-                  {!report.to ? null : (
-                    <p>
-                      To: <label>{getDate(report.to)}</label>{" "}
-                    </p>
-                  )}
+                  <p>
+                    Sex:
+                    <label>
+                      {" "}
+                      {!report.gender ? "Not set" : report.gender}
+                    </label>{" "}
+                  </p>
 
-                  {!report.gender ? null : (
-                    <p>
-                      Sex:<label> {report.gender}</label>{" "}
-                    </p>
-                  )}
+                  <p>
+                    Age bracket:{" "}
+                    <label>
+                      {!report.minage && !report.maxage
+                        ? "Not set"
+                        : `${report.minage} - ${report.maxage} yrs old`}
+                    </label>
+                  </p>
 
-                  {!report.minage && !report.maxage ? null : (
-                    <p>
-                      Age bracket:{" "}
-                      <label>
-                        {report.minage} - {report.maxage} yrs old
-                      </label>
-                    </p>
-                  )}
+                  <p>
+                    Referring Hospital:
+                    <label>
+                      {" "}
+                      {!report.refer
+                        ? "Not set"
+                        : facilities.filter((e) => e._id === report.refer)[0]
+                            .facility}
+                    </label>
+                  </p>
 
-                  {!report.refer ? null : (
-                    <p>
-                      Referring Hospital: <label> {facility} </label>
-                    </p>
-                  )}
-
-                  {!report.specialization ? null : (
-                    <p>
-                      Specialization: <label>{specialization} </label>
-                    </p>
-                  )}
+                  <p>
+                    Specialization:{" "}
+                    <label>
+                      {!report.specialization
+                        ? "Not set"
+                        : specializations.filter(
+                            (e) => e._id === report.specialization
+                          )[0].specialization}
+                    </label>
+                  </p>
                 </div>
                 <div className="rp-ov-1">
                   <h4>
@@ -282,7 +250,7 @@ const GenerateReport = ({ setFilterModal }) => {
                         .filter(filterDate)
                         .filter(filterGender)
                         .filter(filterHospital)
-                        // .filter(filterSpec)
+                        .filter(filterSpec)
                         .filter(filterAge).length
                     }
                   </h4>

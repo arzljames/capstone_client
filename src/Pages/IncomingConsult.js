@@ -30,7 +30,7 @@ const IncomingConsult = () => {
                     <h2>All Incoming Requests</h2>
                     <p>
                       List of consultation request coming from other referring
-                      health facilites.
+                      hospitals.
                     </p>
                   </div>
                 </div>

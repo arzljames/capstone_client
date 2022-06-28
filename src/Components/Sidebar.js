@@ -16,7 +16,7 @@ const Sidebar = () => {
   const [playbackRate, setPlaybackRate] = useState(1);
   const [play] = useSound(notif, { playbackRate });
 
-  const { notification, user, setNotification } = useAuth();
+  const { cases, user, setNotification } = useAuth();
 
   useEffect(() => {
     const fetchNotif = () => {
@@ -30,6 +30,33 @@ const Sidebar = () => {
       fetchNotif();
     }
   }, [socket]);
+
+  const [refBadge, setRefBadge] = useState(false);
+  const [docBadge, setDocBadage] = useState(false);
+
+  useEffect(() => {
+    const fetchBadge = () => {
+      if (
+        cases.filter(
+          (e) => e.physician._id === user.userId && e.active === true
+        ).length > 0
+      ) {
+        setRefBadge(true);
+      } else if (
+        cases.filter(
+          (e) =>
+            e.specialization.includes(user.specialization) && e.active === true
+        ).length > 0
+      ) {
+        setDocBadage(true);
+      } else {
+        setDocBadage(false);
+        setRefBadge(false);
+      }
+    };
+
+    fetchBadge();
+  }, [cases]);
 
   return (
     <div className="admin-sidebar">
@@ -48,6 +75,10 @@ const Sidebar = () => {
                 : "icon-container"
             }
           >
+            {(item.name === "Consult" && refBadge) ||
+            (item.name === "Consult" && docBadge) ? (
+              <div className="sidebar-badge"></div>
+            ) : null}
             <div className="icon">
               {item.link === path ||
               path.includes(item.link2) ||

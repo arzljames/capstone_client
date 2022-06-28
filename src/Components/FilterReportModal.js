@@ -11,7 +11,7 @@ const FilterReportModal = ({ setFilterModal }) => {
     setFilterModal(false);
   });
 
-  const { facilities, listUsers, user, setAppState } = useAuth();
+  const { facilities, listUsers, user, setAppState, specializations } = useAuth();
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [refer, setRefer] = useState("");
@@ -192,7 +192,7 @@ const FilterReportModal = ({ setFilterModal }) => {
             onChange={(e) => setSpecialization(e.target.value)}
           >
             <option value="">Not set</option>
-            {facilities
+            {/* {facilities
               .filter((e) => e._id === "623ec7fb80a6838424edaa29")
               .map((item, index) => {
                 return item.specialization.map((f) => {
@@ -202,6 +202,9 @@ const FilterReportModal = ({ setFilterModal }) => {
                     </option>
                   );
                 });
+              })} */}
+              {specializations.map((e, index) => {
+                return <option key={index} value={e._id}>{e.specialization}</option>
               })}
           </select>
         </div>

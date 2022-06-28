@@ -28,8 +28,7 @@ const OutgoingConsult = () => {
                   <div>
                     <h2>All Outgoing Requests</h2>
                     <p>
-                      List of consultation request to other referring health
-                      facilites.
+                      List of consultation request to Zamboanga City Medical Center.
                     </p>
                   </div>
                 </div>
