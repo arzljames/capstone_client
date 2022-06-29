@@ -9,6 +9,8 @@
     "@hookform/resolvers": "^2.8.8",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.5",
+    "@nivo/bar": "^0.79.1",
+    "@nivo/core": "^0.79.0",
     "@react-icons/all-files": "^4.1.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",

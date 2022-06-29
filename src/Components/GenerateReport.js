@@ -183,23 +183,14 @@ const GenerateReport = ({ setFilterModal }) => {
                 <div className="rp-ov-1">
                   <h2>Report ID {reportId}</h2>
 
-                  {!report.from &&
-                  !report.to &&
-                  !report.gender &&
-                  !report.minage &&
-                  !report.maxage &&
-                  !report.refer &&
-                  !report.specialization ? (
-                    <h3>No filter options set. Showing all patients</h3>
-                  ) : (
-                    <h3>Filtered by:</h3>
-                  )}
+                  <h3>Filtered by:</h3>
 
                   <p>
                     Date range:{" "}
                     <label>
-                      ({!report.from ? "No date" : getDate(report.from)} -{" "}
-                      {!report.to ? "No date" : getDate(report.to)}){" "}
+                      {report.from && report.to
+                        ? `${getDate(report.from)} - ${getDate(report.to)}`
+                        : "No date set"}
                     </label>
                   </p>
 
@@ -244,7 +235,7 @@ const GenerateReport = ({ setFilterModal }) => {
                 </div>
                 <div className="rp-ov-1">
                   <h4>
-                    Total Patients:{" "}
+                    Total Patient(s):{" "}
                     {
                       patients
                         .filter(filterDate)
@@ -254,6 +245,8 @@ const GenerateReport = ({ setFilterModal }) => {
                         .filter(filterAge).length
                     }
                   </h4>
+
+                  <h4>Total Case(s): {}</h4>
                 </div>
               </div>
             </div>

@@ -25,6 +25,7 @@ import {
 } from "chart.js";
 import { Chart, Line } from "react-chartjs-2";
 import PendingUserProfileModal from "../AdminComponents/PendingUserProfileModal";
+import SpecializationChart from "../Components/SpecializationChart";
 
 ChartJS.register(
   CategoryScale,
@@ -275,8 +276,7 @@ const AdminDashboard = () => {
               />
             </div>
             <div className="container-divider">
-              <div className="admin-container-content">
-                <div className="chart-container">
+              {/* <div className="chart-container">
                   <div className="year-selected">
                     <h2>Year :</h2>{" "}
                     <select
@@ -295,8 +295,110 @@ const AdminDashboard = () => {
                   ) : (
                     <Line options={options} data={data} />
                   )}
-                </div>
-              </div>
+                </div> */}
+
+              {/*  <SpecializationChart
+                data={[
+                  {
+                    country: "AD",
+                    "hot dog": 137,
+                    "hot dogColor": "hsl(156, 70%, 50%)",
+                    burger: 83,
+                    burgerColor: "hsl(245, 70%, 50%)",
+                  },
+                  {
+                    country: "AE",
+                    "hot dog": 98,
+                    "hot dogColor": "hsl(314, 70%, 50%)",
+                    burger: 6,
+                    burgerColor: "hsl(349, 70%, 50%)",
+                    sandwich: 140,
+                    sandwichColor: "hsl(125, 70%, 50%)",
+                    kebab: 138,
+                    kebabColor: "hsl(290, 70%, 50%)",
+                    fries: 112,
+                    friesColor: "hsl(149, 70%, 50%)",
+                    donut: 111,
+                    donutColor: "hsl(243, 70%, 50%)",
+                  },
+                  {
+                    country: "AF",
+                    "hot dog": 39,
+                    "hot dogColor": "hsl(111, 70%, 50%)",
+                    burger: 121,
+                    burgerColor: "hsl(89, 70%, 50%)",
+                    sandwich: 149,
+                    sandwichColor: "hsl(135, 70%, 50%)",
+                    kebab: 67,
+                    kebabColor: "hsl(256, 70%, 50%)",
+                    fries: 114,
+                    friesColor: "hsl(80, 70%, 50%)",
+                    donut: 47,
+                    donutColor: "hsl(359, 70%, 50%)",
+                  },
+                  {
+                    country: "AG",
+                    "hot dog": 141,
+                    "hot dogColor": "hsl(1, 70%, 50%)",
+                    burger: 104,
+                    burgerColor: "hsl(332, 70%, 50%)",
+                    sandwich: 9,
+                    sandwichColor: "hsl(173, 70%, 50%)",
+                    kebab: 47,
+                    kebabColor: "hsl(268, 70%, 50%)",
+                    fries: 35,
+                    friesColor: "hsl(216, 70%, 50%)",
+                    donut: 12,
+                    donutColor: "hsl(159, 70%, 50%)",
+                  },
+                  {
+                    country: "AI",
+                    "hot dog": 172,
+                    "hot dogColor": "hsl(321, 70%, 50%)",
+                    burger: 170,
+                    burgerColor: "hsl(97, 70%, 50%)",
+                    sandwich: 50,
+                    sandwichColor: "hsl(333, 70%, 50%)",
+                    kebab: 76,
+                    kebabColor: "hsl(310, 70%, 50%)",
+                    fries: 52,
+                    friesColor: "hsl(8, 70%, 50%)",
+                    donut: 125,
+                    donutColor: "hsl(340, 70%, 50%)",
+                  },
+                  {
+                    country: "AL",
+                    "hot dog": 75,
+                    "hot dogColor": "hsl(168, 70%, 50%)",
+                    burger: 13,
+                    burgerColor: "hsl(159, 70%, 50%)",
+                    sandwich: 94,
+                    sandwichColor: "hsl(170, 70%, 50%)",
+                    kebab: 170,
+                    kebabColor: "hsl(142, 70%, 50%)",
+                    fries: 127,
+                    friesColor: "hsl(110, 70%, 50%)",
+                    donut: 68,
+                    donutColor: "hsl(224, 70%, 50%)",
+                  },
+                  {
+                    country: "AM",
+                    "hot dog": 64,
+                    "hot dogColor": "hsl(338, 70%, 50%)",
+                    burger: 69,
+                    burgerColor: "hsl(110, 70%, 50%)",
+                    sandwich: 183,
+                    sandwichColor: "hsl(27, 70%, 50%)",
+                    kebab: 67,
+                    kebabColor: "hsl(161, 70%, 50%)",
+                    fries: 111,
+                    friesColor: "hsl(96, 70%, 50%)",
+                    donut: 131,
+                    donutColor: "hsl(260, 70%, 50%)",
+                  },
+                ]}
+              /> */}
+
               <div className="admin-right-panel">
                 <div className="pending-registration">
                   <h2>Pending Registration</h2>

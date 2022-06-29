@@ -47,14 +47,13 @@ select {
   width: auto;
   display: flex;
   flex-direction: column;
-  
 }
 
 .content-body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding:  20px;
+  padding: 20px;
   overflow-x: hidden;
 }
 
@@ -270,7 +269,7 @@ button.gray-cta:hover {
   height: 50px;
   min-height: 50px;
   display: flex;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 2px solid #808080;
   font-size: 14px;
   display: flex;
   align-items: center;
@@ -278,7 +277,6 @@ button.gray-cta:hover {
   font-weight: 600;
   text-transform: uppercase;
   color: #414141;
-  border-left: 2px solid #05138e00;
   padding: 0px 10px;
   padding-right: 40px;
 }
@@ -288,7 +286,6 @@ button.gray-cta:hover {
   overflow-y: scroll;
   padding-right: 10px;
   height: 100%;
-
 }
 
 .table-body {
@@ -403,7 +400,6 @@ button.gray-cta:hover {
 .above-patient-table .btn-inactive {
   position: relative;
   border-radius: 4px;
-
 }
 
 .above-patient-table button.btn-inactive:hover {
@@ -430,9 +426,8 @@ button.gray-cta:hover {
 
 .patient-input-container {
   width: 100%;
-  max-width:400px;
+  max-width: 400px;
   position: relative;
-
 }
 
 .patient-input-container div.advance-search {
@@ -502,7 +497,6 @@ button.gray-cta:hover {
 .patient-input-container input:focus {
   transition: 0.2s ease-in-out;
   border: 1px solid #4b4b4b;
- 
 }
 
 .patient-input-container input::placeholder {
@@ -560,7 +554,8 @@ div.popup-modal h1 {
   color: #ff3131;
 }
 
-.popup-modal input, .popup-modal select {
+.popup-modal input,
+.popup-modal select {
   width: 100%;
   border: 1px solid #acacac;
   height: 35px;
@@ -570,7 +565,8 @@ div.popup-modal h1 {
   margin-bottom: 20px;
 }
 
-.popup-modal input:focus, .popup-modal select:focus {
+.popup-modal input:focus,
+.popup-modal select:focus {
   border: 1px solid #4b4b4b;
 }
 

@@ -48,26 +48,30 @@
   justify-content: center;
 }
 
+
+
 .cs-status p.active {
   color: #058e46;
-  width: auto;
   background: transparent;
   display: flex;
   align-items: center;
-  padding: 4px 8px;
+  justify-content: center;
+  width: 70px;
   background: #dcf1e5;
-  border-radius: 4px;
+  border-radius: 100px;
+  height: 25px;
 }
 
 .cs-status p.done {
   color: #ff831d;
-  width: auto;
   background: transparent;
   display: flex;
   align-items: center;
-  padding: 4px 8px;
   background: #ffeee0;
-  border-radius: 4px;
+  justify-content: center;
+  border-radius: 100px;
+  width: 70px;
+  height: 25px;
 }
 
 .cs-status .indicator {

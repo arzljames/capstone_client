@@ -11,15 +11,13 @@ import api from "../API/Api";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponseChat from "../Components/ResponseChat";
 import PulseLoader from "react-spinners/PulseLoader";
-
 import DeleteCaseModal from "../Components/DeleteCaseModal";
 import { DocumentGenerator } from "../Components/DocumentGenerator";
 import { buttonVariant, dropdownVariants } from "../Animations/Animations";
-import { ToastContainer, toast } from "react-toastify";
-import { AiOutlineCaretDown } from "react-icons/ai";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import NoUser from "../Assets/nouser.png";
 import AddServiceModal from "../Components/AddServiceModal";
+import { IoReturnUpForward } from "react-icons/io5";
 
 const CaseData = () => {
   const [modal, setModal] = useState(false);
@@ -266,6 +264,12 @@ const CaseData = () => {
                       )}
                     </AnimatePresence>
                   </motion.button>
+                  <button className="green-cta">
+                    <p>
+                      <IoReturnUpForward />
+                    </p>
+                    Follow-up
+                  </button>
                 </div>
               </div>
 
