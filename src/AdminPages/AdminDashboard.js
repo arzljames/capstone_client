@@ -305,61 +305,63 @@ const AdminDashboard = () => {
                 subBg="#ffe2d6"
               />
             </div>
-            <SpecializationChart
-              data={[
-                {
-                  country: "AD",
-                  "hot dog": 137,
-                  "hot dogColor": "hsl(156, 70%, 50%)",
-                  burger: 83,
-                  burgerColor: "hsl(245, 70%, 50%)",
-                },
-                {
-                  country: "AE",
-                  "hot dog": 98,
-                  "hot dogColor": "hsl(314, 70%, 50%)",
-                  burger: 6,
-                  burgerColor: "hsl(349, 70%, 50%)",
-                },
-                {
-                  country: "AF",
-                  "hot dog": 39,
-                  "hot dogColor": "hsl(111, 70%, 50%)",
-                  burger: 121,
-                  burgerColor: "hsl(89, 70%, 50%)",
-                },
-                {
-                  country: "AG",
-                  "hot dog": 141,
-                  "hot dogColor": "hsl(1, 70%, 50%)",
-                  burger: 104,
-                  burgerColor: "hsl(332, 70%, 50%)",
-                },
-                {
-                  country: "AI",
-                  "hot dog": 172,
-                  "hot dogColor": "hsl(321, 70%, 50%)",
-                  burger: 170,
-                  burgerColor: "hsl(97, 70%, 50%)",
-                },
-                {
-                  country: "AL",
-                  "hot dog": 75,
-                  "hot dogColor": "hsl(168, 70%, 50%)",
-                  burger: 13,
-                  burgerColor: "hsl(159, 70%, 50%)",
-                },
-                {
-                  country: "AM",
-                  "hot dog": 64,
-                  "hot dogColor": "hsl(338, 70%, 50%)",
-                  burger: 69,
-                  burgerColor: "hsl(110, 70%, 50%)",
-                },
-              ]}
-            />
 
             <div className="container-divider">
+              <div style={{ maxHeight: "500px" }} className="chart-container">
+                <SpecializationChart
+                  data={[
+                    {
+                      Year: "AD",
+                      Patients: 137,
+                      "hot dogColor": "hsl(156, 70%, 50%)",
+                      Cases: 83,
+                      burgerColor: "hsl(245, 70%, 50%)",
+                    },
+                    {
+                      Year: "AE",
+                      "hot dog": 98,
+                      "hot dogColor": "hsl(314, 70%, 50%)",
+                      burger: 6,
+                      burgerColor: "hsl(349, 70%, 50%)",
+                    },
+                    {
+                      Year: "AF",
+                      "hot dog": 39,
+                      "hot dogColor": "hsl(111, 70%, 50%)",
+                      burger: 121,
+                      burgerColor: "hsl(89, 70%, 50%)",
+                    },
+                    {
+                      Year: "AG",
+                      "hot dog": 141,
+                      "hot dogColor": "hsl(1, 70%, 50%)",
+                      burger: 104,
+                      burgerColor: "hsl(332, 70%, 50%)",
+                    },
+                    {
+                      Year: "AI",
+                      "hot dog": 172,
+                      "hot dogColor": "hsl(321, 70%, 50%)",
+                      burger: 170,
+                      burgerColor: "hsl(97, 70%, 50%)",
+                    },
+                    {
+                      Year: "AL",
+                      "hot dog": 75,
+                      "hot dogColor": "hsl(168, 70%, 50%)",
+                      burger: 13,
+                      burgerColor: "hsl(159, 70%, 50%)",
+                    },
+                    {
+                      Year: "AM",
+                      "hot dog": 64,
+                      "hot dogColor": "hsl(338, 70%, 50%)",
+                      burger: 69,
+                      burgerColor: "hsl(110, 70%, 50%)",
+                    },
+                  ]}
+                />
+              </div>
               {/* <div className="chart-container">
                   <div className="year-selected">
                     <h2>Year :</h2>{" "}

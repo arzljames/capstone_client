@@ -5,8 +5,8 @@ import useAuth from "../Hooks/useAuth";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import PulseLoader from "react-spinners/PulseLoader";
-import api from "../API/Api";
 import { CSVLink } from "react-csv";
+import { ResponsivePie } from "@nivo/pie";
 
 const GenerateReport = ({ setFilterModal }) => {
   const { patients, facilities, reports, specializations, cases } = useAuth();
@@ -19,6 +19,14 @@ const GenerateReport = ({ setFilterModal }) => {
   useEffect(() => {
     setReport(reports.filter((e) => e._id === id)[0]);
   }, [reports]);
+
+  if (!report) {
+    return (
+      <div className="wait-spinner-container">
+        <PulseLoader size={10} margin={2} color="#058e46" />
+      </div>
+    );
+  }
 
   const getDate = (date) => {
     let todate = new Date(date);
@@ -123,14 +131,6 @@ const GenerateReport = ({ setFilterModal }) => {
     filename: `${reportId}.csv`,
   };
 
-  if (!report) {
-    return (
-      <div className="wait-spinner-container">
-        <PulseLoader size={10} margin={2} color="#058e46" />
-      </div>
-    );
-  }
-
   return (
     <>
       <div className="container">
@@ -154,13 +154,13 @@ const GenerateReport = ({ setFilterModal }) => {
                   Edit Filter
                 </button> */}
                 <button className="export-csv">
-                  <p>
-                    <HiDocumentDownload />
-                  </p>
-                  Export to CSV
+                  <CSVLink {...csvReport}>
+                    <p>
+                      <HiDocumentDownload />
+                    </p>
+                    Export to CSV
+                  </CSVLink>
                 </button>
-
-                <CSVLink {...csvReport}>Export to CSV</CSVLink>
               </div>
             </div>
 
@@ -259,9 +259,16 @@ const GenerateReport = ({ setFilterModal }) => {
                     </label>
                   </p>
                 </div>
-                <div className="rp-ov-1">
+                <div style={{ maxHeight: "300px" }} className="rp-ov-1">
                   <h4>
-                    Total Patient(s):{" "}
+                    {patients
+                      .filter(filterDate)
+                      .filter(filterGender)
+                      .filter(filterHospital)
+                      .filter(filterSpec)
+                      .filter(filterAge).length > 1
+                      ? "Filtered Patients: "
+                      : "Filtered Patient: "}
                     {
                       patients
                         .filter(filterDate)
@@ -271,8 +278,141 @@ const GenerateReport = ({ setFilterModal }) => {
                         .filter(filterAge).length
                     }
                   </h4>
-
-                  <h4>Total Case(s): {}</h4>
+                  <ResponsivePie
+                    data={[
+                      {
+                        id: "Filtered PT",
+                        label: "Filtered PT",
+                        value: patients
+                          .filter(filterDate)
+                          .filter(filterGender)
+                          .filter(filterHospital)
+                          .filter(filterSpec)
+                          .filter(filterAge).length,
+                        color: "hsl(51, 70%, 50%)",
+                      },
+                      {
+                        id: "Total PT",
+                        label: "Total PT",
+                        value: patients.length,
+                        color: "hsl(192, 70%, 50%)",
+                      },
+                    ]}
+                    margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+                    innerRadius={0.5}
+                    padAngle={0.7}
+                    cornerRadius={3}
+                    activeOuterRadiusOffset={8}
+                    borderWidth={1}
+                    borderColor={{
+                      from: "color",
+                      modifiers: [["darker", 0.2]],
+                    }}
+                    arcLinkLabelsSkipAngle={10}
+                    arcLinkLabelsTextColor="#333333"
+                    arcLinkLabelsThickness={2}
+                    arcLinkLabelsColor={{ from: "color" }}
+                    arcLabelsSkipAngle={10}
+                    arcLabelsTextColor={{
+                      from: "color",
+                      modifiers: [["darker", 2]],
+                    }}
+                    defs={[
+                      {
+                        id: "dots",
+                        type: "patternDots",
+                        background: "inherit",
+                        color: "rgba(255, 255, 255, 0.3)",
+                        size: 4,
+                        padding: 1,
+                        stagger: true,
+                      },
+                      {
+                        id: "lines",
+                        type: "patternLines",
+                        background: "inherit",
+                        color: "rgba(255, 255, 255, 0.3)",
+                        rotation: -45,
+                        lineWidth: 6,
+                        spacing: 10,
+                      },
+                    ]}
+                    fill={[
+                      {
+                        match: {
+                          id: "ruby",
+                        },
+                        id: "dots",
+                      },
+                      {
+                        match: {
+                          id: "c",
+                        },
+                        id: "dots",
+                      },
+                      {
+                        match: {
+                          id: "go",
+                        },
+                        id: "dots",
+                      },
+                      {
+                        match: {
+                          id: "python",
+                        },
+                        id: "dots",
+                      },
+                      {
+                        match: {
+                          id: "scala",
+                        },
+                        id: "lines",
+                      },
+                      {
+                        match: {
+                          id: "lisp",
+                        },
+                        id: "lines",
+                      },
+                      {
+                        match: {
+                          id: "elixir",
+                        },
+                        id: "lines",
+                      },
+                      {
+                        match: {
+                          id: "javascript",
+                        },
+                        id: "lines",
+                      },
+                    ]}
+                    legends={[
+                      {
+                        anchor: "bottom",
+                        direction: "row",
+                        justify: false,
+                        translateX: 0,
+                        translateY: 56,
+                        itemsSpacing: 0,
+                        itemWidth: 100,
+                        itemHeight: 18,
+                        itemTextColor: "#999",
+                        itemDirection: "left-to-right",
+                        itemOpacity: 1,
+                        symbolSize: 18,
+                        symbolShape: "circle",
+                        effects: [
+                          {
+                            on: "hover",
+                            style: {
+                              itemTextColor: "#000",
+                            },
+                          },
+                        ],
+                      },
+                    ]}
+                  />
                 </div>
               </div>
             </div>
