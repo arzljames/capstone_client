@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background: #fff;
 }
 .card-upper {
   width: 100%;
@@ -16,7 +17,7 @@
 
 .card-lower {
   width: 100%;
-  border-top: 1px solid #fff;
+  color: #272727;
   margin-top: 10px;
   padding-top: 10px;
   margin-bottom: -10px;
@@ -29,7 +30,7 @@
 }
 
 .card-content h2 {
-  color: #fff;
+  color: #272727;
   font-weight: 600;
   font-size: 32px;
 }
@@ -37,22 +38,23 @@
 .card-content p {
   font-size: 14px;
   font-weight: 400;
-  color: #fff;
+  color: #808080;
   letter-spacing: 1px;
 }
 
 .card-icon {
-  width: 30%;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 8px;
 }
 
 .card-icon p {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
   font-size: 50px;
 }
 

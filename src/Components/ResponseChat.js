@@ -149,9 +149,9 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
     <div className="case-data-response">
       <div className="response-header">
         <h1>
-          Response
-          {response.filter((e) => e.room === id).length !== 0 &&
-            `(${response.filter((e) => e.room === id).length})`}
+          Response {" "}
+          {response.filter((e) => e.room === id).length !== 0 ?
+            `(${response.filter((e) => e.room === id).length})` : null}
         </h1>{" "}
       </div>
       <form onSubmit={(e) => e.preventDefault()}>

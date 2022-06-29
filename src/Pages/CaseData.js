@@ -508,7 +508,7 @@ const CaseData = () => {
 
                       <label>Attending Pysician</label>
                       <p>
-                        Dr.
+                        Dr.{" "}
                         {patientCase.physician.firstname +
                           " " +
                           patientCase.physician.lastname}
