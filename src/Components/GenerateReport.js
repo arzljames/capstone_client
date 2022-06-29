@@ -6,6 +6,7 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import PulseLoader from "react-spinners/PulseLoader";
 import api from "../API/Api";
+import { CSVLink } from "react-csv";
 
 const GenerateReport = ({ setFilterModal }) => {
   const { patients, facilities, reports, specializations, cases } = useAuth();
@@ -99,6 +100,29 @@ const GenerateReport = ({ setFilterModal }) => {
     }
   };
 
+  const csvReport = {
+    data: patients
+      .filter(filterDate)
+      .filter(filterGender)
+      .filter(filterHospital)
+      .filter(filterSpec)
+      .filter(filterAge)
+      .map((e) => {
+        return {
+          ...e,
+          physician:
+            "Dr. " + e.physician.firstname + " " + e.physician.lastname,
+          guardian: e.guardian.name,
+          birthday: getDate(e.birthday),
+          address:
+            e.address.street + " " + e.address.barangay + " " + e.address.city,
+          updatedAt: getDate(e.updatedAt),
+          createdAt: getDate(e.createdAt),
+        };
+      }),
+    filename: `${reportId}.csv`,
+  };
+
   if (!report) {
     return (
       <div className="wait-spinner-container">
@@ -119,8 +143,8 @@ const GenerateReport = ({ setFilterModal }) => {
                 <HiChevronLeft /> <p>Back</p>
               </button>
 
-              {/* <div className="above-patient-profile-btns">
-                <button
+              <div className="above-patient-profile-btns">
+                {/* <button
                   onClick={() => setFilterModal(true)}
                   className="edit-filter"
                 >
@@ -128,14 +152,16 @@ const GenerateReport = ({ setFilterModal }) => {
                     <HiFilter />
                   </p>
                   Edit Filter
-                </button>
+                </button> */}
                 <button className="export-csv">
                   <p>
                     <HiDocumentDownload />
                   </p>
                   Export to CSV
                 </button>
-              </div> */}
+
+                <CSVLink {...csvReport}>Export to CSV</CSVLink>
+              </div>
             </div>
 
             <div className="reports-container">

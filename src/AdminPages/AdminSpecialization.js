@@ -91,7 +91,7 @@ const AdminSpecialization = () => {
                     type="search"
                     value={term}
                     onChange={(e) => setTerm(e.target.value)}
-                    placeholder="Search Specializations"
+                    placeholder="Search specializations"
                   />
                   <div className="patient-input-icon">
                     <HiOutlineSearch />

@@ -565,8 +565,20 @@ div.popup-modal h1 {
   margin-bottom: 20px;
 }
 
+.popup-modal textarea {
+  width: 100%;
+  border: 1px solid #acacac;
+  height: 100px;
+  border-radius: 4px;
+  padding: 10px;
+  outline: none;
+  margin-bottom: 20px;
+  resize: none;
+}
+
 .popup-modal input:focus,
-.popup-modal select:focus {
+.popup-modal select:focus,
+.popup-modal textarea:focus {
   border: 1px solid #4b4b4b;
 }
 

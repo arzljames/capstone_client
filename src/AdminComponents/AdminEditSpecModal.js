@@ -14,7 +14,7 @@ const AdminEditSpecModal = ({ setEditModal, toast, spec, desc, id }) => {
   const [description, setDescription] = useState("");
   const { setAppState } = useAuth();
   const [isClick, setIsClick] = useState(false);
- 
+
   const handleSubmit = async () => {
     setIsClick(true);
     try {
@@ -23,11 +23,10 @@ const AdminEditSpecModal = ({ setEditModal, toast, spec, desc, id }) => {
         description,
       });
 
-
-      if(specialization === "") {
+      if (specialization === "") {
         toast.error("Input specialization");
         setIsClick(false);
-        return
+        return;
       }
 
       if (response) {
@@ -41,7 +40,7 @@ const AdminEditSpecModal = ({ setEditModal, toast, spec, desc, id }) => {
     } catch (error) {
       console.log(error);
       setAppState("Error");
-      toast.error("An error occured")
+      toast.error("An error occured");
       setTimeout(() => setAppState(""), 500);
       setIsClick(false);
     }
@@ -49,8 +48,8 @@ const AdminEditSpecModal = ({ setEditModal, toast, spec, desc, id }) => {
 
   useEffect(() => {
     setSpecialization(spec);
-    setDescription(desc)
-  },[])
+    setDescription(desc);
+  }, []);
 
   return (
     <motion.div
@@ -76,13 +75,13 @@ const AdminEditSpecModal = ({ setEditModal, toast, spec, desc, id }) => {
           type="text"
         />
 
-        <label style={{ marginBottom: "50px" }}>Description</label>
-        <input
+        <label>Description</label>
+        <textarea
           onChange={(e) => setDescription(e.target.value)}
           value={description}
           type="text"
           placeholder="Optional"
-        />
+        ></textarea>
 
         <div className="popup-modal-btns">
           <button onClick={() => setEditModal(false)}>Cancel</button>

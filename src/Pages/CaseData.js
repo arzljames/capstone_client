@@ -164,9 +164,9 @@ const CaseData = () => {
           <AddServiceModal
             setModal={setModal}
             id={patientCase._id}
-            specArr={patientCase.specialization}
             toast={toast}
             ToastContainer={ToastContainer}
+            service={patientCase.specialization}
           />
         )}
       </AnimatePresence>
@@ -264,12 +264,7 @@ const CaseData = () => {
                       )}
                     </AnimatePresence>
                   </motion.button>
-                  <button className="green-cta">
-                    <p>
-                      <IoReturnUpForward />
-                    </p>
-                    Follow-up
-                  </button>
+                 
                 </div>
               </div>
 
@@ -476,12 +471,14 @@ const CaseData = () => {
                             return patientCase.specialization.includes(e._id);
                           })
                           .map((item, index) => {
-                            return <li index={index}>{item.specialization}</li>;
+                            return <li key={index}>{item.specialization}</li>;
                           })}
                       </p>
                       <br />
                       <h2>Sub-service Type</h2>
-                      <p></p>
+                      <p>{patientCase.subSpecialization.map((item, index) => {
+                        return <li key={index}>{item.specialization}</li>;
+                      })}</p>
                     </div>
                   </div>
 

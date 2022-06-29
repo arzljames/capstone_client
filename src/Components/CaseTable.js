@@ -64,6 +64,14 @@ const CaseTable = ({ setPatient, setPatientModal }) => {
     setPatient(patients.filter((e) => e._id === id)[0]);
   };
 
+  useEffect(() => {
+    console.log(
+      cases.map((e) => {
+        return e.subSpecialization.map((f) => f._id === user.specialization);
+      })
+    );
+  }, []);
+
   return (
     <>
       <div className="table">
@@ -124,8 +132,12 @@ const CaseTable = ({ setPatient, setPatientModal }) => {
             )
             .filter((val) => {
               if (
-                user.designation === "623ec7fb80a6838424edaa29" &&
-                val.specialization.includes(user.specialization)
+                (user.designation === "623ec7fb80a6838424edaa29" &&
+                  val.specialization.includes(user.specialization)) ||
+                (user.designation === "623ec7fb80a6838424edaa29" &&
+                  val.subSpecialization
+                    .map((f) => f._id)
+                    .includes(user.specialization))
               ) {
                 return val;
               } else if (user.userId === val.physician._id) {

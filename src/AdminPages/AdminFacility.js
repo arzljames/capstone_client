@@ -84,25 +84,16 @@ const AdminFacility = () => {
             <div className="table">
               <div className="above-patient-table">
                 <div className="patient-input-container">
-                  <input value={term} onChange={(e) => setTerm(e.target.value)} type="search" placeholder="Search facilities" />
+                  <input
+                    value={term}
+                    onChange={(e) => setTerm(e.target.value)}
+                    type="search"
+                    placeholder="Search hospitals"
+                  />
                   <div className="patient-input-icon">
                     <HiOutlineSearch />
                   </div>
-                </div> 
-                {/* <div className="above-table-right">
-                <button className="fac-btns">
-                  <p>
-                    <HiOutlineFilter />
-                  </p>
-                  Filter
-                </button>
-                <button className="fac-btns">
-                  <p>
-                    <HiOutlineSortDescending />
-                  </p>
-                  Sort by
-                </button>
-              </div> */}
+                </div>
               </div>
               <div className="table-header">
                 <div className="fac-name">Hospital Name</div>
@@ -112,7 +103,18 @@ const AdminFacility = () => {
               </div>
               <div className="table-body-container">
                 {facilities
-                  // .sort((a, b) => a.facility.localeCompare(b.facility))
+                  .filter((val) => {
+                    if (term === "") {
+                      return val;
+                    } else if (
+                      val.facility
+                        .toLowerCase()
+                        .includes(term.toLocaleLowerCase())
+                    ) {
+                      return val;
+                    }
+                  })
+
                   .slice(
                     term === "" ? pagesVisited : 0,
                     term === ""

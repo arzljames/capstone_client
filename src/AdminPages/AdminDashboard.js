@@ -6,13 +6,13 @@ import AdminHeader from "../AdminComponents/AdminHeader";
 import StatisticCard from "../AdminComponents/StatisticCard";
 import PendingUser from "../AdminComponents/PendingUser";
 import useAuth from "../Hooks/useAuth";
-import { HiOutlineOfficeBuilding } from "react-icons/hi";
+import { HiOfficeBuilding } from "react-icons/hi";
 import { AnimatePresence } from "framer-motion";
 import DeletePendingUserModal from "../AdminComponents/DeletePendingUserModal";
 import { FiUserX } from "react-icons/fi";
 import NoUser from "../Assets/nouser.png";
 import { Helmet } from "react-helmet";
-import { IoPeopleOutline, IoMedkitOutline } from "react-icons/io5";
+import { IoPeople, IoMedkit } from "react-icons/io5";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -190,6 +190,28 @@ const AdminDashboard = () => {
     ],
   };
 
+  var days = 7; // Days you want to subtract
+  var date = new Date();
+  var last = new Date(date.getTime() - days * 24 * 60 * 60 * 1000);
+  var dayz = last.getDate();
+  var month = last.getMonth() + 1;
+  var yearz = last.getFullYear();
+
+  const subtractedDays = new Date(month + "/" + dayz + "/" + yearz);
+
+  const getDates = (e) => {
+    const dates = new Date(e);
+
+    return dates;
+  };
+
+  const filterDate = (e) => {
+    return (
+      getDates(e.createdAt) >= subtractedDays &&
+      getDates(e.createdAt) <= new Date()
+    );
+  };
+
   return (
     <>
       <Helmet>
@@ -234,46 +256,53 @@ const AdminDashboard = () => {
             <div className="statistic-section">
               <StatisticCard
                 heading="Total Hospitals"
-                icon={<HiOutlineOfficeBuilding />}
+                icon={<HiOfficeBuilding />}
                 iconColor="#fff"
                 total={facilities.length}
                 subTotal={facilities.length - 1 + " Referring Hospitals"}
                 bg="#5D7CE9"
-                subBg="#b4c1f0"
+                subBg="#c9d3f8"
               />
               <StatisticCard
                 heading="Total Doctors"
-                icon={<IoPeopleOutline />}
+                icon={<IoPeople />}
                 total={listUsers.length - 1}
                 iconColor="#fff"
                 subTotal={
                   listUsers.filter(
-                    (e) => e.designation === "623ec7fb80a6838424edaa29"
+                    (e) => e.designation._id === "623ec7fb80a6838424edaa29"
                   ).length + " ZCMC Doctors"
                 }
                 bg="#FE7477"
+                subBg="#ffdfdf"
               />
               <StatisticCard
                 heading="Total Patients"
-                icon={<IoPeopleOutline />}
+                icon={<IoPeople />}
                 iconColor="#fff"
                 total={patients.length}
                 subTotal={
-                  cases.filter((e) => e.active === true).length +
-                  " New Patients"
+                  patients.filter(filterDate).length > 1
+                    ? patients.filter(filterDate).length + " New Added Patients"
+                    : patients.filter(filterDate).length + " New Added Patient"
                 }
                 bg="#3DC1AD"
+                subBg="#defff9"
               />
               <StatisticCard
                 heading="Total Cases"
-                icon={<IoMedkitOutline />}
+                icon={<IoMedkit />}
                 iconColor="#fff"
                 total={cases.length}
                 subTotal={
-                  cases.filter((e) => e.active === true).length +
-                  " Active Cases"
+                  cases.filter((e) => e.active === true).length > 1
+                    ? cases.filter((e) => e.active === true).length +
+                      " Active Cases"
+                    : cases.filter((e) => e.active === true).length +
+                      " Active Case"
                 }
                 bg="#FF8657"
+                subBg="#ffe2d6"
               />
             </div>
             <SpecializationChart

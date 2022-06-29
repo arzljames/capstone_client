@@ -71,13 +71,13 @@ const AddSpecModal = ({ setModal, toast }) => {
           type="text"
         />
 
-        <label style={{ marginBottom: "50px" }}>Description</label>
-        <input
+        <label>Description</label>
+        <textarea
           onChange={(e) => setDescription(e.target.value)}
           value={description}
           type="text"
           placeholder="Optional"
-        />
+        ></textarea>
 
         <div className="popup-modal-btns">
           <button onClick={() => setModal(false)}>Cancel</button>

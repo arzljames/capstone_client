@@ -5,8 +5,8 @@ import Sidebar from "../Components/Sidebar";
 import "../AdminPages/AdminDashboard.css";
 import useAuth from "../Hooks/useAuth";
 import StatisticCard from "../AdminComponents/StatisticCard";
-import { IoPeopleOutline, IoMedkitOutline } from "react-icons/io5";
-import { HiOutlineOfficeBuilding } from "react-icons/hi";
+import { IoPeople, IoMedkit } from "react-icons/io5";
+import { HiOfficeBuilding } from "react-icons/hi";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -171,7 +171,7 @@ const UserDashboard = () => {
     ],
   };
 
-  var days = 20; // Days you want to subtract
+  var days = 7; // Days you want to subtract
   var date = new Date();
   var last = new Date(date.getTime() - days * 24 * 60 * 60 * 1000);
   var dayz = last.getDate();
@@ -209,15 +209,16 @@ const UserDashboard = () => {
             <div className="statistic-section">
               <StatisticCard
                 heading="Total Hospitals"
-                icon={<HiOutlineOfficeBuilding />}
+                icon={<HiOfficeBuilding />}
                 iconColor="#fff"
                 total={facilities.length}
                 subTotal={facilities.length - 1 + " Referring Hospitals"}
                 bg="#5D7CE9"
+                subBg="#c9d3f8"
               />
               <StatisticCard
                 heading="Total Doctors"
-                icon={<IoPeopleOutline />}
+                icon={<IoPeople />}
                 total={listUsers.length - 1}
                 iconColor="#fff"
                 subTotal={
@@ -226,27 +227,35 @@ const UserDashboard = () => {
                   ).length + " ZCMC Doctors"
                 }
                 bg="#FE7477"
+                subBg="#ffdfdf"
               />
               <StatisticCard
                 heading="Total Patients"
-                icon={<IoPeopleOutline />}
+                icon={<IoPeople />}
                 iconColor="#fff"
                 total={patients.length}
                 subTotal={
-                  patients.filter(filterDate).length + " New Added Patients"
+                  patients.filter(filterDate).length > 1
+                    ? patients.filter(filterDate).length + " New Added Patients"
+                    : patients.filter(filterDate).length + " New Added Patient"
                 }
                 bg="#3DC1AD"
+                subBg="#defff9"
               />
               <StatisticCard
                 heading="Total Cases"
-                icon={<IoMedkitOutline />}
+                icon={<IoMedkit />}
                 iconColor="#fff"
                 total={cases.length}
                 subTotal={
-                  cases.filter((e) => e.active === true).length +
-                  " Active Cases"
+                  cases.filter((e) => e.active === true).length > 1
+                    ? cases.filter((e) => e.active === true).length +
+                      " Active Cases"
+                    : cases.filter((e) => e.active === true).length +
+                      " Active Case"
                 }
                 bg="#FF8657"
+                subBg="#ffe2d6"
               />
             </div>
             {/* <div className="user-chart-container">

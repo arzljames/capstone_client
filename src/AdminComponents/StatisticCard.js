@@ -14,8 +14,8 @@ const StatisticCard = ({ heading, total, icon, iconColor, bg, subBg, subTotal })
         </div>
       </div>
 
-      <div style={{  borderTop: `1px solid ${bg}`}} className="card-lower">
-        <p >{subTotal}</p>
+      <div style={{  borderTop: `1px solid ${subBg}`}} className="card-lower">
+        <p style={{color: bg}}>{subTotal}</p>
       </div>
     </div>
   );

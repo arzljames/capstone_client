@@ -6,7 +6,7 @@ import useAuth from "../Hooks/useAuth";
 import "./AddServiceModal.css";
 import api from "../API/Api";
 
-const AddServiceModal = ({ setModal, id, specArr, toast, toastContainer }) => {
+const AddServiceModal = ({ setModal, id, service, toast, toastContainer }) => {
   const domNode = useClickOutside(() => {
     setModal(false);
   });
@@ -98,10 +98,11 @@ const AddServiceModal = ({ setModal, id, specArr, toast, toastContainer }) => {
             );
           })} */}
 
-        {specializations.map((item, index) => {
+        {specializations.filter(e => e._id !== service)
+        .map((item, index) => {
           return (
             <>
-              <div className="service-container">
+              <div key={index} className="service-container">
                 <input
                   onChange={(e) => {
                     let checked = e.target.checked;

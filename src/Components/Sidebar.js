@@ -45,7 +45,12 @@ const Sidebar = () => {
       } else if (
         cases.filter(
           (e) =>
-            e.specialization.includes(user.specialization) && e.active === true
+            (e.specialization.includes(user.specialization) &&
+              e.active === true) ||
+            (e.subSpecialization
+              .map((f) => f._id)
+              .includes(user.specialization) &&
+              e.active === true)
         ).length > 0
       ) {
         setDocBadage(true);
