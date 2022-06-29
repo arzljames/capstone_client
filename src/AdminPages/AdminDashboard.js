@@ -311,10 +311,10 @@ const AdminDashboard = () => {
                 <SpecializationChart
                   data={[
                     {
-                      Year: "AD",
-                      Patients: 137,
+                      Year: "Jan",
+                      Patients: 5,
                       "hot dogColor": "hsl(156, 70%, 50%)",
-                      Cases: 83,
+                      Cases: 4,
                       burgerColor: "hsl(245, 70%, 50%)",
                     },
                     {
