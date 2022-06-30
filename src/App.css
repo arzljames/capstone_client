@@ -158,6 +158,16 @@ button.green-cta:hover {
   transition: 0.1s ease-in-out;
 }
 
+button.green-cta-disable p {
+  color: #fff;
+  margin: 0px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
 button.green-cta p {
   color: #fff;
   margin: 0px;
@@ -595,6 +605,24 @@ div.popup-modal h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.pagination-row-container {
+  display: flex;
+  align-items: center;
+}
+
+.pagination-row-container p {
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.pagination-row-container select {
+  border-radius: 4px;
+  border: 1px solid #808080;
+  min-width: 40px;
+  height: 25px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

@@ -184,6 +184,7 @@ const PatientTableData = ({
         </div>
         <div className="table-header">
           <div className="pt-name">Patient Name</div>
+          <div className="pt-active">Gender</div>
           <div className="pt-active">Active Case</div>
           <div className="pt-total">Total Case</div>
           <div className="pt-date">Date Admitted</div>
@@ -232,6 +233,8 @@ const PatientTableData = ({
                       <div className="pt-name">
                         <p>{item.firstname + " " + item.lastname} </p>
                       </div>
+
+                      <div className="pt-active">{item.sex}</div>
 
                       <div className="pt-active">
                         {

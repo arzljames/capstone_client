@@ -188,6 +188,14 @@ button.action-dropdown-btn-active p {
   margin-bottom: 20px;
 }
 
+.case-hospital-active .case-hospital-header hr {
+  border-bottom: 1px solid #058e454f;
+}
+
+.case-hospital-inactive .case-hospital-header hr {
+  border-bottom: 1px solid #ff831d48;
+}
+
 .case-hospital-active label,
 .case-hospital-inactive label {
   font-size: 14px;

@@ -181,7 +181,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 10px;
 }
 
 .pt-hospital {
@@ -1207,6 +1206,7 @@ button.deactive-btn:hover {
   .pt-date {
     width: 40%;
     min-width: 120px;
+    margin-left: 0px;
   }
 
   .pt-sex,

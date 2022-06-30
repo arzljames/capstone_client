@@ -61,18 +61,6 @@ const CaseData = () => {
     fetchPatientCase();
   }, [appState]);
 
-  useEffect(() => {
-    console.log(patientCase);
-  }, []);
-
-  if (patientCase.length === 0) {
-    return (
-      <div className="wait-spinner-container">
-        <PulseLoader size={10} margin={2} color="#058e46" />
-      </div>
-    );
-  }
-
   const handleDeactivate = async () => {
     try {
       let response = await api.put(
@@ -150,6 +138,14 @@ const CaseData = () => {
     return today;
   };
 
+  if (patientCase.length === 0) {
+    return (
+      <div className="wait-spinner-container">
+        <PulseLoader size={10} margin={2} color="#058e46" />
+      </div>
+    );
+  }
+
   return (
     <>
       <AnimatePresence>
@@ -167,6 +163,7 @@ const CaseData = () => {
             toast={toast}
             ToastContainer={ToastContainer}
             service={patientCase.specialization}
+            subSpecialization={patientCase.subSpecialization}
           />
         )}
       </AnimatePresence>
@@ -474,12 +471,24 @@ const CaseData = () => {
                           })}
                       </p>
 
-                      <h2>Sub-service Type</h2>
-                      <p>
-                        {patientCase.subSpecialization.map((item, index) => {
-                          return <li key={index}>{item.specialization}</li>;
-                        })}
-                      </p>
+                      {!patientCase.subSpecialization ||
+                      patientCase.subSpecialization.length === 0 ? null : (
+                        <>
+                          <br />
+                          <hr />
+                          <br />
+                          <h2>Sub-service Type</h2>
+                          <p>
+                            {patientCase.subSpecialization.map(
+                              (item, index) => {
+                                return (
+                                  <li key={index}>{item.specialization}</li>
+                                );
+                              }
+                            )}
+                          </p>
+                        </>
+                      )}
                     </div>
                   </div>
 

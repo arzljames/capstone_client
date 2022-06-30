@@ -141,9 +141,7 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
     } catch (error) {}
   };
 
-  useEffect(() => {
-    console.log(response);
-  });
+  
 
   return (
     <div className="case-data-response">

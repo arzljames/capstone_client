@@ -50,7 +50,10 @@ const EditPatientProfile = () => {
   const [fullname, setFullname] = useState("");
   const [relationship, setRelationship] = useState("");
 
+  const [isClick, setIsClick] = useState(false);
+
   const handleSubmit = async () => {
+    setIsClick(true);
     if (
       !lastname ||
       !firstname ||
@@ -69,6 +72,7 @@ const EditPatientProfile = () => {
       !relationship
     ) {
       toast.error("All fields are required.");
+      setIsClick(false)
     } else {
       try {
         let response = await api.put(
@@ -95,33 +99,15 @@ const EditPatientProfile = () => {
         if (response.data.ok) {
           setAppState(`updated one patient${state._id}`);
           setTimeout(() => setAppState(""), 500);
-
-          toast.success("You have successfully updated patient's profile.");
-
-          navigate("/consultation/patients");
-          setLastname("");
-          setFirstname("");
-          setMiddlename("");
-          setSex("");
-          setBirthday("");
-          setCivilStatus("");
-          setReligion("");
-          setFullname("");
-          setRelationship("");
-          setStreet("");
-          setBarangay("");
-          setCity("");
-          setBirthplace("");
-          setEthnicity("");
-          setContact("");
-          setRelationOther(null);
-          setReligionOther(null);
-          setCivilOther(null);
+          toast.success("You have successfully updated patient's profile.");        
+          setIsClick(false)
         } else {
           toast.error("An unexpected error occured. Please try again");
+          setIsClick(false)
         }
       } catch (error) {
         toast.error(error.message);
+        setIsClick(false)
       }
     }
   };
@@ -178,7 +164,7 @@ const EditPatientProfile = () => {
                   </button>
                   <div className="above-patient-profile-btns">
                     <button
-                      className="save-patient-btn"
+                      className={isClick ? "green-cta-disable" : "green-cta"}
                       onClick={() => {
                         handleSubmit();
                       }}

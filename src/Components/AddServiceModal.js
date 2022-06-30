@@ -6,7 +6,7 @@ import useAuth from "../Hooks/useAuth";
 import "./AddServiceModal.css";
 import api from "../API/Api";
 
-const AddServiceModal = ({ setModal, id, service, toast, toastContainer }) => {
+const AddServiceModal = ({ setModal, id, service, toast, toastContainer, subSpecialization }) => {
   const domNode = useClickOutside(() => {
     setModal(false);
   });
@@ -70,40 +70,14 @@ const AddServiceModal = ({ setModal, id, service, toast, toastContainer }) => {
         className="popup-modal"
       >
         <h1>Add Service Type</h1>
-        {/* {facilities
-          .filter((e) => e._id === "623ec7fb80a6838424edaa29")[0]
-          .specialization.map((g) => {
-            return (
-              <>
-                <div className="service-container">
-                  <input
-                    onChange={(e) => {
-                      let checked = e.target.checked;
-                      setSpec(
-                        spec.map((d) => {
-                          if (g._id === d._id) {
-                            d.select = checked;
-                          }
-                          return d;
-                        })
-                      );
-                      console.log(spec);
-                    }}
-                    type="checkbox"
-                    value={g._id}
-                  />{" "}
-                  {g.name}
-                </div>
-              </>
-            );
-          })} */}
+        
 
         {specializations.filter(e => e._id !== service)
         .map((item, index) => {
           return (
             <>
               <div key={index} className="service-container">
-                <input
+                <input 
                   onChange={(e) => {
                     let checked = e.target.checked;
                     setSpec(
