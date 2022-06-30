@@ -169,6 +169,7 @@ export const DataProvider = ({ children }) => {
         message,
         setMessage,
         specializations,
+        setSpecializations,
         isError,
         setIsError,
         tab,

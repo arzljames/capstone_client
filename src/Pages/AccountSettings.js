@@ -11,10 +11,11 @@ import { PulseLoader } from "react-spinners";
 import { motion, AnimatePresence } from "framer-motion";
 import ChangePasswordModal from "../Components/ChangePasswordModal";
 import Helmet from "react-helmet";
+import { IoKey } from "react-icons/io5";
 
 const AccountSettings = () => {
   const navigate = useNavigate();
-  const { user, facilities } = useAuth();
+  const { user, facilities, specializations } = useAuth();
   const [account, setAccount] = useState(null);
   const [modal, setModal] = useState(false);
 
@@ -92,12 +93,15 @@ const AccountSettings = () => {
                   <p>{account.email}</p>
 
                   <label>Password</label>
-                  <p className="password">*************</p>
+                  <p className="password">******************</p>
 
                   <button
                     onClick={() => setModal(true)}
                     className="change-password-btn"
                   >
+                    <p className="key">
+                      <IoKey />
+                    </p>{" "}
                     Change Password
                   </button>
                 </div>
@@ -111,15 +115,18 @@ const AccountSettings = () => {
                     }
                   </p>
                   <label>Specialization</label>
-                  <p>
-                    {
-                      facilities
-                        .filter((id) => id._id === user.designation)[0]
-                        .specialization.filter(
+
+                  {user.designation !== "623ec7fb80a6838424edaa29" ? (
+                    <p>N/A</p>
+                  ) : (
+                    <p>
+                      {
+                        specializations.filter(
                           (e) => e._id === user.specialization
-                        )[0].name
-                    }
-                  </p>
+                        )[0].specialization
+                      }
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

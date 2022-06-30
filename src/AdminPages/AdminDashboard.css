@@ -4,6 +4,7 @@
 
 .container-divider {
   display: flex;
+  max-height: 500px;
 }
 
 .admin-container-content {
@@ -21,13 +22,21 @@
 
 .chart-container {
   background: #fff;
-  padding: 20px;
   border-radius: 15px;
   border: 1px solid #eee;
   min-height: 200px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  width: 100%;
-  max-width: 1000px;
+  width: 75%;
+}
+
+.donut-chart-container {
+  min-width: 200px;
+  background: #fff;
+  width: 25%;
+  margin-left: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 15px;
+  min-width: 0;
 }
 
 .year-selected {
@@ -166,6 +175,25 @@
   font-size: 14px;
   color: #808080;
   font-weight: 300;
+}
+
+@media screen and (max-width: 1000px) {
+  .container-divider {
+    flex-direction: column;
+  }
+
+  .chart-container {
+    width: 100%;
+    margin-bottom: 20px;
+    min-width: none;
+  }
+
+  .donut-chart-container {
+    width: 100%;
+    margin-left: 0px;
+    min-height: 500px;
+    /* min-width: none; */
+  }
 }
 
 @media screen and (max-width: 768px) {

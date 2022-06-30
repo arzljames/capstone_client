@@ -26,6 +26,7 @@ import {
 import { Chart, Line } from "react-chartjs-2";
 import PendingUserProfileModal from "../AdminComponents/PendingUserProfileModal";
 import SpecializationChart from "../Components/SpecializationChart";
+import { ResponsivePie } from "@nivo/pie";
 
 ChartJS.register(
   CategoryScale,
@@ -46,6 +47,8 @@ const AdminDashboard = () => {
     cases,
     toast,
     ToastContainer,
+    specializations,
+    setSpecializations,
   } = useAuth();
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
 
@@ -212,6 +215,46 @@ const AdminDashboard = () => {
     );
   };
 
+  useEffect(() => {
+    console.log(
+      specializations.map((e) => {
+        return {
+          ...e,
+          id: e.specialization,
+          label: e.specialization,
+          value: listUsers.filter((f) => {
+            if (!f.specialization) {
+              return 0;
+            } else if (f.specialization._id) {
+              return f.specialization._id === e._id;
+            }
+          }).length,
+          color: "pink",
+        };
+      })
+    );
+  }, []);
+
+  useEffect(() => {
+    setSpecializations(
+      specializations.map((e) => {
+        return {
+          ...e,
+          id: e.specialization,
+          label: e.specialization,
+          value: listUsers.filter((f) => {
+            if (!f.specialization) {
+              return 0;
+            } else if (f.specialization._id) {
+              return f.specialization._id === e._id;
+            }
+          }).length,
+          color: "pink",
+        };
+      })
+    );
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -318,46 +361,199 @@ const AdminDashboard = () => {
                       burgerColor: "hsl(245, 70%, 50%)",
                     },
                     {
-                      Year: "AE",
+                      Year: "Feb",
                       "hot dog": 98,
                       "hot dogColor": "hsl(314, 70%, 50%)",
                       burger: 6,
                       burgerColor: "hsl(349, 70%, 50%)",
                     },
                     {
-                      Year: "AF",
+                      Year: "Mar",
                       "hot dog": 39,
                       "hot dogColor": "hsl(111, 70%, 50%)",
                       burger: 121,
                       burgerColor: "hsl(89, 70%, 50%)",
                     },
                     {
-                      Year: "AG",
+                      Year: "Apr",
                       "hot dog": 141,
                       "hot dogColor": "hsl(1, 70%, 50%)",
                       burger: 104,
                       burgerColor: "hsl(332, 70%, 50%)",
                     },
                     {
-                      Year: "AI",
+                      Year: "May",
                       "hot dog": 172,
                       "hot dogColor": "hsl(321, 70%, 50%)",
                       burger: 170,
                       burgerColor: "hsl(97, 70%, 50%)",
                     },
                     {
-                      Year: "AL",
+                      Year: "Jun",
                       "hot dog": 75,
                       "hot dogColor": "hsl(168, 70%, 50%)",
                       burger: 13,
                       burgerColor: "hsl(159, 70%, 50%)",
                     },
                     {
-                      Year: "AM",
+                      Year: "Jul",
                       "hot dog": 64,
                       "hot dogColor": "hsl(338, 70%, 50%)",
                       burger: 69,
                       burgerColor: "hsl(110, 70%, 50%)",
+                    },
+                  ]}
+                />
+              </div>
+
+              <div className="donut-chart-container">
+                <h2>Doctors by Specialization</h2>
+                <ResponsivePie
+                  data={specializations}
+                  // data={[
+                  //   {
+                  //     id: "java",
+                  //     label: "java",
+                  //     value: 188,
+                  //     color: "hsl(19, 70%, 50%)",
+                  //   },
+                  //   {
+                  //     id: "php",
+                  //     label: "php",
+                  //     value: 571,
+                  //     color: "hsl(337, 70%, 50%)",
+                  //   },
+                  //   {
+                  //     id: "lisp",
+                  //     label: "lisp",
+                  //     value: 197,
+                  //     color: "hsl(71, 70%, 50%)",
+                  //   },
+                  //   {
+                  //     id: "haskell",
+                  //     label: "haskell",
+                  //     value: 411,
+                  //     color: "hsl(260, 70%, 50%)",
+                  //   },
+                  //   {
+                  //     id: "sass",
+                  //     label: "sass",
+                  //     value: 461,
+                  //     color: "hsl(105, 70%, 50%)",
+                  //   },
+                  // ]}
+                  margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+                  innerRadius={0.5}
+                  padAngle={0.7}
+                  cornerRadius={3}
+                  activeOuterRadiusOffset={8}
+                  borderWidth={1}
+                  borderColor={{
+                    from: "color",
+                    modifiers: [["darker", 0.2]],
+                  }}
+                  arcLinkLabelsSkipAngle={10}
+                  arcLinkLabelsTextColor="#333333"
+                  arcLinkLabelsThickness={2}
+                  arcLinkLabelsColor={{ from: "color" }}
+                  arcLabelsSkipAngle={10}
+                  arcLabelsTextColor={{
+                    from: "color",
+                    modifiers: [["darker", 2]],
+                  }}
+                  defs={[
+                    {
+                      id: "dots",
+                      type: "patternDots",
+                      background: "inherit",
+                      color: "rgba(255, 255, 255, 0.3)",
+                      size: 4,
+                      padding: 1,
+                      stagger: true,
+                    },
+                    {
+                      id: "lines",
+                      type: "patternLines",
+                      background: "inherit",
+                      color: "rgba(255, 255, 255, 0.3)",
+                      rotation: -45,
+                      lineWidth: 6,
+                      spacing: 10,
+                    },
+                  ]}
+                  fill={[
+                    {
+                      match: {
+                        id: "ruby",
+                      },
+                      id: "dots",
+                    },
+                    {
+                      match: {
+                        id: "c",
+                      },
+                      id: "dots",
+                    },
+                    {
+                      match: {
+                        id: "go",
+                      },
+                      id: "dots",
+                    },
+                    {
+                      match: {
+                        id: "python",
+                      },
+                      id: "dots",
+                    },
+                    {
+                      match: {
+                        id: "scala",
+                      },
+                      id: "lines",
+                    },
+                    {
+                      match: {
+                        id: "lisp",
+                      },
+                      id: "lines",
+                    },
+                    {
+                      match: {
+                        id: "elixir",
+                      },
+                      id: "lines",
+                    },
+                    {
+                      match: {
+                        id: "javascript",
+                      },
+                      id: "lines",
+                    },
+                  ]}
+                  legends={[
+                    {
+                      anchor: "bottom",
+                      direction: "row",
+                      justify: false,
+                      translateX: 0,
+                      translateY: 56,
+                      itemsSpacing: 0,
+                      itemWidth: 100,
+                      itemHeight: 18,
+                      itemTextColor: "#999",
+                      itemDirection: "left-to-right",
+                      itemOpacity: 1,
+                      symbolSize: 18,
+                      symbolShape: "circle",
+                      effects: [
+                        {
+                          on: "hover",
+                          style: {
+                            itemTextColor: "#000",
+                          },
+                        },
+                      ],
                     },
                   ]}
                 />
@@ -383,7 +579,7 @@ const AdminDashboard = () => {
                   )}
                 </div> */}
 
-              <div className="admin-right-panel">
+              {/* <div className="admin-right-panel">
                 <div className="pending-registration">
                   <h2>Pending Registration</h2>
                   <div className="pending-registration-body">
@@ -415,7 +611,7 @@ const AdminDashboard = () => {
                     )}
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

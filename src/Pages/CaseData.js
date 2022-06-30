@@ -264,7 +264,6 @@ const CaseData = () => {
                       )}
                     </AnimatePresence>
                   </motion.button>
-                 
                 </div>
               </div>
 
@@ -474,11 +473,13 @@ const CaseData = () => {
                             return <li key={index}>{item.specialization}</li>;
                           })}
                       </p>
-                      <br />
+
                       <h2>Sub-service Type</h2>
-                      <p>{patientCase.subSpecialization.map((item, index) => {
-                        return <li key={index}>{item.specialization}</li>;
-                      })}</p>
+                      <p>
+                        {patientCase.subSpecialization.map((item, index) => {
+                          return <li key={index}>{item.specialization}</li>;
+                        })}
+                      </p>
                     </div>
                   </div>
 
