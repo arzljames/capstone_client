@@ -637,6 +637,10 @@ div.popup-modal h1 {
     align-items: flex-end;
   }
 
+  .table {
+    padding-top: 10px;
+  }
+
   .table-header {
     padding-right: 20px;
   }

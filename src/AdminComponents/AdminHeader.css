@@ -17,8 +17,8 @@
   align-items: center;
 }
 
-.admin-header-brand img,
-.admin-header img {
+.admin-header-brand h1 img,
+.admin-header h1 img {
   width: 25px;
   margin-right: 10px;
   min-width: 25px;
