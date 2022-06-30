@@ -579,7 +579,7 @@ const AdminDashboard = () => {
                   )}
                 </div> */}
 
-              {/* <div className="admin-right-panel">
+              <div className="admin-right-panel">
                 <div className="pending-registration">
                   <h2>Pending Registration</h2>
                   <div className="pending-registration-body">
@@ -611,7 +611,7 @@ const AdminDashboard = () => {
                     )}
                   </div>
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

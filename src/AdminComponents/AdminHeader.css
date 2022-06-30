@@ -17,10 +17,19 @@
   align-items: center;
 }
 
+.admin-header-brand img,
+.admin-header img {
+  width: 25px;
+  margin-right: 10px;
+  min-width: 25px;
+}
+
 .admin-header h1 {
   color: #0f531e;
   font-size: 20px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 576px) {
@@ -211,15 +220,12 @@
   border: 1px solid #ececec;
   padding-bottom: 0px;
   border-radius: 8px;
-
-
 }
 
 .profile-container-dropdown ul {
   list-style: none;
   border-bottom: 1px solid #e6e6e6;
   padding: 5px 0px;
-
 }
 
 .profile-container-dropdown li {

@@ -7,6 +7,7 @@ import {
   HiOutlineSearch,
   HiOutlineSortDescending,
   HiTrash,
+  HiArrowNarrowLeft
 } from "react-icons/hi";
 import { motion } from "framer-motion";
 import "./Patients.css";
@@ -87,6 +88,7 @@ const Patients = () => {
             fullname: e.fullname,
             firstname: e.firstname,
             lastname: e.lastname,
+            middlename: e.middlname,
             sex: e.sex,
             age: getAge(e.birthday),
           };

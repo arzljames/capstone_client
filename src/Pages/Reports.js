@@ -153,18 +153,7 @@ const Reports = () => {
                   })}
               </div>
               <div className="pagination-container">
-                <div className="pagination-row-container">
-                  <p>Show:</p>
-                  <select
-                    value={usersPerPage}
-                    onChange={(e) => setUsersPerPage(e.target.value)}
-                  >
-                    <option value={5}>5</option>
-                    <option value={10}>10</option>
-                    <option value={15}>15</option>
-                    <option value={20}>20</option>
-                  </select>
-                </div>
+                
                 <ReactPaginate
                   previousLabel={<HiChevronLeft size={20} />}
                   nextLabel={<HiChevronRight size={20} />}

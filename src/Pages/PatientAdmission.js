@@ -4,7 +4,11 @@ import ConsultationNavbar from "../Components/ConsultationNavbar";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
 import "./TeleChannel.css";
-import { HiChevronLeft, HiDocumentText } from "react-icons/hi";
+import {
+  HiChevronLeft,
+  HiDocumentText,
+  HiArrowNarrowLeft,
+} from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import "./PatientAdmission.css";
 import AddPatientForm from "../Components/AddPatientForm";
@@ -164,11 +168,11 @@ const PatientAdmission = () => {
               <div className="content-wrapper">
                 <div className="above-patient-profile">
                   <button onClick={() => navigate(-1)} className="back-btn">
-                    <HiChevronLeft /> <p>Back</p>
+                    <HiArrowNarrowLeft /> <p>Back</p>
                   </button>
                   <div className="above-patient-profile-btns">
                     <button
-                      className="save-patient-btn"
+                      className="green-cta"
                       onClick={() => handleSubmit()}
                     >
                       <p>
@@ -178,7 +182,7 @@ const PatientAdmission = () => {
                     </button>
                   </div>
                 </div>
-                <hr />
+                {/* <hr /> */}
 
                 <div className="patient-admission">
                   <div className="admission-form">

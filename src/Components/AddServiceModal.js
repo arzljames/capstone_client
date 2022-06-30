@@ -6,7 +6,14 @@ import useAuth from "../Hooks/useAuth";
 import "./AddServiceModal.css";
 import api from "../API/Api";
 
-const AddServiceModal = ({ setModal, id, service, toast, toastContainer, subSpecialization }) => {
+const AddServiceModal = ({
+  setModal,
+  id,
+  service,
+  toast,
+  toastContainer,
+  subSpecialization,
+}) => {
   const domNode = useClickOutside(() => {
     setModal(false);
   });
@@ -70,34 +77,33 @@ const AddServiceModal = ({ setModal, id, service, toast, toastContainer, subSpec
         className="popup-modal"
       >
         <h1>Add Service Type</h1>
-        
 
-        {specializations.filter(e => e._id !== service)
-        .map((item, index) => {
-          return (
-            <>
-              <div key={index} className="service-container">
-                <input 
-                  onChange={(e) => {
-                    let checked = e.target.checked;
-                    setSpec(
-                      spec.map((d) => {
-                        if (item._id === d._id) {
-                          d.select = checked;
-                        }
-                        return d;
-                      })
-                    );
-                    console.log(spec);
-                  }}
-                  type="checkbox"
-                  value={item._id}
-                />{" "}
-                {item.specialization}
-              </div>
-            </>
-          );
-        })}
+        {specializations
+          .filter((e) => e._id !== service)
+          .map((item, index) => {
+            return (
+              <>
+                <div key={index} className="service-container">
+                  <input
+                    onChange={(e) => {
+                      let checked = e.target.checked;
+                      setSpec(
+                        spec.map((d) => {
+                          if (item._id === d._id) {
+                            d.select = checked;
+                          }
+                          return d;
+                        })
+                      );
+                    }}
+                    type="checkbox"
+                    value={item._id}
+                  />{" "}
+                  {item.specialization}
+                </div>
+              </>
+            );
+          })}
 
         <div className="popup-modal-btns">
           <button onClick={() => setModal(false)} className="gray-cta">

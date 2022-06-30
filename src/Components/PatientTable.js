@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import {
@@ -33,7 +33,7 @@ const PatientTableData = ({
   setSearchDropdown,
 }) => {
   const navigate = useNavigate();
-  const { cases } = useAuth();
+  const { cases, patients, user } = useAuth();
   const [term, setTerm] = useState("");
   const getDate = (date) => {
     let dates = new Date(date);
@@ -60,7 +60,10 @@ const PatientTableData = ({
   const [usersPerPage, setUsersPerPage] = useState(20);
   const pagesVisited = pageNumber * usersPerPage;
 
-  const pageCount = Math.ceil(patientState.length / usersPerPage);
+  const pageCount = Math.ceil(
+    patients.filter((id) => id.physician._id === user.userId).length /
+      usersPerPage
+  );
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
@@ -190,75 +193,68 @@ const PatientTableData = ({
           <div className="pt-date">Date Admitted</div>
         </div>
         <div className="table-body-container">
-          {patientState.length !== 0
-            ? patientState
+          {patients
+            .filter((val) => {
+              if (term === "") {
+                return val;
+              } else if (
+                val.fullname.toLowerCase().includes(term.toLocaleLowerCase())
+              ) {
+                return val;
+              }
+            })
+            .filter((id) => id.physician._id === user.userId)
+            .sort(
+              sort === "Newest"
+                ? sortDscDate
+                : sort === "Oldest"
+                ? sortAscDate
+                : sort === "Name (A-Z)"
+                ? sortAscName
+                : sortDscName
+            )
+            .slice(
+              term === "" ? pagesVisited : 0,
+              term === "" ? pagesVisited + usersPerPage : patientState.length
+            )
+            .map((item, key) => {
+              return (
+                <div
+                  key={key + 1}
+                  onClick={() => {
+                    setPatientModal(true);
+                    setPatientId(item._id);
+                    filterPatient(item._id);
+                  }}
+                  className={key % 2 === 0 ? "table-body" : "table-body-2"}
+                >
+                  <div className="pt-name">
+                    <p>
+                      {item.firstname +
+                        " " +
+                        item.middlename[0] +
+                        "." +
+                        " " +
+                        item.lastname}{" "}
+                    </p>
+                  </div>
 
-                .filter((val) => {
-                  if (term === "") {
-                    return val;
-                  } else if (
-                    val.fullname
-                      .toLowerCase()
-                      .includes(term.toLocaleLowerCase())
-                  ) {
-                    return val;
-                  }
-                })
-                .sort(
-                  sort === "Newest"
-                    ? sortDscDate
-                    : sort === "Oldest"
-                    ? sortAscDate
-                    : sort === "Name (A-Z)"
-                    ? sortAscName
-                    : sortDscName
-                )
-                .slice(
-                  term === "" ? pagesVisited : 0,
-                  term === ""
-                    ? pagesVisited + usersPerPage
-                    : patientState.length
-                )
-                .map((item, key) => {
-                  return (
-                    <div
-                      key={key + 1}
-                      onClick={() => {
-                        setPatientModal(true);
-                        setPatientId(item._id);
-                        filterPatient(item._id);
-                      }}
-                      className={key % 2 === 0 ? "table-body" : "table-body-2"}
-                    >
-                      <div className="pt-name">
-                        <p>{item.firstname + " " + item.lastname} </p>
-                      </div>
+                  <div className="pt-active">{item.sex}</div>
 
-                      <div className="pt-active">{item.sex}</div>
-
-                      <div className="pt-active">
-                        {
-                          cases.filter(
-                            (f) =>
-                              f.patient._id === item._id && f.active === true
-                          ).length
-                        }
-                      </div>
-                      <div className="pt-total">
-                        {cases.filter((f) => f.patient._id === item._id).length}
-                      </div>
-                      <div className="pt-date">{getDate(item.createdAt)}</div>
-                    </div>
-                  );
-                })
-            : // <div className="no-patients">
-              //   <h1>No Patients</h1>
-              //   <p>
-              //     Looks like you don't have a patient to handle. Click the{" "}
-              //     <em>add patient</em> button above to start adding patient.
-              //   </p>
-              // </div>
-              null}
+                  <div className="pt-active">
+                    {
+                      cases.filter(
+                        (f) => f.patient._id === item._id && f.active === true
+                      ).length
+                    }
+                  </div>
+                  <div className="pt-total">
+                    {cases.filter((f) => f.patient._id === item._id).length}
+                  </div>
+                  <div className="pt-date">{getDate(item.createdAt)}</div>
+                </div>
+              );
+            })}
         </div>
         <div className="pagination-container">
           <ReactPaginate

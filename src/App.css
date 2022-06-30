@@ -138,6 +138,12 @@ button.green-cta {
   min-width: 90px;
 }
 
+button.green-cta .link {
+  text-decoration: none;
+  display: flex;
+  color: #fff;
+}
+
 button.green-cta-disable {
   background: #1cb45d;
   color: #fff;
@@ -498,7 +504,7 @@ button.gray-cta:hover {
   outline: none;
   padding: 10px;
   padding-left: 35px;
-  height: 40px;
+  height: 35px;
   border-radius: 4px;
   transition: 0.2s ease-in-out;
   background: #fff;

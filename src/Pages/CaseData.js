@@ -17,7 +17,6 @@ import { buttonVariant, dropdownVariants } from "../Animations/Animations";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import NoUser from "../Assets/nouser.png";
 import AddServiceModal from "../Components/AddServiceModal";
-import { IoReturnUpForward } from "react-icons/io5";
 
 const CaseData = () => {
   const [modal, setModal] = useState(false);

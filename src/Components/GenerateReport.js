@@ -153,19 +153,54 @@ const GenerateReport = ({ setFilterModal }) => {
                   </p>
                   Edit Filter
                 </button> */}
-                <button className="export-csv">
-                  <CSVLink {...csvReport}>
+
+                <button className="green-cta">
+                  <CSVLink className="link" {...csvReport}>
                     <p>
                       <HiDocumentDownload />
                     </p>
-                    Export to CSV
+                    Export CSV
                   </CSVLink>
                 </button>
               </div>
             </div>
 
             <div className="reports-container">
-              <div className="table">
+              <div className="report-table">
+                <div className="report-table-header">
+                  <div className="rpt-no">#</div>
+                  <div className="rpt-name">Patient's Name</div>
+                </div>
+                {patients
+                  .filter(filterDate)
+                  .filter(filterGender)
+                  .filter(filterHospital)
+                  .filter(filterSpec)
+                  .filter(filterAge)
+                  .map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className={
+                          index % 2 === 0
+                            ? "report-table-body"
+                            : "report-table-body-2"
+                        }
+                      >
+                        <div className="rpt-no">{index + 1}</div>
+                        <div className="rpt-name">
+                          {item.firstname +
+                            " " +
+                            item.middlename[0] +
+                            "." +
+                            " " +
+                            item.lastname}
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+              {/* <div className="table">
                 <div className="table-header">
                   <div className="pt-name">Patient Name</div>
                   <div className="pt-date">Physician</div>
@@ -204,7 +239,7 @@ const GenerateReport = ({ setFilterModal }) => {
                       </div>
                     );
                   })}
-              </div>
+              </div> */}
               <div className="reports-overview-container">
                 <div className="rp-ov-1">
                   <h2>Report ID {reportId}</h2>
