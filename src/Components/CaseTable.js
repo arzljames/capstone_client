@@ -50,7 +50,20 @@ const CaseTable = ({ setPatient, setPatientModal }) => {
   const [usersPerPage, setUsersPerPage] = useState(20);
   const pagesVisited = pageNumber * usersPerPage;
 
-  const pageCount = Math.ceil(cases.length / usersPerPage);
+  const pageCount = Math.ceil(
+    cases.filter((val) => {
+      if (
+        (user.designation === "623ec7fb80a6838424edaa29" &&
+          val.specialization.includes(user.specialization)) ||
+        (user.designation === "623ec7fb80a6838424edaa29" &&
+          val.subSpecialization.map((f) => f._id).includes(user.specialization))
+      ) {
+        return val;
+      } else if (user.userId === val.physician._id) {
+        return val;
+      }
+    }).length / usersPerPage
+  );
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
@@ -63,14 +76,6 @@ const CaseTable = ({ setPatient, setPatientModal }) => {
   const filterPatient = (id) => {
     setPatient(patients.filter((e) => e._id === id)[0]);
   };
-
-  useEffect(() => {
-    console.log(
-      cases.map((e) => {
-        return e.subSpecialization.map((f) => f._id === user.specialization);
-      })
-    );
-  }, []);
 
   return (
     <>

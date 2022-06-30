@@ -39,8 +39,12 @@ const IncomingConsult = () => {
                   {cases
                     .filter(
                       (f) =>
-                        f.specialization.includes(user.specialization) &&
-                        f.active === true
+                        (f.specialization.includes(user.specialization) &&
+                          f.active === true) ||
+                        (f.subSpecialization
+                          .map((f) => f._id)
+                          .includes(user.specialization) &&
+                          f.active === true)
                     )
                     .map((item) => {
                       return <IncomingCaseActive item={item} name={"sds"} />;

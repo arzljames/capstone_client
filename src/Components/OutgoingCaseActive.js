@@ -49,27 +49,11 @@ const OutgoingCaseActive = ({ caseId, item }) => {
           <h1>{item.patient.firstname + " " + item.patient.lastname}</h1>
           <p>Case ID #{item.caseId}</p>
           <p>
-            {/* {
-              facilities
-                .filter((e) => e._id === item.designation._id)
-                .map((f) => {
-                  return f.specialization.filter(
-                    (g) => g._id === item.specialization
-                  )[0];
-                })[0].name
-            } */}
-            {/* {facilities
-              .filter((e) => e._id === "623ec7fb80a6838424edaa29")[0]
-              .specialization.filter((f) => item.specialization.includes(f._id))
-              .map((g) => {
-                return g.name + " ";
-              })} */}
-
-            {
-              specializations.filter((e) => {
-                return item.specialization.includes(e._id);
-              })[0].specialization
-            }
+            {item.specialization.length === 0
+              ? null
+              : specializations.filter((e) => {
+                  return item.specialization.includes(e._id);
+                })[0].specialization}
           </p>
 
           <div className="case-content-date">
