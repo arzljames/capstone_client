@@ -49,11 +49,13 @@ const OutgoingCaseActive = ({ caseId, item }) => {
           <h1>{item.patient.firstname + " " + item.patient.lastname}</h1>
           <p>Case ID #{item.caseId}</p>
           <p>
-            {item.specialization.length === 0
-              ? null
-              : specializations.filter((e) => {
+           
+
+                { specializations.filter((e) => {
                   return item.specialization.includes(e._id);
-                })[0].specialization}
+                })[0]?.specialization}
+
+             
           </p>
 
           <div className="case-content-date">

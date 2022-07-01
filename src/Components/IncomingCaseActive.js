@@ -43,16 +43,12 @@ const IncomingCaseActive = ({ item, name }) => {
         <div className="case-content-data">
           <h1>{item.patient.firstname + " " + item.patient.lastname}</h1>
           <p>
-            {/* {specializations.filter((e) => {
-              return item.specialization.includes(e._id);
-            })[0].specialization
-              ? specializations.filter((e) => {
-                  return item.specialization.includes(e._id);
-                })[0].specialization
-              : null} */}
+            
             Case ID #{item.caseId}
           </p>
-          <p>{item.designation.facility}</p>
+          <p>  { specializations.filter((e) => {
+                  return item.specialization.includes(e._id);
+                })[0]?.specialization}</p>
           <div className="case-content-date">
             <p>{getDate(createdAt)}</p>
             <p>{createdAt.toLocaleString("en-US", options)}</p>
