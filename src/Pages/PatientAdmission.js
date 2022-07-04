@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, {  useState } from "react";
+import {  useNavigate } from "react-router-dom";
 import ConsultationNavbar from "../Components/ConsultationNavbar";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
-import "./TeleChannel.css";
 import {
-  HiChevronLeft,
   HiDocumentText,
   HiArrowNarrowLeft,
 } from "react-icons/hi";
@@ -182,7 +180,6 @@ const PatientAdmission = () => {
                     </button>
                   </div>
                 </div>
-                {/* <hr /> */}
 
                 <div className="patient-admission">
                   <div className="admission-form">

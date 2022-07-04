@@ -2,11 +2,9 @@ import React from "react";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
 import "./Homepage.css";
-import "./IncomingConsult.css";
 import ConsultationNavbar from "../Components/ConsultationNavbar";
 import useAuth from "../Hooks/useAuth";
 import IncomingCaseActive from "../Components/IncomingCaseActive";
-import { AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet";
 
 const IncomingConsult = () => {

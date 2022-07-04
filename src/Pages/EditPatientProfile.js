@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ConsultationNavbar from "../Components/ConsultationNavbar";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
-import "./TeleChannel.css";
 import { HiChevronLeft, HiDocumentText } from "react-icons/hi";
 import { motion } from "framer-motion";
 import "./PatientAdmission.css";

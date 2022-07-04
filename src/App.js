@@ -12,7 +12,6 @@ import {
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import ForgotPassword from "./Pages/ForgotPassword";
-import Notification from "./Pages/Notification";
 import AdminChannel from "./AdminPages/AdminChannel";
 import AdminFacility from "./AdminPages/AdminFacility";
 import AdminPeople from "./AdminPages/AdminPeople";
@@ -28,7 +27,6 @@ import Profile from "./Pages/Profile";
 import Patients from "./Pages/Patients";
 import IncomingConsult from "./Pages/IncomingConsult";
 import OutgoingConsult from "./Pages/OutgoingConsult";
-import TeleChannel from "./Pages/TeleChannel";
 import PatientsData from "./Pages/PatientsData";
 import { useEffect } from "react";
 
@@ -107,10 +105,8 @@ function App() {
               path="/consultation"
               element={<Navigate to="/consultation/patients" replace />}
             />
-            <Route path="notifications" element={<Notification />} />
             <Route path="chat/:userId/:id" element={<ChatUser />} />
             <Route path="chat" element={<Chat />} />
-            <Route path="telechannel" element={<TeleChannel />} />
             <Route path="profile/:username" element={<Profile />} />
             <Route path="consultation/patients" element={<Patients />} />
             <Route path="settings/account" element={<AccountSettings />} />

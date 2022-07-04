@@ -46,16 +46,22 @@ const OutgoingCaseActive = ({ caseId, item }) => {
           <FcDocument />
         </div>
         <div className="case-content-data">
-          <h1>{item.patient.firstname + " " + item.patient.lastname}</h1>
-          <p>Case ID #{item.caseId}</p>
+          <h1>
+            {item.patient.lastname +
+              "," +
+              " " +
+              item.patient.firstname +
+              " " +
+              item.patient.middlename[0] +
+              "."}
+          </h1>
+          <p>{item.designation?.facility}</p>
           <p>
-           
-
-                { specializations.filter((e) => {
-                  return item.specialization.includes(e._id);
-                })[0]?.specialization}
-
-             
+            {
+              specializations.filter((e) => {
+                return item.specialization.includes(e._id);
+              })[0]?.specialization
+            }
           </p>
 
           <div className="case-content-date">
