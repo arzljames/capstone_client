@@ -230,12 +230,13 @@ const PatientTableData = ({
                 >
                   <div className="pt-name">
                     <p>
-                      {item.firstname +
+                      {item.lastname +
+                        "," +
+                        " " +
+                        item.firstname +
                         " " +
                         item.middlename[0] +
-                        "." +
-                        " " +
-                        item.lastname}{" "}
+                        "."}
                     </p>
                   </div>
 

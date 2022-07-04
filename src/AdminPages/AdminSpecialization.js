@@ -40,6 +40,11 @@ const AdminSpecialization = () => {
     setId(e._id);
   };
 
+
+  useEffect(() => {
+    console.log(listUsers.filter(e => e.speci === '62b42301fb9b0f2c8bb1bb1a').length)
+  }, [])
+
   return (
     <>
       <AnimatePresence>
@@ -137,11 +142,10 @@ const AdminSpecialization = () => {
                           </p>
                         </div>
                         <div className="spec-doctors">
-                          {
-                            listUsers.filter(
-                              (item) => item.specialization === e._id
-                            ).length
-                          }
+                          {listUsers.filter(id => {
+                            return id.specialization?._id === e._id
+                          }).length }
+                        
                         </div>
                         <div className="spec-date">{getDate(e.createdAt)}</div>
                         <div className="spec-date">

@@ -176,7 +176,15 @@ const CaseTable = ({ setPatient, setPatientModal }) => {
                         e.stopPropagation();
                       }}
                     >
-                      {item.patient.firstname + " " + item.patient.lastname}
+                      <p>
+                        {item.patient.lastname +
+                          "," +
+                          " " +
+                          item.patient.firstname +
+                          " " +
+                          item.patient.middlename[0] +
+                          "."}
+                      </p>
                     </p>
                   </div>
 

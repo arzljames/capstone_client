@@ -28,7 +28,8 @@ const OutgoingConsult = () => {
                   <div>
                     <h2>All Outgoing Requests</h2>
                     <p>
-                      List of consultation request to Zamboanga City Medical Center.
+                      List of consultation request to Zamboanga City Medical
+                      Center.
                     </p>
                   </div>
                 </div>
