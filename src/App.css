@@ -278,7 +278,6 @@ button.gray-cta:hover {
   flex-direction: column;
   padding-bottom: 0px;
   flex: 1;
-
 }
 
 .table-header {
@@ -636,6 +635,9 @@ div.popup-modal h1 {
   .above-patient-table {
     flex-direction: column;
     align-items: flex-end;
+    height: 35px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
 
   .table {
@@ -644,6 +646,7 @@ div.popup-modal h1 {
 
   .table-header {
     padding-right: 20px;
+    min-height: 35px;
   }
 
   .patient-input-container {
