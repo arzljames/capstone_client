@@ -28,7 +28,6 @@ const PatientTableData = ({
   setPatientId,
   setPatientModal,
   filterPatient,
-  setDeleteModal,
   searchDropdown,
   setSearchDropdown,
 }) => {

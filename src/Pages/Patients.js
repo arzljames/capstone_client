@@ -111,11 +111,11 @@ const Patients = () => {
   const [showAdvance, setShowAdvance] = useState(false);
 
   const sortAscName = (a, b) => {
-    return a.firstname.localeCompare(b.firstname);
+    return a.lastname.localeCompare(b.lastname);
   };
 
   const sortDscName = (a, b) => {
-    return b.firstname.localeCompare(a.firstname);
+    return b.lastname.localeCompare(a.lastname);
   };
 
   const sortAscDate = (a, b) => {

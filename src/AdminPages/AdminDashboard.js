@@ -406,7 +406,7 @@ const AdminDashboard = () => {
                 />
               </div>
 
-              <div className="donut-chart-container">
+              {/* <div className="donut-chart-container">
                 <h2>Doctors by Specialization</h2>
                 <ResponsivePie
                   data={specializations}
@@ -557,7 +557,7 @@ const AdminDashboard = () => {
                     },
                   ]}
                 />
-              </div>
+              </div> */}
               {/* <div className="chart-container">
                   <div className="year-selected">
                     <h2>Year :</h2>{" "}
@@ -579,7 +579,7 @@ const AdminDashboard = () => {
                   )}
                 </div> */}
 
-              {/* <div className="admin-right-panel">
+              <div className="admin-right-panel">
                 <div className="pending-registration">
                   <h2>Pending Registration</h2>
                   <div className="pending-registration-body">
@@ -611,7 +611,7 @@ const AdminDashboard = () => {
                     )}
                   </div>
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

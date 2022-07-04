@@ -3,7 +3,6 @@
 
 import { createContext, useState, useEffect } from "react";
 import api from "../API/Api";
-import axios from "axios";
 import { socket } from "../Components/Socket";
 import { toast, ToastContainer } from "react-toastify";
 
