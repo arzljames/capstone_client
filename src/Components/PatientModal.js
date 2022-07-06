@@ -53,11 +53,6 @@ const PatientModal = ({
     return today;
   };
 
-  useEffect(() => {
-    cases.map((e) => {
-      return console.log(e.specialization[0]);
-    });
-  }, []);
 
   return (
     <>
@@ -318,9 +313,11 @@ const PatientModal = ({
                           <div className="ch-department">
                             {
                               specializations.filter(
-                                (e) => e._id === item.specialization[0]
-                              )[0].specialization
+                                (e) => e._id === item.specialization
+                              )[0]?.specialization
                             }
+
+                   
                           </div>
                           <div className="ch-status">
                             {item.active ? "Active" : "Done"}
