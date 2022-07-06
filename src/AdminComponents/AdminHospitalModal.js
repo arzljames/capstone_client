@@ -214,48 +214,10 @@ const AdminHospitalModal = ({ setShowHospitalModal, hospital }) => {
               </div>
             </div>
 
-            <label>
-              Specializations
-              <p onMouseEnter={onHover} onMouseLeave={offHover}>
-                <HiInformationCircle />
-                {showHover && (
-                  <InfoHover message="Click the check icon inside the specialization field after typing. You can add more than one (multiple type of) specializations." />
-                )}
-              </p>
-            </label>
-            <div className="input-container">
-              <input
-                ref={inputRef}
-                value={temp}
-                onChange={(e) => setTemp(e.target.value)}
-                type="text"
-              />
-              {temp.length !== 0 && (
-                <motion.p onClick={() => addSpec()}>
-                  <HiCheck />
-                </motion.p>
-              )}
-            </div>
+            
+            
 
-            <div className="specializations-container">
-              {specializations.map((item, index) => {
-                return (
-                  <p>
-                    {item.name}
-                    <div
-                      className="edit-spec"
-                      onClick={() => {
-                        setSpec(item);
-                        setShowEditModal(true);
-                      }}
-                      key={index + 1}
-                    >
-                      <HiPencil />
-                    </div>
-                  </p>
-                );
-              })}
-            </div>
+        
           </div>
           <div className="form-btns">
             <div></div>

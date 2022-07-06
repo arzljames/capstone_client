@@ -110,6 +110,8 @@ const NewCase = ({ setShowCase }) => {
     setSpecialization,
   } = useCaseData();
 
+  const [todate, setTodate] = useState(null);
+
   const clearForm = () => {
     setPatientId("");
     setSpecialization("");
@@ -129,6 +131,7 @@ const NewCase = ({ setShowCase }) => {
     setWi("");
     setImd("");
     setReason("");
+    setTodate(null)
   };
 
   const handleSubmit = async () => {
@@ -191,6 +194,7 @@ const NewCase = ({ setShowCase }) => {
                 wi,
                 imd,
                 reason,
+                todate
               })
               .then((result) => {
                 if (result) {
@@ -303,6 +307,8 @@ const NewCase = ({ setShowCase }) => {
           </p>
         </div>
         <div className="form-body">
+          <label>Date Created</label>
+          <input style={{minHeight: '40px'}} value={todate} onChange={(e) => setTodate(e.target.value)} type="date" />
           <label>
             Patient <i>*</i>
           </label>

@@ -520,11 +520,9 @@ const CaseData = () => {
                           patientCase.physician.lastname}
                       </p>
 
-                      <label>Date & Time</label>
+                      <label>Date Created</label>
                       <p>
-                        {getDate(patientCase.createdAt) +
-                          " " +
-                          getTime(patientCase.createdAt)}
+                        {getDate(patientCase.createdAt)}
                       </p>
                     </div>
                   </div>

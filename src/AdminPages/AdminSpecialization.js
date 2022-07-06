@@ -125,7 +125,10 @@ const AdminSpecialization = () => {
                   })
                   .map((e, index) => {
                     return (
-                      <div
+                      <div  onClick={() => {
+                        handleSetter(e);
+                        setEditModal(true);
+                      }}
                         key={index}
                         className={
                           index % 2 === 0 ? "table-body" : "table-body-2"
@@ -133,10 +136,7 @@ const AdminSpecialization = () => {
                       >
                         <div className="spec-name">
                           <p
-                            onClick={() => {
-                              handleSetter(e);
-                              setEditModal(true);
-                            }}
+                           
                           >
                             {e.specialization}
                           </p>
