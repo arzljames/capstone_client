@@ -7,8 +7,13 @@ import api from "../API/Api";
 import PendingModal from "../Components/PendingModal";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { formVariant } from "../Animations/Animations";
+import {
+  formVariant,
+  loginContainerVariant,
+  loginFormVariant,
+} from "../Animations/Animations";
 import useAuth from "../Hooks/useAuth";
+import Logo from "../Assets/zcmc_logo.png";
 
 const formVariants = {
   hidden: {
@@ -76,39 +81,10 @@ const Login = () => {
     }
   };
 
-  // if (window.navigator.cookieEnabled === false) {
-  //   return (
-  //     <div className="modal-container">
-  //       <div className="popup-modal">
-  //         <h1>Allow Third Party Cookies</h1>
-  //         <p>
-  //           The TeleMedicine is using a third party cookies in order to work all
-  //           the functionalities of the System. Please consider unchecking the{" "}
-  //           <em>"Block 3rd party cookies"</em> option in your browser settings
-  //           to proceed. <br />
-  //           <br />
-  //           If you're accessing this on{" "}
-  //           <strong style={{ fontWeight: 600 }}>Mac</strong> or{" "}
-  //           <strong style={{ fontWeight: 600 }}>IOS</strong>: <br />
-  //           <br />
-  //           1. Open the <strong style={{ fontWeight: 600 }}>
-  //             Settings
-  //           </strong>{" "}
-  //           App. <br />
-  //           2. Go to <strong style={{ fontWeight: 600 }}>Safari</strong> {"> "}
-  //           <strong style={{ fontWeight: 600 }}>Block Cookies</strong>. <br />
-  //           3. Select{" "}
-  //           <strong style={{ fontWeight: 600 }}>“Always Allow”</strong>.
-  //         </p>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
   return (
     <>
       <Helmet>
-        <title>Sign in to ZCMC Telemedicine | ZCMC Telemedicine</title>
+        <title>Sign In to ZCMC Telemedicine | ZCMC Telemedicine</title>
       </Helmet>
       <div className="login-container">
         <AnimatePresence>
@@ -119,96 +95,101 @@ const Login = () => {
             />
           ) : null}
         </AnimatePresence>
-
-        <div className="login-header">
-          <h1>Sign in</h1>
-          <p>Enter your credentials to continue</p>
-        </div>
-        <form className="login-form" onSubmit={(e) => e.preventDefault()}>
-          <label>
-            Username <i>*</i>
-          </label>
-
-          <div
-            className={
-              usernameError
-                ? "login-username-container-error"
-                : "login-username-container"
-            }
-          >
-            <input
-              className={usernameError ? "error-input" : "username"}
-              name="username"
-              value={login.username}
-              placeholder="Enter username"
-              onChange={(e) => {
-                setLogin({
-                  username: e.target.value,
-                  password: login.password,
-                });
-              }}
-              type="text"
-            />
-            <p className="login-icon">
-              <HiUser />
-            </p>
+        <motion.div
+          variants={loginFormVariant}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className="form-container"
+        >
+          <div className="login-header">
+            <img src={Logo} alt="Logo" />
+            <div>
+              <h1>Sign In</h1>
+              <p>Enter your credentials to continue</p>
+            </div>
           </div>
+          <form className="login-form" onSubmit={(e) => e.preventDefault()}>
+            <label>
+              Username <i>*</i>
+            </label>
 
-          <AnimatePresence>
-            {usernameError ? (
-              <p style={{ marginTop: "5px" }} className="error-input-text">
-                {message}
+            <div
+              className={
+                usernameError
+                  ? "login-username-container-error"
+                  : "login-username-container"
+              }
+            >
+              <input
+                className={usernameError ? "error-input" : "username"}
+                name="username"
+                value={login.username}
+                placeholder="Enter username"
+                onChange={(e) => {
+                  setLogin({
+                    username: e.target.value,
+                    password: login.password,
+                  });
+                }}
+                type="text"
+              />
+              <p className="login-icon">
+                <HiUser />
               </p>
-            ) : null}
-          </AnimatePresence>
+            </div>
 
-          <label>
-            Password <i>*</i>
-          </label>
-          <div className="form-input-container">
-            <input
-              name="password"
-              value={login.password}
-              placeholder="Enter password"
-              onChange={(e) => {
-                setLogin({
-                  username: login.username,
-                  password: e.target.value,
-                });
-              }}
-              type={showPassword ? "text" : "password"}
-            />
-            <p className="login-icon">
-              <HiLockClosed />
-            </p>
-            {login.password.length > 0 ? (
-              <div
-                onClick={() => setShowPassword(!showPassword)}
-                className="eye-password"
-              >
-                {showPassword ? <HiEyeOff /> : <HiEye />}
-              </div>
-            ) : null}
-          </div>
-          <button
-            type="submit"
-            className={loader ? "login-form-btn-disable" : "login-form-btn"}
-            onClick={() => handleLogin()}
-          >
-            {loader ? "Signing in..." : "Sign In"}
-          </button>
-          <div className="form-link">
-            {/* <p>
-              <span onClick={() => navigate("/reset-password")}>
-                Forgot password?
-              </span>
-            </p> */}
-            <p>
-              Don't have an account?{" "}
-              <span onClick={() => navigate("/register")}>Create one.</span>
-            </p>
-          </div>
-        </form>
+            <AnimatePresence>
+              {usernameError ? (
+                <p style={{ marginTop: "5px" }} className="error-input-text">
+                  {message}
+                </p>
+              ) : null}
+            </AnimatePresence>
+
+            <label>
+              Password <i>*</i>
+            </label>
+            <div className="form-input-container">
+              <input
+                name="password"
+                value={login.password}
+                placeholder="Enter password"
+                onChange={(e) => {
+                  setLogin({
+                    username: login.username,
+                    password: e.target.value,
+                  });
+                }}
+                type={showPassword ? "text" : "password"}
+              />
+              <p className="login-icon">
+                <HiLockClosed />
+              </p>
+              {login.password.length > 0 ? (
+                <div
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="eye-password"
+                >
+                  {showPassword ? <HiEyeOff /> : <HiEye />}
+                </div>
+              ) : null}
+            </div>
+            <button
+              type="submit"
+              className={loader ? "login-form-btn-disable" : "login-form-btn"}
+              onClick={() => handleLogin()}
+            >
+              {loader ? "Signing In" : "Sign In"}
+            </button>
+            <div className="form-link">
+              <p>
+                Don't have an account?{" "}
+                <span onClick={() => navigate("/register")}>Create one.</span>
+              </p>
+            </div>
+          </form>
+        </motion.div>
       </div>
     </>
   );

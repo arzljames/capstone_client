@@ -9,7 +9,7 @@
   padding: 0px 20px;
   background: #fff;
   z-index: 2;
-  border-bottom: 1px solid #d3d3d3;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .admin-header-brand {

@@ -19,6 +19,8 @@ import {
 } from "chart.js";
 import { Chart, Line } from "react-chartjs-2";
 import "./UserDashboard.css";
+import {motion} from "framer-motion";
+import { pageVariant } from "../Animations/Animations";
 
 const UserDashboard = () => {
   const {
@@ -202,7 +204,7 @@ const UserDashboard = () => {
         <Sidebar />
         <div className="content">
           <Header />
-          <div className="content-body">
+          <motion.div variants={pageVariant} initial="hidden" animate="visible" exit="exit" className="content-body">
             <div className="container-heading">
               <h2>Dashboard Overview</h2>
             </div>
@@ -276,7 +278,7 @@ const UserDashboard = () => {
                 <Line options={options} data={data} />
               )}
             </div> */}
-          </div>
+          </motion.div>
         </div>
       </div>
     </>

@@ -258,7 +258,7 @@ const AdminDashboard = () => {
   return (
     <>
       <Helmet>
-        <title>Admin - Dashboard | ZCMC Telemedicine</title>
+        <title>Dashboard | ZCMC Telemedicine</title>
       </Helmet>
       <div className="container">
         <AdminSidebar />

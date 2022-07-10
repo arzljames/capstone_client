@@ -6,9 +6,8 @@ import { FcDocument } from "react-icons/fc";
 const OutgoingCaseActive = ({ caseId, item }) => {
   const createdAt = new Date(item.createdAt);
   const navigate = useNavigate();
-  const { specializations } = useAuth();
+  const { specializations, facilities } = useAuth();
 
-  const { facilities } = useAuth();
   const getDate = (date) => {
     let today =
       date.toLocaleString("en-us", { month: "short" }) +
@@ -55,7 +54,13 @@ const OutgoingCaseActive = ({ caseId, item }) => {
               item.patient.middlename[0] +
               "."}
           </h1>
-          <p>{item.designation?.facility}</p>
+          <p>
+            {
+              facilities.filter((e) => {
+                return e._id === item.physician?.designation;
+              })[0]?.facility
+            }
+          </p>
           <p>
             {
               specializations.filter((e) => {

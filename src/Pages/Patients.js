@@ -22,7 +22,7 @@ import { useClickOutside } from "../Hooks/useClickOutside";
 import { parse } from "papaparse";
 import ImportModal from "../Components/ImportModal";
 import PatientAdvanceSearch from "../Components/PatientAdvanceSearch";
-import { dropdownVariants } from "../Animations/Animations";
+import { dropdownVariants, pageVariant } from "../Animations/Animations";
 import PatientTableData from "../Components/PatientTableData";
 
 import { Helmet } from "react-helmet";
@@ -191,7 +191,7 @@ const Patients = () => {
           <Header />
           <div className="consultation-content">
             <ConsultationNavbar />
-            <div className="content-body">
+            <motion.div variants={pageVariant} initial="hidden" animate="visible" exit="exit" className="content-body">
               <div className="consultation-wrapper">
                 <div className="container-heading">
                   <h2>Patients</h2>
@@ -316,7 +316,7 @@ const Patients = () => {
                   </div>
                 </div>
 
-                <PatientTable
+                {/* <PatientTable
                   sortAscDate={sortAscDate}
                   sortDscDate={sortDscDate}
                   sortAscName={sortAscName}
@@ -333,9 +333,9 @@ const Patients = () => {
                   filterPatient={filterPatient}
                   searchDropdown={searchDropdown}
                   setSearchDropdown={setSearchDropdown}
-                />
+                /> */}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

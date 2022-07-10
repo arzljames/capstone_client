@@ -12,13 +12,12 @@ import {
   HiChevronRight,
 } from "react-icons/hi";
 import useAuth from "../Hooks/useAuth";
-
-import NoUser from "../Assets/nouser.png";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { AnimatePresence } from "framer-motion";
 import ReactPaginate from "react-paginate";
 import AdminEditdUser from "../AdminComponents/AdminEditdUser";
 import { Helmet } from "react-helmet";
+import NoUser from "../Assets/nouser.png";
 
 const AdminPeople = () => {
   const [showModal, setShowModal] = useState(false);
@@ -58,7 +57,7 @@ const AdminPeople = () => {
   return (
     <>
       <Helmet>
-        <title>Admin - Users | ZCMC Telemedicine</title>
+        <title>Doctors | ZCMC Telemedicine</title>
       </Helmet>
       <div className="container">
         <AdminSidebar />
@@ -86,133 +85,97 @@ const AdminPeople = () => {
           <AdminHeader />
           <div className="content-body">
             <div className="container-heading">
-              <h2>List of Doctors</h2>
+              <div className="patient-input-container">
+                <input
+                  value={term}
+                  onChange={(e) => setTerm(e.target.value)}
+                  type="search"
+                  onFocus={() => setSearchDropdown(true)}
+                  placeholder="Search Doctors"
+                />
+                <div className="patient-input-icon">
+                  <HiOutlineSearch />
+                </div>
+
+                {searchDropdown && (
+                  <div ref={domNodeSearch} className="advance-search">
+                    {!term ? (
+                      <p>Type in the search bar</p>
+                    ) : (
+                      <p>You searched for "{term}"</p>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className="table">
-              <div className="above-patient-table">
-                <div className="patient-input-container">
-                  <input
-                    value={term}
-                    onChange={(e) => setTerm(e.target.value)}
-                    type="search"
-                    onFocus={() => setSearchDropdown(true)}
-                    placeholder="Search patient (last name, first name)"
-                  />
-                  <div className="patient-input-icon">
-                    <HiOutlineSearch />
-                  </div>
-
-                  {searchDropdown && (
-                    <div ref={domNodeSearch} className="advance-search">
-                      {!term ? (
-                        <p>Type in the search bar</p>
-                      ) : (
-                        <p>You searched for "{term}"</p>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
               <div className="table-header">
-                <div className="admin-user-name">Full Name</div>
-                <div className="admin-user-patients">Total Patients</div>
-                <div className="admin-user-spec">Specialization</div>
-                <div className="admin-user-hospital">Hospital</div>
-                <div className="us-status">Active Status</div>
+                <div className="dr-name">Full name</div>
+                <div className="dr-patient">Patients</div>
+                <div className="dr-hospital">Hospital</div>
+                <div className="dr-status">Status</div>
               </div>
-              <div className="table-body-container">
-                {listUsers
 
-                  .filter((val) => {
-                    if (term === "") {
-                      return val;
-                    } else if (
-                      val.fullname
-                        .toLowerCase()
-                        .includes(term.toLocaleLowerCase())
-                    ) {
-                      return val;
-                    }
-                  })
-                  .slice(
-                    term === "" ? pagesVisited : 0,
-                    term === "" ? pagesVisited + usersPerPage : listUsers.length
-                  )
-                  .map((item, key) => {
-                    return (
-                      <div
-                        key={key}
-                        className={
-                          key % 2 === 0 ? "table-body" : "table-body-2"
-                        }
-                      >
-                        <div className="admin-user-name">
-                          <p
-                            onClick={() => {
-                              setUserData(item);
-                              setModal(true);
-                            }}
-                          >
-                            <img
-                              src={!item.picture ? NoUser : item.picture}
-                              alt="Profile Picture"
-                            />{" "}
-                            Dr. {item.firstname + " " + item.lastname}
-                          </p>
-                        </div>
-                        <div className="admin-user-patients">
-                          {
-                            patients.filter((e) => e.physician._id === item._id)
-                              .length
-                          }
-                        </div>
-                        <div className="admin-user-spec">
-                          {item.specialization === null
-                            ? "N/A"
-                            : item.specialization.specialization}
-                        </div>
-                        <div className="admin-user-hospital">
-                          {item.designation.facility}
-                        </div>
+              {listUsers
 
-                        <div
-                          className={
-                            item.activeStatus === "Online"
-                              ? "us-status online"
-                              : "us-status"
-                          }
-                        >
-                          <p
-                            className={
-                              item.activeStatus === "Offline"
-                                ? "offline"
-                                : "online"
-                            }
-                          ></p>{" "}
-                          {item.activeStatus}
-                        </div>
+                .filter((val) => {
+                  if (term === "") {
+                    return val;
+                  } else if (
+                    val.fullname
+                      .toLowerCase()
+                      .includes(term.toLocaleLowerCase())
+                  ) {
+                    return val;
+                  }
+                })
+                .slice(
+                  term === "" ? pagesVisited : 0,
+                  term === "" ? pagesVisited + usersPerPage : listUsers.length
+                )
+                .map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={
+                        index % 2 === 0 ? "table-body" : "table-body-2"
+                      }
+                    >
+                      <div className="dr-name">
+                        <img
+                          src={!item.picture ? NoUser : item.picture}
+                          alt="Profile"
+                        />
+                        <p id="link">
+                          Dr. {item.firstname} {item.lastname}
+                        </p>
                       </div>
-                    );
-                  })}
-              </div>
-              <div className="pagination-container">
-                <ReactPaginate
-                  previousLabel={<HiChevronLeft size={20} />}
-                  nextLabel={<HiChevronRight size={20} />}
-                  breakLabel="..."
-                  pageCount={pageCount}
-                  marginPagesDisplayed={3}
-                  containerClassName="pagination"
-                  pageClassName="page-item"
-                  pageLinkClassName="page-link"
-                  breakClassName="page-item"
-                  nextClassName="page-item"
-                  previousClassName="page-item"
-                  activeClassName="active"
-                  onPageChange={changePage}
-                />
-              </div>
+                      <div className="dr-patient">{listUsers.length}</div>
+                      <div className="dr-hospital">
+                        {item.designation?.facility}
+                      </div>
+                      <div className="dr-status">{item.activeStatus}</div>
+                    </div>
+                  );
+                })}
+            </div>
+            <div className="pagination-container">
+              <ReactPaginate
+                previousLabel={<HiChevronLeft size={20} />}
+                nextLabel={<HiChevronRight size={20} />}
+                breakLabel="..."
+                pageCount={pageCount}
+                marginPagesDisplayed={3}
+                containerClassName="pagination"
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                breakClassName="page-item"
+                nextClassName="page-item"
+                previousClassName="page-item"
+                activeClassName="active"
+                onPageChange={changePage}
+              />
             </div>
           </div>
         </div>

@@ -8,6 +8,20 @@
 
 }
 
+.loader-logo {
+    width: 50px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+
+}
+
+.loader-logo img {
+    width: 100%;
+}
+
 
 .loader h1 {
     font-weight: 600;

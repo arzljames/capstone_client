@@ -27,8 +27,8 @@ const LogoutModal = ({ setLogout, submitLogout }) => {
         ref={domNode}
         className="popup-modal"
       >
-        <h1>Logout</h1>
-        <p>Are you sure you want to log out?</p>
+        <h1>Sign Out</h1>
+        <p>Are you really sure you want to Sign out?</p>
 
         <div className="delete-modal-btns">
           <button
@@ -46,7 +46,7 @@ const LogoutModal = ({ setLogout, submitLogout }) => {
               loader ? "delete-patient-btn2-disable" : "delete-patient-btn2"
             }
           >
-            {loader ? "Logging out..." : "Logout"}
+            {loader ? "Signing Out" : "Sign Out"}
           </button>
         </div>
       </motion.div>

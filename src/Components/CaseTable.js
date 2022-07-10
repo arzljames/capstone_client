@@ -5,13 +5,13 @@ import useAuth from "../Hooks/useAuth";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import ReactPaginate from "react-paginate";
 
-const CaseTable = ({ setPatient, setPatientModal }) => {
-  const [term, setTerm] = useState("");
+const CaseTable = ({ setPatient, setPatientModal, term, setSearchDropdown }) => {
+
   const [isSort, setIsSort] = useState(false);
   const [isFilter, setIsFilter] = useState(false);
   const [filter, setFilter] = useState("None");
   const [sort, setSort] = useState("Oldest");
-  const [searchDropdown, setSearchDropdown] = useState(false);
+
   const navigate = useNavigate();
   let domNodeSort = useClickOutside(() => {
     setIsSort(false);
@@ -69,9 +69,7 @@ const CaseTable = ({ setPatient, setPatientModal }) => {
     setPageNumber(selected);
   };
 
-  let domNodeSearch = useClickOutside(() => {
-    setSearchDropdown(false);
-  });
+
 
   const filterPatient = (id) => {
     setPatient(patients.filter((e) => e._id === id)[0]);
@@ -80,32 +78,7 @@ const CaseTable = ({ setPatient, setPatientModal }) => {
   return (
     <>
       <div className="table">
-        <div className="above-patient-table">
-          <div className="patient-input-container">
-            <input
-              value={term}
-              onChange={(e) => setTerm(e.target.value)}
-              type="search"
-              onFocus={() => setSearchDropdown(true)}
-              placeholder="Search case (case ID or patient name)"
-            />
-            <div className="patient-input-icon">
-              <HiOutlineSearch />
-            </div>
-
-            {searchDropdown && (
-              <div ref={domNodeSearch} className="advance-search">
-                {!term ? (
-                  <p>Type in the search bar</p>
-                ) : (
-                  <p>You searched for "{term}"</p>
-                )}
-              </div>
-            )}
-          </div>
-
-          <div className="above-patient-table-btns"></div>
-        </div>
+    
         <div className="table-header">
           <div className="cs-id">Case ID</div>
           <div className="cs-name">Patient</div>
@@ -114,7 +87,7 @@ const CaseTable = ({ setPatient, setPatientModal }) => {
           <div className="cs-date">Date & Time</div>
           <div className="cs-status">Status</div>
         </div>
-        <div className="table-body-container">
+
           {cases
             .filter((vals) => {
               if (term === "") {
@@ -230,7 +203,7 @@ const CaseTable = ({ setPatient, setPatientModal }) => {
             onPageChange={changePage}
           />
         </div>
-      </div>
+      
     </>
   );
 };

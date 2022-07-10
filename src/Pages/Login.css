@@ -1,28 +1,51 @@
 .login-container {
   width: 100%;
-  height: auto;
-  min-height: 700px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  padding: 50px 20px;
+  background: #f7f5f9;
+  position: relative;
+  height: 100vh;
+}
+
+.register-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f5f9;
+  position: relative;
+  padding: 20px;
+}
+
+.form-container {
+ display: flex;
+ flex-direction: column;
+ background: #fff;
+ padding: 40px;
+ border-radius: 8px;
+ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.login-header img {
+  width: 50px;
+  margin-right: 10px;
 }
 
 .login-header {
   margin-bottom: 32px;
   width: 100%;
-  width: 350px;
+  display: flex;
 }
 
-.login-container h1 {
+.form-container h1 {
   color: #272727;
   font-size: 26px;
   font-weight: 600;
   text-align: left;
 }
 
-.login-container p {
+.form-container p {
   color: #505050;
   font-size: 15px;
 }
@@ -197,7 +220,7 @@ button.login-form-btn {
   outline-style: none;
   border: none;
   cursor: pointer;
-  background: #058e46;
+  background: #1cb45d;
   color: #fff;
   font-weight: 500;
   font-size: 15px;
@@ -229,7 +252,7 @@ button.login-form-btn-disable a {
   outline-style: none;
   border: none;
   cursor: pointer;
-  background: #058e46;
+  background: #1cb45d;
   color: #fff;
   font-weight: 500;
   font-size: 15px;
@@ -245,7 +268,7 @@ button.login-form-btn-disable a {
 
 .login-form-btn:hover {
   transition: 0.2s ease-in-out;
-  background: #057a3c;
+  background: #199b51;
 }
 
 .form-link {

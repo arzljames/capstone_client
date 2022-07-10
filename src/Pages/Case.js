@@ -3,7 +3,7 @@ import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
 import { Helmet } from "react-helmet";
 import ConsultationNavbar from "../Components/ConsultationNavbar";
-import { HiPlus } from "react-icons/hi";
+import { HiPlus, HiOutlineSearch } from "react-icons/hi";
 import { AnimatePresence } from "framer-motion";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import NewCase from "../Components/NewCase";
@@ -38,6 +38,8 @@ const dropdownVariants = {
 
 const Case = () => {
   const [showCase, setShowCase] = useState(false);
+  const [term, setTerm] = useState("");
+  const [searchDropdown, setSearchDropdown] = useState(false);
 
   const {
     cases,
@@ -54,6 +56,10 @@ const Case = () => {
   const [patient, setPatient] = useState([]);
 
   const [deleteModal, setDeleteModal] = useState(false);
+
+  let domNodeSearch = useClickOutside(() => {
+    setSearchDropdown(false);
+  });
 
   return (
     <>
@@ -102,7 +108,28 @@ const Case = () => {
             <div className="content-body">
               <div className="consultation-wrapper">
                 <div className="container-heading">
-                  <h2>Consultation Case</h2>
+                  <div className="patient-input-container">
+                    <input
+                      value={term}
+                      onChange={(e) => setTerm(e.target.value)}
+                      type="search"
+                      onFocus={() => setSearchDropdown(true)}
+                      placeholder="Search case (case ID or patient name)"
+                    />
+                    <div className="patient-input-icon">
+                      <HiOutlineSearch />
+                    </div>
+
+                    {searchDropdown && (
+                      <div ref={domNodeSearch} className="advance-search">
+                        {!term ? (
+                          <p>Type in the search bar</p>
+                        ) : (
+                          <p>You searched for "{term}"</p>
+                        )}
+                      </div>
+                    )}
+                  </div>
                   <div className="subheading-btns">
                     {user.designation !== "623ec7fb80a6838424edaa29" && (
                       <button
@@ -121,6 +148,8 @@ const Case = () => {
                 <CaseTable
                   setPatient={setPatient}
                   setPatientModal={setPatientModal}
+                  term={term}
+                  setSearchDropdown={setSearchDropdown}
                 />
               </div>
             </div>

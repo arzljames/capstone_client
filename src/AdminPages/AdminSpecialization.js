@@ -41,9 +41,7 @@ const AdminSpecialization = () => {
   };
 
 
-  useEffect(() => {
-    console.log(listUsers.filter(e => e.speci === '62b42301fb9b0f2c8bb1bb1a').length)
-  }, [])
+  
 
   return (
     <>

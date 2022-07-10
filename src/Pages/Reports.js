@@ -5,7 +5,7 @@ import "./Homepage.css";
 import { Helmet } from "react-helmet";
 import "./Reports.css";
 import useAuth from "../Hooks/useAuth";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import FilterReportModal from "../Components/FilterReportModal";
 import {
   HiPlus,
@@ -18,6 +18,7 @@ import ReactTimeAgo from "react-time-ago";
 import { useNavigate } from "react-router-dom";
 import "./Patients.css";
 import ReactPaginate from "react-paginate";
+import { pageVariant } from "../Animations/Animations";
 
 const Reports = () => {
   const { reports, ToastContainer } = useAuth();
@@ -84,7 +85,7 @@ const Reports = () => {
         <Sidebar />
         <div className="content">
           <Header />
-          <div className="content-body">
+          <motion.div variants={pageVariant} initial="hidden" animate="visible" exit="exit" className="content-body">
             <div className="container-heading">
               <h2>Reports</h2>
               <div className="reports-header-btns">
@@ -171,7 +172,7 @@ const Reports = () => {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </>

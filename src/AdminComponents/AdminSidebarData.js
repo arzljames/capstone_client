@@ -15,31 +15,31 @@ import { HiOutlineIdentification, HiIdentification } from "react-icons/hi";
 export const AdminSidebarData = [
   {
     name: "Dashboard",
-    link: "/dashboard",
+    link: "/admin/dashboard",
     icon: <IoHomeOutline />,
     activeIcon: <IoHome />,
   },
   {
-    name: "User",
-    link: "/people",
+    name: "Doctors",
+    link: "/admin/doctors",
     icon: <IoPeopleOutline />,
     activeIcon: <IoPeople />,
   },
   {
     name: "Hospital",
-    link: "/hospital",
+    link: "/admin/hospital",
     icon: <IoBusinessOutline />,
     activeIcon: <IoBusiness />,
   },
   {
     name: "Specialization",
-    link: "/specialization",
+    link: "/admin/specialization",
     icon: <HiOutlineIdentification />,
     activeIcon: <HiIdentification />,
   },
   {
     name: "Report",
-    link: "/admin-reports",
+    link: "/admin/report",
     icon: <IoDocumentTextOutline />,
     activeIcon: <IoDocumentText />,
   },

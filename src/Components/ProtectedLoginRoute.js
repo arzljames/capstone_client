@@ -8,7 +8,7 @@ const ProtectedLoginRoutes = ({ user }) => {
   }
 
   if (user.loggedIn && user.userType === "admin") {
-    return <Navigate to="/dashboard" state={{ from: location }} replace />;
+    return <Navigate to="/admin/dashboard" state={{ from: location }} replace />;
   } else if (user.loggedIn && user.userType === "user") {
     return <Navigate to="/" state={{ from: location }} replace />;
   } else {

@@ -1,3 +1,48 @@
+.dr-name {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.dr-name img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #eee;
+  border: 2px solid #d3d3d3;
+  margin-right: 10px;
+  object-fit: cover;
+  object-position: center;
+}
+
+#link {
+  font-weight: 500;
+  color: rgb(45, 109, 206);
+}
+
+#link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dr-patient {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.dr-hospital {
+  width: 400px;
+}
+
+.dr-status {
+  width: 100px;
+  display: flex;
+  align-items: center;
+}
+
 .admin-user-no {
   width: 35px;
   height: 100%;
@@ -45,8 +90,8 @@
   margin-right: 10px;
 }
 
-.table-body .admin-user-name p, 
-.table-body-2 .admin-user-name p  {
+.table-body .admin-user-name p,
+.table-body-2 .admin-user-name p {
   cursor: pointer;
   color: rgb(45, 109, 206);
   height: 100%;
@@ -54,7 +99,7 @@
   align-items: center;
 }
 
-.table-body .admin-user-name p:hover, 
+.table-body .admin-user-name p:hover,
 .table-body-2 .admin-user-name p:hover {
   text-decoration: underline;
 }
@@ -66,7 +111,7 @@
   justify-content: center;
 }
 
-.table-body .us-status.online, 
+.table-body .us-status.online,
 .table-body-2 .us-status.online {
   color: #499c69;
 }

@@ -19,6 +19,7 @@ import useAuth from "../Hooks/useAuth";
 import FacilityTableBody from "../AdminComponents/FacilityTableBody";
 import AdminHospitalModal from "../AdminComponents/AdminHospitalModal";
 import ReactPaginate from "react-paginate";
+import { Helmet } from "react-helmet";
 
 const AdminFacility = () => {
   const navigate = useNavigate();
@@ -39,6 +40,9 @@ const AdminFacility = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Hospitals | ZCMC Telemedicine</title>
+      </Helmet>
       <AnimatePresence>
         {showModal && (
           <AddFacilityForm setShowModal={setShowModal} toast={toast} />
@@ -68,7 +72,18 @@ const AdminFacility = () => {
           <AdminHeader />
           <div className="content-body">
             <div className="container-heading">
-              <h2>List of Hospitals</h2>
+              <div className="patient-input-container">
+                <input
+                  value={term}
+                  onChange={(e) => setTerm(e.target.value)}
+                  type="search"
+                  placeholder="Search hospitals"
+                />
+                <div className="patient-input-icon">
+                  <HiOutlineSearch />
+                </div>
+              </div>
+
               <motion.button
                 className="green-cta"
                 onClick={() => setShowModal(true)}
@@ -82,82 +97,66 @@ const AdminFacility = () => {
             </div>
 
             <div className="table">
-              <div className="above-patient-table">
-                <div className="patient-input-container">
-                  <input
-                    value={term}
-                    onChange={(e) => setTerm(e.target.value)}
-                    type="search"
-                    placeholder="Search hospitals"
-                  />
-                  <div className="patient-input-icon">
-                    <HiOutlineSearch />
-                  </div>
-                </div>
-              </div>
               <div className="table-header">
                 <div className="fac-name">Hospital Name</div>
                 <div className="fac-doctors">Doctors</div>
                 <div className="fac-spec">Specializations</div>
                 <div className="fac-add">Address</div>
               </div>
-              <div className="table-body-container">
-                {facilities
-                  .filter((val) => {
-                    if (term === "") {
-                      return val;
-                    } else if (
-                      val.facility
-                        .toLowerCase()
-                        .includes(term.toLocaleLowerCase())
-                    ) {
-                      return val;
-                    }
-                  })
 
-                  .slice(
-                    term === "" ? pagesVisited : 0,
-                    term === ""
-                      ? pagesVisited + usersPerPage
-                      : facilities.length
-                  )
-                  .map((item, key) => {
-                    return (
-                      <FacilityTableBody
-                        key={key + 1}
-                        id={item._id}
-                        number={key}
-                        facility={item.facility}
-                        address={item.address}
-                        specialization={item.specialization}
-                        users={
-                          listUsers.filter((e) => e.designation === item._id)
-                            .length
-                        }
-                        setHospital={setHospital}
-                        setShowHospitalModal={setShowHospitalModal}
-                        item={item}
-                      />
-                    );
-                  })}
-              </div>
-              <div className="pagination-container">
-                <ReactPaginate
-                  previousLabel={<HiChevronLeft size={20} />}
-                  nextLabel={<HiChevronRight size={20} />}
-                  breakLabel="..."
-                  pageCount={pageCount}
-                  marginPagesDisplayed={3}
-                  containerClassName="pagination"
-                  pageClassName="page-item"
-                  pageLinkClassName="page-link"
-                  breakClassName="page-item"
-                  nextClassName="page-item"
-                  previousClassName="page-item"
-                  activeClassName="active"
-                  onPageChange={changePage}
-                />
-              </div>
+              {facilities
+                .filter((val) => {
+                  if (term === "") {
+                    return val;
+                  } else if (
+                    val.facility
+                      .toLowerCase()
+                      .includes(term.toLocaleLowerCase())
+                  ) {
+                    return val;
+                  }
+                })
+
+                .slice(
+                  term === "" ? pagesVisited : 0,
+                  term === "" ? pagesVisited + usersPerPage : facilities.length
+                )
+                .map((item, key) => {
+                  return (
+                    <FacilityTableBody
+                      key={key + 1}
+                      id={item._id}
+                      number={key}
+                      facility={item.facility}
+                      address={item.address}
+                      specialization={item.specialization}
+                      users={
+                        listUsers.filter((e) => e.designation === item._id)
+                          .length
+                      }
+                      setHospital={setHospital}
+                      setShowHospitalModal={setShowHospitalModal}
+                      item={item}
+                    />
+                  );
+                })}
+            </div>
+            <div className="pagination-container">
+              <ReactPaginate
+                previousLabel={<HiChevronLeft size={20} />}
+                nextLabel={<HiChevronRight size={20} />}
+                breakLabel="..."
+                pageCount={pageCount}
+                marginPagesDisplayed={3}
+                containerClassName="pagination"
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                breakClassName="page-item"
+                nextClassName="page-item"
+                previousClassName="page-item"
+                activeClassName="active"
+                onPageChange={changePage}
+              />
             </div>
           </div>
         </div>
