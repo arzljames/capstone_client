@@ -30,10 +30,11 @@ const PatientTableData = ({
   filterPatient,
   searchDropdown,
   setSearchDropdown,
+  term
 }) => {
   const navigate = useNavigate();
   const { cases, patients, user } = useAuth();
-  const [term, setTerm] = useState("");
+
   const getDate = (date) => {
     let dates = new Date(date);
     let today =
@@ -51,9 +52,7 @@ const PatientTableData = ({
     setIsSort(false);
   });
 
-  let domNodeSearch = useClickOutside(() => {
-    setSearchDropdown(false);
-  });
+
 
   const [pageNumber, setPageNumber] = useState(0);
   const [usersPerPage, setUsersPerPage] = useState(20);
@@ -70,30 +69,9 @@ const PatientTableData = ({
   return (
     <>
       <div className="table">
-        <div className="above-patient-table">
-          <div className="patient-input-container">
-            <input
-              value={term}
-              onChange={(e) => setTerm(e.target.value)}
-              type="search"
-              onFocus={() => setSearchDropdown(true)}
-              placeholder="Search patient (e.g Dela Cruz, Juan)"
-            />
-            <div className="patient-input-icon">
-              <HiOutlineSearch />
-            </div>
-
-            {searchDropdown && (
-              <div ref={domNodeSearch} className="advance-search">
-                {!term ? (
-                  <p>Type in the search bar</p>
-                ) : (
-                  <p>You searched for "{term}"</p>
-                )}
-              </div>
-            )}
-          </div>
-          <div className="above-patient-table-btns">
+    
+          
+          {/* <div className="above-patient-table-btns">
             <button
               ref={domNodeSort}
               className={isSort ? "btn-active" : "btn-inactive"}
@@ -182,8 +160,8 @@ const PatientTableData = ({
                 )}
               </AnimatePresence>
             </button>
-          </div>
-        </div>
+
+        </div> */}
         <div className="table-header">
           <div className="pt-name">Patient Name</div>
           <div className="pt-active">Gender</div>
@@ -191,7 +169,7 @@ const PatientTableData = ({
           <div className="pt-total">Total Case</div>
           <div className="pt-date">Date Admitted</div>
         </div>
-        <div className="table-body-container">
+       
           {patients
             .filter((val) => {
               if (term === "") {
@@ -273,7 +251,7 @@ const PatientTableData = ({
             onPageChange={changePage}
           />
         </div>
-      </div>
+     
     </>
   );
 };

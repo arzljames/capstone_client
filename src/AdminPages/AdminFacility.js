@@ -100,7 +100,7 @@ const AdminFacility = () => {
               <div className="table-header">
                 <div className="fac-name">Hospital Name</div>
                 <div className="fac-doctors">Doctors</div>
-                <div className="fac-spec">Specializations</div>
+
                 <div className="fac-add">Address</div>
               </div>
 

@@ -21,7 +21,7 @@ const FacilityTableBody = ({ number, facility, specialization, address, users,se
         </span>
       </div>
       <div className="fac-body-doctors">{listUsers.filter((e) => e.designation._id === id).length}</div>
-      <div className="fac-body-spec">{specialization.length}</div>
+     
       <div className="fac-body-add">{!address.city ? <p><em>(No Address)</em></p>: address.city}</div>
       
     </div>

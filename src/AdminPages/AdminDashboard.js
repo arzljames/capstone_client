@@ -350,7 +350,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className="container-divider">
-              <div style={{ maxHeight: "500px" }} className="chart-container">
+              {/* <div style={{ maxHeight: "500px" }} className="chart-container">
                 <SpecializationChart
                   data={[
                     {
@@ -404,7 +404,7 @@ const AdminDashboard = () => {
                     },
                   ]}
                 />
-              </div>
+              </div> */}
 
               {/* <div className="donut-chart-container">
                 <h2>Doctors by Specialization</h2>

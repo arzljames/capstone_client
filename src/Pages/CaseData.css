@@ -216,6 +216,7 @@ button.action-dropdown-btn-active p {
   border-radius: 8px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   margin-bottom: 20px;
+  border: 1px solid #d3d3d3;
 }
 
 .cd-box h2 {
@@ -288,6 +289,7 @@ button.action-dropdown-btn-active p {
   border-radius: 8px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   margin-bottom: 20px;
+  border: 1px solid #d3d3d3;
 }
 
 .case-data-response form {

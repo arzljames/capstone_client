@@ -106,7 +106,7 @@ const Case = () => {
             <ConsultationNavbar />
 
             <div className="content-body">
-              <div className="consultation-wrapper">
+             
                 <div className="container-heading">
                   <div className="patient-input-container">
                     <input
@@ -155,7 +155,7 @@ const Case = () => {
             </div>
           </div>
         </div>
-      </div>
+      
     </>
   );
 };
