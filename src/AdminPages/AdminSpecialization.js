@@ -40,9 +40,6 @@ const AdminSpecialization = () => {
     setId(e._id);
   };
 
-
-  
-
   return (
     <>
       <AnimatePresence>
@@ -74,7 +71,17 @@ const AdminSpecialization = () => {
           />
           <div className="content-body">
             <div className="container-heading">
-              <h2>List of Specializations</h2>
+              <div className="patient-input-container">
+                <input
+                  type="search"
+                  value={term}
+                  onChange={(e) => setTerm(e.target.value)}
+                  placeholder="Search specializations"
+                />
+                <div className="patient-input-icon">
+                  <HiOutlineSearch />
+                </div>
+              </div>
               <motion.button
                 className="green-cta"
                 onClick={() => setModal(true)}
@@ -88,19 +95,6 @@ const AdminSpecialization = () => {
             </div>
 
             <div className="table">
-              <div className="above-patient-table">
-                <div className="patient-input-container">
-                  <input
-                    type="search"
-                    value={term}
-                    onChange={(e) => setTerm(e.target.value)}
-                    placeholder="Search specializations"
-                  />
-                  <div className="patient-input-icon">
-                    <HiOutlineSearch />
-                  </div>
-                </div>
-              </div>
               <div className="table-header">
                 <div className="spec-name">Specialization</div>
                 <div className="spec-doctors">Doctors</div>
@@ -108,57 +102,53 @@ const AdminSpecialization = () => {
                 <div className="spec-date">Last modified</div>
               </div>
 
-              <div className="table-body-container">
-                {specializations
-                  .filter((val) => {
-                    if (term === "") {
-                      return val;
-                    } else if (
-                      val.specialization
-                        .toLowerCase()
-                        .includes(term.toLocaleLowerCase())
-                    ) {
-                      return val;
-                    }
-                  })
-                  .map((e, index) => {
-                    return (
-                      <div  onClick={() => {
+              {specializations
+                .filter((val) => {
+                  if (term === "") {
+                    return val;
+                  } else if (
+                    val.specialization
+                      .toLowerCase()
+                      .includes(term.toLocaleLowerCase())
+                  ) {
+                    return val;
+                  }
+                })
+                .map((e, index) => {
+                  return (
+                    <div
+                      onClick={() => {
                         handleSetter(e);
                         setEditModal(true);
                       }}
-                        key={index}
-                        className={
-                          index % 2 === 0 ? "table-body" : "table-body-2"
-                        }
-                      >
-                        <div className="spec-name">
-                          <p
-                           
-                          >
-                            {e.specialization}
-                          </p>
-                        </div>
-                        <div className="spec-doctors">
-                          {listUsers.filter(id => {
-                            return id.specialization?._id === e._id
-                          }).length }
-                        
-                        </div>
-                        <div className="spec-date">{getDate(e.createdAt)}</div>
-                        <div className="spec-date">
-                          {
-                            <ReactTimeAgo
-                              date={e.updatedAt}
-                              locale="en-US"
-                              timeStyle="round-minute"
-                            />
-                          }
-                        </div>
+                      key={index}
+                      className={
+                        index % 2 === 0 ? "table-body" : "table-body-2"
+                      }
+                    >
+                      <div className="spec-name">
+                        <p>{e.specialization}</p>
                       </div>
-                    );
-                  })}
-              </div>
+                      <div className="spec-doctors">
+                        {
+                          listUsers.filter((id) => {
+                            return id.specialization?._id === e._id;
+                          }).length
+                        }
+                      </div>
+                      <div className="spec-date">{getDate(e.createdAt)}</div>
+                      <div className="spec-date">
+                        {
+                          <ReactTimeAgo
+                            date={e.updatedAt}
+                            locale="en-US"
+                            timeStyle="round-minute"
+                          />
+                        }
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>

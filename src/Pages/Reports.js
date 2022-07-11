@@ -85,9 +85,9 @@ const Reports = () => {
         <Sidebar />
         <div className="content">
           <Header />
-          <motion.div variants={pageVariant} initial="hidden" animate="visible" exit="exit" className="content-body">
+          <div className="content-body">
             <div className="container-heading">
-              <h2>Reports</h2>
+              <div></div>
               <div className="reports-header-btns">
                 <button
                   onClick={() => setFilterModal(true)}
@@ -108,71 +108,69 @@ const Reports = () => {
                 <div className="rp-date">Date & Time</div>
                 <div className="rp-modified">Last modified</div>
               </div>
-              <div className="table-body-container">
-                {reports
-                  .slice(
-                    term === "" ? pagesVisited : 0,
-                    term === "" ? pagesVisited + usersPerPage : reports.length
-                  )
-                  .map((item, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className={
-                          index % 2 === 0 ? "table-body" : "table-body-2"
-                        }
-                      >
-                        <div className="rp-id">
-                          <p
-                            onClick={() =>
-                              navigate(`/reports/${item._id}/${item.reportId}`)
-                            }
-                          >
-                            {item.reportId}
-                          </p>
-                        </div>
-                        <div className="rp-created">
-                          Dr.{" "}
-                          {item.creator.firstname + " " + item.creator.lastname}
-                        </div>
-                        <div className="rp-date">
-                          {getDate(item.createdAt) +
-                            " " +
-                            getTime(item.createdAt)}
-                        </div>
-                        <div className="rp-modified">
-                          {
-                            <ReactTimeAgo
-                              date={item.updatedAt}
-                              locale="en-US"
-                              timeStyle="round-minute"
-                            />
+
+              {reports
+                .slice(
+                  term === "" ? pagesVisited : 0,
+                  term === "" ? pagesVisited + usersPerPage : reports.length
+                )
+                .map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={
+                        index % 2 === 0 ? "table-body" : "table-body-2"
+                      }
+                    >
+                      <div className="rp-id">
+                        <p
+                          onClick={() =>
+                            navigate(`/reports/${item._id}/${item.reportId}`)
                           }
-                        </div>
+                        >
+                          {item.reportId}
+                        </p>
                       </div>
-                    );
-                  })}
-              </div>
-              <div className="pagination-container">
-                
-                <ReactPaginate
-                  previousLabel={<HiChevronLeft size={20} />}
-                  nextLabel={<HiChevronRight size={20} />}
-                  breakLabel="..."
-                  pageCount={pageCount}
-                  marginPagesDisplayed={3}
-                  containerClassName="pagination"
-                  pageClassName="page-item"
-                  pageLinkClassName="page-link"
-                  breakClassName="page-item"
-                  nextClassName="page-item"
-                  previousClassName="page-item"
-                  activeClassName="active"
-                  onPageChange={changePage}
-                />
-              </div>
+                      <div className="rp-created">
+                        Dr.{" "}
+                        {item.creator.firstname + " " + item.creator.lastname}
+                      </div>
+                      <div className="rp-date">
+                        {getDate(item.createdAt) +
+                          " " +
+                          getTime(item.createdAt)}
+                      </div>
+                      <div className="rp-modified">
+                        {
+                          <ReactTimeAgo
+                            date={item.updatedAt}
+                            locale="en-US"
+                            timeStyle="round-minute"
+                          />
+                        }
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
-          </motion.div>
+            <div className="pagination-container">
+              <ReactPaginate
+                previousLabel={<HiChevronLeft size={20} />}
+                nextLabel={<HiChevronRight size={20} />}
+                breakLabel="..."
+                pageCount={pageCount}
+                marginPagesDisplayed={3}
+                containerClassName="pagination"
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                breakClassName="page-item"
+                nextClassName="page-item"
+                previousClassName="page-item"
+                activeClassName="active"
+                onPageChange={changePage}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </>

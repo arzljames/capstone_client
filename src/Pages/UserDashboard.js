@@ -19,16 +19,11 @@ import {
 } from "chart.js";
 import { Chart, Line } from "react-chartjs-2";
 import "./UserDashboard.css";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import { pageVariant } from "../Animations/Animations";
 
 const UserDashboard = () => {
-  const {
-    facilities,
-    listUsers,
-    patients,
-    cases,
-  } = useAuth();
+  const { facilities, listUsers, patients, cases } = useAuth();
 
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
 
@@ -204,7 +199,7 @@ const UserDashboard = () => {
         <Sidebar />
         <div className="content">
           <Header />
-          <motion.div variants={pageVariant} initial="hidden" animate="visible" exit="exit" className="content-body">
+          <div className="content-body">
             <div className="container-heading">
               <h2>Dashboard Overview</h2>
             </div>
@@ -278,7 +273,7 @@ const UserDashboard = () => {
                 <Line options={options} data={data} />
               )}
             </div> */}
-          </motion.div>
+          </div>
         </div>
       </div>
     </>

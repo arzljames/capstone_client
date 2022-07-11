@@ -3,9 +3,7 @@
   padding: 20px;
   min-height: 100px;
   border-radius: 8px;
-  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border: 1px solid #dddddd;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,17 +13,6 @@
 .card-upper {
   width: 100%;
   display: flex;
-  padding-bottom: 10px;
-}
-
-.card-lower {
-  width: 100%;
-  color: #272727;
-  margin-top: 10px;
-  padding-top: 10px;
-  margin-bottom: -10px;
-  font-size: 12px;
-  font-weight: 600;
 }
 
 .card-content {

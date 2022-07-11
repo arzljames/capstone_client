@@ -7,7 +7,7 @@ import {
   HiOutlineSearch,
   HiOutlineSortDescending,
   HiTrash,
-  HiArrowNarrowLeft
+  HiArrowNarrowLeft,
 } from "react-icons/hi";
 import { motion } from "framer-motion";
 import "./Patients.css";
@@ -191,7 +191,7 @@ const Patients = () => {
           <Header />
           <div className="consultation-content">
             <ConsultationNavbar />
-            <motion.div variants={pageVariant} initial="hidden" animate="visible" exit="exit" className="content-body">
+            <div className="content-body">
               <div className="consultation-wrapper">
                 <div className="container-heading">
                   <h2>Patients</h2>
@@ -335,7 +335,7 @@ const Patients = () => {
                   setSearchDropdown={setSearchDropdown}
                 /> */}
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
