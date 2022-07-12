@@ -1,3 +1,35 @@
+.case-tab {
+  width: 100%;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.case-tab .tabs {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  min-width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.case-tab .tabs.actives {
+  background: #fff;
+  border: 1px solid #d3d3d3;
+  color: #272727;
+  font-weight: 500;
+}
+
+.case-tab .tabs.inactives {
+  background: #eee;
+  opacity: 0.75;
+  font-style: italic;
+}
+
 button.action-dropdown-btn {
   border: 1px solid #d3d3d3;
   color: #272727;
@@ -31,7 +63,7 @@ button.action-dropdown-btn-active p {
 }
 
 .action-dropdown {
-  width: 100%;
+  width: 180px;
   position: absolute;
   right: 0px;
   top: 32px;
@@ -83,6 +115,12 @@ button.action-dropdown-btn-active p {
 
 .action-dropdown ul li:hover {
   background: #eee;
+}
+
+.action-dropdown ul li p {
+  margin: 0px;
+  font-size: 12px;
+  margin-right: 5px;
 }
 
 .pt-overview {
@@ -644,5 +682,16 @@ a.response-attach {
   .case-data {
     width: 100%;
     margin-right: 0px;
+  }
+
+  .case-tab {
+    flex-direction: column;
+  }
+
+  .case-hospital-active {
+    width: 100%;
+    min-width: none;
+    max-width: none;
+    width: 95vw;
   }
 }

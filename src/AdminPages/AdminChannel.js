@@ -42,7 +42,7 @@ const AdminChannel = () => {
                 <div className="rp-date">Date Created</div>
                 <div className="rp-modified">Last modified</div>
               </div>
-              <div className="table-body-container">
+      
                 {reports.map((item, index) => {
                   return (
                     <div
@@ -79,7 +79,7 @@ const AdminChannel = () => {
                     </div>
                   );
                 })}
-              </div>
+              
             </div>
           </div>
         </div>

@@ -89,46 +89,46 @@ const AdminDashboard = () => {
     year.push(1999 + i);
   }
 
-  useEffect(() => {
-    function extract() {
-      const groups = {};
-      patients
-        .filter((e) => yearSelected === parseInt(e.createdAt.substring(0, 4)))
-        .map(function (val) {
-          const dates = new Date(val.createdAt);
-          const date = dates.toLocaleString("en-us", { month: "short" });
-          if (date in groups) {
-            groups[date].push(val._id);
-          } else {
-            groups[date] = new Array(val._id);
-          }
-        });
+  // useEffect(() => {
+  //   function extract() {
+  //     const groups = {};
+  //     patients
+  //       .filter((e) => yearSelected === parseInt(e.createdAt.substring(0, 4)))
+  //       .map(function (val) {
+  //         const dates = new Date(val.createdAt);
+  //         const date = dates.toLocaleString("en-us", { month: "short" });
+  //         if (date in groups) {
+  //           groups[date].push(val._id);
+  //         } else {
+  //           groups[date] = new Array(val._id);
+  //         }
+  //       });
 
-      setMonths(groups);
-      return groups;
-    }
+  //     setMonths(groups);
+  //     return groups;
+  //   }
 
-    function extractCase() {
-      const groups = {};
-      cases
-        .filter((e) => yearSelected === parseInt(e.createdAt.substring(0, 4)))
-        .forEach(function (val) {
-          const dates = new Date(val.createdAt);
-          const date = dates.toLocaleString("en-us", { month: "short" });
-          if (date in groups) {
-            groups[date].push(val._id);
-          } else {
-            groups[date] = new Array(val._id);
-          }
-        });
+  //   function extractCase() {
+  //     const groups = {};
+  //     cases
+  //       .filter((e) => yearSelected === parseInt(e.createdAt.substring(0, 4)))
+  //       .forEach(function (val) {
+  //         const dates = new Date(val.createdAt);
+  //         const date = dates.toLocaleString("en-us", { month: "short" });
+  //         if (date in groups) {
+  //           groups[date].push(val._id);
+  //         } else {
+  //           groups[date] = new Array(val._id);
+  //         }
+  //       });
 
-      setMonthsCase(groups);
-      return groups;
-    }
+  //     setMonthsCase(groups);
+  //     return groups;
+  //   }
 
-    extract();
-    extractCase();
-  }, [patients, cases, yearSelected]);
+  //   extract();
+  //   extractCase();
+  // }, [patients, cases, yearSelected]);
 
   const data = {
     labels: [

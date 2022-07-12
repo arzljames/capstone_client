@@ -84,7 +84,7 @@ const CaseTable = ({ setPatient, setPatientModal, term, setSearchDropdown }) => 
           <div className="cs-name">Patient</div>
 
           <div className="cs-department">Service</div>
-          <div className="cs-date">Date & Time</div>
+          <div className="cs-date">Date</div>
           <div className="cs-status">Status</div>
         </div>
 
@@ -169,7 +169,7 @@ const CaseTable = ({ setPatient, setPatientModal, term, setSearchDropdown }) => 
                         })[0].specialization}
                   </div>
                   <div className="cs-date">
-                    {getDate(item.createdAt)} {getTime(item.createdAt)}
+                    {getDate(item.createdAt)} 
                   </div>
                   <div className="cs-status">
                     <p className={item.active ? "active" : "done"}>

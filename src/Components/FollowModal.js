@@ -1,162 +1,63 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import useAuth from "../Hooks/useAuth";
-import useCaseData from "../Hooks/useCaseData";
-import api from "../API/Api";
-import { useNavigate } from "react-router-dom";
+import { containerVariant, formVariant } from "../Animations/Animations";
 import { HiPlus, HiX } from "react-icons/hi";
+import useAuth from "../Hooks/useAuth";
+import api from "../API/Api";
 import { socket } from "./Socket";
-import { useClickOutside } from "../Hooks/useClickOutside";
-import { ToastContainer } from "react-toastify";
 
-const formVariant = {
-  hidden: {
-    opacity: 0,
-    y: "-20px",
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.3,
-      ease: "easeInOut",
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: "-20px",
-    transition: {
-      duration: 0.2,
-      ease: "easeInOut",
-    },
-  },
-};
-
-const containerVariant = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-    },
-  },
-  exit: {
-    opacity: 1,
-  },
-};
-
-const NewCase = ({ setShowCase, }) => {
-  let domNode = useClickOutside(() => {
-    setShowCase(false);
-  });
-
+const FollowModal = ({ setFollowModal, toast, id }) => {
   const [isClick, setIsClick] = useState(false);
 
-  const updateSocket = () => {
-    socket.emit("notif");
-  };
+  const [temperature, setTemperature] = useState("");
+  const [respiratory, setRespiratory] = useState("");
+  const [heart, setHeart] = useState("");
+  const [blood, setBlood] = useState("");
+  const [oxygen, setOxygen] = useState("");
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [cc, setCc] = useState("");
+  const [hpi, setHpi] = useState("");
+  const [pmh, setPmh] = useState("");
+  const [ros, setRos] = useState("");
+  const [pe, setPe] = useState("");
+  const [paraclinical, setParaclinical] = useState({});
+  const [wi, setWi] = useState("");
+  const [imd, setImd] = useState("");
 
-  const navigate = useNavigate();
-
-  const {
-    user,
-    patients,
-    facilities,
-    setTab,
-    message,
-    toast,
-    setAppState,
-    specializations,
-  } = useAuth();
-  const [patientData, setPatientData] = useState("");
-  const {
-    patientId,
-    setPatientId,
-    temperature,
-    setTemperature,
-    respiratory,
-    setRespiratory,
-    heart,
-    setHeart,
-    blood,
-    setBlood,
-    oxygen,
-    setOxygen,
-    weight,
-    setWeight,
-    height,
-    setHeight,
-    cc,
-    setCc,
-    hpi,
-    setHpi,
-    pmh,
-    setPmh,
-    ros,
-    setRos,
-    pe,
-    setPe,
-    paraclinical,
-    setParaclinical,
-    wi,
-    setWi,
-    imd,
-    setImd,
-    reason,
-    setReason,
-    specialization,
-    setSpecialization,
-  } = useCaseData();
+  const { setAppState } = useAuth();
 
   const [todate, setTodate] = useState(new Date());
 
-  const clearForm = () => {
-    setPatientId("");
-    setSpecialization("");
-    setTemperature("");
-    setRespiratory("");
-    setHeart("");
-    setBlood("");
-    setOxygen("");
-    setWeight("");
-    setHeight("");
-    setCc("");
-    setHpi("");
-    setPmh("");
-    setRos("");
-    setPe("");
-    setParaclinical({ name: "", file: "" });
-    setWi("");
-    setImd("");
-    setReason("");
-    setTodate(null)
+  const inputFileRef = useRef(null);
+  const onBtnClick = () => {
+    inputFileRef.current.click();
+  };
+
+  const updateSocket = () => {
+    socket.emit("notif");
   };
 
   const handleSubmit = async () => {
     setIsClick(true);
     try {
       if (
-        !patientId ||
-        !specialization ||
-        !temperature ||
-        !respiratory ||
-        !heart ||
-        !blood ||
-        !oxygen ||
-        !weight ||
-        !height ||
-        !cc ||
-        !hpi ||
-        !pmh ||
-        !ros ||
-        !pe ||
-        !wi ||
-        !imd ||
-        !reason
+        !temperature &&
+        !respiratory &&
+        !heart &&
+        !blood &&
+        !oxygen &&
+        !weight &&
+        !height &&
+        !cc &&
+        !hpi &&
+        !pmh &&
+        !ros &&
+        !pe &&
+        !wi &&
+        !imd
       ) {
-        toast.error("Please check empty fields");
+        toast.error("All fields cannot be empty");
         setIsClick(false);
 
         return;
@@ -173,10 +74,7 @@ const NewCase = ({ setShowCase, }) => {
           .then((res) => res.json())
           .then((data) => {
             api
-              .put(`/api/patient/add-case/${patientId}`, {
-                caseId,
-                physician: user.userId,
-                specialization,
+              .put(`/api/patient/follow-up/${id}`, {
                 temperature,
                 respiratory,
                 heart,
@@ -193,8 +91,7 @@ const NewCase = ({ setShowCase, }) => {
                 paraclinicalFile: data.url ? data.url : "",
                 wi,
                 imd,
-                reason,
-                todate
+                todate,
               })
               .then((result) => {
                 if (result) {
@@ -204,12 +101,9 @@ const NewCase = ({ setShowCase, }) => {
                     setAppState("");
                   }, 5000);
                   clearForm();
-                  setTab("Active Case");
-                  toast.success(message);
+                  toast.success("Added follow up");
                   setAppState(result.data.ok);
-                  navigate(`/consultation/outgoing/${result.data.ok._id}`, {
-                    state: patientData[0],
-                  });
+                  setFollowModal(false);
                 } else {
                   toast.error("Request failed with status code 404");
                   setIsClick(false);
@@ -231,47 +125,7 @@ const NewCase = ({ setShowCase, }) => {
     }
   };
 
-  useEffect(() => {
-    setPatientData(
-      patients.filter((e) => {
-        return e._id === patientId;
-      })
-    );
-  }, [patientId]);
-
-  const inputFileRef = useRef(null);
-
-  const onBtnClick = () => {
-    inputFileRef.current.click();
-  };
-
-  const [caseId, setCaseId] = useState("");
-
-  useEffect(() => {
-    const getDate = () => {
-      var myDate = new Date();
-
-      var year = myDate.getFullYear();
-
-      var month = myDate.getMonth() + 1;
-      if (month <= 9) month = "0" + month;
-
-      var day = myDate.getDate();
-      if (day <= 9) day = "0" + day;
-
-      var time = myDate.getMilliseconds();
-      var hour = myDate.getHours();
-
-      if (hour <= 9) hour = "0" + hour;
-
-      var prettyDate = month + day + year + "-" + hour + time;
-
-      setCaseId(prettyDate);
-    };
-
-    getDate();
-  }, []);
-
+  const clearForm = () => {};
   return (
     <motion.div
       variants={containerVariant}
@@ -281,18 +135,6 @@ const NewCase = ({ setShowCase, }) => {
       className="modal-container"
       onSubmit={(e) => e.preventDefault()}
     >
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable={false}
-        pauseOnHover
-      />
-
       <motion.form
         variants={formVariant}
         initial="hidden"
@@ -301,61 +143,19 @@ const NewCase = ({ setShowCase, }) => {
         className="add-facility-form"
       >
         <div className="form-header">
-          <h1>Add New Case</h1>
-          <p onClick={() => setShowCase(false)}>
+          <h1>Follow up</h1>
+          <p onClick={() => setFollowModal(false)}>
             <HiX />
           </p>
         </div>
         <div className="form-body">
-          <label>Date Created</label>
-          <input style={{minHeight: '40px'}} value={todate} onChange={(e) => setTodate(e.target.value)} type="date" />
-          <label>
-            Patient <i>*</i>
-          </label>
-          <select
-            value={patientId}
-            onChange={(e) => setPatientId(e.target.value)}
-            className="select"
-          >
-            <option value="" disabled selected>
-              - Please Select -
-            </option>
-            {patients
-              .filter((id) => id.physician._id === user.userId)
-              .map((item) => {
-                return (
-                  <option value={item._id}>
-                    {item.firstname +
-                      " " +
-                      item.middlename[0] +
-                      "." +
-                      " " +
-                      item.lastname}
-                  </option>
-                );
-              })}
-          </select>
-
-          <label>
-            Service Type <i>*</i>
-          </label>
-          <select
-            value={specialization}
-            className="select"
-            onChange={(e) => setSpecialization(e.target.value)}
-          >
-            <option value="" disabled selected>
-              - Please Select -
-            </option>
-
-            {specializations.map((e, index) => {
-              return (
-                <option selected value={e._id}>
-                  {e.specialization}
-                </option>
-              );
-            })}
-          </select>
+          <label>Date of Follow up</label>
+          <input
+            style={{ minHeight: "40px" }}
+            value={todate}
+            onChange={(e) => setTodate(e.target.value)}
+            type="date"
+          />
 
           <label>
             Temperature (°C) <i>*</i>
@@ -476,9 +276,7 @@ const NewCase = ({ setShowCase, }) => {
             onChange={(e) => setImd(e.target.value)}
           ></textarea>
 
-          <label>
-            Pertinent Paraclinicals 
-          </label>
+          <label>Pertinent Paraclinicals</label>
           {paraclinical.name && (
             <div className="paraclinical-file-container">
               {paraclinical.name}
@@ -504,14 +302,6 @@ const NewCase = ({ setShowCase, }) => {
               });
             }}
           />
-
-          <label>
-            Reason for Referral <i>*</i>
-          </label>
-          <textarea
-            value={reason}
-            onChange={(e) => setReason(e.target.value)}
-          ></textarea>
         </div>
         <div className="form-btns">
           <button onClick={() => clearForm()} className="clear-form-btn">
@@ -520,7 +310,7 @@ const NewCase = ({ setShowCase, }) => {
           <div>
             <button
               onClick={() => {
-                setShowCase(false);
+                setFollowModal(false);
                 clearForm();
               }}
               className="cancel-btn"
@@ -542,4 +332,4 @@ const NewCase = ({ setShowCase, }) => {
   );
 };
 
-export default NewCase;
+export default FollowModal;

@@ -34,7 +34,6 @@ const OutgoingConsult = () => {
                   </div>
                 </div>
 
-                <p id="today-case">Today</p>
                 <div className="case-body">
                   {cases
                     .filter(

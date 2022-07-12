@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
-import { HiArrowNarrowLeft, HiChevronDown, HiChevronUp } from "react-icons/hi";
+import {
+  HiArrowNarrowLeft,
+  HiCheck,
+  HiChevronDown,
+  HiChevronUp,
+  HiDocumentRemove,
+  HiDownload,
+  HiPlus,
+  HiTrash,
+  HiX,
+} from "react-icons/hi";
 import "./Homepage.css";
 import ConsultationNavbar from "../Components/ConsultationNavbar";
 import useAuth from "../Hooks/useAuth";
@@ -17,6 +27,8 @@ import { buttonVariant, dropdownVariants } from "../Animations/Animations";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import NoUser from "../Assets/nouser.png";
 import AddServiceModal from "../Components/AddServiceModal";
+import { IoArrowRedoOutline } from "react-icons/io5";
+import FollowModal from "../Components/FollowModal";
 
 const CaseData = () => {
   const [modal, setModal] = useState(false);
@@ -24,6 +36,7 @@ const CaseData = () => {
   const [deleteModal, setDeleteModal] = useState(false);
   const navigate = useNavigate();
   const [patientCase, setPatientCase] = useState([]);
+  const [followModal, setFollowModal] = useState(false);
   const {
     user,
     response,
@@ -36,6 +49,9 @@ const CaseData = () => {
     facilities,
     specializations,
   } = useAuth();
+
+  const [tabb, setTabb] = useState("Main");
+  const [followUpData, setFollowUpData] = useState([]);
 
   const { id } = useParams();
   let domNode = useClickOutside(() => {
@@ -165,6 +181,14 @@ const CaseData = () => {
             subSpecialization={patientCase.subSpecialization}
           />
         )}
+
+        {followModal && (
+          <FollowModal
+            toast={toast}
+            setFollowModal={setFollowModal}
+            id={patientCase._id}
+          />
+        )}
       </AnimatePresence>
       <div className="container">
         <ToastContainer
@@ -217,6 +241,9 @@ const CaseData = () => {
                               }
                               onClick={() => setModal(true)}
                             >
+                              <p>
+                                <HiPlus />
+                              </p>
                               Add Sub-service
                             </li>
                             {patientCase.active === true ? (
@@ -227,6 +254,9 @@ const CaseData = () => {
                                 }
                                 onClick={() => handleDeactivate()}
                               >
+                                <p>
+                                  <HiX />
+                                </p>{" "}
                                 Deactivate
                               </li>
                             ) : (
@@ -238,10 +268,16 @@ const CaseData = () => {
                                 on
                                 onClick={() => handleActivate()}
                               >
+                                <p>
+                                  <HiCheck />
+                                </p>
                                 Activate
                               </li>
                             )}
                             <li onClick={() => DocumentGenerator(patientCase)}>
+                              <p>
+                                <HiDownload />
+                              </p>{" "}
                               Download File
                             </li>
 
@@ -253,7 +289,23 @@ const CaseData = () => {
                                   : "delete"
                               }
                             >
+                              <p>
+                                <HiTrash />
+                              </p>{" "}
                               Delete Case
+                            </li>
+                            <li
+                              onClick={() => setFollowModal(true)}
+                              className={
+                                user.designation === "623ec7fb80a6838424edaa29"
+                                  ? "disable"
+                                  : ""
+                              }
+                            >
+                              <p>
+                                <IoArrowRedoOutline />
+                              </p>
+                              Follow up
                             </li>
                           </ul>
                         </motion.div>
@@ -352,93 +404,264 @@ const CaseData = () => {
                     </div>
                   </div>
 
-                  <div className="cd-box">
-                    <h2>Case Information</h2>
-                    <div className="col-info info-2">
-                      <div className="col-3">
-                        <div className="liner">
-                          <label>Chief complaint</label>
-                          <p>{patientCase.cc}</p>
+                  <div  className="case-tab">
+                    <div
+                      onClick={() => setTabb("Main")}
+                      className={
+                        tabb === "Main" ? "tabs actives" : "tabs inactives"
+                      }
+                    >
+                      Main
+                    </div>
+                    {patientCase.followUp.map((item, index) => {
+                      return (
+                        <div
+                          key={index}
+                          onClick={() => {
+                            setTabb(item._id);
+                            setFollowUpData(item);
+                          }}
+                          className={
+                            tabb === item._id
+                              ? "tabs actives"
+                              : "tabs inactives"
+                          }
+                        >
+                          {getDate(item.createdAt)}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {tabb === "Main" ? (
+                    <div className="cd-box">
+                      <h2>Case Information</h2>
+                      <div className="col-info info-2">
+                        <div className="col-3">
+                          <div className="liner">
+                            <label>Chief complaint</label>
+                            <p>{patientCase.cc}</p>
+                          </div>
+
+                          <div className="liner">
+                            <label>Pertinent History of Present Illness</label>
+                            <p>{patientCase.hpi}</p>
+                          </div>
+
+                          <div className="liner">
+                            <label>Pertinent Past Medical History</label>
+                            <p>{patientCase.pmh}</p>
+                          </div>
+                          <div className="liner">
+                            <label>Pertinent Review of Systems</label>
+                            <p>{patientCase.ros}</p>
+                          </div>
+                          <div className="liner">
+                            <label>Pertinent PE Findings</label>
+                            <p>{patientCase.pe}</p>
+                          </div>
+                          <div className="liner">
+                            <label>Pertinent Paraclinicals</label>
+                            {patientCase.paraclinical.file ? (
+                              <p>
+                                <a
+                                  href={patientCase.paraclinical.file}
+                                  target="_blank"
+                                >
+                                  Attachment File
+                                </a>
+                              </p>
+                            ) : (
+                              <em>
+                                <p>No attached file</p>
+                              </em>
+                            )}
+                          </div>
+                          <div className="liner">
+                            <label>Working Impression</label>
+                            <p>{patientCase.wi}</p>
+                          </div>
+
+                          <div className="liner">
+                            <label>Initial Management Done</label>
+                            <p>{patientCase.imd}</p>
+                          </div>
+                          <div className="liner">
+                            <label>Reason for Referral</label>
+                            <p>{patientCase.reason}</p>
+                          </div>
                         </div>
 
-                        <div className="liner">
-                          <label>Pertinent History of Present Illness</label>
-                          <p>{patientCase.hpi}</p>
-                        </div>
-
-                        <div className="liner">
-                          <label>Pertinent Past Medical History</label>
-                          <p>{patientCase.pmh}</p>
-                        </div>
-                        <div className="liner">
-                          <label>Pertinent Review of Systems</label>
-                          <p>{patientCase.ros}</p>
-                        </div>
-                        <div className="liner">
-                          <label>Pertinent PE Findings</label>
-                          <p>{patientCase.pe}</p>
-                        </div>
-                        <div className="liner">
-                          <label>Pertinent Paraclinicals</label>
-                          {patientCase.paraclinical.file ? (
-                            <p>
-                              <a
-                                href={patientCase.paraclinical.file}
-                                target="_blank"
-                              >
-                                Attachment File
-                              </a>
-                            </p>
-                          ) : (
-                            <em>
-                              <p>No attached file</p>
-                            </em>
-                          )}
-                        </div>
-                        <div className="liner">
-                          <label>Working Impression</label>
-                          <p>{patientCase.wi}</p>
-                        </div>
-
-                        <div className="liner">
-                          <label>Initial Management Done</label>
-                          <p>{patientCase.imd}</p>
-                        </div>
-                        <div className="liner">
-                          <label>Reason for Referral</label>
-                          <p>{patientCase.reason}</p>
-                        </div>
-                      </div>
-
-                      <div className="col-1">
-                        <div className="liner">
-                          <label>Temperature:</label>{" "}
-                          <p> {patientCase.temperature}</p>
-                        </div>
-                        <div className="liner">
-                          <label>Respiratory Rate:</label>
-                          <p> {patientCase.respiratory}</p>
-                        </div>
-                        <div className="liner">
-                          <label>Heart Rate:</label> <p> {patientCase.heart}</p>
-                        </div>
-                        <div className="liner">
-                          <label>Blood Pressure:</label>{" "}
-                          <p> {patientCase.blood}</p>
-                        </div>
-                        <div className="liner">
-                          <label>Oxygen Saturation:</label>{" "}
-                          <p> {patientCase.oxygen}</p>
-                        </div>
-                        <div className="liner">
-                          <label>Weight:</label> <p> {patientCase.weight}</p>
-                        </div>
-                        <div className="liner">
-                          <label>Height: </label> <p>{patientCase.height}</p>
+                        <div className="col-1">
+                          <div className="liner">
+                            <label>Temperature:</label>{" "}
+                            <p> {patientCase.temperature}</p>
+                          </div>
+                          <div className="liner">
+                            <label>Respiratory Rate:</label>
+                            <p> {patientCase.respiratory}</p>
+                          </div>
+                          <div className="liner">
+                            <label>Heart Rate:</label>{" "}
+                            <p> {patientCase.heart}</p>
+                          </div>
+                          <div className="liner">
+                            <label>Blood Pressure:</label>{" "}
+                            <p> {patientCase.blood}</p>
+                          </div>
+                          <div className="liner">
+                            <label>Oxygen Saturation:</label>{" "}
+                            <p> {patientCase.oxygen}</p>
+                          </div>
+                          <div className="liner">
+                            <label>Weight:</label> <p> {patientCase.weight}</p>
+                          </div>
+                          <div className="liner">
+                            <label>Height: </label> <p>{patientCase.height}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="cd-box">
+                      <h2>
+                        Follow Up - {getDate(followUpData.createdAt)}{" "}
+                        {getTime(followUpData.createdAt)}
+                      </h2>
+                      <div className="col-info info-2">
+                        <div className="col-3">
+                          <div className="liner">
+                            <label>Chief complaint</label>
+                            <p>
+                              {!followUpData.cc ? "(No Data)" : followUpData.cc}
+                            </p>
+                          </div>
+
+                          <div className="liner">
+                            <label>Pertinent History of Present Illness</label>
+                            <p>
+                              {!followUpData.hpi
+                                ? "(No Data)"
+                                : followUpData.hpi}
+                            </p>
+                          </div>
+
+                          <div className="liner">
+                            <label>Pertinent Past Medical History</label>
+                            <p>
+                              {!followUpData.pmh
+                                ? "(No Data)"
+                                : followUpData.pmh}
+                            </p>
+                          </div>
+                          <div className="liner">
+                            <label>Pertinent Review of Systems</label>
+                            <p>
+                              {!followUpData.ros
+                                ? "(No Data)"
+                                : followUpData.ros}
+                            </p>
+                          </div>
+                          <div className="liner">
+                            <label>Pertinent PE Findings</label>
+                            <p>
+                              {!followUpData.pe ? "(No Data)" : followUpData.pe}
+                            </p>
+                          </div>
+                          <div className="liner">
+                            <label>Pertinent Paraclinicals</label>
+                            {followUpData.paraclinical.file ? (
+                              <p>
+                                <a
+                                  href={followUpData.paraclinical.file}
+                                  target="_blank"
+                                >
+                                  Attachment File
+                                </a>
+                              </p>
+                            ) : (
+                              <em>
+                                <p>No attached file</p>
+                              </em>
+                            )}
+                          </div>
+                          <div className="liner">
+                            <label>Working Impression</label>
+                            <p>
+                              {!followUpData.wi ? "(No Data)" : followUpData.wi}
+                            </p>
+                          </div>
+
+                          <div className="liner">
+                            <label>Initial Management Done</label>
+                            <p>
+                              {!followUpData.imd
+                                ? "(No Data)"
+                                : followUpData.imd}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="col-1">
+                          <div className="liner">
+                            <label>Temperature:</label>{" "}
+                            <p>
+                              {!followUpData.temperature
+                                ? "(No Data)"
+                                : followUpData.temperature}
+                            </p>
+                          </div>
+                          <div className="liner">
+                            <label>Respiratory Rate:</label>
+                            <p>
+                              {!followUpData.respiratory
+                                ? "(No Data)"
+                                : followUpData.respiratory}
+                            </p>
+                          </div>
+                          <div className="liner">
+                            <label>Heart Rate:</label>{" "}
+                            <p>
+                              {!followUpData.heart
+                                ? "(No Data)"
+                                : followUpData.heart}
+                            </p>
+                          </div>
+                          <div className="liner">
+                            <label>Blood Pressure:</label>{" "}
+                            <p>
+                              {!followUpData.blood
+                                ? "(No Data)"
+                                : followUpData.blood}
+                            </p>
+                          </div>
+                          <div className="liner">
+                            <label>Oxygen Saturation:</label>{" "}
+                            <p>
+                              {!followUpData.oxygen
+                                ? "(No Data)"
+                                : followUpData.oxygen}
+                            </p>
+                          </div>
+                          <div className="liner">
+                            <label>Weight:</label>
+                            <p>
+                              {!followUpData.weight
+                                ? "(No Data)"
+                                : followUpData.weight}
+                            </p>
+                          </div>
+                          <div className="liner">
+                            <label>Height: </label>{" "}
+                            <p>
+                              {!followUpData.height
+                                ? "(No Data)"
+                                : followUpData.height}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   <ResponseChat
                     id={patientCase._id}
@@ -521,9 +744,7 @@ const CaseData = () => {
                       </p>
 
                       <label>Date Created</label>
-                      <p>
-                        {getDate(patientCase.createdAt)}
-                      </p>
+                      <p>{getDate(patientCase.createdAt)}</p>
                     </div>
                   </div>
                 </div>

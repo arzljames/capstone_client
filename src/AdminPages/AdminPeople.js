@@ -147,7 +147,10 @@ const AdminPeople = () => {
                           src={!item.picture ? NoUser : item.picture}
                           alt="Profile"
                         />
-                        <p id="link">
+                        <p onClick={() => {
+                           setModal(true);
+                           setUserData(item)
+                        }} id="link">
                           Dr. {item.firstname} {item.lastname}
                         </p>
                       </div>
