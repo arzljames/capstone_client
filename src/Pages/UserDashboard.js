@@ -21,6 +21,10 @@ import { Chart, Line } from "react-chartjs-2";
 import "./UserDashboard.css";
 import { motion } from "framer-motion";
 import { pageVariant } from "../Animations/Animations";
+import StatisticDoctor from "../Components/StatisticDoctor";
+import StatisticCase from "../Components/StatisticCase";
+import StatisticHospital from "../Components/StatisticHospital";
+import StatisticPatient from "../Components/StatisticPatient";
 
 const UserDashboard = () => {
   const { facilities, listUsers, patients, cases } = useAuth();
@@ -31,6 +35,7 @@ const UserDashboard = () => {
   const [userData, setUserData] = useState([]);
   const [modal, setModal] = useState(false);
   const [userId, setUserId] = useState("");
+  const [stats, setStats] = useState("");
 
   const handleId = (id) => {
     setUserId(id);
@@ -212,6 +217,8 @@ const UserDashboard = () => {
                 subTotal={facilities.length - 1 + " Referring Hospitals"}
                 bg="#5D7CE9"
                 subBg="#c9d3f8"
+                setStats={setStats}
+                stats={stats}
               />
               <StatisticCard
                 heading="Total Doctors"
@@ -225,6 +232,8 @@ const UserDashboard = () => {
                 }
                 bg="#FE7477"
                 subBg="#ffdfdf"
+                setStats={setStats}
+                stats={stats}
               />
               <StatisticCard
                 heading="Total Patients"
@@ -238,6 +247,8 @@ const UserDashboard = () => {
                 }
                 bg="#3DC1AD"
                 subBg="#defff9"
+                setStats={setStats}
+                stats={stats}
               />
               <StatisticCard
                 heading="Total Cases"
@@ -253,9 +264,15 @@ const UserDashboard = () => {
                 }
                 bg="#FF8657"
                 subBg="#ffe2d6"
+                setStats={setStats}
+                stats={stats}
               />
             </div>
-            
+
+            {stats === "Total Hospitals" && <StatisticHospital />}
+            {stats === "Total Doctors" && <StatisticDoctor />}
+            {stats === "Total Patients" && <StatisticPatient />}
+            {stats === "Total Cases" && <StatisticCase />}
           </div>
         </div>
       </div>

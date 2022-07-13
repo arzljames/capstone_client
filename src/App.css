@@ -528,9 +528,14 @@ button.gray-cta:hover {
   background: #fff;
 }
 
+.patient-input-container input:hover {
+  transition: 0.2s ease-in-out;
+  border: 1px solid #73ad86;
+}
+
 .patient-input-container input:focus {
   transition: 0.2s ease-in-out;
-  border: 1px solid #4b4b4b;
+  border: 1px solid #73ad86;
 }
 
 .patient-input-container input::placeholder {

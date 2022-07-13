@@ -1,17 +1,40 @@
 import React from "react";
 import "./StatisticCard.css";
+import { motion } from "framer-motion";
 
 const StatisticCard = ({
   heading,
   total,
   icon,
-  iconColor,
   bg,
   subBg,
   subTotal,
+  setStats,
+  stats,
 }) => {
+  const variant = {
+    initial: {
+      background: "#fff",
+      border: "1px solid #dddddd",
+    },
+    animate: {
+      background: subBg,
+      border: `1px solid ${bg}`,
+      transition: {
+        duration: 0.2,
+        ease: "easeInOut",
+        border: "none",
+      },
+    },
+  };
   return (
-    <div className="statistic-card">
+    <motion.div
+      variants={variant}
+      initial="initial"
+      animate={stats === heading ? "animate" : "initial"}
+      onClick={() => setStats(heading)}
+      className="statistic-card"
+    >
       <div className="card-upper">
         <div className="card-content">
           <h2>{total}</h2>
@@ -24,7 +47,7 @@ const StatisticCard = ({
           <p style={{ color: bg }}>{icon}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
