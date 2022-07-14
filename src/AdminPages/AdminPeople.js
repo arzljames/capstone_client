@@ -108,15 +108,13 @@ const AdminPeople = () => {
                 )}
               </div>
             </div>
-
+            <div className="table-header">
+              <div className="dr-name">Full name</div>
+              <div className="dr-patient">Patients</div>
+              <div className="dr-hospital">Hospital</div>
+              <div className="dr-status">Status</div>
+            </div>
             <div className="table">
-              <div className="table-header">
-                <div className="dr-name">Full name</div>
-                <div className="dr-patient">Patients</div>
-                <div className="dr-hospital">Hospital</div>
-                <div className="dr-status">Status</div>
-              </div>
-
               {listUsers
 
                 .filter((val) => {
@@ -147,10 +145,13 @@ const AdminPeople = () => {
                           src={!item.picture ? NoUser : item.picture}
                           alt="Profile"
                         />
-                        <p onClick={() => {
-                           setModal(true);
-                           setUserData(item)
-                        }} id="link">
+                        <p
+                          onClick={() => {
+                            setModal(true);
+                            setUserData(item);
+                          }}
+                          id="link"
+                        >
                           Dr. {item.firstname} {item.lastname}
                         </p>
                       </div>

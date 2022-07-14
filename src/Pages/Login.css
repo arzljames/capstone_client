@@ -19,12 +19,12 @@
 }
 
 .form-container {
- display: flex;
- flex-direction: column;
- background: #fff;
- padding: 40px;
- border-radius: 8px;
- box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .login-header img {

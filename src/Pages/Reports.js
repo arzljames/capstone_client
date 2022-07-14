@@ -101,13 +101,15 @@ const Reports = () => {
               </div>
             </div>
 
-            <div className="table">
-              <div className="table-header">
+            <div className="table-header">
                 <div className="rp-id">Report ID</div>
                 <div className="rp-created">Created By</div>
                 <div className="rp-date">Date & Time</div>
                 <div className="rp-modified">Last modified</div>
               </div>
+
+            <div className="table">
+              
 
               {reports
                 .slice(

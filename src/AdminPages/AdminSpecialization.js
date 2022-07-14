@@ -93,14 +93,14 @@ const AdminSpecialization = () => {
                 Specialization
               </motion.button>
             </div>
-
-            <div className="table">
-              <div className="table-header">
+            <div className="table-header">
                 <div className="spec-name">Specialization</div>
                 <div className="spec-doctors">Doctors</div>
                 <div className="spec-date">Date Created</div>
                 <div className="spec-date">Last modified</div>
               </div>
+            <div className="table">
+              
 
               {specializations
                 .filter((val) => {

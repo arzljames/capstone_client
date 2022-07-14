@@ -76,6 +76,7 @@
 .consultation-nav {
   width: 22%;
   min-width: 250px;
+  max-width: 350px;
   height: 100%;
   background: #ffffff;
   display: flex;

@@ -95,14 +95,14 @@ const AdminFacility = () => {
                 Hospital
               </motion.button>
             </div>
-
-            <div className="table">
-              <div className="table-header">
+            <div className="table-header">
                 <div className="fac-name">Hospital Name</div>
                 <div className="fac-doctors">Doctors</div>
 
                 <div className="fac-add">Address</div>
               </div>
+            <div className="table">
+              
 
               {facilities
                 .filter((val) => {

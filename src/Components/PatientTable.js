@@ -30,7 +30,7 @@ const PatientTableData = ({
   filterPatient,
   searchDropdown,
   setSearchDropdown,
-  term
+  term,
 }) => {
   const navigate = useNavigate();
   const { cases, patients, user } = useAuth();
@@ -52,8 +52,6 @@ const PatientTableData = ({
     setIsSort(false);
   });
 
-
-
   const [pageNumber, setPageNumber] = useState(0);
   const [usersPerPage, setUsersPerPage] = useState(20);
   const pagesVisited = pageNumber * usersPerPage;
@@ -68,190 +66,95 @@ const PatientTableData = ({
 
   return (
     <>
+      <div className="table-header">
+        <div className="pt-name">Patient Name</div>
+        <div className="pt-active">Gender</div>
+        <div className="pt-active">Active Case</div>
+        <div className="pt-total">Total Case</div>
+        <div className="pt-date">Date Admitted</div>
+      </div>
       <div className="table">
-    
-          
-          {/* <div className="above-patient-table-btns">
-            <button
-              ref={domNodeSort}
-              className={isSort ? "btn-active" : "btn-inactive"}
-              onClick={() => {
-                setIsSort(!isSort);
-              }}
-            >
-              <p>
-                <HiOutlineSortDescending />
-              </p>
-              Sort
-              {isSort ? (
-                <p className="chevron">
-                  <HiChevronUp />
-                </p>
-              ) : (
-                <p className="chevron">
-                  <HiChevronDown />
-                </p>
-              )}
-              <AnimatePresence>
-                {isSort && (
-                  <motion.div
-                    variants={dropdownVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    className="sort-dropdown"
-                  >
-                    <ul>
-                      <li
-                        className={sort === "Oldest" ? "selected" : null}
-                        onClick={() => {
-                          setSort("Oldest");
-                        }}
-                      >
-                        Oldest
-                        {sort === "Oldest" && (
-                          <p>
-                            <HiCheck />
-                          </p>
-                        )}
-                      </li>
-                      <li
-                        className={sort === "Newest" ? "selected" : null}
-                        onClick={() => {
-                          setSort("Newest");
-                        }}
-                      >
-                        Newest
-                        {sort === "Newest" && (
-                          <p>
-                            <HiCheck />
-                          </p>
-                        )}
-                      </li>
-
-                      <li
-                        className={sort === "Name (A-Z)" ? "selected" : null}
-                        onClick={() => {
-                          setSort("Name (A-Z)");
-                        }}
-                      >
-                        Name A to Z
-                        {sort === "Name (A-Z)" && (
-                          <p>
-                            <HiCheck />
-                          </p>
-                        )}
-                      </li>
-                      <li
-                        className={sort === "Name (Z-A)" ? "selected" : null}
-                        onClick={() => {
-                          setSort("Name (Z-A)");
-                        }}
-                      >
-                        Name Z to A
-                        {sort === "Name (Z-A)" && (
-                          <p>
-                            <HiCheck />
-                          </p>
-                        )}
-                      </li>
-                    </ul>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </button>
-
-        </div> */}
-        <div className="table-header">
-          <div className="pt-name">Patient Name</div>
-          <div className="pt-active">Gender</div>
-          <div className="pt-active">Active Case</div>
-          <div className="pt-total">Total Case</div>
-          <div className="pt-date">Date Admitted</div>
-        </div>
-       
-          {patients
-            .filter((val) => {
-              if (term === "") {
-                return val;
-              } else if (
-                val.fullname.toLowerCase().includes(term.toLocaleLowerCase())
-              ) {
-                return val;
-              }
-            })
-            .filter((id) => id.physician._id === user.userId)
-            .sort(
-              sort === "Newest"
-                ? sortDscDate
-                : sort === "Oldest"
-                ? sortAscDate
-                : sort === "Name (A-Z)"
-                ? sortAscName
-                : sortDscName
-            )
-            .slice(
-              term === "" ? pagesVisited : 0,
-              term === "" ? pagesVisited + usersPerPage : patientState.length
-            )
-            .map((item, key) => {
-              return (
-                <div
-                  key={key + 1}
-                  onClick={() => {
-                    setPatientModal(true);
-                    setPatientId(item._id);
-                    filterPatient(item._id);
-                  }}
-                  className={key % 2 === 0 ? "table-body" : "table-body-2"}
-                >
-                  <div className="pt-name">
-                    <p>
-                      {item.lastname +
-                        "," +
-                        " " +
-                        item.firstname +
-                        " " +
-                        item.middlename[0] +
-                        "."}
-                    </p>
-                  </div>
-
-                  <div className="pt-active">{item.sex}</div>
-
-                  <div className="pt-active">
-                    {
-                      cases.filter(
-                        (f) => f.patient._id === item._id && f.active === true
-                      ).length
-                    }
-                  </div>
-                  <div className="pt-total">
-                    {cases.filter((f) => f.patient._id === item._id).length}
-                  </div>
-                  <div className="pt-date">{getDate(item.createdAt)}</div>
+        {patients
+          .filter((val) => {
+            if (term === "") {
+              return val;
+            } else if (
+              val.fullname.toLowerCase().includes(term.toLocaleLowerCase())
+            ) {
+              return val;
+            }
+          })
+          .filter((id) => id.physician._id === user.userId)
+          .sort(
+            sort === "Newest"
+              ? sortDscDate
+              : sort === "Oldest"
+              ? sortAscDate
+              : sort === "Name (A-Z)"
+              ? sortAscName
+              : sortDscName
+          )
+          .slice(
+            term === "" ? pagesVisited : 0,
+            term === "" ? pagesVisited + usersPerPage : patientState.length
+          )
+          .map((item, key) => {
+            return (
+              <div
+                key={key + 1}
+                onClick={() => {
+                  setPatientModal(true);
+                  setPatientId(item._id);
+                  filterPatient(item._id);
+                }}
+                className={key % 2 === 0 ? "table-body" : "table-body-2"}
+              >
+                <div className="pt-name">
+                  <p>
+                    {item.lastname +
+                      "," +
+                      " " +
+                      item.firstname +
+                      " " +
+                      item.middlename[0] +
+                      "."}
+                  </p>
                 </div>
-              );
-            })}
-        </div>
-        <div className="pagination-container">
-          <ReactPaginate
-            previousLabel={<HiChevronLeft size={20} />}
-            nextLabel={<HiChevronRight size={20} />}
-            breakLabel="..."
-            pageCount={pageCount}
-            marginPagesDisplayed={3}
-            containerClassName="pagination"
-            pageClassName="page-item"
-            pageLinkClassName="page-link"
-            breakClassName="page-item"
-            nextClassName="page-item"
-            previousClassName="page-item"
-            activeClassName="active"
-            onPageChange={changePage}
-          />
-        </div>
-     
+
+                <div className="pt-active">{item.sex}</div>
+
+                <div className="pt-active">
+                  {
+                    cases.filter(
+                      (f) => f.patient._id === item._id && f.active === true
+                    ).length
+                  }
+                </div>
+                <div className="pt-total">
+                  {cases.filter((f) => f.patient._id === item._id).length}
+                </div>
+                <div className="pt-date">{getDate(item.createdAt)}</div>
+              </div>
+            );
+          })}
+      </div>
+      <div className="pagination-container">
+        <ReactPaginate
+          previousLabel={<HiChevronLeft size={20} />}
+          nextLabel={<HiChevronRight size={20} />}
+          breakLabel="..."
+          pageCount={pageCount}
+          marginPagesDisplayed={3}
+          containerClassName="pagination"
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          breakClassName="page-item"
+          nextClassName="page-item"
+          previousClassName="page-item"
+          activeClassName="active"
+          onPageChange={changePage}
+        />
+      </div>
     </>
   );
 };

@@ -136,6 +136,7 @@ const AnimatedRoutes = () => {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="reset-password" element={<ForgotPassword />} />
+            
           </Route>
         </Route>
         <Route path="/team" element={<DevTeam />} />
