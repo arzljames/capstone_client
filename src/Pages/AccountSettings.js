@@ -114,18 +114,20 @@ const AccountSettings = () => {
                         .facility
                     }
                   </p>
-                  <label>Specialization</label>
+                  
 
                   {user.designation !== "623ec7fb80a6838424edaa29" ? (
-                    <p>N/A</p>
+                    null
                   ) : (
-                    <p>
+                    <><label>Specialization</label>
+                     <p>
                       {
                         specializations.filter(
                           (e) => e._id === user.specialization
                         )[0].specialization
                       }
-                    </p>
+                    </p></>
+                   
                   )}
                 </div>
               </div>

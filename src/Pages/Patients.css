@@ -177,7 +177,7 @@
 }
 
 .pt-date {
-  width: 200px;
+  width: 130px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -1261,5 +1261,6 @@ button.deactive-btn:hover {
   .subheading-btns {
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 10px;
   }
 }

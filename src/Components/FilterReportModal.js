@@ -11,7 +11,8 @@ const FilterReportModal = ({ setFilterModal }) => {
     setFilterModal(false);
   });
 
-  const { facilities, listUsers, user, setAppState, specializations } = useAuth();
+  const { facilities, listUsers, user, setAppState, specializations } =
+    useAuth();
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [refer, setRefer] = useState("");
@@ -118,12 +119,12 @@ const FilterReportModal = ({ setFilterModal }) => {
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="filter-modal"
+        className="form"
       >
-        <div className="filter-modal-header">
+        <div className="form-header">
           <h1>Create Report</h1>
         </div>
-        <div className="filter-modal-body">
+        <div className="form-body">
           <label>Date Range</label>
           <div className="date-range">
             <div>
@@ -192,30 +193,25 @@ const FilterReportModal = ({ setFilterModal }) => {
             onChange={(e) => setSpecialization(e.target.value)}
           >
             <option value="">Not set</option>
-            {/* {facilities
-              .filter((e) => e._id === "623ec7fb80a6838424edaa29")
-              .map((item, index) => {
-                return item.specialization.map((f) => {
-                  return (
-                    <option key={index} selected value={f._id}>
-                      {f.name}
-                    </option>
-                  );
-                });
-              })} */}
-              {specializations.map((e, index) => {
-                return <option key={index} value={e._id}>{e.specialization}</option>
-              })}
+
+            {specializations.map((e, index) => {
+              return (
+                <option key={index} value={e._id}>
+                  {e.specialization}
+                </option>
+              );
+            })}
           </select>
         </div>
-        <div className="filter-modal-footer">
-          <div className="btns">
+        <div className="form-btns">
+          <div></div>
+          <div>
             <button onClick={() => setFilterModal(false)} className="close">
               Cancel
             </button>
             <button
               onClick={() => handleSubmit()}
-              className={isClick ? "apply-disable" : "apply"}
+              className={isClick ? "cancel-btn" : "green-cta"}
             >
               Generate
             </button>

@@ -36,6 +36,9 @@ const AdminFacility = () => {
     setPageNumber(selected);
   };
 
+  const [picture, setPicture] = useState("1");
+
+
 
   return (
     <>
@@ -51,6 +54,7 @@ const AdminFacility = () => {
           <AdminHospitalModal
             hospital={hospital}
             setShowHospitalModal={setShowHospitalModal}
+            pictures={picture}
           />
         )}
       </AnimatePresence>
@@ -91,7 +95,7 @@ const AdminFacility = () => {
                 <p>
                   <HiPlus />
                 </p>
-                Hospital
+                Hospital 
               </motion.button>
             </div>
             <div className="table-header">
@@ -136,6 +140,8 @@ const AdminFacility = () => {
                       setHospital={setHospital}
                       setShowHospitalModal={setShowHospitalModal}
                       item={item}
+                      picture={item.picture}
+                      setPicture={setPicture}
                     />
                   );
                 })}

@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./AddFacilityForm.css";
 import { motion } from "framer-motion";
-import { HiX, HiInformationCircle, HiCheck } from "react-icons/hi";
+import { HiUpload } from "react-icons/hi";
 import InfoHover from "../Components/InfoHover";
 import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
 import { useClickOutside } from "../Hooks/useClickOutside";
+import { IoBusinessOutline } from "react-icons/io5";
 
 const formVariant = {
   hidden: {
@@ -45,7 +46,7 @@ const containerVariant = {
   },
 };
 
-const AddFacilityForm = ({ setShowModal }) => {
+const AddFacilityForm = ({ setShowModal, pictures }) => {
   const [isClick, setIsClick] = useState(false);
   const { setAppState, toast } = useAuth();
   const [showHover, setShowHover] = useState(false);
@@ -55,47 +56,65 @@ const AddFacilityForm = ({ setShowModal }) => {
   const [city, setCity] = useState("");
   const [temp, setTemp] = useState("");
   const [specializations, setSpecializations] = useState([]);
-  const onHover = () => {
-    setShowHover(true);
-  };
 
-  const offHover = () => {
-    setShowHover(false);
-  };
+  const [picture, setPicture] = useState("");
+  const [pictureFile, setPictureFile] = useState("");
 
+  const inputFileRef = useRef(null);
 
-  const removeItem = (index) => {
-    setSpecializations(specializations.filter((o, i) => index !== i));
+  const onBtnClick = () => {
+    inputFileRef.current.click();
   };
 
   const handleSubmit = async () => {
-    setIsClick(true);
-    setAppState("Updating Lists");
-    let response = await api.post("/api/facility/add", {
-      name,
-      specializations,
-      street,
-      city,
-      barangay,
-    });
-
-    if (response.data.err) {
+    if (!name) {
       setAppState("error occure");
       setTimeout(() => setAppState(""), 500);
       setIsClick(false);
       toast.error("Please input the name of hospital");
-    } else {
-      setShowModal(false);
-      setIsClick(false);
-      setAppState("hospital added");
+      return;
+    }
+    setIsClick(true);
+    setAppState("Updating Lists");
+    try {
+      const formData = new FormData();
+      formData.append("file", pictureFile);
+      formData.append("upload_preset", "qn8bbwmc");
+      formData.append("cloud_name", "ojttelemedicine");
+
+      fetch("https://api.cloudinary.com/v1_1/ojttelemedicine/upload", {
+        method: "post",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          const response = api.post("/api/facility/add", {
+            name,
+            street,
+            city,
+            barangay,
+            picture: data.url,
+          });
+
+          if (response) {
+            setShowModal(false);
+            setIsClick(false);
+            setAppState("hospital added");
+            setTimeout(() => setAppState(""), 500);
+            toast.success("Successfully added hospital");
+          }
+        });
+    } catch (error) {
+      setAppState("error occure");
       setTimeout(() => setAppState(""), 500);
-      toast.success("Successfully added hospital");
+      setIsClick(false);
+      toast.error(error.message);
     }
   };
 
   const domNode = useClickOutside(() => {
-    setShowModal(false)
-  })
+    setShowModal(false);
+  });
 
   return (
     <motion.div
@@ -114,8 +133,7 @@ const AddFacilityForm = ({ setShowModal }) => {
         ref={domNode}
       >
         <div className="form-header">
-          <h1>Add Hospital</h1>
-          
+          <h1>Add Hospital</h1> 
         </div>
 
         <div className="form-body">
@@ -158,19 +176,33 @@ const AddFacilityForm = ({ setShowModal }) => {
             </div>
           </div>
 
-          
+          <label>Hospital Picture</label>
+          <div className="hospital-dp">
+            <input
+              type="file"
+              ref={inputFileRef}
+              onChange={(e) => {
+                setPicture(URL.createObjectURL(e.target.files[0]));
+                setPictureFile(e.target.files[0]);
+              }}
+
          
-          <div className="specializations-container">
-            {specializations.map((item, index) => {
-              return (
+            />
+            <div className="img-container">
+              {!picture && !pictures ? (
                 <p>
-                  {item.name}
-                  <div onClick={() => removeItem(index)} key={index + 1}>
-                    <HiX />
-                  </div>
+                  <IoBusinessOutline />
                 </p>
-              );
-            })}
+              ) : (
+                <img src={ pictures} alt="" />
+              )}
+            </div>
+            <button onClick={() => onBtnClick()} className="upload-btn">
+              <p>
+                <HiUpload />
+              </p>
+              Upload Picture
+            </button>
           </div>
         </div>
         <div className="form-btns">

@@ -2,7 +2,8 @@
   display: flex;
   width: 100%;
   height: 100%;
-  flex: 1;
+  overflow-x: hidden;
+  padding-left: 300px;
 }
 
 .no-content {
@@ -74,15 +75,16 @@
 /* Consultation Navbar styling */
 
 .consultation-nav {
-  width: 22%;
-  min-width: 250px;
-  max-width: 350px;
+  width: 300px;
+  min-width: 300px;
   height: 100%;
   background: #ffffff;
   display: flex;
   flex-direction: column;
   padding: 20px 10px;
   box-shadow: inset -7px 0 9px -7px rgba(0, 0, 0, 0.2);
+  left: 70px;
+  position: absolute;
 }
 
 .consultation-logo {
@@ -189,12 +191,19 @@
 /* End of Consultation Navbar styling */
 
 @media screen and (max-width: 768px) {
-  .consultation-content {
+  div.consultation-content {
     flex-direction: column;
+    padding-left: 0px;
+    padding-bottom: 0px;
+  }
+
+  .content-body {
+    padding-bottom: 70px;
   }
   .consultation-nav {
     width: 100%;
     height: 50px;
+    min-height: 50px;
     padding: 0px;
     margin: 0px;
     display: flex;
@@ -202,6 +211,9 @@
     flex-direction: row;
     justify-content: center;
     padding: 0px 10px;
+    position: relative;
+    left: 0px;
+    top: 0px;
   }
 
   .consultation-nav-header {

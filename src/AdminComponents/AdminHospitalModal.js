@@ -2,12 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { containerVariant, formVariant } from "../Animations/Animations";
-import { HiPencil, HiInformationCircle, HiCheck, HiX } from "react-icons/hi";
+import { HiUpload } from "react-icons/hi";
 import useAuth from "../Hooks/useAuth";
 import api from "../API/Api";
-import InfoHover from "../Components/InfoHover";
+import { IoBusinessOutline } from "react-icons/io5";
 
-const AdminHospitalModal = ({ setShowHospitalModal, hospital }) => {
+const AdminHospitalModal = ({ setShowHospitalModal, hospital, pictures }) => {
   const { setAppState, appState, facilities, toast } = useAuth();
   const [showHover, setShowHover] = useState(false);
   const [name, setName] = useState("");
@@ -16,45 +16,79 @@ const AdminHospitalModal = ({ setShowHospitalModal, hospital }) => {
   const [city, setCity] = useState("");
   const [temp, setTemp] = useState("");
   const [specializations, setSpecializations] = useState([]);
-  let domNode = useClickOutside(() => {
-    setShowHospitalModal(false);
-  });
 
-  const onHover = () => {
-    setShowHover(true);
+  const [picture, setPicture] = useState("");
+  const [pictureFile, setPictureFile] = useState("");
+
+  const inputFileRef = useRef(null);
+
+  const onBtnClick = () => {
+    inputFileRef.current.click();
   };
 
-  const offHover = () => {
-    setShowHover(false);
-  };
+  // const handleSubmit = async () => {
+  //   setIsClick(true);
+  //   setAppState("Updaing Lists");
+  //   let response = await api.put(`/api/facility/update/${hospital._id}`, {
+  //     name,
+  //     street,
+  //     city,
+  //     barangay,
+  //   });
 
-  const addSpec = (e) => {
-    setSpecializations([{ name: temp }, ...specializations]);
-    setTemp("");
-    console.log(specializations);
-  };
-
-  const removeItem = (index) => {
-    setSpecializations(specializations.filter((o, i) => index !== i));
-  };
+  //   if (response.data.err) {
+  //     toast.error("Please input the name of hospital");
+  //   } else {
+  //     setShowHospitalModal(false);
+  //     setAppState("updated");
+  //     setTimeout(() => setAppState(""), 500);
+  //     toast.success("Successfully updated hospital");
+  //   }
+  // };
 
   const handleSubmit = async () => {
-    setIsClick(true);
-    setAppState("Updaing Lists");
-    let response = await api.put(`/api/facility/update/${hospital._id}`, {
-      name,
-      street,
-      city,
-      barangay,
-    });
-
-    if (response.data.err) {
-      toast.error("Please input the name of hospital");
-    } else {
-      setShowHospitalModal(false);
-      setAppState("updated");
+    if (!name) {
+      setAppState("error occure");
       setTimeout(() => setAppState(""), 500);
-      toast.success("Successfully added hospital");
+      setIsClick(false);
+      toast.error("Please input the name of hospital");
+      return;
+    }
+    setIsClick(true);
+    setAppState("Updating Lists");
+    try {
+      const formData = new FormData();
+      formData.append("file", pictureFile);
+      formData.append("upload_preset", "qn8bbwmc");
+      formData.append("cloud_name", "ojttelemedicine");
+
+      fetch("https://api.cloudinary.com/v1_1/ojttelemedicine/upload", {
+        method: "post",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          const response = api.put(`/api/facility/update/${hospital._id}`, {
+            name,
+            street,
+            city,
+            barangay,
+            picture: data.url,
+          });
+
+          if (response) {
+            setShowHospitalModal(false);
+            setIsClick(false);
+            setAppState("hospital updated");
+            setTimeout(() => setAppState(""), 500);
+            toast.success("Successfully updated hospital");
+          }
+        });
+    } catch (error) {
+      setAppState("error occure");
+      setTimeout(() => setAppState(""), 500);
+      setIsClick(false);
+      toast.error(error.message);
     }
   };
 
@@ -63,14 +97,6 @@ const AdminHospitalModal = ({ setShowHospitalModal, hospital }) => {
     setBarangay(hospital.address.barangay);
     setStreet(hospital.address.street);
     setCity(hospital.address.city);
-
-    // {
-    //   facilities
-    //     .filter((e) => e._id === hospital._id)
-    //     .map((e) => {
-    //       setSpecializations(e.specialization);
-    //     });
-    // }
 
     const fetchSpec = async () => {
       try {
@@ -99,59 +125,12 @@ const AdminHospitalModal = ({ setShowHospitalModal, hospital }) => {
   const [spec, setSpec] = useState(null);
   const [isClick, setIsClick] = useState(false);
 
-  const updateSpec = async () => {
-    try {
-      setIsClick(true);
-      let response = await api.put(`/api/facility/update-spec/${spec._id}`, {
-        name: spec.name,
-      });
-
-      if (response.data.ok) {
-        setShowEditModal(false);
-        setIsClick(false);
-        setAppState(response.data.ok);
-        setTimeout(() => setAppState(""), 500);
-      }
-    } catch (error) {
-      setShowEditModal(false);
-      setIsClick(false);
-      setAppState(error.message);
-      setTimeout(() => setAppState(""), 500);
-    }
-  };
+  useEffect(() => {
+    setPicture(pictures);
+  }, []);
 
   return (
     <>
-      {showEditModal && (
-        <div className="edit-spec-modal">
-          <div className="s">
-            <h1>Rename Specialization</h1>
-            <input
-              value={spec.name}
-              onChange={(e) => setSpec({ ...spec, name: e.target.value })}
-              type="text"
-            />
-          </div>
-          <div className="form-btns">
-            <div></div>
-            <div>
-              <button
-                onClick={() => setShowEditModal(false)}
-                className="facility-close-btn"
-              >
-                Cancel
-              </button>
-              <motion.button
-                whileTap={{ scale: 0.9 }}
-                className="facility-save-btn"
-                onClick={() => updateSpec()}
-              >
-                Save
-              </motion.button>
-            </div>
-          </div>
-        </div>
-      )}
       <motion.div
         variants={containerVariant}
         initial="hidden"
@@ -164,15 +143,10 @@ const AdminHospitalModal = ({ setShowHospitalModal, hospital }) => {
           initial="hidden"
           animate="visible"
           exit="exit"
-          className={
-            showEditModal ? "add-facility-form none" : "add-facility-form"
-          }
+          className="form"
         >
           <div className="form-header">
-            <h3>Update Hospital</h3>
-            <p onClick={() => setShowHospitalModal(false)}>
-              <HiX />
-            </p>
+            <h1>Update Hospital</h1>
           </div>
 
           <div className="form-body">
@@ -214,10 +188,32 @@ const AdminHospitalModal = ({ setShowHospitalModal, hospital }) => {
               </div>
             </div>
 
-            
-            
-
-        
+            <label>Hospital Picture</label>
+            <div className="hospital-dp">
+              <input
+                type="file"
+                ref={inputFileRef}
+                onChange={(e) => {
+                  setPicture(URL.createObjectURL(e.target.files[0]));
+                  setPictureFile(e.target.files[0]);
+                }}
+              />
+              <div className="img-container">
+                {!pictures && !picture ? (
+                  <p>
+                    <IoBusinessOutline />
+                  </p>
+                ) : (
+                  <img src={picture} alt="Hospital Picture" />
+                )}
+              </div>
+              <button onClick={() => onBtnClick()} className="upload-btn">
+                <p>
+                  <HiUpload />
+                </p>
+                Upload Picture
+              </button>
+            </div>
           </div>
           <div className="form-btns">
             <div></div>
