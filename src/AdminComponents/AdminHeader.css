@@ -157,6 +157,7 @@
   transition: 0.1s ease-in-out;
   margin-left: 8px;
   background: rgb(233, 233, 233);
+  border: 1px solid #66aa7500;
 }
 
 .profile-settings-active {
@@ -173,6 +174,7 @@
   transition: 0.1s ease-in-out;
   background: #cbebd4;
   margin-left: 8px;
+  border: 1px solid #66aa75;
 }
 
 .profile-settings p {

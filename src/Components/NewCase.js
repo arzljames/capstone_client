@@ -47,7 +47,7 @@ const containerVariant = {
   },
 };
 
-const NewCase = ({ setShowCase, }) => {
+const NewCase = ({ setShowCase, overflow }) => {
   let domNode = useClickOutside(() => {
     setShowCase(false);
   });
@@ -298,13 +298,11 @@ const NewCase = ({ setShowCase, }) => {
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="add-facility-form"
+        className={overflow ? "form overflow" : "form"}
       >
         <div className="form-header">
           <h1>Add New Case</h1>
-          <p onClick={() => setShowCase(false)}>
-            <HiX />
-          </p>
+          
         </div>
         <div className="form-body">
           <label>Date Created</label>

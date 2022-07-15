@@ -79,7 +79,7 @@ const Case = () => {
           pauseOnHover
         />
         <AnimatePresence>
-          {showCase && <NewCase setShowCase={setShowCase} />}
+          {showCase && <NewCase overflow={true} setShowCase={setShowCase} />}
 
           {patientModal && (
             <PatientModal

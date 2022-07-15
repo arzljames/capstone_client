@@ -6,20 +6,18 @@ import AdminSidebar from "../AdminComponents/AdminSidebar";
 import AdminHeader from "../AdminComponents/AdminHeader";
 import {
   HiPlus,
-  HiOutlineSortDescending,
-  HiOutlineFilter,
   HiOutlineSearch,
   HiChevronLeft,
   HiChevronRight,
 } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
 import AddFacilityForm from "../AdminComponents/AddFacilityForm";
-import Toast from "../Components/Toast";
 import useAuth from "../Hooks/useAuth";
 import FacilityTableBody from "../AdminComponents/FacilityTableBody";
 import AdminHospitalModal from "../AdminComponents/AdminHospitalModal";
 import ReactPaginate from "react-paginate";
 import { Helmet } from "react-helmet";
+
 
 const AdminFacility = () => {
   const navigate = useNavigate();
@@ -37,6 +35,7 @@ const AdminFacility = () => {
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
+
 
   return (
     <>

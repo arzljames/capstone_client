@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { VscBracketError } from "react-icons/vsc";
 
-const AdminChannel = () => {
+const AdminReport = () => {
   const navigate = useNavigate();
   const { reports } = useAuth();
 
@@ -92,4 +92,4 @@ const AdminChannel = () => {
   );
 };
 
-export default AdminChannel;
+export default AdminReport;

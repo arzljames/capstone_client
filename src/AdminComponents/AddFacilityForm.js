@@ -5,6 +5,7 @@ import { HiX, HiInformationCircle, HiCheck } from "react-icons/hi";
 import InfoHover from "../Components/InfoHover";
 import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
+import { useClickOutside } from "../Hooks/useClickOutside";
 
 const formVariant = {
   hidden: {
@@ -62,11 +63,6 @@ const AddFacilityForm = ({ setShowModal }) => {
     setShowHover(false);
   };
 
-  const addSpec = (e) => {
-    setSpecializations([{ name: temp }, ...specializations]);
-    setTemp("");
-    console.log(specializations);
-  };
 
   const removeItem = (index) => {
     setSpecializations(specializations.filter((o, i) => index !== i));
@@ -97,6 +93,10 @@ const AddFacilityForm = ({ setShowModal }) => {
     }
   };
 
+  const domNode = useClickOutside(() => {
+    setShowModal(false)
+  })
+
   return (
     <motion.div
       variants={containerVariant}
@@ -110,13 +110,12 @@ const AddFacilityForm = ({ setShowModal }) => {
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="add-facility-form"
+        className="form"
+        ref={domNode}
       >
         <div className="form-header">
-          <h3>Add Hospital</h3>
-          <p onClick={() => setShowModal(false)}>
-            <HiX />
-          </p>
+          <h1>Add Hospital</h1>
+          
         </div>
 
         <div className="form-body">

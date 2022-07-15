@@ -23,11 +23,10 @@ const AddSpecModal = ({ setModal, toast }) => {
         description,
       });
 
-
-      if(specialization === "") {
+      if (specialization === "") {
         toast.error("Input specialization");
         setIsClick(false);
-        return
+        return;
       }
 
       if (response) {
@@ -41,7 +40,7 @@ const AddSpecModal = ({ setModal, toast }) => {
     } catch (error) {
       console.log(error);
       setAppState("Error");
-      toast.error("An error occured")
+      toast.error("An error occured");
       setTimeout(() => setAppState(""), 500);
       setIsClick(false);
     }
@@ -61,32 +60,44 @@ const AddSpecModal = ({ setModal, toast }) => {
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="popup-modal"
+        className="form"
       >
-        <h1>Add Specialization</h1>
-        <label>Name</label>
-        <input
-          onChange={(e) => setSpecialization(e.target.value)}
-          value={specialization}
-          type="text"
-        />
+        <div className="form-header">
+          <h1>Add Specialization</h1>
+        </div>
 
-        <label>Description</label>
-        <textarea
-          onChange={(e) => setDescription(e.target.value)}
-          value={description}
-          type="text"
-          placeholder="Optional"
-        ></textarea>
+        <div className="form-body">
+          <label>Name</label>
+          <input
+            onChange={(e) => setSpecialization(e.target.value)}
+            value={specialization}
+            type="text"
+          />
 
-        <div className="popup-modal-btns">
-          <button onClick={() => setModal(false)}>Cancel</button>
-          <button
-            onClick={() => handleSubmit()}
-            className={isClick ? "green-cta-disable" : "green-cta"}
-          >
-            Save
-          </button>
+          <label>Description</label>
+          <textarea
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+            type="text"
+            placeholder="Optional"
+          ></textarea>
+        </div>
+        <div className="form-btns">
+          <div></div>
+          <div>
+            <button
+              className="facility-close-btn"
+              onClick={() => setModal(false)}
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => handleSubmit()}
+              className={isClick ? "green-cta-disable" : "green-cta"}
+            >
+              Save
+            </button>
+          </div>
         </div>
       </motion.div>
     </motion.div>

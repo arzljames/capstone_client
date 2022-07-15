@@ -89,7 +89,7 @@
 .case-content {
   width: 100%;
   height: 80px;
-  background: rgb(244, 246, 247);
+  background: rgb(255, 255, 255);
   border-radius: 6px;
   cursor: pointer;
   transition: 0.1s ease-in-out;

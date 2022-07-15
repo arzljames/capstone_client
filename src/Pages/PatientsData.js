@@ -11,7 +11,6 @@ import PatientActiveCase from "../Components/PatientActiveCase";
 import DeletePatientModal from "../Components/DeletePatientModal";
 import PatientInactiveCase from "../Components/PatientInactiveCase";
 import useAuth from "../Hooks/useAuth";
-import Toast from "../Components/Toast";
 import PulseLoader from "react-spinners/PulseLoader";
 import api from "../API/Api";
 
@@ -84,7 +83,6 @@ const PatientsData = () => {
         )}
       </AnimatePresence>
       <div className="container">
-        {toast && <Toast />}
         <Sidebar />
         <div className="content">
           <Header />

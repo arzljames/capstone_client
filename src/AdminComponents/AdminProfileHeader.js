@@ -3,7 +3,7 @@ import "./AdminHeader.css";
 import NoUser from "../Assets/nouser.png";
 import api from "../API/Api";
 import AdminDropdown from "./AdminDropdown";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import useAuth from "../Hooks/useAuth";
 import { socket } from "../Components/Socket";
 import { IoCaretDown } from "react-icons/io5";
@@ -78,7 +78,10 @@ const AdminProfileHeader = () => {
         </p>
       </motion.div>
 
+      <AnimatePresence>
       {dropdown && <AdminDropdown users={users} submitLogout={submitLogout} />}
+      </AnimatePresence>
+      
     </div>
   );
 };

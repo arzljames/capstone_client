@@ -3,7 +3,7 @@ import { useLocation, Routes, Route, Navigate } from "react-router-dom";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import ForgotPassword from "../Pages/ForgotPassword";
-import AdminChannel from "../AdminPages/AdminChannel";
+import AdminReport from "../AdminPages/AdminReport";
 import AdminFacility from "../AdminPages/AdminFacility";
 import AdminPeople from "../AdminPages/AdminPeople";
 import AdminUserProfile from "../AdminPages/AdminUserProfile";
@@ -66,7 +66,7 @@ const AnimatedRoutes = () => {
             <Route path="admin/doctors" element={<AdminPeople />} />
             <Route path="admin/doctors/:id" element={<AdminUserProfile />} />
             <Route path="admin/hospital" element={<AdminFacility />} />
-            <Route path="admin/report" element={<AdminChannel />} />
+            <Route path="admin/report" element={<AdminReport />} />
             <Route
               path="admin-reports/:id/:reportId"
               element={<AdminGenerateReport />}

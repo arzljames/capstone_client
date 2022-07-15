@@ -337,7 +337,6 @@ const Patients = () => {
                   </motion.div>
                 </div>
               </div>
-
               <PatientTable
                 sortAscDate={sortAscDate}
                 sortDscDate={sortDscDate}
