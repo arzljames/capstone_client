@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
 import "./Homepage.css";
@@ -9,7 +9,7 @@ import useAuth from "../Hooks/useAuth";
 import { Helmet } from "react-helmet";
 
 const OutgoingConsult = () => {
-  const { cases, user } = useAuth();
+  const { cases, user, followUp } = useAuth();
 
   return (
     <>

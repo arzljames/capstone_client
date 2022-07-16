@@ -13,6 +13,7 @@ import NoUser from "../Assets/nouser.png";
 import { IoSend } from "react-icons/io5";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import "../Pages/Chat.css";
+import ReactTimeAgo from "react-time-ago";
 
 const ResponseChat = ({ id, user, response, setResponse, active }) => {
   const [file, setFile] = useState("");
@@ -52,11 +53,11 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
   const getDate = (date) => {
     let todate = new Date(date);
     let today =
-      todate.toLocaleString("en-us", { month: "short" }) +
-      " " +
+      todate.getMonth() +
+      1 +
+      "/" +
       todate.getDate() +
-      "," +
-      " " +
+      "/" +
       todate.getFullYear();
 
     return today;
@@ -141,16 +142,14 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
     } catch (error) {}
   };
 
-  
-
   return (
     <div className="case-data-response">
       <div className="response-header">
         <h1>
-          Response {" "}
-          {response.filter((e) => e.room === id).length !== 0 ?
-            `(${response.filter((e) => e.room === id).length})` : null}
-        </h1>{" "}
+          {response.filter((e) => e.room === id).length <= 1
+            ? response.filter((e) => e.room === id).length + " response"
+            : response.filter((e) => e.room === id).length + " responses"}
+        </h1>
       </div>
       <form onSubmit={(e) => e.preventDefault()}>
         <textarea
@@ -160,7 +159,7 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
           className={active === false ? "inactive" : ""}
           placeholder={
             active === true
-              ? "Write your response here"
+              ? "Type here to response..."
               : "You cannot write response to an inactive case"
           }
         ></textarea>
@@ -272,16 +271,25 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
                   </div>
                   <div className="response">
                     <div className="date">
-                      {getDate(e.createdAt) + " " + getTime(e.createdAt)}
+                      {
+                        <ReactTimeAgo
+                          date={e.createdAt}
+                          locale="en-US"
+                          timeStyle="round-minute"
+                        />
+                      }
                     </div>
-                    <h1>Dr. {e.user.firstname}</h1>
-                    <h2 style={{ marginBottom: "0px" }}>
+                    <h1>
+                      Dr. {e.user.firstname}{" "}
+                      <span> {getDate(e.createdAt)} </span>
+                    </h1>
+                    {/* <h2 style={{ marginBottom: "0px" }}>
                       {e.user.specialization === null
                         ? null
                         : specializations.filter(
                             (item) => item._id === e.user.specialization
                           )[0].specialization}
-                    </h2>
+                    </h2> */}
                     <h2>
                       {
                         facilities.filter(
@@ -293,17 +301,6 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
 
                     <div className="response-content-container">
                       <p>{e.content}</p>
-
-                      {/* <p>{e.content}</p>
-                      {e.attachment.length === 0 ? null : (
-                        <a
-                          target="_blank"
-                          href={e.attachment[0].file}
-                          className="response-attach"
-                        >
-                          {e.attachment[0].name}
-                        </a>
-                      )} */}
 
                       {!e.attachment || !e.attachment.file ? null : (
                         <a

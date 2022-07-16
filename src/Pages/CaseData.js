@@ -234,46 +234,37 @@ const CaseData = () => {
                           className="action-dropdown"
                         >
                           <ul>
-                            <li
-                              className={
-                                user.designation !==
-                                  "623ec7fb80a6838424edaa29" && "disable"
-                              }
-                              onClick={() => setModal(true)}
-                            >
-                              <p>
-                                <HiPlus />
-                              </p>
-                              Add Sub-service
-                            </li>
-                            {patientCase.active === true ? (
-                              <li
-                                className={
-                                  user.designation !==
-                                    "623ec7fb80a6838424edaa29" && "disable"
-                                }
-                                onClick={() => handleDeactivate()}
-                              >
+                            {user.designation ===
+                              "623ec7fb80a6838424edaa29" && (
+                              <li onClick={() => setModal(true)}>
                                 <p>
-                                  <HiX />
-                                </p>{" "}
-                                Deactivate
-                              </li>
-                            ) : (
-                              <li
-                                className={
-                                  user.designation !==
-                                    "623ec7fb80a6838424edaa29" && "disable"
-                                }
-                                on
-                                onClick={() => handleActivate()}
-                              >
-                                <p>
-                                  <HiCheck />
+                                  <HiPlus />
                                 </p>
-                                Activate
+                                Add Sub-service
                               </li>
                             )}
+
+                            {user.designation ===
+                              "623ec7fb80a6838424edaa29" && (
+                              <>
+                                {patientCase.active === true ? (
+                                  <li onClick={() => handleDeactivate()}>
+                                    <p>
+                                      <HiX />
+                                    </p>{" "}
+                                    Deactivate
+                                  </li>
+                                ) : (
+                                  <li on onClick={() => handleActivate()}>
+                                    <p>
+                                      <HiCheck />
+                                    </p>
+                                    Activate
+                                  </li>
+                                )}
+                              </>
+                            )}
+
                             <li onClick={() => DocumentGenerator(patientCase)}>
                               <p>
                                 <HiDownload />
@@ -281,32 +272,33 @@ const CaseData = () => {
                               Download File
                             </li>
 
-                            <li
-                              onClick={() => setDeleteModal(true)}
-                              className={
-                                user.designation !== "623ec7fb80a6838424edaa29"
-                                  ? "disable"
-                                  : "delete"
-                              }
-                            >
-                              <p>
-                                <HiTrash />
-                              </p>{" "}
-                              Delete Case
-                            </li>
-                            <li
-                              onClick={() => setFollowModal(true)}
-                              className={
-                                user.designation === "623ec7fb80a6838424edaa29"
-                                  ? "disable"
-                                  : ""
-                              }
-                            >
-                              <p>
-                                <IoArrowRedoOutline />
-                              </p>
-                              Follow up
-                            </li>
+                            {user.designation ===
+                              "623ec7fb80a6838424edaa29" && (
+                              <li
+                                onClick={() => setDeleteModal(true)}
+                                className="delete"
+                              >
+                                <p>
+                                  <HiTrash />
+                                </p>{" "}
+                                Delete Case
+                              </li>
+                            )}
+
+                            {user.designation !==
+                              "623ec7fb80a6838424edaa29" && (
+                              <li
+                                style={{
+                                  border: "none",
+                                }}
+                                onClick={() => setFollowModal(true)}
+                              >
+                                <p>
+                                  <IoArrowRedoOutline />
+                                </p>
+                                Follow up
+                              </li>
+                            )}
                           </ul>
                         </motion.div>
                       )}
@@ -404,7 +396,7 @@ const CaseData = () => {
                     </div>
                   </div>
 
-                  <div  className="case-tab">
+                  <div className="case-tab">
                     <div
                       onClick={() => setTabb("Main")}
                       className={

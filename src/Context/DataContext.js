@@ -31,6 +31,7 @@ export const DataProvider = ({ children }) => {
   const [reports, setReports] = useState([]);
   const [users, setUsers] = useState([]);
   const [specializations, setSpecializations] = useState([]);
+  const [followUp, setFollowUp] = useState(0);
 
   const fetchLogin = async () => {
     let response = await api.get("/api/auth/login/");
@@ -89,6 +90,11 @@ export const DataProvider = ({ children }) => {
 
     if (response.data) {
       setCases(response.data);
+      setFollowUp(
+        response.data
+          .map((e) => e.followUp?.length)
+          .reduce((partialSum, a) => partialSum + a, 0)
+      );
     }
   };
 
@@ -201,6 +207,7 @@ export const DataProvider = ({ children }) => {
         ToastContainer,
         users,
         setUsers,
+        followUp,
       }}
     >
       {children}

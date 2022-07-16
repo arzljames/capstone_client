@@ -140,7 +140,7 @@ const FollowModal = ({ setFollowModal, toast, id }) => {
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="add-facility-form"
+        className="form overflow"
       >
         <div className="form-header">
           <h1>Follow up</h1>

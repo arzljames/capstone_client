@@ -49,6 +49,7 @@ const AdminDashboard = () => {
     ToastContainer,
     specializations,
     setSpecializations,
+    followUp,
   } = useAuth();
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
 
@@ -336,7 +337,7 @@ const AdminDashboard = () => {
                 heading="Total Cases"
                 icon={<IoMedkit />}
                 iconColor="#fff"
-                total={cases.length}
+                total={cases.length + followUp}
                 subTotal={
                   cases.filter((e) => e.active === true).length > 1
                     ? cases.filter((e) => e.active === true).length +

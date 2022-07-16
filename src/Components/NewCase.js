@@ -131,7 +131,7 @@ const NewCase = ({ setShowCase, overflow }) => {
     setWi("");
     setImd("");
     setReason("");
-    setTodate(null)
+    setTodate(null);
   };
 
   const handleSubmit = async () => {
@@ -194,7 +194,7 @@ const NewCase = ({ setShowCase, overflow }) => {
                 wi,
                 imd,
                 reason,
-                todate
+                todate,
               })
               .then((result) => {
                 if (result) {
@@ -281,18 +281,6 @@ const NewCase = ({ setShowCase, overflow }) => {
       className="modal-container"
       onSubmit={(e) => e.preventDefault()}
     >
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable={false}
-        pauseOnHover
-      />
-
       <motion.form
         variants={formVariant}
         initial="hidden"
@@ -302,11 +290,16 @@ const NewCase = ({ setShowCase, overflow }) => {
       >
         <div className="form-header">
           <h1>Add New Case</h1>
-          
         </div>
         <div className="form-body">
           <label>Date Created</label>
-          <input style={{minHeight: '40px'}} value={todate} onChange={(e) => setTodate(e.target.value)} type="date" />
+          <input
+            style={{ minHeight: "40px" }}
+            value={todate}
+            onChange={(e) => setTodate(e.target.value)}
+            type="date"
+          />
+
           <label>
             Patient <i>*</i>
           </label>
@@ -334,89 +327,109 @@ const NewCase = ({ setShowCase, overflow }) => {
               })}
           </select>
 
-          <label>
-            Service Type <i>*</i>
-          </label>
-          <select
-            value={specialization}
-            className="select"
-            onChange={(e) => setSpecialization(e.target.value)}
-          >
-            <option value="" disabled selected>
-              - Please Select -
-            </option>
-
-            {specializations.map((e, index) => {
-              return (
-                <option selected value={e._id}>
-                  {e.specialization}
+          <div className="divider-container">
+            <div className="divider">
+              <label>
+                Service Type <i>*</i>
+              </label>
+              <select
+                value={specialization}
+                className="select"
+                onChange={(e) => setSpecialization(e.target.value)}
+              >
+                <option value="" disabled selected>
+                  - Please Select -
                 </option>
-              );
-            })}
-          </select>
 
-          <label>
-            Temperature (°C) <i>*</i>
-          </label>
-          <input
-            value={temperature}
-            onChange={(e) => setTemperature(e.target.value)}
-            type="number"
-          />
+                {specializations.map((e, index) => {
+                  return (
+                    <option selected value={e._id}>
+                      {e.specialization}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <div className="divider">
+              <label>
+                Temperature (°C) <i>*</i>
+              </label>
+              <input
+                value={temperature}
+                onChange={(e) => setTemperature(e.target.value)}
+                type="number"
+              />
+            </div>
+          </div>
 
-          <label>
-            Respiratory Rate <i>*</i>
-          </label>
-          <input
-            value={respiratory}
-            onChange={(e) => setRespiratory(e.target.value)}
-            type="text"
-          />
+          <div className="divider-container">
+            <div className="divider">
+              <label>
+                Respiratory Rate <i>*</i>
+              </label>
+              <input
+                value={respiratory}
+                onChange={(e) => setRespiratory(e.target.value)}
+                type="text"
+              />
+            </div>
+            <div className="divider">
+              <label>
+                Heart Rate <i>*</i>
+              </label>
+              <input
+                value={heart}
+                onChange={(e) => setHeart(e.target.value)}
+                type="text"
+              />
+            </div>
+          </div>
 
-          <label>
-            Heart Rate <i>*</i>
-          </label>
-          <input
-            value={heart}
-            onChange={(e) => setHeart(e.target.value)}
-            type="text"
-          />
+          <div className="divider-container">
+            <div className="divider">
+              <label>
+                Blood Pressure <i>*</i>
+              </label>
+              <input
+                value={blood}
+                onChange={(e) => setBlood(e.target.value)}
+                type="text"
+              />
+            </div>
+            <div className="divider">
+              <label>
+                Oxygen Saturation <i>*</i>
+              </label>
+              <input
+                value={oxygen}
+                onChange={(e) => setOxygen(e.target.value)}
+                type="text"
+              />
+            </div>
+          </div>
 
-          <label>
-            Blood Pressure <i>*</i>
-          </label>
-          <input
-            value={blood}
-            onChange={(e) => setBlood(e.target.value)}
-            type="text"
-          />
-
-          <label>
-            Oxygen Saturation <i>*</i>
-          </label>
-          <input
-            value={oxygen}
-            onChange={(e) => setOxygen(e.target.value)}
-            type="text"
-          />
-
-          <label>
-            Weight (KG) <i>*</i>
-          </label>
-          <input
-            value={weight}
-            onChange={(e) => setWeight(e.target.value)}
-            type="number"
-          />
-
-          <label>
-            Height (CM) <i>*</i>
-          </label>
-          <input
-            value={height}
-            onChange={(e) => setHeight(e.target.value)}
-            type="number"
-          />
+          <div className="divider-container">
+            <div className="divider">
+              <label>
+                Weight (KG) <i>*</i>
+              </label>
+              <input
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+                type="number"
+              />
+            </div>
+            <div className="divider">
+              <label>
+                Height (CM) <i>*</i>
+              </label>
+              <input
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
+                type="number"
+              />
+            </div>
+          </div>
 
           <label>
             Chief Complaint <i>*</i>
@@ -474,9 +487,7 @@ const NewCase = ({ setShowCase, overflow }) => {
             onChange={(e) => setImd(e.target.value)}
           ></textarea>
 
-          <label>
-            Pertinent Paraclinicals 
-          </label>
+          <label>Pertinent Paraclinicals</label>
           {paraclinical.name && (
             <div className="paraclinical-file-container">
               {paraclinical.name}

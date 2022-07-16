@@ -709,6 +709,23 @@ div.popup-modal h1 {
   flex-direction: column;
 }
 
+.form-body div.divider-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-body div.divider {
+  width: 48%;
+  margin-bottom: 30px;
+}
+
+.form-body div.divider input,
+.form-body div.divider select {
+  width: 100%;
+  margin-bottom: 0px;
+  height: 45px;
+}
+
 .form-body div.address-container {
   width: 100%;
   display: flex;
@@ -731,7 +748,7 @@ div.popup-modal h1 {
   margin-bottom: 10px;
   font-size: 14px;
   color: #272727;
-  font-weight: 600;
+  font-weight: 500;
   display: flex;
   align-items: center;
 }

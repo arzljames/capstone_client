@@ -149,16 +149,15 @@ const CaseTable = ({
                       e.stopPropagation();
                     }}
                   >
-                    <p>
-                      {item.patient.lastname +
-                        "," +
-                        " " +
-                        item.patient.firstname +
-                        " " +
-                        item.patient.middlename[0] +
-                        "."}
-                    </p>
+                    {item.patient.lastname +
+                      "," +
+                      " " +
+                      item.patient.firstname +
+                      " " +
+                      item.patient.middlename[0] +
+                      "."}
                   </p>
+                  <div className="cs-info-container"></div>
                 </div>
 
                 <div className="cs-department">

@@ -27,7 +27,7 @@ import StatisticHospital from "../Components/StatisticHospital";
 import StatisticPatient from "../Components/StatisticPatient";
 
 const UserDashboard = () => {
-  const { facilities, listUsers, patients, cases } = useAuth();
+  const { facilities, listUsers, patients, cases, followUp } = useAuth();
 
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
 
@@ -254,7 +254,7 @@ const UserDashboard = () => {
                 heading="Total Cases"
                 icon={<IoMedkit />}
                 iconColor="#fff"
-                total={cases.length}
+                total={cases.length + followUp}
                 subTotal={
                   cases.filter((e) => e.active === true).length > 1
                     ? cases.filter((e) => e.active === true).length +

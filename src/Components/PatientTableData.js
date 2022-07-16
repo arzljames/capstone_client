@@ -234,14 +234,7 @@ const PatientTableData = ({
                   </div>
                 );
               })
-          : // <div className="no-patients">
-            //   <h1>No Patients</h1>
-            //   <p>
-            //     Looks like you don't have a patient to handle. Click the{" "}
-            //     <em>add patient</em> button above to start adding patient.
-            //   </p>
-            // </div>
-            null}
+          : null}
       </div>
     </>
   );
