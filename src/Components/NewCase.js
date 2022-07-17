@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { HiPlus, HiX } from "react-icons/hi";
 import { socket } from "./Socket";
 import { useClickOutside } from "../Hooks/useClickOutside";
-import { ToastContainer } from "react-toastify";
 
 const formVariant = {
   hidden: {
@@ -204,9 +203,6 @@ const NewCase = ({ setShowCase, overflow }) => {
               })
               .then((result) => {
                 if (result) {
-                  socket.on("get_case", (data) => {
-                    setCases(data);
-                  });
                   updateSocket();
                   setAppState(result.data.ok);
                   setTimeout(() => {

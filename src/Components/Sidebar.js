@@ -16,13 +16,17 @@ const Sidebar = () => {
   const [playbackRate, setPlaybackRate] = useState(1);
   const [play] = useSound(notif, { playbackRate });
 
-  const { cases, user, setNotification } = useAuth();
+  const { cases, user, setNotification, setCases } = useAuth();
 
   useEffect(() => {
     const fetchNotif = () => {
       socket.emit("notif", user.userId);
+      socket.emit("case");
       socket.on("get_notif", (data) => {
         setNotification(data);
+      });
+      socket.on("get_case", (data) => {
+        setCases(data);
       });
     };
 
