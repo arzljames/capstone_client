@@ -634,4 +634,39 @@ div.hospital-input:hover {
   .login-header {
     width: 100%;
   }
+
+  .form-container {
+    padding: 0px;
+    margin: 0px;
+    width: auto;
+    height: auto;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .login-container {
+    height: 100vh;
+    background: #fff;
+  }
+
+  .register-container {
+    background: #fff;
+    padding: 0px;
+    margin: 0px;
+    min-width: none;
+    padding: 20px;
+  }
+
+  .register-container .login-form {
+    min-width: none;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .register-container .form-container {
+    min-width: none;
+    padding: 0px;
+    margin: 0px;
+    padding: 0px 20px;
+  }
 }
