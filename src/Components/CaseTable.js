@@ -38,20 +38,20 @@ const CaseTable = ({
     return today;
   };
 
-  const getTime = (date) => {
-    var options = {
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
-    };
-    let today = new Date(date).toLocaleString("en-US", options);
-
-    return today;
-  };
+  function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
 
   const { specializations, cases, user, patients } = useAuth();
   const [pageNumber, setPageNumber] = useState(0);
-  const [usersPerPage, setUsersPerPage] = useState(20);
+  const [usersPerPage, setUsersPerPage] = useState(10);
   const pagesVisited = pageNumber * usersPerPage;
 
   const pageCount = Math.ceil(
@@ -129,6 +129,9 @@ const CaseTable = ({
           .map((item, index) => {
             return (
               <div
+                onClick={() => {
+                  navigate(`/consultation/case/case-data/${item._id}`);
+                }}
                 index={index}
                 className={index % 2 === 0 ? "table-body" : "table-body-2"}
               >
@@ -157,7 +160,11 @@ const CaseTable = ({
                       item.patient.middlename[0] +
                       "."}
                   </p>
-                  <div className="cs-info-container"></div>
+                  <div className="cs-info-container">
+                    <div>Gender: {item.patient.sex}</div>
+                    <div>Age: {getAge(item.patient.birthday) + " yrs old"}</div>
+                    <div>Civil Status: {item.patient.civilStatus}</div>
+                  </div>
                 </div>
 
                 <div className="cs-department">

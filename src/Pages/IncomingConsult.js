@@ -22,7 +22,7 @@ const IncomingConsult = () => {
           <div className="consultation-content">
             <ConsultationNavbar />
             <div className="content-body">
-              <div className="content-wrapper">
+              <div>
                 <div className="container-heading">
                   <div>
                     <h2>All Incoming Requests</h2>

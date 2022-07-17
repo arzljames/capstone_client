@@ -119,15 +119,15 @@ const FilterReportModal = ({ setFilterModal }) => {
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="form"
+        className="form overflow"
       >
         <div className="form-header">
           <h1>Create Report</h1>
         </div>
         <div className="form-body">
           <label>Date Range</label>
-          <div className="date-range">
-            <div>
+          <div className="divider-container">
+            <div className="divider">
               <p>From</p>
               <input
                 value={from}
@@ -135,8 +135,9 @@ const FilterReportModal = ({ setFilterModal }) => {
                 type="date"
               />
             </div>
-            <div>
-              <p>To</p>{" "}
+
+            <div className="divider">
+              <p>To</p>
               <input
                 value={to}
                 onChange={(e) => setTo(e.target.value)}
@@ -147,8 +148,9 @@ const FilterReportModal = ({ setFilterModal }) => {
           <label>
             Age Bracket ({minage} - {maxage} yrs old)
           </label>
-          <div className="date-range">
-            <div>
+
+          <div className="divider-container">
+            <div className="divider">
               <p>From</p>
               <input
                 value={minage}
@@ -156,7 +158,8 @@ const FilterReportModal = ({ setFilterModal }) => {
                 type="number"
               />
             </div>
-            <div>
+
+            <div className="divider">
               <p>To</p>{" "}
               <input
                 value={maxage}

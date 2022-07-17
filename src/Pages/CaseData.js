@@ -739,6 +739,39 @@ const CaseData = () => {
                       <p>{getDate(patientCase.createdAt)}</p>
                     </div>
                   </div>
+
+                  <div className="followups-container">
+                    <h1>
+                      {patientCase.followUp.length <= 0
+                        ? 0
+                        : patientCase.followUp.length}{" "}
+                      Follow Ups
+                    </h1>
+                    <div
+                      onClick={() => setTabb("Main")}
+                      className={
+                        tabb === "Main" ? "followups-active" : "followups"
+                      }
+                    >
+                      Main (Initial)
+                    </div>
+                    {patientCase.followUp.map((item, index) => {
+                      return (
+                        <div
+                          key={index}
+                          onClick={() => {
+                            setTabb(item._id);
+                            setFollowUpData(item);
+                          }}
+                          className={
+                            tabb === item._id ? "followups-active" : "followups"
+                          }
+                        >
+                          {getDate(item.createdAt)} - {getTime(item.createdAt)}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>

@@ -101,7 +101,7 @@ const AddPatientForm = ({
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="add-patient-form"
+        className="form overflow"
       >
         <div className="form-header">
           <h1>Informed Consent</h1>
