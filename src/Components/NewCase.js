@@ -52,10 +52,16 @@ const NewCase = ({ setShowCase, overflow }) => {
     setShowCase(false);
   });
 
+  const { setCases } = useAuth();
+
   const [isClick, setIsClick] = useState(false);
 
   const updateSocket = () => {
     socket.emit("notif");
+    socket.emit("case");
+    socket.on("get_case", (data) => {
+      setCases(data);
+    });
   };
 
   const navigate = useNavigate();
@@ -198,6 +204,9 @@ const NewCase = ({ setShowCase, overflow }) => {
               })
               .then((result) => {
                 if (result) {
+                  socket.on("get_case", (data) => {
+                    setCases(data);
+                  });
                   updateSocket();
                   setAppState(result.data.ok);
                   setTimeout(() => {

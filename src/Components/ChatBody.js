@@ -35,7 +35,6 @@ const ChatBody = ({ users, socket }) => {
       );
       if (result) {
         setMessage(result.data);
-        console.log(result.data);
       } else {
         setMessage(null);
       }

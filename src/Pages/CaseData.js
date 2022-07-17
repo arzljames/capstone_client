@@ -396,7 +396,7 @@ const CaseData = () => {
                     </div>
                   </div>
 
-                  <div className="case-tab">
+                  {/* <div className="case-tab">
                     <div
                       onClick={() => setTabb("Main")}
                       className={
@@ -423,7 +423,7 @@ const CaseData = () => {
                         </div>
                       );
                     })}
-                  </div>
+                  </div> */}
                   {tabb === "Main" ? (
                     <div className="cd-box">
                       <h2>Case Information</h2>
