@@ -144,6 +144,9 @@ const CaseTable = ({
                   >
                     {item.caseId}
                   </p>
+                  <div className="cs-info-container">
+                    <div>Follow Ups: {item.followUp?.length}</div>
+                  </div>
                 </div>
                 <div className="cs-name">
                   <p

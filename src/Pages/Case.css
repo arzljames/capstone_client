@@ -2,7 +2,9 @@
   width: 175px;
   height: 100%;
   display: flex;
-  align-items: center;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .cs-name {

@@ -1,12 +1,10 @@
 import axios from 'axios'
-
-
 axios.defaults.withCredentials = true;
 
-// https://zcmc.herokuapp.com/
 
 let serverUrl = 'https://zcmc.herokuapp.com/'
 
+//Custom API to fetch data from the server using axios
 const api = axios.create({
     baseURL: serverUrl,
     withCredentials: true
