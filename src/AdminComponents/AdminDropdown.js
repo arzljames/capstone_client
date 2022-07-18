@@ -9,12 +9,15 @@ import LogoutModal from "../Components/LogoutModal";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const AdminDropdown = ({ submitLogout, users }) => {
+
+  //AdminDropdown Component States
   const [dp, setDp] = useState(false);
   const [logout, setLogout] = useState(false);
   const { user } = useAuth();
-
   const navigate = useNavigate();
 
+
+  //Framer motion animation variant 
   const variant = {
     initial: {
       opacity: 0,

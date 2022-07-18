@@ -2,13 +2,13 @@ import React from "react";
 import "./AdminSidebar.css";
 import { AdminSidebarData } from "./AdminSidebarData";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../Hooks/useAuth";
-import { AnimatePresence, motion } from "framer-motion";
 
+
+
+//Admin siderbar navigation
 const AdminSidebar = () => {
   const path = window.location.pathname;
   const navigate = useNavigate();
-  const { drawer } = useAuth();
 
   return (
     <div className="admin-sidebar">

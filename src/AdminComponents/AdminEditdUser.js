@@ -6,14 +6,14 @@ import useAuth from "../Hooks/useAuth";
 import api from "../API/Api";
 
 const AdminEditdUser = ({ userData, setModal, toast }) => {
-  const [isClick, setIsClick] = useState(false);
 
+  //AdminEditUser Component States
+  const [isClick, setIsClick] = useState(false);
   const [lastname, setLastname] = useState("");
   const [middlename, setMiddlename] = useState("");
   const [firstname, setFirstname] = useState("");
   const [specialization, setSpecialization] = useState("");
   const [hospital, setHospital] = useState(userData.designation._id);
-
   const { specializations, facilities, setAppState } = useAuth();
 
   useEffect(() => {
@@ -26,10 +26,13 @@ const AdminEditdUser = ({ userData, setModal, toast }) => {
     setHospital(userData.designation._id);
   }, []);
 
+  //Custom hook to close modal when clicked outside
   const domNode = useClickOutside(() => {
     setModal(false);
   });
 
+
+    //Handling submit put request using asynchronous axios api
   const handleUpdate = async () => {
     setIsClick(true);
     try {

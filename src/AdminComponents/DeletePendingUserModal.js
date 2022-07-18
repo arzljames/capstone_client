@@ -5,6 +5,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
 
+//Framer motion animation modal variant 
 const modalVariant = {
   hidden: {
     opacity: 0,
@@ -29,12 +30,14 @@ const modalVariant = {
 };
 
 const DeletePendingUser = ({ setModal, userId, toast }) => {
+
+  //States for this component
   const [isClick, setIsClick] = useState(false);
   const { setAppState } = useAuth();
 
+  //Handling delete request using asynchronous axios api
   const handleDelete = async () => {
     setIsClick(true);
-
     try {
       let response = await api.delete(`/api/user/delete/${userId}`);
 

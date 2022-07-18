@@ -3,12 +3,12 @@ import { IoBusinessOutline, IoBusiness } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 
+
+//Data to the facility table component
 const FacilityTableBody = ({
   number,
   facility,
-  specialization,
   address,
-  users,
   setShowHospitalModal,
   setHospital,
   item,
@@ -17,8 +17,8 @@ const FacilityTableBody = ({
   setPicture,
 }) => {
   const navigate = useNavigate();
-
   const { listUsers } = useAuth();
+
   return (
     <div
       onClick={() => {

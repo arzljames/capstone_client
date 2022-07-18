@@ -8,6 +8,8 @@ import api from "../API/Api";
 import { IoBusinessOutline } from "react-icons/io5";
 
 const AdminHospitalModal = ({ setShowHospitalModal, hospital, pictures }) => {
+
+  //AdminHospitalModal Component States
   const { setAppState, appState, facilities, toast } = useAuth();
   const [showHover, setShowHover] = useState(false);
   const [name, setName] = useState("");
@@ -16,36 +18,16 @@ const AdminHospitalModal = ({ setShowHospitalModal, hospital, pictures }) => {
   const [city, setCity] = useState("");
   const [temp, setTemp] = useState("");
   const [specializations, setSpecializations] = useState([]);
-
   const [picture, setPicture] = useState("");
   const [pictureFile, setPictureFile] = useState("");
 
+  //Input useref
   const inputFileRef = useRef(null);
-
   const onBtnClick = () => {
     inputFileRef.current.click();
   };
 
-  // const handleSubmit = async () => {
-  //   setIsClick(true);
-  //   setAppState("Updaing Lists");
-  //   let response = await api.put(`/api/facility/update/${hospital._id}`, {
-  //     name,
-  //     street,
-  //     city,
-  //     barangay,
-  //   });
-
-  //   if (response.data.err) {
-  //     toast.error("Please input the name of hospital");
-  //   } else {
-  //     setShowHospitalModal(false);
-  //     setAppState("updated");
-  //     setTimeout(() => setAppState(""), 500);
-  //     toast.success("Successfully updated hospital");
-  //   }
-  // };
-
+  //Handling submit post request using asynchronous fetch
   const handleSubmit = async () => {
     if (!name) {
       setAppState("error occure");
@@ -92,6 +74,8 @@ const AdminHospitalModal = ({ setShowHospitalModal, hospital, pictures }) => {
     }
   };
 
+
+  //useEffect hook to fetch necessary data
   useEffect(() => {
     setName(hospital.facility);
     setBarangay(hospital.address.barangay);

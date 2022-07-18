@@ -8,6 +8,8 @@ import useAuth from "../Hooks/useAuth";
 import { socket } from "../Components/Socket";
 import { IoCaretDown } from "react-icons/io5";
 
+
+//This is a header profile under admin's header component
 let useClickOutside = (handler) => {
   let domNode = useRef();
 

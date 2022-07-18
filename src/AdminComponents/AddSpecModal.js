@@ -6,15 +6,22 @@ import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
 
 const AddSpecModal = ({ setModal, toast }) => {
+
+    //Custom hook to close modal when clicked outside
   const domNode = useClickOutside(() => {
     setModal(false);
   });
 
+
+  //AddSpecModal Component States
   const [specialization, setSpecialization] = useState("");
   const [description, setDescription] = useState("");
   const { setAppState } = useAuth();
   const [isClick, setIsClick] = useState(false);
 
+
+  
+  //Handling submit post request using asynchronous axios api
   const handleSubmit = async () => {
     setIsClick(true);
     try {

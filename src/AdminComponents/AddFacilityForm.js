@@ -2,12 +2,12 @@ import React, { useState, useRef } from "react";
 import "./AddFacilityForm.css";
 import { motion } from "framer-motion";
 import { HiUpload } from "react-icons/hi";
-import InfoHover from "../Components/InfoHover";
 import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { IoBusinessOutline } from "react-icons/io5";
 
+//Framer motion animation form variant 
 const formVariant = {
   hidden: {
     opacity: 0,
@@ -31,6 +31,7 @@ const formVariant = {
   },
 };
 
+//Framer motion animation container variant 
 const containerVariant = {
   hidden: {
     opacity: 0,
@@ -47,6 +48,8 @@ const containerVariant = {
 };
 
 const AddFacilityForm = ({ setShowModal, pictures }) => {
+
+  //AddFacilityForm Component States
   const [isClick, setIsClick] = useState(false);
   const { setAppState, toast } = useAuth();
   const [showHover, setShowHover] = useState(false);
@@ -56,16 +59,16 @@ const AddFacilityForm = ({ setShowModal, pictures }) => {
   const [city, setCity] = useState("");
   const [temp, setTemp] = useState("");
   const [specializations, setSpecializations] = useState([]);
-
   const [picture, setPicture] = useState("");
   const [pictureFile, setPictureFile] = useState("");
-
   const inputFileRef = useRef(null);
 
+  //Input useref
   const onBtnClick = () => {
     inputFileRef.current.click();
   };
 
+  //Handling submit post request using asynchronous fetch
   const handleSubmit = async () => {
     if (!name) {
       setAppState("error occure");
@@ -112,6 +115,7 @@ const AddFacilityForm = ({ setShowModal, pictures }) => {
     }
   };
 
+  //Custom hook to close modal when clicked outside
   const domNode = useClickOutside(() => {
     setShowModal(false);
   });

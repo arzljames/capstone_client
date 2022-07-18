@@ -4,6 +4,8 @@ import "./AdminHeader.css";
 import AdminProfileHeader from "./AdminProfileHeader";
 import ZCMCLOGO from "../Assets/zcmc_logo.png";
 
+
+//Header for admin page(s)
 const AdminHeader = () => {
   const navigate = useNavigate();
   return (
