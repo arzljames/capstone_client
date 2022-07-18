@@ -179,35 +179,11 @@ const ProfileDropdown = ({
             <h5>
               {user.firstname} {user.lastname}
             </h5>
-            {/* {user.designation === "623ec7fb80a6838424edaa29" ? (
-              <p style={{ marginBottom: "0px" }}>
-                {
-                  facilities
-                    .filter((e) => e._id === "623ec7fb80a6838424edaa29")
-                    .map((items) => {
-                      return items.specialization.filter(
-                        (spec) => spec._id === user.specialization
-                      )[0];
-                    })[0].name
-                }
-              </p>
-            ) : null} */}
-            {user.specialization === null ? null : <p style={{marginBottom: '0px'}}>{specc}</p>}
+            
+            {user?.specialization === null ? null : <p style={{marginBottom: '0px'}}>{specc}</p>}
             <p>{desig}</p>
 
-            {/* <p>
-              {facilities
-                .filter((e) => e._id === user.designation)
-                .map((f) => {
-                  return f.facility;
-                })
-                ? facilities
-                    .filter((e) => e._id === user.designation)
-                    .map((f) => {
-                      return f.facility;
-                    })
-                : ""}
-            </p> */}
+            
           </div>
         </div>
         <ul>
@@ -225,12 +201,12 @@ const ProfileDropdown = ({
             Account Settings
           </li>
 
-          <li onClick={() => navigate("/user-manual/guide/introduction")}>
+          {/* <li onClick={() => navigate("/user-manual/guide/introduction")}>
             <p>
               <IoBookOutline />
             </p>
             Documentation
-          </li>
+          </li> */}
 
           <li
             onClick={() => {
