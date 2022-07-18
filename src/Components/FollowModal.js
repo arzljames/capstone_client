@@ -149,76 +149,100 @@ const FollowModal = ({ setFollowModal, toast, id }) => {
           </p>
         </div>
         <div className="form-body">
-          <label>Date of Follow up</label>
-          <input
-            style={{ minHeight: "40px" }}
-            value={todate}
-            onChange={(e) => setTodate(e.target.value)}
-            type="date"
-          />
+          <div className="divider-container">
+            <div className="divider">
+              <label>Date of Follow up</label>
+              <input
+                style={{ minHeight: "40px" }}
+                value={todate}
+                onChange={(e) => setTodate(e.target.value)}
+                type="date"
+              />
+            </div>
 
-          <label>
-            Temperature (°C) <i>*</i>
-          </label>
-          <input
-            value={temperature}
-            onChange={(e) => setTemperature(e.target.value)}
-            type="number"
-          />
+            <div className="divider">
+              <label>
+                Temperature (°C) <i>*</i>
+              </label>
+              <input
+                value={temperature}
+                onChange={(e) => setTemperature(e.target.value)}
+                type="number"
+              />
+            </div>
+          </div>
 
-          <label>
-            Respiratory Rate <i>*</i>
-          </label>
-          <input
-            value={respiratory}
-            onChange={(e) => setRespiratory(e.target.value)}
-            type="text"
-          />
+          <div className="divider-container">
+            <div className="divider">
+              <label>
+                Respiratory Rate <i>*</i>
+              </label>
+              <input
+                value={respiratory}
+                onChange={(e) => setRespiratory(e.target.value)}
+                type="text"
+              />
+            </div>
 
-          <label>
-            Heart Rate <i>*</i>
-          </label>
-          <input
-            value={heart}
-            onChange={(e) => setHeart(e.target.value)}
-            type="text"
-          />
+            <div className="divider">
+              <label>
+                Heart Rate <i>*</i>
+              </label>
+              <input
+                value={heart}
+                onChange={(e) => setHeart(e.target.value)}
+                type="text"
+              />
+            </div>
+          </div>
 
-          <label>
-            Blood Pressure <i>*</i>
-          </label>
-          <input
-            value={blood}
-            onChange={(e) => setBlood(e.target.value)}
-            type="text"
-          />
+          <div className="divider-container">
+            <div className="divider">
+              <label>
+                Blood Pressure <i>*</i>
+              </label>
+              <input
+                value={blood}
+                onChange={(e) => setBlood(e.target.value)}
+                type="text"
+              />
+            </div>
 
-          <label>
-            Oxygen Saturation <i>*</i>
-          </label>
-          <input
-            value={oxygen}
-            onChange={(e) => setOxygen(e.target.value)}
-            type="text"
-          />
+            <div className="divider">
+              <label>
+                Oxygen Saturation <i>*</i>
+              </label>
+              <input
+                value={oxygen}
+                onChange={(e) => setOxygen(e.target.value)}
+                type="text"
+              />
+            </div>
+          </div>
 
-          <label>
-            Weight (KG) <i>*</i>
-          </label>
-          <input
-            value={weight}
-            onChange={(e) => setWeight(e.target.value)}
-            type="number"
-          />
+          <div className="divider-container">
+            <div className="divider">
+              <label>
+                Weight (KG) <i>*</i>
+              </label>
+              <input
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+                type="number"
+              />
+            </div>
 
-          <label>
-            Height (CM) <i>*</i>
-          </label>
-          <input
-            value={height}
-            onChange={(e) => setHeight(e.target.value)}
-            type="number"
-          />
+            <div className="divider">
+              <label>
+                Height (CM) <i>*</i>
+              </label>
+              <input
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
+                type="number"
+              />
+            </div>
+          </div>
 
           <label>
             Chief Complaint <i>*</i>
@@ -323,7 +347,7 @@ const FollowModal = ({ setFollowModal, toast, id }) => {
               }}
               className={isClick ? "save-btn-disable" : "save-btn"}
             >
-              Save Record
+              Submit
             </button>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import ReactPaginate from "react-paginate";
+import { VscBracketError } from "react-icons/vsc";
 
 const CaseTable = ({
   setPatient,
@@ -188,6 +189,28 @@ const CaseTable = ({
               </div>
             );
           })}
+
+        {cases.filter((val) => {
+          if (
+            (user.designation === "623ec7fb80a6838424edaa29" &&
+              val.specialization.includes(user.specialization)) ||
+            (user.designation === "623ec7fb80a6838424edaa29" &&
+              val.subSpecialization
+                .map((f) => f._id)
+                .includes(user.specialization))
+          ) {
+            return val;
+          } else if (user.userId === val.physician._id) {
+            return val;
+          }
+        }).length === 0 && (
+          <div className="no-data">
+            <span>
+              <VscBracketError />
+            </span>
+            <p>No data found</p>
+          </div>
+        )}
       </div>
 
       <div className="pagination-container">

@@ -155,7 +155,7 @@ const AdminPeople = () => {
                           Dr. {item.firstname} {item.lastname}
                         </p>
                       </div>
-                      <div className="dr-patient">{listUsers.length}</div>
+                      <div className="dr-patient">{patients?.filter(e => e.physician._id === item._id).length}</div>
                       <div className="dr-hospital">
                         {item.designation?.facility}
                       </div>

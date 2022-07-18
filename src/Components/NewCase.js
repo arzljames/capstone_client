@@ -547,7 +547,7 @@ const NewCase = ({ setShowCase, overflow }) => {
               }}
               className={isClick ? "save-btn-disable" : "save-btn"}
             >
-              Save Record
+              Submit
             </button>
           </div>
         </div>

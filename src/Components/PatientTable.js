@@ -14,6 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { dropdownVariants } from "../Animations/Animations";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import ReactPaginate from "react-paginate";
+import { VscBracketError } from "react-icons/vsc";
 const PatientTableData = ({
   patientState,
 
@@ -137,6 +138,16 @@ const PatientTableData = ({
               </div>
             );
           })}
+
+        {patients.filter((id) => id.physician._id === user.userId).length ===
+          0 && (
+          <div className="no-data">
+            <span>
+              <VscBracketError />
+            </span>
+            <p>No data found</p>
+          </div>
+        )}
       </div>
       <div className="pagination-container">
         <ReactPaginate

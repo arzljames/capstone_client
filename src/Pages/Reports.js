@@ -18,7 +18,7 @@ import ReactTimeAgo from "react-time-ago";
 import { useNavigate } from "react-router-dom";
 import "./Patients.css";
 import ReactPaginate from "react-paginate";
-import { pageVariant } from "../Animations/Animations";
+import { VscBracketError } from "react-icons/vsc";
 
 const Reports = () => {
   const { reports, ToastContainer } = useAuth();
@@ -102,15 +102,13 @@ const Reports = () => {
             </div>
 
             <div className="table-header">
-                <div className="rp-id">Report ID</div>
-                <div className="rp-created">Created By</div>
-                <div className="rp-date">Date & Time</div>
-                <div className="rp-modified">Last modified</div>
-              </div>
+              <div className="rp-id">Report ID</div>
+              <div className="rp-created">Created By</div>
+              <div className="rp-date">Date & Time</div>
+              <div className="rp-modified">Last modified</div>
+            </div>
 
             <div className="table">
-              
-
               {reports
                 .slice(
                   term === "" ? pagesVisited : 0,
@@ -154,6 +152,15 @@ const Reports = () => {
                     </div>
                   );
                 })}
+
+              {reports.length === 0 && (
+                <div className="no-data">
+                  <span>
+                    <VscBracketError />
+                  </span>
+                  <p>No data found</p>
+                </div>
+              )}
             </div>
             <div className="pagination-container">
               <ReactPaginate
