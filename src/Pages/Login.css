@@ -663,10 +663,12 @@ div.hospital-input:hover {
     margin: 0px;
   }
 
-  .register-container .form-container {
+  .register-container div.form-container {
     min-width: none;
     padding: 0px;
     margin: 0px;
-    padding: 0px 20px;
+    padding: 0px 0px;
+    min-width: none;
+    width: 100%;
   }
 }

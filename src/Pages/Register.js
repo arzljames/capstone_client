@@ -123,12 +123,6 @@ const Register = () => {
           username: register.username,
           password: register.password,
         });
-
-        // if (response.data.ok) {
-        //   setSuccess(true);
-        //   clearForm();
-        // }
-
         if (response.data.emailErr) {
           setEmailErr(true);
           setEmailMsg(response.data.emailErr);

@@ -87,36 +87,32 @@ const ChangePasswordModal = ({ setModal }) => {
             <h1>Change Password</h1>
           </div>
           <div className="form-body">
-            <div className="password-container">
-              <label>
-                Old Password <span>*</span>
-              </label>
-              <input
-                value={old}
-                onChange={(e) => setOld(e.target.value)}
-                type="password"
-              />
-            </div>
-            <div className="password-container">
-              <label>
-                New Password <span>*</span>
-              </label>
-              <input
-                value={newP}
-                onChange={(e) => setNewP(e.target.value)}
-                type="password"
-              />
-            </div>
-            <div className="password-container last">
-              <label>
-                Confirm Password <span>*</span>
-              </label>
-              <input
-                value={confirmP}
-                onChange={(e) => setConfirmP(e.target.value)}
-                type="password"
-              />
-            </div>
+            <label>
+              Old Password <span>*</span>
+            </label>
+            <input
+              value={old}
+              onChange={(e) => setOld(e.target.value)}
+              type="password"
+            />
+
+            <label>
+              New Password <span>*</span>
+            </label>
+            <input
+              value={newP}
+              onChange={(e) => setNewP(e.target.value)}
+              type="password"
+            />
+
+            <label>
+              Confirm Password <span>*</span>
+            </label>
+            <input
+              value={confirmP}
+              onChange={(e) => setConfirmP(e.target.value)}
+              type="password"
+            />
           </div>
           <div className="form-btns">
             <div></div>
