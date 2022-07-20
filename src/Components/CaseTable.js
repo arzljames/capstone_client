@@ -193,20 +193,33 @@ const CaseTable = ({
             );
           })}
 
-        {cases.filter((val) => {
-          if (
-            (user.designation === "623ec7fb80a6838424edaa29" &&
-              val.specialization.includes(user.specialization)) ||
-            (user.designation === "623ec7fb80a6838424edaa29" &&
-              val.subSpecialization
-                .map((f) => f._id)
-                .includes(user.specialization))
-          ) {
-            return val;
-          } else if (user.userId === val.physician._id) {
-            return val;
-          }
-        }).length === 0 && (
+        {cases
+          .filter((vals) => {
+            if (term === "") {
+              return vals;
+            } else if (
+              vals.caseId.toLowerCase().includes(term.toLocaleLowerCase()) ||
+              vals.patient.fullname
+                .toLowerCase()
+                .includes(term.toLocaleLowerCase())
+            ) {
+              return vals;
+            }
+          })
+          .filter((val) => {
+            if (
+              (user.designation === "623ec7fb80a6838424edaa29" &&
+                val.specialization.includes(user.specialization)) ||
+              (user.designation === "623ec7fb80a6838424edaa29" &&
+                val.subSpecialization
+                  .map((f) => f._id)
+                  .includes(user.specialization))
+            ) {
+              return val;
+            } else if (user.userId === val.physician._id) {
+              return val;
+            }
+          }).length === 0 && (
           <div className="no-data">
             <span>
               <VscBracketError />

@@ -1,12 +1,9 @@
-import React, {  useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ConsultationNavbar from "../Components/ConsultationNavbar";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
-import {
-  HiDocumentText,
-  HiArrowNarrowLeft,
-} from "react-icons/hi";
+import { HiDocumentText, HiArrowNarrowLeft } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import "./PatientAdmission.css";
 import AddPatientForm from "../Components/AddPatientForm";
@@ -60,8 +57,10 @@ const PatientAdmission = () => {
   const [ethnicity, setEthnicity] = useState("");
   const [fullname, setFullname] = useState("");
   const [relationship, setRelationship] = useState("");
+  const [isClick, setIsClick] = useState(false);
 
   const handleSubmit = async () => {
+    setIsClick(true);
     if (
       !lastname ||
       !firstname ||
@@ -79,7 +78,8 @@ const PatientAdmission = () => {
       !fullname ||
       !relationship
     ) {
-      toast.error("Please check any empty fields and try again.");
+      toast.error("Please check any empty fields and try again");
+      setIsClick(false);
     } else {
       try {
         let response = await api.post(`/api/patient/add/${user.userId}`, {
@@ -102,8 +102,8 @@ const PatientAdmission = () => {
 
         if (response.data.ok) {
           setAppState("Added one patient");
-          toast.success("You have successfully added one (1) patient.");
-
+          toast.success("Successfully added patient");
+          setIsClick(false);
           setLastname("");
           setFirstname("");
           setMiddlename("");
@@ -124,9 +124,11 @@ const PatientAdmission = () => {
           setCivilOther(null);
         } else {
           toast.error("An unexpected error occured. Please try again");
+          setIsClick(false);
         }
       } catch (error) {
         toast.error(error.message);
+        setIsClick(false);
       }
     }
   };
@@ -170,7 +172,7 @@ const PatientAdmission = () => {
                   </button>
                   <div className="above-patient-profile-btns">
                     <button
-                      className="green-cta"
+                      className={isClick ? "green-cta-disable" : "green-cta"}
                       onClick={() => handleSubmit()}
                     >
                       <p>
@@ -439,7 +441,7 @@ const PatientAdmission = () => {
                       </div>
                       <div className="div2">
                         <input
-                          placeholder="City / Municipality / Province"
+                          placeholder="City / Municipality"
                           value={city}
                           onChange={(e) => setCity(e.target.value)}
                           type="text"
@@ -488,7 +490,7 @@ const PatientAdmission = () => {
                           value={contact}
                           onChange={(e) => setContact(e.target.value)}
                           type="number"
-                          placeholder="9876-543-210"
+                          placeholder="e.g. 9876-543-210"
                         />
                       </div>
                     </div>

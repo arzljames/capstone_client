@@ -17,20 +17,16 @@ import ReactPaginate from "react-paginate";
 import { VscBracketError } from "react-icons/vsc";
 const PatientTableData = ({
   patientState,
-
   sortAscDate,
   sortDscDate,
   sortAscName,
   sortDscName,
   sort,
-  isSort,
-  setSort,
   setIsSort,
   setPatientId,
   setPatientModal,
   filterPatient,
-  searchDropdown,
-  setSearchDropdown,
+
   term,
 }) => {
   const navigate = useNavigate();
@@ -139,7 +135,15 @@ const PatientTableData = ({
             );
           })}
 
-        {patients.filter((id) => id.physician._id === user.userId).length ===
+        {patients.filter((val) => {
+            if (term === "") {
+              return val;
+            } else if (
+              val.fullname.toLowerCase().includes(term.toLocaleLowerCase())
+            ) {
+              return val;
+            }
+          }).filter((id) => id.physician._id === user.userId).length ===
           0 && (
           <div className="no-data">
             <span>
