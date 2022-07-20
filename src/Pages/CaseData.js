@@ -296,7 +296,7 @@ const CaseData = () => {
                                 <p>
                                   <IoArrowRedoOutline />
                                 </p>
-                                Follow up
+                                Add Follow up
                               </li>
                             )}
                           </ul>
@@ -396,60 +396,72 @@ const CaseData = () => {
                     </div>
                   </div>
 
-                  {/* <div className="case-tab">
-                    <div
-                      onClick={() => setTabb("Main")}
-                      className={
-                        tabb === "Main" ? "tabs actives" : "tabs inactives"
-                      }
-                    >
-                      Main
-                    </div>
-                    {patientCase.followUp.map((item, index) => {
-                      return (
-                        <div
-                          key={index}
-                          onClick={() => {
-                            setTabb(item._id);
-                            setFollowUpData(item);
-                          }}
-                          className={
-                            tabb === item._id
-                              ? "tabs actives"
-                              : "tabs inactives"
-                          }
-                        >
-                          {getDate(item.createdAt)}
-                        </div>
-                      );
-                    })}
-                  </div> */}
                   {tabb === "Main" ? (
                     <div className="cd-box">
-                      <h2>Case Information</h2>
+                      <h2>Case Information - Main</h2>
                       <div className="col-info info-2">
                         <div className="col-3">
                           <div className="liner">
                             <label>Chief complaint</label>
-                            <p>{patientCase.cc}</p>
+
+                            <textarea
+                              disabled
+                              value={patientCase.cc}
+                            ></textarea>
                           </div>
 
                           <div className="liner">
                             <label>Pertinent History of Present Illness</label>
-                            <p>{patientCase.hpi}</p>
+
+                            <textarea
+                              disabled
+                              value={patientCase.hpi}
+                            ></textarea>
                           </div>
 
                           <div className="liner">
                             <label>Pertinent Past Medical History</label>
-                            <p>{patientCase.pmh}</p>
+                            <textarea
+                              disabled
+                              value={patientCase.pmh}
+                            ></textarea>
                           </div>
                           <div className="liner">
                             <label>Pertinent Review of Systems</label>
-                            <p>{patientCase.ros}</p>
+                            <textarea
+                              disabled
+                              value={patientCase.ros}
+                            ></textarea>
                           </div>
                           <div className="liner">
                             <label>Pertinent PE Findings</label>
-                            <p>{patientCase.pe}</p>
+                            <textarea
+                              disabled
+                              value={patientCase.pe}
+                            ></textarea>
+                          </div>
+
+                          <div className="liner">
+                            <label>Working Impression</label>
+                            <textarea
+                              disabled
+                              value={patientCase.wi}
+                            ></textarea>
+                          </div>
+
+                          <div className="liner">
+                            <label>Initial Management Done</label>
+                            <textarea
+                              disabled
+                              value={patientCase.imd}
+                            ></textarea>
+                          </div>
+                          <div className="liner">
+                            <label>Reason for Referral</label>
+                            <textarea
+                              disabled
+                              value={patientCase.reason}
+                            ></textarea>
                           </div>
                           <div className="liner">
                             <label>Pertinent Paraclinicals</label>
@@ -468,47 +480,64 @@ const CaseData = () => {
                               </em>
                             )}
                           </div>
-                          <div className="liner">
-                            <label>Working Impression</label>
-                            <p>{patientCase.wi}</p>
-                          </div>
-
-                          <div className="liner">
-                            <label>Initial Management Done</label>
-                            <p>{patientCase.imd}</p>
-                          </div>
-                          <div className="liner">
-                            <label>Reason for Referral</label>
-                            <p>{patientCase.reason}</p>
-                          </div>
                         </div>
 
                         <div className="col-1">
                           <div className="liner">
                             <label>Temperature:</label>{" "}
-                            <p> {patientCase.temperature}</p>
+                            <input
+                              disabled
+                              value={patientCase.temperature}
+                              type="text"
+                            />
                           </div>
                           <div className="liner">
                             <label>Respiratory Rate:</label>
-                            <p> {patientCase.respiratory}</p>
+                            <input
+                              disabled
+                              value={patientCase.respiratory}
+                              type="text"
+                            />
                           </div>
                           <div className="liner">
                             <label>Heart Rate:</label>{" "}
-                            <p> {patientCase.heart}</p>
+                            <input
+                              disabled
+                              value={patientCase.heart}
+                              type="text"
+                            />
                           </div>
                           <div className="liner">
                             <label>Blood Pressure:</label>{" "}
-                            <p> {patientCase.blood}</p>
+                            <input
+                              disabled
+                              value={patientCase.blood}
+                              type="text"
+                            />
                           </div>
                           <div className="liner">
                             <label>Oxygen Saturation:</label>{" "}
-                            <p> {patientCase.oxygen}</p>
+                            <input
+                              disabled
+                              value={patientCase.oxygen}
+                              type="text"
+                            />
                           </div>
                           <div className="liner">
-                            <label>Weight:</label> <p> {patientCase.weight}</p>
+                            <label>Weight:</label>{" "}
+                            <input
+                              disabled
+                              value={patientCase.weight}
+                              type="text"
+                            />
                           </div>
                           <div className="liner">
-                            <label>Height: </label> <p>{patientCase.height}</p>
+                            <label>Height: </label>{" "}
+                            <input
+                              disabled
+                              value={patientCase.height}
+                              type="text"
+                            />
                           </div>
                         </div>
                       </div>
@@ -523,42 +552,83 @@ const CaseData = () => {
                         <div className="col-3">
                           <div className="liner">
                             <label>Chief complaint</label>
-                            <p>
-                              {!followUpData.cc ? "(No Data)" : followUpData.cc}
-                            </p>
+
+                            <textarea
+                              value={
+                                !followUpData.cc ? "(No Data)" : followUpData.cc
+                              }
+                              disabled
+                            ></textarea>
                           </div>
 
                           <div className="liner">
                             <label>Pertinent History of Present Illness</label>
-                            <p>
-                              {!followUpData.hpi
-                                ? "(No Data)"
-                                : followUpData.hpi}
-                            </p>
+
+                            <textarea
+                              value={
+                                !followUpData.hpi
+                                  ? "(No Data)"
+                                  : followUpData.hpi
+                              }
+                              disabled
+                            ></textarea>
                           </div>
 
                           <div className="liner">
                             <label>Pertinent Past Medical History</label>
-                            <p>
-                              {!followUpData.pmh
-                                ? "(No Data)"
-                                : followUpData.pmh}
-                            </p>
+
+                            <textarea
+                              value={
+                                !followUpData.pmh
+                                  ? "(No Data)"
+                                  : followUpData.pmh
+                              }
+                              disabled
+                            ></textarea>
                           </div>
                           <div className="liner">
                             <label>Pertinent Review of Systems</label>
-                            <p>
-                              {!followUpData.ros
-                                ? "(No Data)"
-                                : followUpData.ros}
-                            </p>
+                            <textarea
+                              value={
+                                !followUpData.ros
+                                  ? "(No Data)"
+                                  : followUpData.ros
+                              }
+                              disabled
+                            ></textarea>
                           </div>
                           <div className="liner">
                             <label>Pertinent PE Findings</label>
-                            <p>
-                              {!followUpData.pe ? "(No Data)" : followUpData.pe}
-                            </p>
+                            <textarea
+                              value={
+                                !followUpData.pe ? "(No Data)" : followUpData.pe
+                              }
+                              disabled
+                            ></textarea>
                           </div>
+
+                          <div className="liner">
+                            <label>Working Impression</label>
+                            <textarea
+                              value={
+                                !followUpData.wi ? "(No Data)" : followUpData.wi
+                              }
+                              disabled
+                            ></textarea>
+                          </div>
+
+                          <div className="liner">
+                            <label>Initial Management Done</label>
+                            <textarea
+                              value={
+                                !followUpData.imd
+                                  ? "(No Data)"
+                                  : followUpData.imd
+                              }
+                              disabled
+                            ></textarea>
+                          </div>
+
                           <div className="liner">
                             <label>Pertinent Paraclinicals</label>
                             {followUpData.paraclinical.file ? (
@@ -576,79 +646,92 @@ const CaseData = () => {
                               </em>
                             )}
                           </div>
-                          <div className="liner">
-                            <label>Working Impression</label>
-                            <p>
-                              {!followUpData.wi ? "(No Data)" : followUpData.wi}
-                            </p>
-                          </div>
-
-                          <div className="liner">
-                            <label>Initial Management Done</label>
-                            <p>
-                              {!followUpData.imd
-                                ? "(No Data)"
-                                : followUpData.imd}
-                            </p>
-                          </div>
                         </div>
 
                         <div className="col-1">
                           <div className="liner">
                             <label>Temperature:</label>{" "}
-                            <p>
-                              {!followUpData.temperature
-                                ? "(No Data)"
-                                : followUpData.temperature}
-                            </p>
+                            <input
+                              type="text"
+                              disabled
+                              value={
+                                !followUpData.temperature
+                                  ? "(No Data)"
+                                  : followUpData.temperature
+                              }
+                            />
                           </div>
                           <div className="liner">
                             <label>Respiratory Rate:</label>
-                            <p>
-                              {!followUpData.respiratory
-                                ? "(No Data)"
-                                : followUpData.respiratory}
-                            </p>
+                            <input
+                              type="text"
+                              disabled
+                              value={
+                                !followUpData.respiratory
+                                  ? "(No Data)"
+                                  : followUpData.respiratory
+                              }
+                            />
                           </div>
                           <div className="liner">
                             <label>Heart Rate:</label>{" "}
-                            <p>
-                              {!followUpData.heart
-                                ? "(No Data)"
-                                : followUpData.heart}
-                            </p>
+                            <input
+                              type="text"
+                              disabled
+                              value={
+                                !followUpData.heart
+                                  ? "(No Data)"
+                                  : followUpData.heart
+                              }
+                            />
                           </div>
                           <div className="liner">
                             <label>Blood Pressure:</label>{" "}
-                            <p>
-                              {!followUpData.blood
-                                ? "(No Data)"
-                                : followUpData.blood}
-                            </p>
+                            <input
+                              type="text"
+                              disabled
+                              value={
+                                !followUpData.blood
+                                  ? "(No Data)"
+                                  : followUpData.blood
+                              }
+                            />
                           </div>
                           <div className="liner">
                             <label>Oxygen Saturation:</label>{" "}
-                            <p>
-                              {!followUpData.oxygen
-                                ? "(No Data)"
-                                : followUpData.oxygen}
-                            </p>
+                            <input
+                              type="text"
+                              disabled
+                              value={
+                                !followUpData.oxygen
+                                  ? "(No Data)"
+                                  : followUpData.oxygen
+                              }
+                            />
                           </div>
                           <div className="liner">
                             <label>Weight:</label>
-                            <p>
-                              {!followUpData.weight
-                                ? "(No Data)"
-                                : followUpData.weight}
-                            </p>
+                            <input
+                              type="text"
+                              disabled
+                              value={
+                                !followUpData.weight
+                                  ? "(No Data)"
+                                  : followUpData.weight
+                              }
+                            />
                           </div>
                           <div className="liner">
                             <label>Height: </label>{" "}
-                            <p>
-                              {!followUpData.height
-                                ? "(No Data)"
-                                : followUpData.height}
-                            </p>
+                            <input
+                              type="text"
+                              disabled
+                              value={
+                                !followUpData.height
+                                  ? "(No Data)"
+                                  : followUpData.height
+                              }
+                            />
                           </div>
                         </div>
                       </div>
