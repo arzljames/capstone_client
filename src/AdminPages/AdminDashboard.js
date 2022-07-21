@@ -310,7 +310,7 @@ const AdminDashboard = () => {
               <StatisticCard
                 heading="Total Doctors"
                 icon={<IoPeople />}
-                total={listUsers.length - 1}
+                total={listUsers.length}
                 iconColor="#fff"
                 subTotal={
                   listUsers.filter(
