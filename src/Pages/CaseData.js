@@ -27,7 +27,11 @@ import { buttonVariant, dropdownVariants } from "../Animations/Animations";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import NoUser from "../Assets/nouser.png";
 import AddServiceModal from "../Components/AddServiceModal";
-import { IoArrowRedoOutline } from "react-icons/io5";
+import {
+  IoArrowRedoOutline,
+  IoCaretDown,
+  IoCaretForward,
+} from "react-icons/io5";
 import FollowModal from "../Components/FollowModal";
 
 const CaseData = () => {
@@ -37,6 +41,7 @@ const CaseData = () => {
   const navigate = useNavigate();
   const [patientCase, setPatientCase] = useState([]);
   const [followModal, setFollowModal] = useState(false);
+  const [expand, setExpand] = useState(false);
   const {
     user,
     response,
@@ -332,68 +337,83 @@ const CaseData = () => {
                       </div>
                     </div>
 
-                    <div className="col-info">
-                      <div className="col-2">
-                        <div className="liner">
-                          <label>Contact</label>{" "}
-                          <p>{patientCase.patient.contact}</p>
-                        </div>
+                    {expand === false && (
+                      <p onClick={() => setExpand(true)} className="expand">
+                        Show more <IoCaretDown style={{ marginLeft: "5px" }} />
+                      </p>
+                    )}
 
-                        <div className="liner">
-                          <label>Sex</label> <p>{patientCase.patient.sex}</p>
-                        </div>
+                    {expand && (
+                      <p onClick={() => setExpand(false)} className="expand">
+                        Show less{" "}
+                        <IoCaretForward style={{ marginLeft: "5px" }} />
+                      </p>
+                    )}
 
-                        <div className="liner">
-                          <label>Civil Status</label>
-                          <p>{patientCase.patient.civilStatus}</p>
-                        </div>
+                    {expand && (
+                      <div className="col-info">
+                        <div className="col-2">
+                          <div className="liner">
+                            <label>Contact</label>{" "}
+                            <p>{patientCase.patient.contact}</p>
+                          </div>
 
-                        <div className="liner">
-                          <label>Birthday</label>
-                          <p>
-                            {getDate(patientCase.patient.birthday)}
-                            {" " + "("}
-                            {getAge(patientCase.patient.birthday) + "yrs)"}
-                          </p>
-                        </div>
+                          <div className="liner">
+                            <label>Sex</label> <p>{patientCase.patient.sex}</p>
+                          </div>
 
-                        <div className="liner">
-                          <label>Religion</label>
-                          <p>{patientCase.patient.religion}</p>
+                          <div className="liner">
+                            <label>Civil Status</label>
+                            <p>{patientCase.patient.civilStatus}</p>
+                          </div>
+
+                          <div className="liner">
+                            <label>Birthday</label>
+                            <p>
+                              {getDate(patientCase.patient.birthday)}
+                              {" " + "("}
+                              {getAge(patientCase.patient.birthday) + "yrs)"}
+                            </p>
+                          </div>
+
+                          <div className="liner">
+                            <label>Religion</label>
+                            <p>{patientCase.patient.religion}</p>
+                          </div>
+                        </div>
+                        <div className="col-2">
+                          <div className="liner">
+                            <label>Address</label>
+                            <p>
+                              {patientCase.patient.address.barangay +
+                                "," +
+                                " " +
+                                patientCase.patient.address.city}
+                            </p>
+                          </div>
+
+                          <div className="liner">
+                            <label>Birth place</label>
+                            <p>{patientCase.patient.birthplace}</p>
+                          </div>
+
+                          <div className="liner">
+                            <label>Ethnicity</label>
+                            <p>{patientCase.patient.ethnicity}</p>
+                          </div>
+
+                          <div className="liner">
+                            <label>Guardian</label>
+                            <p>{patientCase.patient.guardian.name}</p>
+                          </div>
+
+                          <div className="liner">
+                            <label>Relation</label>
+                            <p>{patientCase.patient.guardian.relationship}</p>
+                          </div>
                         </div>
                       </div>
-                      <div className="col-2">
-                        <div className="liner">
-                          <label>Address</label>
-                          <p>
-                            {patientCase.patient.address.barangay +
-                              "," +
-                              " " +
-                              patientCase.patient.address.city}
-                          </p>
-                        </div>
-
-                        <div className="liner">
-                          <label>Birth place</label>
-                          <p>{patientCase.patient.birthplace}</p>
-                        </div>
-
-                        <div className="liner">
-                          <label>Ethnicity</label>
-                          <p>{patientCase.patient.ethnicity}</p>
-                        </div>
-
-                        <div className="liner">
-                          <label>Guardian</label>
-                          <p>{patientCase.patient.guardian.name}</p>
-                        </div>
-
-                        <div className="liner">
-                          <label>Relation</label>
-                          <p>{patientCase.patient.guardian.relationship}</p>
-                        </div>
-                      </div>
-                    </div>
+                    )}
                   </div>
 
                   {tabb === "Main" ? (

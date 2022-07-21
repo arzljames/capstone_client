@@ -214,7 +214,7 @@ const FilterReportModal = ({ setFilterModal }) => {
             </button>
             <button
               onClick={() => handleSubmit()}
-              className={isClick ? "cancel-btn" : "green-cta"}
+              className={isClick ? "green-cta-disable" : "green-cta"}
             >
               Generate
             </button>

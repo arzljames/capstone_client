@@ -175,6 +175,17 @@ button.action-dropdown-btn-active p {
   color: #272727;
 }
 
+p.expand {
+  cursor: pointer;
+  font-size: 14px;
+  color: #272727;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  transition: 0.1s ease-in-out;
+  margin-bottom: 10px;
+}
+
 .pt-overview div p {
   font-size: 14px;
   color: #696969;
@@ -303,7 +314,7 @@ button.action-dropdown-btn-active p {
   padding: 0px 10px;
   height: 40px;
   border: none;
-  border: 1px solid #d3d3d3;
+  border: 1px solid #d3d3d300;
   background: rgb(255, 255, 255);
   border-radius: 2px;
 }
