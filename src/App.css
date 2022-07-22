@@ -336,6 +336,7 @@ button.gray-cta:hover {
   border-left: 3px solid #05138e00;
   padding: 0px 10px;
   border-bottom: 1px solid #d3d3d3;
+  cursor: pointer;
 }
 
 .table-body img,
@@ -369,6 +370,7 @@ button.gray-cta:hover {
   padding: 0px 10px;
   border-bottom: 1px solid #ebebeb;
   border-bottom: 1px solid #d3d3d3;
+  cursor: pointer;
 }
 
 .searchbar-container {
