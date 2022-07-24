@@ -61,28 +61,43 @@
   justify-content: center;
 }
 
+.cs-status p.done {
+  color: #2794d3;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  background: #d3e6f1;
+  border-radius: 100px;
+  height: 30px;
+  border: 1px solid #2794d3;
+}
+
 .cs-status p.active {
   color: #058e46;
   background: transparent;
   display: flex;
   align-items: center;
+  background: #dbffec;
   justify-content: center;
-  width: 70px;
-  background: #dcf1e5;
   border-radius: 100px;
+  width: 70px;
   height: 30px;
+  border: 1px solid #058e46;
 }
 
-.cs-status p.done {
-  color: #ff831d;
+.cs-status p.pending {
+  color: #808080;
   background: transparent;
   display: flex;
   align-items: center;
-  background: #ffeee0;
+  background: #eee;
   justify-content: center;
   border-radius: 100px;
-  width: 70px;
+  width: 90px;
   height: 30px;
+  border: 1px solid #808080;
 }
 
 .cs-status .indicator {
@@ -93,11 +108,15 @@
 }
 
 .cs-status .indicator.done {
-  background: #ff831d;
+  background: #2794d3;
 }
 
 .cs-status .indicator.active {
   background: #058e46;
+}
+
+.cs-status .indicator.pending {
+  background: #808080;
 }
 
 @media screen and (max-width: 768px) {

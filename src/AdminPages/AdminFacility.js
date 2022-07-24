@@ -18,7 +18,6 @@ import AdminHospitalModal from "../AdminComponents/AdminHospitalModal";
 import ReactPaginate from "react-paginate";
 import { Helmet } from "react-helmet";
 
-
 const AdminFacility = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
@@ -37,8 +36,6 @@ const AdminFacility = () => {
   };
 
   const [picture, setPicture] = useState("1");
-
-
 
   return (
     <>
@@ -95,18 +92,16 @@ const AdminFacility = () => {
                 <p>
                   <HiPlus />
                 </p>
-                Hospital 
+                Hospital
               </motion.button>
             </div>
             <div className="table-header">
-                <div className="fac-name">Hospital Name</div>
-                <div className="fac-doctors">Doctors</div>
+              <div className="fac-name">Hospital Name</div>
+              <div className="fac-doctors">Doctors</div>
 
-                <div className="fac-add">Address</div>
-              </div>
+              <div className="fac-add">Address</div>
+            </div>
             <div className="table">
-              
-
               {facilities
                 .filter((val) => {
                   if (term === "") {

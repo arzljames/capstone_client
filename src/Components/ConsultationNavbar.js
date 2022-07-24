@@ -63,20 +63,22 @@ const ConsultationNavbar = () => {
               <FcUpload />
             </p>
             <span>Outgoing Request</span>
-            {cases.filter(
-              (e) => e.physician._id === user.userId && e.active === true
+
+            {cases?.filter(
+              (e) => e.physician._id === user?.userId && e.active === "Pending"
             ).length === 0 ? null : (
               <div>
                 {
-                  cases.filter(
-                    (e) => e.physician._id === user.userId && e.active === true
+                  cases?.filter(
+                    (e) =>
+                      e.physician._id === user?.userId && e.active === "Pending"
                   ).length
                 }
               </div>
             )}
           </li>
         ) : null}
-        {user !== null && user.designation === "623ec7fb80a6838424edaa29" ? (
+        {user !== null && user?.designation === "623ec7fb80a6838424edaa29" ? (
           <li
             onClick={() => navigate("/consultation/incoming")}
             className={
@@ -87,25 +89,26 @@ const ConsultationNavbar = () => {
               <FcDownload />
             </p>
             <span>Incoming Request</span>
-            {cases.filter(
+
+            {cases?.filter(
               (e) =>
                 (e.specialization.includes(user.specialization) &&
-                  e.active === true) ||
+                  e.active === "Pending") ||
                 (e.subSpecialization
                   .map((f) => f._id)
                   .includes(user.specialization) &&
-                  e.active === true)
+                  e.active === "Pending")
             ).length === 0 ? null : (
               <div>
                 {
-                  cases.filter(
+                  cases?.filter(
                     (e) =>
                       (e.specialization.includes(user.specialization) &&
-                        e.active === true) ||
+                        (e.active === "Active" || e.active === "Pending")) ||
                       (e.subSpecialization
                         .map((f) => f._id)
                         .includes(user.specialization) &&
-                        e.active === true)
+                        (e.active === "Active" || e.active === "Pending"))
                   ).length
                 }
               </div>

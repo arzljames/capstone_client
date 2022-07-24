@@ -5,6 +5,8 @@ import useAuth from "../Hooks/useAuth";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import ReactPaginate from "react-paginate";
 import { VscBracketError } from "react-icons/vsc";
+import { socket } from "./Socket";
+import api from "../API/Api";
 
 const CaseTable = ({
   setPatient,
@@ -78,6 +80,18 @@ const CaseTable = ({
     setPatient(patients.filter((e) => e._id === id)[0]);
   };
 
+  const handleStatus = async (id) => {
+    try {
+      let response = await api.put(`/api/patient/case-status/${id}`);
+
+      if (response) {
+        socket.emit("case");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="table-header">
@@ -131,6 +145,8 @@ const CaseTable = ({
             return (
               <div
                 onClick={() => {
+                  user?.designation === "623ec7fb80a6838424edaa29" &&
+                    handleStatus(item._id);
                   navigate(`/consultation/case/case-data/${item._id}`);
                 }}
                 index={index}
@@ -180,13 +196,25 @@ const CaseTable = ({
                 </div>
                 <div className="cs-date">{getDate(item.createdAt)}</div>
                 <div className="cs-status">
-                  <p className={item.active ? "active" : "done"}>
+                  <p
+                    className={
+                      item.active === "Active"
+                        ? "active"
+                        : item.active === "Done"
+                        ? "done"
+                        : "pending"
+                    }
+                  >
                     <div
                       className={
-                        item.active ? "indicator active" : "indicator done"
+                        item.active === "Active"
+                          ? "indicator active"
+                          : item.active === "Done"
+                          ? "indicator done"
+                          : "indicator pending"
                       }
                     ></div>
-                    {item.active ? "Active" : "Done"}
+                    {item.active}
                   </p>
                 </div>
               </div>

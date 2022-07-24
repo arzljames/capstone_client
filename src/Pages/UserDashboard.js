@@ -271,10 +271,10 @@ const UserDashboard = () => {
               />
             </div>
 
-            {/* {stats === "Total Hospitals" && <StatisticHospital />}
+            {stats === "Total Hospitals" && <StatisticHospital />}
             {stats === "Total Doctors" && <StatisticDoctor />}
             {stats === "Total Patients" && <StatisticPatient />}
-            {stats === "Total Cases" && <StatisticCase />} */}
+            {stats === "Total Cases" && <StatisticCase />}
           </div>
         </div>
       </div>

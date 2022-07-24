@@ -53,7 +53,6 @@ const PatientModal = ({
     return today;
   };
 
-
   return (
     <>
       <motion.div
@@ -268,7 +267,12 @@ const PatientModal = ({
                         <p>{patient.ethnicity}</p>
                       </div>
 
-                      <div></div>
+                      <div>
+                        <div>
+                          <label>Dialect</label>
+                          <p>{patient.dialect}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -316,8 +320,6 @@ const PatientModal = ({
                                 (e) => e._id === item.specialization
                               )[0]?.specialization
                             }
-
-                   
                           </div>
                           <div className="ch-status">
                             {item.active ? "Active" : "Done"}

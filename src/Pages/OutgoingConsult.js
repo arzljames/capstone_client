@@ -36,9 +36,9 @@ const OutgoingConsult = () => {
 
                 <div className="case-body">
                   {cases
-                    .filter(
+                    ?.filter(
                       (e) =>
-                        e.physician._id === user.userId && e.active === true
+                        e.physician._id === user?.userId && (e.active === 'Pending' || e.active === 'Active')
                     )
                     .map((item, key) => {
                       return (
@@ -51,7 +51,7 @@ const OutgoingConsult = () => {
                     })}
 
                   {cases.filter(
-                    (e) => e.physician._id === user.userId && e.active === true
+                    (e) =>  e.physician._id === user?.userId && (e.active === 'Pending' || e.active === 'Active')
                   ).length === 0 && (
                     <div className="no-active-cases">
                       <p>No current active consultation request.</p>

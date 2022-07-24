@@ -205,58 +205,53 @@ p.expand {
   margin-right: 20px;
 }
 
-/* .case-hospital {
-  flex: 1;
-  min-width: 270px;
-  border: 1px solid #d3d3d3;
-  padding: 20px;
-  border-radius: 8px;
-} */
-
 .case-hospital-active {
   flex: 1;
   min-width: 270px;
-  border: 1px solid #058e454f;
+  border: 1px solid #058e46;
   padding: 20px;
   border-radius: 8px;
-  background: #dcf1e5;
+  background: #058e46;
   width: 100%;
 }
 
 .case-hospital-inactive {
   flex: 1;
   min-width: 270px;
-  border: 1px solid #ff831d48;
+  border: 1px solid #3da5e2;
   padding: 20px;
   border-radius: 8px;
-  background: #ffeee0;
+  background: #3da5e2;
+}
+
+.case-hospital-pending {
+  flex: 1;
+  min-width: 270px;
+  border: 1px solid #808080;
+  padding: 20px;
+  border-radius: 8px;
+  background: #808080;
 }
 
 .case-hospital-header h2 {
-  color: #272727;
+  color: #fff;
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 20px;
 }
 
-.case-hospital-active .case-hospital-header hr {
-  border-bottom: 1px solid #058e454f;
-}
-
-.case-hospital-inactive .case-hospital-header hr {
-  border-bottom: 1px solid #ff831d48;
-}
-
 .case-hospital-active label,
-.case-hospital-inactive label {
+.case-hospital-inactive label,
+.case-hospital-pending label {
   font-size: 14px;
-  color: #808080;
+  color: #fff;
   font-style: italic;
 }
 .case-hospital-active p,
-.case-hospital-inactive p {
+.case-hospital-inactive p,
+.case-hospital-pending p {
   font-size: 14px;
-  color: #272727;
+  color: #eee;
   margin-bottom: 15px;
 }
 

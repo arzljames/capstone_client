@@ -35,14 +35,14 @@ const IncomingConsult = () => {
 
                 <div className="case-body">
                   {cases
-                    .filter(
+                    ?.filter(
                       (f) =>
                         (f.specialization.includes(user.specialization) &&
-                          f.active === true) ||
+                          (f.active === "Active" || f.active === "Pending")) ||
                         (f.subSpecialization
                           .map((f) => f._id)
                           .includes(user.specialization) &&
-                          f.active === true)
+                          (f.active === "Active" || f.active === "Pending"))
                     )
                     .map((item) => {
                       return <IncomingCaseActive item={item} name={"sds"} />;
@@ -50,8 +50,12 @@ const IncomingConsult = () => {
 
                   {cases.filter(
                     (e) =>
-                      e.specialization.includes(user.specialization) &&
-                      e.active === true
+                      (e.specialization.includes(user.specialization) &&
+                        (e.active === "Active" || e.active === "Pending")) ||
+                      (e.subSpecialization
+                        .map((e) => e._id)
+                        .includes(user.specialization) &&
+                        (e.active === "Active" || e.active === "Pending"))
                   ).length === 0 && (
                     <div className="no-active-cases">
                       <p>No incoming active consultation request.</p>

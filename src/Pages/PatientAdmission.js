@@ -58,6 +58,7 @@ const PatientAdmission = () => {
   const [fullname, setFullname] = useState("");
   const [relationship, setRelationship] = useState("");
   const [isClick, setIsClick] = useState(false);
+  const [dialect, setDialect] = useState("");
 
   const handleSubmit = async () => {
     setIsClick(true);
@@ -76,7 +77,8 @@ const PatientAdmission = () => {
       !city ||
       !ethnicity ||
       !fullname ||
-      !relationship
+      !relationship || 
+      !dialect
     ) {
       toast.error("Please check any empty fields and try again");
       setIsClick(false);
@@ -98,6 +100,7 @@ const PatientAdmission = () => {
           ethnicity,
           fullname,
           relationship,
+          dialect
         });
 
         if (response.data.ok) {
@@ -122,6 +125,7 @@ const PatientAdmission = () => {
           setRelationOther(null);
           setReligionOther(null);
           setCivilOther(null);
+          setDialect("");
         } else {
           toast.error("An unexpected error occured. Please try again");
           setIsClick(false);
@@ -472,6 +476,20 @@ const PatientAdmission = () => {
                         <input
                           value={ethnicity}
                           onChange={(e) => setEthnicity(e.target.value)}
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                    <div className="admission-2col">
+                      <div className="div1">
+                        <label>
+                          Dialect: <i>*</i>
+                        </label>
+                      </div>
+                      <div className="div2">
+                        <input
+                          value={dialect}
+                          onChange={(e) => setDialect(e.target.value)}
                           type="text"
                         />
                       </div>

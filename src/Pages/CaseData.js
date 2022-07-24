@@ -252,7 +252,8 @@ const CaseData = () => {
                             {user.designation ===
                               "623ec7fb80a6838424edaa29" && (
                               <>
-                                {patientCase.active === true ? (
+                                {patientCase.active === "Active" ||
+                                patientCase.active === "Pending" ? (
                                   <li onClick={() => handleDeactivate()}>
                                     <p>
                                       <HiX />
@@ -330,9 +331,21 @@ const CaseData = () => {
                       </div>
 
                       <div className="cs-status absolute">
-                        <h5>Status: </h5>
-                        <p className={patientCase.active ? "active" : "done"}>
-                          {patientCase.active ? "Active" : "Done"}
+                        <h5 style={{ marginRight: "5px" }}>Status:</h5>{" "}
+                        <p
+                          className={
+                            patientCase.active === "Active"
+                              ? "active"
+                              : patientCase.active === "Done"
+                              ? "done"
+                              : "pending"
+                          }
+                        >
+                          {patientCase.active === "Active"
+                            ? "Active"
+                            : patientCase.active === "Done"
+                            ? "Done"
+                            : "Pending"}
                         </p>
                       </div>
                     </div>
@@ -380,8 +393,7 @@ const CaseData = () => {
                             <label>Religion</label>
                             <p>{patientCase.patient.religion}</p>
                           </div>
-                        </div>
-                        <div className="col-2">
+
                           <div className="liner">
                             <label>Address</label>
                             <p>
@@ -391,6 +403,9 @@ const CaseData = () => {
                                 patientCase.patient.address.city}
                             </p>
                           </div>
+                        </div>
+                        <div className="col-2">
+                         
 
                           <div className="liner">
                             <label>Birth place</label>
@@ -400,6 +415,11 @@ const CaseData = () => {
                           <div className="liner">
                             <label>Ethnicity</label>
                             <p>{patientCase.patient.ethnicity}</p>
+                          </div>
+
+                          <div className="liner">
+                            <label>Dialect</label>
+                            <p>{patientCase.patient.dialect}</p>
                           </div>
 
                           <div className="liner">
@@ -771,9 +791,11 @@ const CaseData = () => {
                   <div
                     style={{ marginBottom: "20px" }}
                     className={
-                      patientCase.active
+                      patientCase.active === "Active"
                         ? "case-hospital-active"
-                        : "case-hospital-inactive"
+                        : patientCase.active === "Done"
+                        ? "case-hospital-inactive"
+                        : "case-hospital-pending"
                     }
                   >
                     <div className="case-hospital-header">
@@ -811,9 +833,11 @@ const CaseData = () => {
 
                   <div
                     className={
-                      patientCase.active
+                      patientCase.active === "Active"
                         ? "case-hospital-active"
-                        : "case-hospital-inactive"
+                        : patientCase.active === "Done"
+                        ? "case-hospital-inactive"
+                        : "case-hospital-pending"
                     }
                   >
                     <div className="case-hospital-header">
