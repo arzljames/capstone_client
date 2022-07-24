@@ -38,6 +38,8 @@ import Case from "../Pages/Case";
 import PatientAdmission from "../Pages/PatientAdmission";
 import ChatUser from "../Pages/ChatUser";
 import { socket } from "../Components/Socket";
+import NavigatorDashboard from "../Pages/NavigatorDashboard";
+import NavigatorCase from "../Pages/NavigatorCase";
 
 const AnimatedRoutes = () => {
   const { user } = useAuth();
@@ -78,6 +80,17 @@ const AnimatedRoutes = () => {
             <Route
               path="admin/specialization"
               element={<AdminSpecialization />}
+            />
+          </Route>
+
+          <Route element={<ProtectedRoutes user={user} role="navigator" />}>
+            <Route
+              path="/navigator/dashboard"
+              element={<NavigatorDashboard />}
+            />
+             <Route
+              path="/navigator/case"
+              element={<NavigatorCase />}
             />
           </Route>
 
@@ -136,7 +149,6 @@ const AnimatedRoutes = () => {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="reset-password" element={<ForgotPassword />} />
-            
           </Route>
         </Route>
         <Route path="/team" element={<DevTeam />} />

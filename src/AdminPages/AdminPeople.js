@@ -18,6 +18,7 @@ import ReactPaginate from "react-paginate";
 import AdminEditdUser from "../AdminComponents/AdminEditdUser";
 import { Helmet } from "react-helmet";
 import NoUser from "../Assets/nouser.png";
+import NavigatorForm from "../AdminComponents/NavigatorForm";
 
 const AdminPeople = () => {
   const [showModal, setShowModal] = useState(false);
@@ -54,11 +55,15 @@ const AdminPeople = () => {
     setPageNumber(selected);
   };
 
+  const [navigator, setNavigator] = useState(false);
+
   return (
     <>
       <Helmet>
         <title>Doctors | ZCMC Telemedicine</title>
       </Helmet>
+
+      {navigator && <NavigatorForm setNavigator={setNavigator} />}
       <div className="container">
         <AdminSidebar />
         <AnimatePresence>
@@ -107,6 +112,13 @@ const AdminPeople = () => {
                   </div>
                 )}
               </div>
+
+              <button onClick={() => setNavigator(true)} className="green-cta">
+                <p>
+                  <HiPlus />
+                </p>
+                Add Navigator
+              </button>
             </div>
             <div className="table-header">
               <div className="dr-name">Full name</div>
@@ -155,7 +167,12 @@ const AdminPeople = () => {
                           Dr. {item.firstname} {item.lastname}
                         </p>
                       </div>
-                      <div className="dr-patient">{patients?.filter(e => e.physician._id === item._id).length}</div>
+                      <div className="dr-patient">
+                        {
+                          patients?.filter((e) => e.physician._id === item._id)
+                            .length
+                        }
+                      </div>
                       <div className="dr-hospital">
                         {item.designation?.facility}
                       </div>

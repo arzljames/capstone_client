@@ -2,16 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import {
-  HiOutlineSearch,
-  HiOutlineSortDescending,
-  HiChevronDown,
-  HiChevronUp,
-  HiCheck,
   HiChevronLeft,
   HiChevronRight,
 } from "react-icons/hi";
-import { motion, AnimatePresence } from "framer-motion";
-import { dropdownVariants } from "../Animations/Animations";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import ReactPaginate from "react-paginate";
 import { VscBracketError } from "react-icons/vsc";

@@ -53,10 +53,17 @@ export const DataProvider = ({ children }) => {
     if (response.data) {
       setListUsers(
         response.data.filter(
-          (e) => e.userType !== "admin" && e.verified === true
+          (e) =>
+            e.userType !== "admin" &&
+            e.verified === true &&
+            e.userType !== "navigator"
         )
       );
-      setPending(response.data.filter((e) => e.verified === false));
+      setPending(
+        response.data.filter(
+          (e) => e.verified === false && e.userType !== "navigator"
+        )
+      );
       setChatUsers(response.data);
     }
   };
@@ -65,7 +72,7 @@ export const DataProvider = ({ children }) => {
     let response = await api.get("/api/user/users/");
 
     if (response.data) {
-      setChatUsers(response.data);
+      setChatUsers(response.data.filter((e) => e.userType !== "navigator"));
     }
   };
 

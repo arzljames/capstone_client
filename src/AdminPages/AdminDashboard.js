@@ -313,8 +313,8 @@ const AdminDashboard = () => {
                 total={listUsers.length}
                 iconColor="#fff"
                 subTotal={
-                  listUsers.filter(
-                    (e) => e.designation._id === "623ec7fb80a6838424edaa29"
+                  listUsers?.filter(
+                    (e) => e.designation?._id === "623ec7fb80a6838424edaa29"
                   ).length + " ZCMC Doctors"
                 }
                 bg="#FE7477"

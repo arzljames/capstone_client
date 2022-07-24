@@ -4,7 +4,7 @@ import FacilityTableBody from "../AdminComponents/FacilityTableBody";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import ReactPaginate from "react-paginate";
 
-const StatisticHospital = () => {
+const StatisticHospital = ({bg, border}) => {
   const { facilities, listUsers } = useAuth();
   const [term, setTerm] = useState("");
   const [showHospitalModal, setShowHospitalModal] = useState(false);
@@ -22,7 +22,7 @@ const StatisticHospital = () => {
   const [picture, setPicture] = useState("1");
   return (
     <>
-      <div className="table-header">
+      <div style={{background: bg, border: `1px solid ${border}`}} className="table-header">
         <div className="fac-name">Hospital Name</div>
         <div className="fac-doctors">Doctors</div>
 
