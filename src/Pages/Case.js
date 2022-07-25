@@ -8,10 +8,8 @@ import { AnimatePresence } from "framer-motion";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import NewCase from "../Components/NewCase";
 import useAuth from "../Hooks/useAuth";
-import api from "../API/Api";
 import "./Case.css";
 import PatientModal from "../Components/PatientModal";
-
 import DeletePatientModal from "../Components/DeletePatientModal";
 import CaseTable from "../Components/CaseTable";
 

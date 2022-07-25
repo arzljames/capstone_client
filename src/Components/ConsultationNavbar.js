@@ -104,11 +104,11 @@ const ConsultationNavbar = () => {
                   cases?.filter(
                     (e) =>
                       (e.specialization.includes(user.specialization) &&
-                        (e.active === "Active" || e.active === "Pending")) ||
+                        e.active === "Pending") ||
                       (e.subSpecialization
                         .map((f) => f._id)
                         .includes(user.specialization) &&
-                        (e.active === "Active" || e.active === "Pending"))
+                        e.active === "Pending")
                   ).length
                 }
               </div>

@@ -557,6 +557,18 @@ p.expand {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.response-header p {
+  font-size: 12px;
+  cursor: pointer;
+  color: #272727;
+  font-weight: 500;
+}
+
+.response-header p:hover {
+  text-decoration: underline;
 }
 
 .response-body {

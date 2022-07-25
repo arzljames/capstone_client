@@ -150,6 +150,13 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
             ? response.filter((e) => e.room === id).length + " response"
             : response.filter((e) => e.room === id).length + " responses"}
         </h1>
+        <p
+          onClick={() =>
+            window.open("https://forms.gle/dmS32SyQSYZjZqwF9", "_blank")
+          }
+        >
+          Take a Survey
+        </p>
       </div>
       <form onSubmit={(e) => e.preventDefault()}>
         <textarea

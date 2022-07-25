@@ -199,7 +199,7 @@ const NewCase = ({ setShowCase, overflow }) => {
                 wi,
                 imd,
                 reason,
-                todate,
+                todate: new Date(todate),
               })
               .then((result) => {
                 if (result) {
@@ -277,6 +277,17 @@ const NewCase = ({ setShowCase, overflow }) => {
     getDate();
   }, []);
 
+  function getDatetime(e) {
+    var str = e;    
+    var d = new Date(str);
+    console.log('Before:\t', d.toLocaleString())
+    
+    // Add 1 hour to datetime
+    d.setHours(d.getHours() + 1);
+    
+    console.log('After:\t', d.toLocaleString())
+  }
+
   return (
     <motion.div
       variants={containerVariant}
@@ -297,12 +308,16 @@ const NewCase = ({ setShowCase, overflow }) => {
           <h1>Add New Case</h1>
         </div>
         <div className="form-body">
-          <label>Date Created</label>
+          <label>Date of referral</label>
           <input
             style={{ minHeight: "40px" }}
             value={todate}
-            onChange={(e) => setTodate(e.target.value)}
-            type="date"
+            onChange={(e) => {
+              setTodate(e.target.value);
+       
+            }}
+  
+            type="datetime-local"
           />
 
           <label>

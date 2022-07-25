@@ -33,6 +33,7 @@ import {
   IoCaretForward,
 } from "react-icons/io5";
 import FollowModal from "../Components/FollowModal";
+import { socket } from "../Components/Socket";
 
 const CaseData = () => {
   const [modal, setModal] = useState(false);
@@ -57,6 +58,7 @@ const CaseData = () => {
 
   const [tabb, setTabb] = useState("Main");
   const [followUpData, setFollowUpData] = useState([]);
+  const [served, setServed] = useState(null);
 
   const { id } = useParams();
   let domNode = useClickOutside(() => {
@@ -157,6 +159,29 @@ const CaseData = () => {
 
     return today;
   };
+
+  useEffect(() => {
+    socket.on("receive_response", (data) => {
+      setResponse(data);
+    });
+  }, [socket]);
+
+  const fetchResponse = async () => {
+    let result = await api.get("/api/message");
+    if (result.data) {
+      setResponse(result.data);
+      setServed(
+        result.data
+          .filter((e) => e.room === patientCase._id)
+          .filter((f) => f.user?.designation === "623ec7fb80a6838424edaa29")[0]
+          .createdAt
+      );
+    }
+  };
+
+  useEffect(() => {
+    fetchResponse();
+  }, [socket, response]);
 
   if (patientCase.length === 0) {
     return (
@@ -405,8 +430,6 @@ const CaseData = () => {
                           </div>
                         </div>
                         <div className="col-2">
-                         
-
                           <div className="liner">
                             <label>Birth place</label>
                             <p>{patientCase.patient.birthplace}</p>
@@ -862,8 +885,21 @@ const CaseData = () => {
                           patientCase.physician.lastname}
                       </p>
 
-                      <label>Date Created</label>
-                      <p>{getDate(patientCase.createdAt)}</p>
+                      <label>Date & Time of referral</label>
+                      <p>
+                        {getDate(patientCase.createdAt)}{" "}
+                        {getTime(patientCase.createdAt)}
+                      </p>
+
+                      {served !== null && (
+                        <>
+                          <label>Date & Time served</label>
+
+                          <p>
+                            {getDate(served)} {getTime(served)}
+                          </p>
+                        </>
+                      )}
                     </div>
                   </div>
 
