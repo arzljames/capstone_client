@@ -115,8 +115,8 @@ const PatientTableData = ({
 
                 <div className="pt-active">
                   {
-                    cases.filter(
-                      (f) => f.patient._id === item._id && f.active === true
+                    cases?.filter(
+                      (f) => f.patient._id === item._id && f.active === 'Active'
                     ).length
                   }
                 </div>
