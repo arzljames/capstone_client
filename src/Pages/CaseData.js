@@ -43,6 +43,7 @@ const CaseData = () => {
   const [patientCase, setPatientCase] = useState([]);
   const [followModal, setFollowModal] = useState(false);
   const [expand, setExpand] = useState(false);
+  const [status, setStatus] = useState("Pending");
   const {
     user,
     response,
@@ -82,6 +83,23 @@ const CaseData = () => {
 
     fetchPatientCase();
   }, [appState]);
+
+  useEffect(() => {
+    const fetchPatientCase = async () => {
+      try {
+        let response = await api.get("/api/patient/case");
+
+        if (response) {
+          setStatus(response.data.filter((item) => item._id === id)[0].active);
+        } else {
+          setStatus("");
+        }
+      } catch (error) {
+        setStatus("");
+      }
+    };
+    fetchPatientCase();
+  }, [appState, patientCase]);
 
   const handleDeactivate = async () => {
     try {
@@ -277,8 +295,7 @@ const CaseData = () => {
                             {user.designation ===
                               "623ec7fb80a6838424edaa29" && (
                               <>
-                                {patientCase.active === "Active" ||
-                                patientCase.active === "Pending" ? (
+                                {status === "Active" || status === "Pending" ? (
                                   <li onClick={() => handleDeactivate()}>
                                     <p>
                                       <HiX />
@@ -359,16 +376,16 @@ const CaseData = () => {
                         <h5 style={{ marginRight: "5px" }}>Status:</h5>{" "}
                         <p
                           className={
-                            patientCase.active === "Active"
+                            status === "Active"
                               ? "active"
-                              : patientCase.active === "Done"
+                              : status === "Done"
                               ? "done"
                               : "pending"
                           }
                         >
-                          {patientCase.active === "Active"
+                          {status === "Active"
                             ? "Active"
-                            : patientCase.active === "Done"
+                            : status === "Done"
                             ? "Done"
                             : "Pending"}
                         </p>
@@ -814,9 +831,9 @@ const CaseData = () => {
                   <div
                     style={{ marginBottom: "20px" }}
                     className={
-                      patientCase.active === "Active"
+                      status === "Active"
                         ? "case-hospital-active"
-                        : patientCase.active === "Done"
+                        : status === "Done"
                         ? "case-hospital-inactive"
                         : "case-hospital-pending"
                     }
@@ -856,9 +873,9 @@ const CaseData = () => {
 
                   <div
                     className={
-                      patientCase.active === "Active"
+                      status === "Active"
                         ? "case-hospital-active"
-                        : patientCase.active === "Done"
+                        : status === "Done"
                         ? "case-hospital-inactive"
                         : "case-hospital-pending"
                     }
