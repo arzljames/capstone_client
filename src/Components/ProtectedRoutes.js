@@ -14,4 +14,7 @@ const ProtectedRoutes = ({ user, role }) => {
   }
 };
 
+
+
+
 export default ProtectedRoutes;
