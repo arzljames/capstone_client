@@ -26,13 +26,13 @@ export const SidebarData = [
     icon: <IoMedkitOutline />,
     activeIcon: <IoMedkit />,
   },
-  // {
-  //   name: "Chat",
-  //   link: "/chat",
-  //   link2: "chat",
-  //   icon: <IoChatbubbleEllipsesOutline />,
-  //   activeIcon: <IoChatbubbleEllipsesSharp />,
-  // },
+  {
+    name: "Chat",
+    link: "/chat",
+    link2: "chat",
+    icon: <IoChatbubbleEllipsesOutline />,
+    activeIcon: <IoChatbubbleEllipsesSharp />,
+  },
 
   {
     name: "Report",
