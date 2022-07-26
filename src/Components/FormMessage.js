@@ -17,6 +17,8 @@ const promptVariant = {
     opacity: 0,
   },
 };
+
+//Custom component for showing modal 
 const FormMessage = ({ message, setPrompt }) => {
   return (
     <motion.div

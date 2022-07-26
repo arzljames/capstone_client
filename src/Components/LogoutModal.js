@@ -5,6 +5,8 @@ import api from "../API/Api";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import { formVariant, containerVariant } from "../Animations/Animations";
 
+
+//Component modal for logging out
 const LogoutModal = ({ setLogout, submitLogout }) => {
   const domNode = useClickOutside(() => {
     setLogout(false);

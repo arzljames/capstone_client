@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 
+
+//Componen navbar for notificatioons
 const NotificationNavbar = () => {
   const path = window.location.pathname;
   const navigate = useNavigate();

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FcDocument } from "react-icons/fc";
 import useAuth from "../Hooks/useAuth";
 
+//Component to show the list of incoming active cases
 const IncomingCaseActive = ({ item, name }) => {
   const createdAt = new Date(item.createdAt);
   const navigate = useNavigate();

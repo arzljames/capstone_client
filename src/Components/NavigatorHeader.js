@@ -11,6 +11,8 @@ import { IoCaretDown } from "react-icons/io5";
 import "./Header.css";
 import "../AdminComponents/AdminHeader.css";
 
+
+//Header for navigator user
 const NavigatorHeader = () => {
   const { user, pp, setPp, listUsers } = useAuth();
 

@@ -46,6 +46,8 @@ const containerVariant = {
   },
 };
 
+
+//Component for adding new cases
 const NewCase = ({ setShowCase, overflow }) => {
   let domNode = useClickOutside(() => {
     setShowCase(false);

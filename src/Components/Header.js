@@ -4,6 +4,8 @@ import ProfileHeader from "./ProfileHeader";
 import { useNavigate } from "react-router-dom";
 import ZCMCLOGO from "../Assets/zcmc_logo.png";
 
+
+//Header component
 const Header = () => {
   const navigate = useNavigate();
   return (

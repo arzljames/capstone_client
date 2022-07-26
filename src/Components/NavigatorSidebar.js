@@ -10,6 +10,8 @@ import {
   IoMedkit,
 } from "react-icons/io5";
 
+
+//Component sidebar for navigator user
 const NavigatorSidebar = () => {
   const navigate = useNavigate();
   const path = window.location.pathname;

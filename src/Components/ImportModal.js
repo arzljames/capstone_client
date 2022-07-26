@@ -5,6 +5,8 @@ import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
 import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers";
 
+
+//Component for importing multiple patients
 const ImportModal = ({ setCSV, CSV, toast }) => {
   let domNode = useClickOutside(() => {
     setCSV([]);

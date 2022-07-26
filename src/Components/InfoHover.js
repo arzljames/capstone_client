@@ -17,6 +17,8 @@ const hoverVariant = {
   },
 };
 
+
+//Component to show profile when hover
 const InfoHover = ({ message }) => {
   return (
     <motion.div

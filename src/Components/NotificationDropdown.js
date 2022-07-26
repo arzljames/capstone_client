@@ -7,6 +7,8 @@ import api from "../API/Api";
 import "../Pages/Notification.css";
 import ReactTimeAgo from "react-time-ago";
 
+
+//Component for notification drawer or dropdown
 const NotificationDropdown = ({ setDropdownNotif }) => {
   const { user, notification } = useAuth();
   const navigate = useNavigate();
