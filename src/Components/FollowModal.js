@@ -6,6 +6,8 @@ import useAuth from "../Hooks/useAuth";
 import api from "../API/Api";
 import { socket } from "./Socket";
 
+
+//Component for adding follow-ups in case module
 const FollowModal = ({ setFollowModal, toast, id }) => {
   const [isClick, setIsClick] = useState(false);
 

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { formVariant, containerVariant } from "../Animations/Animations";
 import api from "../API/Api";
 
+
+//Registration for navigator user form-modal
 const NavigatorForm = ({ setNavigator }) => {
   const { toast, ToastContainer } = useAuth();
   const [firstname, setFirstname] = useState("");
@@ -12,6 +14,8 @@ const NavigatorForm = ({ setNavigator }) => {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
 
+
+  //Handling submit post request using asynchronous axios api
   const handleSubmit = async () => {
     if (!firstname || !lastname || !username || !password) {
       toast.error("All fields are required");

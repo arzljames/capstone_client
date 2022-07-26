@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useLocation, Routes, Route, Navigate } from "react-router-dom";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
-import ForgotPassword from "../Pages/ForgotPassword";
 import AdminReport from "../AdminPages/AdminReport";
 import AdminFacility from "../AdminPages/AdminFacility";
 import AdminPeople from "../AdminPages/AdminPeople";
@@ -41,6 +40,8 @@ import { socket } from "../Components/Socket";
 import NavigatorDashboard from "../Pages/NavigatorDashboard";
 import NavigatorCase from "../Pages/NavigatorCase";
 
+//Custom components for adding animation for each components and pages
+//Header Tree
 const AnimatedRoutes = () => {
   const { user } = useAuth();
   const location = useLocation();
@@ -148,7 +149,7 @@ const AnimatedRoutes = () => {
           <Route element={<ProtectedLoginRoutes user={user} />}>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
-            <Route path="reset-password" element={<ForgotPassword />} />
+           
           </Route>
         </Route>
         <Route path="/team" element={<DevTeam />} />

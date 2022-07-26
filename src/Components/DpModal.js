@@ -8,6 +8,8 @@ import useAuth from "../Hooks/useAuth";
 import api from "../API/Api";
 import { socket } from "./Socket";
 
+
+//Component for changing profile picture
 const DpModal = ({ setDp, image, toast }) => {
   let domNode = useClickOutside(() => {
     setDp(false);

@@ -6,13 +6,13 @@ import useAuth from "../Hooks/useAuth";
 import "./AddServiceModal.css";
 import api from "../API/Api";
 
+
+//Component for adding sub-specialization in case module
 const AddServiceModal = ({
   setModal,
   id,
   service,
   toast,
-  toastContainer,
-  subSpecialization,
 }) => {
   const domNode = useClickOutside(() => {
     setModal(false);

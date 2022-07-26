@@ -51,6 +51,8 @@ const getTime = (date) => {
   return today;
 };
 
+
+//Custom api-like to generate documents for exporting files
 export const DocumentGenerator = (patientCase) => {
   const table = new Table({
     columnWidths: [5505, 3505],

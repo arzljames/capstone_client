@@ -25,7 +25,7 @@ const searchVariant = {
 };
 
 
-
+//Custom navigation for chat component page
 const ChatNavbar = ({setId, }) => {
 
   const {showCreateChat, setShowCreateChat} = useAuth()

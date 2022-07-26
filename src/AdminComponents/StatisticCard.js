@@ -2,6 +2,8 @@ import React from "react";
 import "./StatisticCard.css";
 import { motion } from "framer-motion";
 
+
+//Component used in dashboard to show statistics of data
 const StatisticCard = ({
   heading,
   total,

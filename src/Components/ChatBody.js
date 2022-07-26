@@ -13,6 +13,8 @@ import PulseLoader from "react-spinners/PulseLoader";
 import ReactTimeAgo from "react-time-ago";
 import { useParams } from "react-router-dom";
 
+
+//Component for chat module
 const ChatBody = ({ users, socket }) => {
   const [message, setMessage] = useState(null);
   const [temp, setTemp] = useState("");

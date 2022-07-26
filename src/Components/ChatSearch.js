@@ -3,10 +3,11 @@ import useAuth from "../Hooks/useAuth";
 import Avatar from "../Assets/nouser.png";
 import { useNavigate } from "react-router-dom";
 
+
+//Component for searching users in chat module
 const ChatSearch = ({ term }) => {
   const { chatUsers, user } = useAuth();
   const navigate = useNavigate();
-
   const path = window.location.pathname;
 
   return (

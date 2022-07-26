@@ -9,6 +9,8 @@ import api from "../API/Api";
 import { CSVLink } from "react-csv";
 import { ResponsivePie } from "@nivo/pie";
 
+
+//Component page to show the list of generated reports
 const AdminGenerateReport = ({ setFilterModal }) => {
   const { patients, facilities, reports, cases, specializations } = useAuth();
   const [report, setReport] = useState([]);

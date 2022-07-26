@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { VscBracketError } from "react-icons/vsc";
 
+//Table and table data for report page
 const AdminReport = () => {
   const navigate = useNavigate();
   const { reports } = useAuth();

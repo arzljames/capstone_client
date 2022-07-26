@@ -8,6 +8,7 @@ import { VscBracketError } from "react-icons/vsc";
 import { socket } from "./Socket";
 import api from "../API/Api";
 
+//Table and table data for list of  cases
 const CaseTable = ({
   setPatient,
   setPatientModal,

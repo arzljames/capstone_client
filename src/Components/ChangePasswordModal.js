@@ -6,6 +6,7 @@ import "./ChangePasswordModal.css";
 import api from "../API/Api";
 import useAuth from "../Hooks/useAuth";
 
+//Component modal for changing password
 const ChangePasswordModal = ({ setModal }) => {
   let domNode = useClickOutside(() => {
     setModal(false);

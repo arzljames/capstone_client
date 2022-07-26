@@ -6,6 +6,8 @@ import useAuth from "../Hooks/useAuth";
 import api from "../API/Api";
 import { toast } from "react-toastify";
 
+
+//Component for filtering in report module
 const FilterReportModal = ({ setFilterModal }) => {
   let domNode = useClickOutside(() => {
     setFilterModal(false);

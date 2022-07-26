@@ -5,6 +5,8 @@ import api from "../API/Api";
 import { useNavigate } from "react-router-dom";
 import { containerVariant, formVariant } from "../Animations/Animations";
 
+
+//Component confirmation modal for deleting patient
 const DeletePatientModal = ({ setDeleteModal, id, name, toast }) => {
   const [confirm, setConfirm] = useState("");
   const { setAppState } = useAuth();

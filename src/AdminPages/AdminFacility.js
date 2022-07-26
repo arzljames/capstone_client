@@ -18,6 +18,7 @@ import AdminHospitalModal from "../AdminComponents/AdminHospitalModal";
 import ReactPaginate from "react-paginate";
 import { Helmet } from "react-helmet";
 
+//Component page for showing the list of hospitals
 const AdminFacility = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);

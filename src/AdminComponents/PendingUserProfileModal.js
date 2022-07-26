@@ -6,6 +6,8 @@ import { useClickOutside } from "../Hooks/useClickOutside";
 import useAuth from "../Hooks/useAuth";
 import api from "../API/Api";
 
+
+//Components for viewing pending and not verified user account 
 const PendingUserProfileModal = ({ setProfileModal, userData }) => {
   const domNode = useClickOutside(() => {
     setProfileModal(false);

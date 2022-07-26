@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import ChangePasswordModal from "../Components/ChangePasswordModal";
 import Helmet from "react-helmet";
 
+//Component for account settings
 const AdminAccountSettings = () => {
   const navigate = useNavigate();
   const { user, facilities } = useAuth();

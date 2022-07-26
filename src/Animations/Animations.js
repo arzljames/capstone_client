@@ -1,3 +1,5 @@
+//List of customize animation variant for framer-motion library
+
 export const buttonVariant = {
   tap: {
     scale: 0.95,

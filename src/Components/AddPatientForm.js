@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { formVariant, containerVariant } from "../Animations/Animations";
 import { useClickOutside } from "../Hooks/useClickOutside";
 
+//In-line custom animation variant
 const bodyVariant = {
   hidden: {
     opacity: 0,
@@ -23,6 +24,8 @@ const bodyVariant = {
   },
 };
 
+
+//Component for adding patient
 const AddPatientForm = ({
   setPatientForm,
   setTerm,
@@ -35,10 +38,11 @@ const AddPatientForm = ({
     navigate(-1);
   });
 
+
+  //AddPatientForm component states
   const [civilOther, setCivilOther] = useState(null);
   const [religionOther, setReligionOther] = useState(null);
   const [relationOther, setRelationOther] = useState(null);
-
   const [firstname, setFirstname] = useState("");
   const [middlename, setMiddlename] = useState("");
   const [lastname, setLastname] = useState("");
@@ -54,10 +58,10 @@ const AddPatientForm = ({
   const [ethnicity, setEthnicity] = useState("");
   const [fullname, setFullname] = useState("");
   const [relationship, setRelationship] = useState("");
-
   const { user, setAppState } = useAuth();
   const navigate = useNavigate();
 
+  //Handling submit put request using asynchronous axios api
   const handleSubmit = async () => {
     try {
       let response = await api.put(`/api/user/add-patient/${user.userId}`, {

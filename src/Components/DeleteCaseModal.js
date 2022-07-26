@@ -5,6 +5,8 @@ import api from "../API/Api";
 import { useNavigate } from "react-router-dom";
 import { useClickOutside } from "../Hooks/useClickOutside";
 
+
+//Custom animation variants
 const formVariant = {
   hidden: {
     opacity: 0,
@@ -43,6 +45,8 @@ const containerVariant = {
   },
 };
 
+
+//Component confirmation modal for deleting case
 const DeleteCaseModal = ({ setDeleteModal, id }) => {
   let domNode = useClickOutside(() => {
     setDeleteModal(false);

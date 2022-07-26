@@ -7,6 +7,8 @@ import DataContext from "../Context/DataContext";
 import AdminSidebar from "../AdminComponents/AdminSidebar";
 import AdminHeader from "../AdminComponents/AdminHeader";
 
+
+//Component used for admin header component
 const AdminUserProfile = () => {
   const { user } = useContext(DataContext);
   const location = useLocation();

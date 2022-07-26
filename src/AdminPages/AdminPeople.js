@@ -20,24 +20,24 @@ import { Helmet } from "react-helmet";
 import NoUser from "../Assets/nouser.png";
 import NavigatorForm from "../AdminComponents/NavigatorForm";
 
-const AdminPeople = () => {
-  const [showModal, setShowModal] = useState(false);
 
+//Component page to show the list of doctors
+const AdminPeople = () => {
+
+
+  //AdminPeople component states
+  const [showModal, setShowModal] = useState(false);
   const { listUsers, patients, facilities, ToastContainer, toast } = useAuth();
   const [facility, setFacility] = useState([]);
   const [userData, setUserData] = useState([]);
-
   useEffect(() => {
     setFacility(facilities);
   }, [facilities]);
-
   const [term, setTerm] = useState("");
   const [isSort, setIsSort] = useState(false);
   const [sort, setSort] = useState("Oldest");
   const [searchDropdown, setSearchDropdown] = useState(false);
-
   const [modal, setModal] = useState(false);
-
   let domNodeSearch = useClickOutside(() => {
     setSearchDropdown(false);
   });
@@ -45,16 +45,13 @@ const AdminPeople = () => {
   let domNodeSort = useClickOutside(() => {
     setIsSort(false);
   });
-
   const [pageNumber, setPageNumber] = useState(0);
   const [usersPerPage, setUsersPerPage] = useState(20);
   const pagesVisited = pageNumber * usersPerPage;
-
   const pageCount = Math.ceil(listUsers.length / usersPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-
   const [navigator, setNavigator] = useState(false);
 
   return (

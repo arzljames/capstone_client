@@ -13,6 +13,8 @@ import useAuth from "../Hooks/useAuth";
 import FacilityTableBody from "../AdminComponents/FacilityTableBody";
 
 const AdminFacilityData = () => {
+
+  //AdminFacilityData Component States
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [toast, setToast] = useState(false);

@@ -5,13 +5,12 @@ import useAuth from "../Hooks/useAuth";
 import { socket } from "./Socket";
 import Avatar from "../Assets/nouser.png";
 
+
+//list of recent chats in chat module
 const ChatRecent = ({ setId, recent }) => {
   const { user, listUsers, recentChat, chatUsers } = useAuth();
-
   const [users, setUsers] = useState([]);
-
   const navigate = useNavigate();
-
   const path = window.location.pathname;
 
   useEffect(() => {

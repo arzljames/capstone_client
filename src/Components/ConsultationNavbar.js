@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { FcConferenceCall, FcUpload, FcFile, FcDownload } from "react-icons/fc";
 
+
+//Component navigation bar for case module
 const ConsultationNavbar = () => {
   const navigate = useNavigate();
   const path = window.location.pathname;

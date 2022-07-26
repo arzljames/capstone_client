@@ -9,6 +9,8 @@ import useAuth from "../Hooks/useAuth";
 import AdminEditSpecModal from "../AdminComponents/AdminEditSpecModal";
 import ReactTimeAgo from "react-time-ago";
 
+
+//Component page for specialization
 const AdminSpecialization = () => {
   const [modal, setModal] = useState(false);
   const [editModal, setEditModal] = useState(false);

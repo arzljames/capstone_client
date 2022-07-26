@@ -51,6 +51,7 @@ const PendingUser = ({
     setDropdown(false);
   });
 
+  //Handling submit post request using asynchronous axios api
   const handleVerify = async () => {
     try {
       let response = await api.post(`/api/auth/verify/${id}`, {

@@ -8,6 +8,7 @@ import { sectionMarginDefaults } from "docx";
 import api from "../API/Api";
 import { useNavigate } from "react-router-dom";
 
+//Component modal for creating messages
 const CreateChat = () => {
   const { showCreateChat, setShowCreateChat, listUsers, user } = useAuth();
   let domNode = useClickOutside(() => {
