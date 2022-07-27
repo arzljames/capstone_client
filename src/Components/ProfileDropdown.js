@@ -109,9 +109,7 @@ const ProfileDropdown = ({
   const [profileModal, setProfileModal] = useState(false);
   const [logout, setLogout] = useState(false);
 
-  useEffect(() => {
-    console.log(user);
-  }, []);
+
 
   return (
     <>
