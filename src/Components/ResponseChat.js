@@ -160,12 +160,12 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
       </div>
       <form onSubmit={(e) => e.preventDefault()}>
         <textarea
-          disabled={active === false ? true : false}
+          disabled={active === "Done" ? true : false}
           value={temp}
           onChange={(e) => setTemp(e.target.value)}
-          className={active === false ? "inactive" : ""}
+          className={active === "Done" ? "inactive" : ""}
           placeholder={
-            active === true
+            active !== "Done"
               ? "Type here to response..."
               : "You cannot write response to an inactive case"
           }
@@ -290,13 +290,13 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
                       Dr. {e.user.firstname}{" "}
                       <span> {getDate(e.createdAt)} </span>
                     </h1>
-                    {/* <h2 style={{ marginBottom: "0px" }}>
+                    <h2 style={{ marginBottom: "0px" }}>
                       {e.user.specialization === null
                         ? null
                         : specializations.filter(
                             (item) => item._id === e.user.specialization
                           )[0].specialization}
-                    </h2> */}
+                    </h2>
                     <h2>
                       {
                         facilities.filter(

@@ -97,7 +97,7 @@ const StatisticCase = ({ border, bg }) => {
             return (
               <div
                 index={index}
-                className={index % 2 === 0 ? "table-body" : "table-body-2"}
+                className="table-body"
               >
                 <div className="cs-id">
                   <p>{item.caseId}</p>

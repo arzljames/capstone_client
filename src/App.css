@@ -347,8 +347,7 @@ button.gray-cta:hover {
   object-position: center;
 }
 
-.table-body:hover,
-.table-body-2:hover {
+.table-body:hover {
   background: #eef3ef;
   border-left: 3px solid #82b38d;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
@@ -362,15 +361,26 @@ button.gray-cta:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-weight: 400;
+  font-weight: 600;
   text-transform: capitalize;
   color: #5f5f5f;
-  border-left: 3px solid #05138e00;
-  background: #fff;
+  background: #eee;
+  border-left: 3px solid #808080;
   padding: 0px 10px;
-  border-bottom: 1px solid #ebebeb;
   border-bottom: 1px solid #d3d3d3;
   cursor: pointer;
+  position: relative;
+}
+
+.table-body-2::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgb(255, 84, 54);
+  border-radius: 50%;
+  top: 8px;
+  left: 8px;
 }
 
 .searchbar-container {

@@ -63,7 +63,7 @@ const StatisticPatient = ({ border, bg }) => {
             return (
               <div
                 key={key + 1}
-                className={key % 2 === 0 ? "table-body" : "table-body-2"}
+                className="table-body"
               >
                 <div className="pt-name">
                   <p>

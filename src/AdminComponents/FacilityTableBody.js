@@ -26,7 +26,7 @@ const FacilityTableBody = ({
         setHospital(item);
         setPicture(picture);
       }}
-      className={number % 2 === 0 ? "table-body" : "table-body-2"}
+      className="table-body"
     >
       <div className="fac-body-name">
         <span>

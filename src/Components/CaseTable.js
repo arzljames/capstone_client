@@ -117,13 +117,7 @@ const CaseTable = ({
               return vals;
             }
           })
-          .filter((e) =>
-            filter === "None"
-              ? e
-              : filter === "Active"
-              ? e.active === true
-              : e.active === false
-          )
+          .filter((e) => e.active === "Pending")
           .filter((val) => {
             if (
               (user.designation === "623ec7fb80a6838424edaa29" &&
@@ -151,7 +145,118 @@ const CaseTable = ({
                   navigate(`/consultation/case/case-data/${item._id}`);
                 }}
                 index={index}
-                className={index % 2 === 0 ? "table-body" : "table-body-2"}
+                className="table-body-2"
+              >
+                <div className="cs-id">
+                  <p
+                    onClick={() => {
+                      navigate(`/consultation/case/case-data/${item._id}`);
+                    }}
+                  >
+                    {item.caseId}
+                  </p>
+                  <div className="cs-info-container">
+                    <div>Follow Ups: {item.followUp?.length}</div>
+                  </div>
+                </div>
+                <div className="cs-name">
+                  <p
+                    onClick={(e) => {
+                      filterPatient(item.patient._id);
+                      setPatientModal(true);
+                      e.stopPropagation();
+                    }}
+                  >
+                    {item.patient.lastname +
+                      "," +
+                      " " +
+                      item.patient.firstname +
+                      " " +
+                      item.patient.middlename[0] +
+                      "."}
+                  </p>
+                  <div className="cs-info-container">
+                    <div>Gender: {item.patient.sex}</div>
+                    <div>Age: {getAge(item.patient.birthday) + " yrs old"}</div>
+                    <div>Civil Status: {item.patient.civilStatus}</div>
+                  </div>
+                </div>
+
+                <div className="cs-department">
+                  {specializations.length === 0
+                    ? null
+                    : specializations.filter((e) => {
+                        return item.specialization.includes(e._id);
+                      })[0].specialization}
+                </div>
+                <div className="cs-date">{getDate(item.createdAt)}</div>
+                <div className="cs-status">
+                  <p
+                    className={
+                      item.active === "Active"
+                        ? "active"
+                        : item.active === "Done"
+                        ? "done"
+                        : "pending"
+                    }
+                  >
+                    <div
+                      className={
+                        item.active === "Active"
+                          ? "indicator active"
+                          : item.active === "Done"
+                          ? "indicator done"
+                          : "indicator pending"
+                      }
+                    ></div>
+                    {item.active}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        {cases
+          .filter((vals) => {
+            if (term === "") {
+              return vals;
+            } else if (
+              vals.caseId.toLowerCase().includes(term.toLocaleLowerCase()) ||
+              vals.patient.fullname
+                .toLowerCase()
+                .includes(term.toLocaleLowerCase())
+            ) {
+              return vals;
+            }
+          })
+          .filter((e) => e.active === "Active" || e.active === "Done")
+          .filter((val) => {
+            if (
+              (user.designation === "623ec7fb80a6838424edaa29" &&
+                val.specialization.includes(user.specialization)) ||
+              (user.designation === "623ec7fb80a6838424edaa29" &&
+                val.subSpecialization
+                  .map((f) => f._id)
+                  .includes(user.specialization))
+            ) {
+              return val;
+            } else if (user.userId === val.physician._id) {
+              return val;
+            }
+          })
+          .slice(
+            term === "" ? pagesVisited : 0,
+            term === "" ? pagesVisited + usersPerPage : cases.length
+          )
+          .map((item, index) => {
+            return (
+              <div
+                onClick={() => {
+                  user?.designation === "623ec7fb80a6838424edaa29" &&
+                    handleStatus(item._id);
+                  navigate(`/consultation/case/case-data/${item._id}`);
+                }}
+                index={index}
+                className="table-body"
               >
                 <div className="cs-id">
                   <p

@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import {
-  HiChevronLeft,
-  HiChevronRight,
-} from "react-icons/hi";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { useClickOutside } from "../Hooks/useClickOutside";
 import ReactPaginate from "react-paginate";
 import { VscBracketError } from "react-icons/vsc";
@@ -97,7 +94,7 @@ const PatientTableData = ({
                   setPatientId(item._id);
                   filterPatient(item._id);
                 }}
-                className={key % 2 === 0 ? "table-body" : "table-body-2"}
+                className="table-body"
               >
                 <div className="pt-name">
                   <p>
@@ -116,7 +113,7 @@ const PatientTableData = ({
                 <div className="pt-active">
                   {
                     cases?.filter(
-                      (f) => f.patient._id === item._id && f.active === 'Active'
+                      (f) => f.patient._id === item._id && f.active === "Active"
                     ).length
                   }
                 </div>
@@ -128,7 +125,8 @@ const PatientTableData = ({
             );
           })}
 
-        {patients.filter((val) => {
+        {patients
+          .filter((val) => {
             if (term === "") {
               return val;
             } else if (
@@ -136,8 +134,8 @@ const PatientTableData = ({
             ) {
               return val;
             }
-          }).filter((id) => id.physician._id === user.userId).length ===
-          0 && (
+          })
+          .filter((id) => id.physician._id === user.userId).length === 0 && (
           <div className="no-data">
             <span>
               <VscBracketError />

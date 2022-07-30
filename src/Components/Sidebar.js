@@ -42,7 +42,7 @@ const Sidebar = () => {
     const fetchBadge = () => {
       if (
         cases.filter(
-          (e) => e.physician._id === user.userId && e.active === true
+          (e) => e.physician._id === user.userId && e.active === "Pending"
         ).length > 0
       ) {
         setRefBadge(true);
@@ -50,11 +50,11 @@ const Sidebar = () => {
         cases.filter(
           (e) =>
             (e.specialization.includes(user.specialization) &&
-              e.active === true) ||
+              e.active === "Pending") ||
             (e.subSpecialization
               .map((f) => f._id)
               .includes(user.specialization) &&
-              e.active === true)
+              e.active === "Pending")
         ).length > 0
       ) {
         setDocBadage(true);
