@@ -39,6 +39,7 @@ import ChatUser from "../Pages/ChatUser";
 import { socket } from "../Components/Socket";
 import NavigatorDashboard from "../Pages/NavigatorDashboard";
 import NavigatorCase from "../Pages/NavigatorCase";
+import ArchivedCase from "../Pages/ArchivedCase";
 
 //Custom components for adding animation for each components and pages
 //Header Tree
@@ -129,6 +130,7 @@ const AnimatedRoutes = () => {
             <Route path="consultation/incoming" element={<IncomingConsult />} />
             <Route path="consultation/outgoing" element={<OutgoingConsult />} />
             <Route path="consultation/case" element={<Case />} />
+            <Route path="consultation/archived" element={<ArchivedCase />} />
             <Route
               path="consultation/case/case-data/:id"
               element={<CaseData />}

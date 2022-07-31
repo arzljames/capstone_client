@@ -139,7 +139,9 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
             setFile("");
           }
         });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -150,13 +152,15 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
             ? response.filter((e) => e.room === id).length + " response"
             : response.filter((e) => e.room === id).length + " responses"}
         </h1>
-        <p
-          onClick={() =>
-            window.open("https://forms.gle/dmS32SyQSYZjZqwF9", "_blank")
-          }
-        >
-          Take a Survey
-        </p>
+        {user?.designation !== "623ec7fb80a6838424edaa29" && (
+          <p
+            onClick={() =>
+              window.open("https://forms.gle/dmS32SyQSYZjZqwF9", "_blank")
+            }
+          >
+            Take a Survey
+          </p>
+        )}
       </div>
       <form onSubmit={(e) => e.preventDefault()}>
         <textarea
@@ -291,7 +295,7 @@ const ResponseChat = ({ id, user, response, setResponse, active }) => {
                       <span> {getDate(e.createdAt)} </span>
                     </h1>
                     <h2 style={{ marginBottom: "0px" }}>
-                      {e.user.specialization === null
+                      {e.user?.specialization === null
                         ? null
                         : specializations.filter(
                             (item) => item._id === e.user.specialization

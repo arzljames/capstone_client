@@ -208,11 +208,15 @@ p.expand {
 .case-hospital-active {
   flex: 1;
   min-width: 270px;
-  border: 1px solid #058e46;
+  border: 1px solid #16a358;
   padding: 20px;
   border-radius: 8px;
-  background: #058e46;
+  background: #16a358;
   width: 100%;
+}
+
+div.case-hospital-active label {
+  color: #a1d8bb;
 }
 
 .case-hospital-inactive {

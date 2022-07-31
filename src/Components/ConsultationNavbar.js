@@ -4,6 +4,7 @@ import { IoMedkitOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { FcConferenceCall, FcUpload, FcFile, FcDownload } from "react-icons/fc";
+import { HiUserGroup, HiArchive, HiDocumentAdd } from "react-icons/hi";
 
 //Component navigation bar for case module
 const ConsultationNavbar = () => {
@@ -33,48 +34,11 @@ const ConsultationNavbar = () => {
             }
           >
             <p>
-              <FcConferenceCall />
+              <HiUserGroup />
             </p>
             <span> Patients</span>
           </li>
         ) : null}
-
-        {/* <li
-          onClick={() => navigate("/consultation/case")}
-          className={
-            path.includes("case/case-data".toLowerCase() && "consultation/case")
-              ? "active-nav"
-              : null
-          }
-        >
-          <p>
-            <FcFile />
-          </p>
-          <span> Consultation Case </span>{" "}
-          {cases?.filter(
-            (e) =>
-              (e.specialization.includes(user.specialization) &&
-                e.active === "Pending") ||
-              (e.subSpecialization
-                .map((f) => f._id)
-                .includes(user.specialization) &&
-                e.active === "Pending")
-          ).length === 0 ? null : (
-            <div>
-              {
-                cases?.filter(
-                  (e) =>
-                    (e.specialization.includes(user.specialization) &&
-                      e.active === "Pending") ||
-                    (e.subSpecialization
-                      .map((f) => f._id)
-                      .includes(user.specialization) &&
-                      e.active === "Pending")
-                ).length
-              }
-            </div>
-          )}
-        </li> */}
 
         {user !== null && user.designation !== "623ec7fb80a6838424edaa29" ? (
           <li
@@ -84,7 +48,7 @@ const ConsultationNavbar = () => {
             }
           >
             <p>
-              <FcFile />
+              <HiDocumentAdd />
             </p>
             <span>Consultation Case</span>
 
@@ -110,7 +74,7 @@ const ConsultationNavbar = () => {
             }
           >
             <p>
-              <FcFile />
+              <HiDocumentAdd />
             </p>
             <span>Consultation Case</span>
 
@@ -139,6 +103,16 @@ const ConsultationNavbar = () => {
             )}
           </li>
         ) : null}
+
+        <li
+          onClick={() => navigate("/consultation/archived")}
+          className={path.includes("archived") ? "active-nav" : ""}
+        >
+          <p>
+            <HiArchive />
+          </p>
+          <span>Archived</span>
+        </li>
       </ul>
     </div>
   );

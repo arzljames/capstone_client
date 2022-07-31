@@ -120,10 +120,10 @@ const CaseTable = ({
           .filter((e) => e.active === "Pending")
           .filter((val) => {
             if (
-              (user.designation === "623ec7fb80a6838424edaa29" &&
-                val.specialization.includes(user.specialization)) ||
-              (user.designation === "623ec7fb80a6838424edaa29" &&
-                val.subSpecialization
+              (user?.designation === "623ec7fb80a6838424edaa29" &&
+                val?.specialization.includes(user?.specialization)) ||
+              (user?.designation === "623ec7fb80a6838424edaa29" &&
+                val?.subSpecialization
                   .map((f) => f._id)
                   .includes(user.specialization))
             ) {
@@ -141,6 +141,12 @@ const CaseTable = ({
               <div
                 onClick={() => {
                   user?.designation === "623ec7fb80a6838424edaa29" &&
+                    socket.emit("send_response", {
+                      room: item._id,
+                      user: user.userId,
+                      content: `Hi Doc ${item.physician?.firstname}, thank you for using the Telemedicine Web Application. We are currently attending other consultations. We will get back to you as soon as possible. Thank you! `,
+                    });
+                  user?.designation === "623ec7fb80a6838424edaa29" &&
                     handleStatus(item._id);
                   navigate(`/consultation/case/case-data/${item._id}`);
                 }}
@@ -150,6 +156,14 @@ const CaseTable = ({
                 <div className="cs-id">
                   <p
                     onClick={() => {
+                      user?.designation === "623ec7fb80a6838424edaa29" &&
+                        socket.emit("send_response", {
+                          room: item._id,
+                          user: user.userId,
+                          content: `Hi Doc ${item.physician?.firstname}, thank you for using the Telemedicine Web Application. We are currently attending other consultations. We will get back to you as soon as possible. Thank you! `,
+                        });
+                      user?.designation === "623ec7fb80a6838424edaa29" &&
+                        handleStatus(item._id);
                       navigate(`/consultation/case/case-data/${item._id}`);
                     }}
                   >
@@ -228,7 +242,7 @@ const CaseTable = ({
               return vals;
             }
           })
-          .filter((e) => e.active === "Active" || e.active === "Done")
+          .filter((e) => e.active === "Active")
           .filter((val) => {
             if (
               (user.designation === "623ec7fb80a6838424edaa29" &&

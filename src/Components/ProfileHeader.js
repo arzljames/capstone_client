@@ -103,7 +103,7 @@ const ProfileHeader = () => {
         </div>
         <h5>{user !== null ? user.firstname : ""}</h5>
       </motion.div>
-      <motion.div
+      {/* <motion.div
         whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
         onClick={() => {
           setDropdownNotif(!dropdownNotif);
@@ -130,7 +130,7 @@ const ProfileHeader = () => {
             }
           </div>
         ) : null}
-      </motion.div>
+      </motion.div> */}
       <motion.div
         whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
         onClick={() => {
@@ -144,9 +144,9 @@ const ProfileHeader = () => {
         </p>
       </motion.div>
 
-      {dropdownNotif && (
+      {/* {dropdownNotif && (
         <NotificationDropdown setDropdownNotif={setDropdownNotif} />
-      )}
+      )} */}
       {dropdown && (
         <ProfileDropdown
           setDropdown2={setDropdown}

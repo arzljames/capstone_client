@@ -93,7 +93,7 @@ const Sidebar = () => {
               path.includes(item.link2) ||
               path.includes(item.link3) ||
               path.includes(item.link4) ||
-              path.includes(item.link5)
+              path.includes(item.link5) 
                 ? item.activeIcon
                 : item.icon}
             </div>

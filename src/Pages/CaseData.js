@@ -43,7 +43,7 @@ const CaseData = () => {
   const [patientCase, setPatientCase] = useState([]);
   const [followModal, setFollowModal] = useState(false);
   const [expand, setExpand] = useState(false);
-  const [status, setStatus] = useState("Pending");
+  const [status, setStatus] = useState("");
   const {
     user,
     response,
@@ -60,7 +60,7 @@ const CaseData = () => {
   const [tabb, setTabb] = useState("Main");
   const [followUpData, setFollowUpData] = useState([]);
   const [served, setServed] = useState(null);
-
+  const [fetchInter, setFetchInter] = useState(null);
   const { id } = useParams();
   let domNode = useClickOutside(() => {
     setDropdown(false);
@@ -148,12 +148,6 @@ const CaseData = () => {
     return age;
   }
 
-  var options = {
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  };
-
   const getDate = (date) => {
     let today = new Date(date);
     let createdAt =
@@ -179,29 +173,93 @@ const CaseData = () => {
   };
 
   useEffect(() => {
-    socket.on("receive_response", (data) => {
+    socket.emit("receive_response", (data) => {
       setResponse(data);
     });
-  }, [socket]);
+  }, [socket, response]);
 
   const fetchResponse = async () => {
-    let result = await api.get("/api/message");
-    if (result.data) {
-      setResponse(result.data);
-      setServed(
-        result.data
-          .filter((e) => e.room === patientCase._id)
-          .filter((f) => f.user?.designation === "623ec7fb80a6838424edaa29")[0]
-          .createdAt
-      );
+    try {
+      let result = await api.get("/api/message");
+      if (result.data) {
+        setResponse(result.data);
+        setServed(
+          result.data
+            .filter((e) => e.room === patientCase._id)
+            .filter(
+              (f) => f.user?.designation === "623ec7fb80a6838424edaa29"
+            )[0]?.createdAt
+        );
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
+
+  const fetchServedInterval = () => {
+    // let hours =
+    //   new Date(patientCase?.createdAt).getHours() > 12
+    //     ? new Date(patientCase?.createdAt).getHours() - 12
+    //     : new Date(patientCase?.createdAt).getHours();
+
+    let hours =
+      new Date(patientCase?.createdAt).getHours() >= 16 ||
+      new Date(patientCase?.createdAt).getHours() <= 8
+        ? 8
+        : new Date(patientCase.createdAt).getHours();
+
+    let minute = new Date(patientCase?.createdAt).getMinutes();
+
+    let hoursServed =
+      new Date(served).getHours() > 12
+        ? new Date(served).getHours() - 12
+        : new Date(served).getHours();
+
+    let minuteServed = new Date(served).getMinutes();
+
+    setFetchInter(
+      Math.abs(parseInt(hours - hoursServed)) +
+        " hr" +
+        " " +
+        ":" +
+        " " +
+        Math.abs(parseInt(minute - minuteServed)) +
+        " min"
+    );
   };
 
   useEffect(() => {
     fetchResponse();
+    fetchServedInterval();
   }, [socket, response]);
 
-  if (patientCase.length === 0) {
+  useEffect(() => {
+    // console.log(
+    //   new Date("07/31/2022 4:01").getHours() >= 16 ||
+    //     new Date(patientCase?.createdAt).getHours() <= 8
+    //     ? 8
+    //     : new Date(patientCase.createdAt).getHours()
+    // );
+
+    // console.log(
+    //   new Date("07/31/2022 20:01").getHours() > 16 ||
+    //     new Date("07/31/2022 20:01").getHours() < 8
+    //     ? 8
+    //     : new Date("07/31/2022 20:01").getHours()
+    // );
+
+    let hour = new Date("8/2/2022 8:01");
+
+    let hour2 = new Date("8/2/2022 7:01");
+
+    var diffMs = hour2 - hour; // milliseconds between now & Christmas
+    var diffDays = Math.floor(diffMs / 86400000); // days
+    var diffHrs = Math.floor(diffMs / 3600000); // hours
+    var diffMins = Math.round((diffMs % 3600000) / 60000); // minutes
+    console.log(diffHrs - 18 < 0 ? diffHrs : diffHrs - 24 + 8);
+  }, [appState]);
+
+  if (patientCase.length === 0 || status === "") {
     return (
       <div className="wait-spinner-container">
         <PulseLoader size={10} margin={2} color="#058e46" />
@@ -908,13 +966,18 @@ const CaseData = () => {
                         {getTime(patientCase.createdAt)}
                       </p>
 
-                      {served !== null && (
+                      {served === null ||
+                      fetchInter === null ||
+                      patientCase.active === "Pending" ||
+                      status === "" ||
+                      !response ? null : (
                         <>
                           <label>Date & Time served</label>
 
-                          <p>
+                          <p style={{ marginBottom: "0px" }}>
                             {getDate(served)} {getTime(served)}
                           </p>
+                          <p>{fetchInter}</p>
                         </>
                       )}
                     </div>

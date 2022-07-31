@@ -127,12 +127,7 @@ const NavigatorCase = () => {
                 )
                 .map((item, index) => {
                   return (
-                    <div
-                      index={index}
-                      className={
-                        index % 2 === 0 ? "table-body" : "table-body-2"
-                      }
-                    >
+                    <div index={index} className="table-body">
                       <div className="cs-id">
                         <p>{item.caseId}</p>
                         <div className="cs-info-container">
