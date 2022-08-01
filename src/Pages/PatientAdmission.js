@@ -298,6 +298,7 @@ const PatientAdmission = () => {
                           <option>Married</option>
                           <option>Divorced</option>
                           <option>Widowed</option>
+                          <option>Child</option>
                           <option value="Other">Other</option>
                         </select>
                         {civilOther === "Other" && (
@@ -331,7 +332,7 @@ const PatientAdmission = () => {
                             - Please Select -
                           </option>
 
-                          <option>Catholic</option>
+                          <option>Roman Catholic</option>
                           <option>Protestant</option>
                           <option>Islam</option>
                           <option>Buddhism</option>

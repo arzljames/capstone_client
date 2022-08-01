@@ -71,7 +71,7 @@ const EditPatientProfile = () => {
       !relationship
     ) {
       toast.error("All fields are required.");
-      setIsClick(false)
+      setIsClick(false);
     } else {
       try {
         let response = await api.put(
@@ -98,15 +98,15 @@ const EditPatientProfile = () => {
         if (response.data.ok) {
           setAppState(`updated one patient${state._id}`);
           setTimeout(() => setAppState(""), 500);
-          toast.success("You have successfully updated patient's profile.");        
-          setIsClick(false)
+          toast.success("You have successfully updated patient's profile.");
+          setIsClick(false);
         } else {
           toast.error("An unexpected error occured. Please try again");
-          setIsClick(false)
+          setIsClick(false);
         }
       } catch (error) {
         toast.error(error.message);
-        setIsClick(false)
+        setIsClick(false);
       }
     }
   };
@@ -161,19 +161,7 @@ const EditPatientProfile = () => {
                   <button onClick={() => navigate(-1)} className="back-btn">
                     <HiChevronLeft /> <p>Back</p>
                   </button>
-                  <div className="above-patient-profile-btns">
-                    <button
-                      className={isClick ? "green-cta-disable" : "green-cta"}
-                      onClick={() => {
-                        handleSubmit();
-                      }}
-                    >
-                      <p>
-                        <HiDocumentText />
-                      </p>
-                      Save Record
-                    </button>
-                  </div>
+                  <div className="above-patient-profile-btns"></div>
                 </div>
                 <hr />
                 <div className="patient-admission">
@@ -487,6 +475,33 @@ const EditPatientProfile = () => {
                           type="number"
                           placeholder="9876-543-210"
                         />
+                      </div>
+                    </div>{" "}
+                    <br />
+                    <div className="admission-2col">
+                      <div className="div1"></div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          alignItems: "flex-end",
+                          margin: 0,
+                          padding: 0,
+                          marginRight: "-24px",
+                        }}
+                        className="div2"
+                      >
+                        <button
+                          className={
+                            isClick ? "green-cta-disable" : "green-cta"
+                          }
+                          onClick={() => handleSubmit()}
+                        >
+                          <p>
+                            <HiDocumentText />
+                          </p>
+                          Save Record
+                        </button>
                       </div>
                     </div>
                   </div>
