@@ -64,7 +64,7 @@ const StatisticDoctor = ({ bg, border }) => {
                   {patients?.filter((e) => e.physician._id === item._id).length}
                 </div>
                 <div className="dr-hospital">{item.designation?.facility}</div>
-                <div className="dr-status">{item.activeStatus}</div>
+                <div style={{color: `${item.activeStatus === 'Online' ? 'green' : 'orange'}`}} className="dr-status">{item.activeStatus}</div>
               </div>
             );
           })}
