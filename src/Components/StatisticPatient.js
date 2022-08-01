@@ -54,7 +54,7 @@ const StatisticPatient = ({ border, bg }) => {
             ) {
               return val;
             }
-          })
+          }).filter((id) => id.physician._id === user.userId)
           .slice(
             term === "" ? pagesVisited : 0,
             term === "" ? pagesVisited + usersPerPage : patients.length

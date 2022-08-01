@@ -53,7 +53,7 @@ const CaseTable = ({
     return age;
   }
 
-  const { specializations, cases, user, patients } = useAuth();
+  const { specializations, cases, user, patients, response } = useAuth();
   const [pageNumber, setPageNumber] = useState(0);
   const [usersPerPage, setUsersPerPage] = useState(10);
   const pagesVisited = pageNumber * usersPerPage;
@@ -272,6 +272,14 @@ const CaseTable = ({
                 index={index}
                 className="table-body"
               >
+                {response.filter(
+                  (e) =>
+                    e.room === item._id &&
+                    e.user?._id !== user?.userId &&
+                    e.open === true
+                )?.length !== 0 ? (
+                  <div className="case-badge"></div>
+                ) : null}
                 <div className="cs-id">
                   <p
                     onClick={() => {
@@ -306,7 +314,6 @@ const CaseTable = ({
                     <div>Civil Status: {item.patient.civilStatus}</div>
                   </div>
                 </div>
-
                 <div className="cs-department">
                   {specializations.length === 0
                     ? null

@@ -258,10 +258,10 @@ const UserDashboard = () => {
                 iconColor="#fff"
                 total={cases.length + followUp}
                 subTotal={
-                  cases.filter((e) => e.active === true).length > 1
-                    ? cases.filter((e) => e.active === true).length +
+                  cases.filter((e) => e.active === 'Active').length > 1
+                    ? cases.filter((e) => e.active === 'Active').length +
                       " Active Cases"
-                    : cases.filter((e) => e.active === true).length +
+                    : cases.filter((e) => e.active === 'Active').length +
                       " Active Case"
                 }
                 bg="#FF8657"

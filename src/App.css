@@ -337,6 +337,7 @@ button.gray-cta:hover {
   padding: 0px 10px;
   border-bottom: 1px solid #d3d3d3;
   cursor: pointer;
+  position: relative;
 }
 
 .table-body img,
@@ -374,6 +375,16 @@ button.gray-cta:hover {
 
 .table-body-2::after {
   content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgb(255, 84, 54);
+  border-radius: 50%;
+  top: 8px;
+  left: 8px;
+}
+
+.case-badge {
   position: absolute;
   width: 8px;
   height: 8px;

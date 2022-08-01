@@ -82,13 +82,20 @@ const StatisticCase = ({ border, bg }) => {
               return vals;
             }
           })
-          .filter((e) =>
-            filter === "None"
-              ? e
-              : filter === "Active"
-              ? e.active === true
-              : e.active === false
-          )
+          .filter((val) => {
+            if (
+              (user.designation === "623ec7fb80a6838424edaa29" &&
+                val.specialization.includes(user.specialization)) ||
+              (user.designation === "623ec7fb80a6838424edaa29" &&
+                val.subSpecialization
+                  .map((f) => f._id)
+                  .includes(user.specialization))
+            ) {
+              return val;
+            } else if (user.userId === val.physician._id) {
+              return val;
+            }
+          })
           .slice(
             term === "" ? pagesVisited : 0,
             term === "" ? pagesVisited + usersPerPage : cases.length

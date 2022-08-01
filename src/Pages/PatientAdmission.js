@@ -77,7 +77,7 @@ const PatientAdmission = () => {
       !city ||
       !ethnicity ||
       !fullname ||
-      !relationship || 
+      !relationship ||
       !dialect
     ) {
       toast.error("Please check any empty fields and try again");
@@ -100,7 +100,7 @@ const PatientAdmission = () => {
           ethnicity,
           fullname,
           relationship,
-          dialect
+          dialect,
         });
 
         if (response.data.ok) {
@@ -175,7 +175,7 @@ const PatientAdmission = () => {
                     <HiArrowNarrowLeft /> <p>Back</p>
                   </button>
                   <div className="above-patient-profile-btns">
-                    <button
+                    {/* <button
                       className={isClick ? "green-cta-disable" : "green-cta"}
                       onClick={() => handleSubmit()}
                     >
@@ -183,7 +183,7 @@ const PatientAdmission = () => {
                         <HiDocumentText />
                       </p>
                       Save Record
-                    </button>
+                    </button> */}
                   </div>
                 </div>
 
@@ -510,6 +510,34 @@ const PatientAdmission = () => {
                           type="number"
                           placeholder="e.g. 9876-543-210"
                         />
+                      </div>
+                    </div>
+                    <br />
+
+                    <div className="admission-2col">
+                      <div className="div1"></div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          alignItems: "flex-end",
+                          margin: 0,
+                          padding: 0,
+                          marginRight: "-24px",
+                        }}
+                        className="div2"
+                      >
+                        <button
+                          className={
+                            isClick ? "green-cta-disable" : "green-cta"
+                          }
+                          onClick={() => handleSubmit()}
+                        >
+                          <p>
+                            <HiDocumentText />
+                          </p>
+                          Save Record
+                        </button>
                       </div>
                     </div>
                   </div>

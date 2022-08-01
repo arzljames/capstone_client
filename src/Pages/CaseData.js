@@ -248,15 +248,19 @@ const CaseData = () => {
     //     : new Date("07/31/2022 20:01").getHours()
     // );
 
-    let hour = new Date("8/2/2022 8:01");
+    let hour = new Date("8/2/2022 10:01").getHours();
 
-    let hour2 = new Date("8/2/2022 7:01");
+    let hour2 = new Date("8/2/2022 7:01").getHours();
 
     var diffMs = hour2 - hour; // milliseconds between now & Christmas
     var diffDays = Math.floor(diffMs / 86400000); // days
     var diffHrs = Math.floor(diffMs / 3600000); // hours
     var diffMins = Math.round((diffMs % 3600000) / 60000); // minutes
-    console.log(diffHrs - 18 < 0 ? diffHrs : diffHrs - 24 + 8);
+    if (hour > 13) {
+      console.log(8 - hour2);
+    } else {
+      console.log(hour - hour2);
+    }
   }, [appState]);
 
   if (patientCase.length === 0 || status === "") {
