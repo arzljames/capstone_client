@@ -64,6 +64,7 @@ const Login = () => {
         setMessage("");
         setPrompt(false);
         setUserEmail(response.data.email);
+
         return;
       }
 
@@ -75,6 +76,7 @@ const Login = () => {
         setLoader(false);
         setPrompt(true);
         setMessage(response.data.err);
+
       }
     } catch (error) {
       setLoader(false);

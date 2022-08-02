@@ -124,6 +124,7 @@ const Register = () => {
           password: register.password,
         });
         if (response.data.emailErr) {
+          console.log(response)
           setEmailErr(true);
           setEmailMsg(response.data.emailErr);
           setLoader(false);
@@ -131,10 +132,12 @@ const Register = () => {
           setUsernameErr(true);
           setUsernameMsg(response.data.usernameErr);
           setLoader(false);
+          console.log(response)
         } else {
           setSuccess(true);
           clearForm();
           setLoader(false);
+          console.log(response)
         }
       }
     } catch (error) {
@@ -143,16 +146,7 @@ const Register = () => {
     }
   };
 
-  useEffect(() => {
-    facilities
-      .filter((item) => item._id === register.designation)
-      .map((e) => e.specialization)
-      .map((r) => {
-        return setSpec(r);
-      });
 
-    console.log(spec);
-  }, [register.designation]);
 
   return (
     <>
