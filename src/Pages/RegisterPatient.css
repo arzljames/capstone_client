@@ -1,0 +1,61 @@
+.patient-registration {
+  background: #fff;
+  width: 40%;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  padding: 20px;
+}
+
+.patient-registration .block {
+  margin-bottom: 40px;
+}
+
+.patient-registration h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #272727;
+  margin-bottom: 20px;
+}
+
+.block-inline {
+  display: flex;
+  margin-bottom: 15px;
+  flex-direction: column;
+}
+
+.block-inline label {
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #4e4e4e;
+}
+
+.block-inline .container {
+  flex: 1;
+  background: transparent;
+}
+
+.block-inline .container input {
+  width: 100%;
+  border: 1px solid #d3d3d3;
+  border-radius: 6px;
+  padding: 0px 10px;
+  background: rgb(244, 246, 247);
+  height: 40px;
+}
+
+.block-inline .container input.suffix {
+  width: 40px;
+}
+
+.block-inline .container input.firstname,
+.block-inline .container input.middlename,
+.block-inline .container input.lastname {
+  flex: 1;
+}
+
+.block-inline .container input.middlename {
+  margin: 0px 15px;
+}

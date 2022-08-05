@@ -1022,7 +1022,7 @@ button.deactive-btn:hover {
   height: 40px;
   cursor: pointer;
   padding: 0px 10px;
-  border-radius: 4px;
+  border-radius: 100px;
   margin-bottom: 5px;
   display: flex;
   align-items: center;
@@ -1048,14 +1048,14 @@ button.deactive-btn:hover {
 }
 
 .patient-modal-nav ul li:hover {
-  background: #e8ebf0;
+  background: #d5e0f3;
   transition: 0.1s ease-in-out;
 }
 
 .patient-modal-nav ul li.li-active {
-  background: #e8ebf0;
+  background: #d5e0f3;
   width: 100%;
-  color: #143b20;
+  color: #3172eb;
   font-weight: 500;
 }
 

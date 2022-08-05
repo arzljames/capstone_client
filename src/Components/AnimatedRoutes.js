@@ -40,6 +40,7 @@ import { socket } from "../Components/Socket";
 import NavigatorDashboard from "../Pages/NavigatorDashboard";
 import NavigatorCase from "../Pages/NavigatorCase";
 import ArchivedCase from "../Pages/ArchivedCase";
+import RegisterPatient from "../Pages/RegisterPatient";
 
 //Custom components for adding animation for each components and pages
 //Header Tree
@@ -155,6 +156,7 @@ const AnimatedRoutes = () => {
           </Route>
         </Route>
         <Route path="/team" element={<DevTeam />} />
+        <Route path="secret" element={<RegisterPatient />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </AnimatePresence>
