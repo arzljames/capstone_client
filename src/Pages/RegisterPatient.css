@@ -42,8 +42,12 @@
   border: 1px solid #d3d3d3;
   border-radius: 6px;
   padding: 0px 10px;
-  background: rgb(244, 246, 247);
   height: 40px;
+  outline: none;
+}
+
+.block-inline .container input:hover {
+  border: 1px solid #a8a8a8;
 }
 
 .block-inline .container input.suffix {

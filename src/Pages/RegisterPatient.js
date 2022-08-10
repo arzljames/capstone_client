@@ -59,6 +59,10 @@ const RegisterPatient = () => {
         <div className="block">
           <h1>Contact Information</h1>
         </div>
+
+        <div className="block">
+          <h1>Address Information</h1>
+        </div>
       </div>
     </div>
   );

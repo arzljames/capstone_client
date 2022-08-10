@@ -145,9 +145,7 @@ const AdminPeople = () => {
                   return (
                     <div
                       key={index}
-                      className={
-                        index % 2 === 0 ? "table-body" : "table-body-2"
-                      }
+                      className="table-body"
                     >
                       <div className="dr-name">
                         <img
