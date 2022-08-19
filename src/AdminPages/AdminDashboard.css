@@ -28,7 +28,24 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   width: 100%;
   height: 100%;
-  padding: 20px;
+  padding: 10px;
+  padding-bottom: 50px;
+}
+
+.year-container {
+  display: flex;
+}
+
+.year-container p {
+  margin-right: 5px;
+  color: #272727;
+  font-weight: 500;
+}
+
+.year-container select {
+  border: 1px solid #d3d3d3;
+  cursor: pointer;
+  border-radius: 3px;
 }
 
 .donut-chart-container {
@@ -186,11 +203,11 @@
     flex-direction: column;
   }
 
-  .chart-container {
+  /* .chart-container {
     width: 100%;
     margin-bottom: 20px;
     min-width: none;
-  }
+  } */
 
   .donut-chart-container {
     width: 100%;
