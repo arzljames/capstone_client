@@ -133,7 +133,7 @@ const NewCase = ({ setShowCase, overflow }) => {
     setPmh("");
     setRos("");
     setPe("");
-    setParaclinical([]);
+    setParaclinical({ name: "", file: "" });
     setWi("");
     setImd("");
     setReason("");
@@ -168,26 +168,15 @@ const NewCase = ({ setShowCase, overflow }) => {
         return;
       } else {
         const formData = new FormData();
-        // formData.append("file", paraclinical.file);
-        // paraclinical.forEach((tag) => formData.append("file", tag.file));
-        const postPromises = [];
-        for (let i = 0; i < paraclinical.length; i++) {
-          let file = paraclinical[i].file;
-          formData.append("file", file);
-          formData.append("upload_preset", "qn8bbwmc");
-          formData.append("cloud_name", "ojttelemedicine");
-          postPromises.push(
-            fetch("https://api.cloudinary.com/v1_1/ojttelemedicine/upload", {
-              method: "post",
-              body: formData,
-            })
-          );
-        }
-
-        try {
-          const results = await Promise.all(postPromises);
-          // Now pull out the urls and write to your DB...
-          if (results) {
+        formData.append("file", paraclinical.file);
+        formData.append("upload_preset", "qn8bbwmc");
+        formData.append("cloud_name", "ojttelemedicine");
+        fetch("https://api.cloudinary.com/v1_1/ojttelemedicine/upload", {
+          method: "post",
+          body: formData,
+        })
+          .then((res) => res.json())
+          .then((data) => {
             api
               .put(`/api/patient/add-case/${patientId}`, {
                 caseId,
@@ -205,7 +194,8 @@ const NewCase = ({ setShowCase, overflow }) => {
                 pmh,
                 ros,
                 pe,
-                attachments: results.map((e) => e.url),
+                paraclinicalName: paraclinical.name,
+                paraclinicalFile: data.url ? data.url : "",
                 wi,
                 imd,
                 reason,
@@ -230,11 +220,7 @@ const NewCase = ({ setShowCase, overflow }) => {
                   setIsClick(false);
                 }
               });
-          }
-        } catch (error) {
-          // if any of the uploads fail, they all fail
-          console.log(error);
-        }
+          });
       }
     } catch (error) {
       toast.error(error.message, {
@@ -305,6 +291,10 @@ const NewCase = ({ setShowCase, overflow }) => {
   const removeItem = (e) => {
     setParaclinical(paraclinical.filter((item) => item.name !== e.name));
   };
+
+  useEffect(() => {
+    console.log(paraclinical);
+  }, [paraclinical]);
 
   return (
     <motion.div
@@ -524,15 +514,15 @@ const NewCase = ({ setShowCase, overflow }) => {
           ></textarea>
 
           <label>Pertinent Paraclinicals</label>
-          {/* {paraclinical?.length !== 0 && (
+          {paraclinical?.name && (
             <div className="paraclinical-file-container">
               {paraclinical.name}
               <p onClick={() => setParaclinical({})}>
                 <HiX />
               </p>
             </div>
-          )} */}
-
+          )}
+          {/* 
           {paraclinical?.map((e) => {
             return (
               <div className="paraclinical-file-container">
@@ -546,15 +536,13 @@ const NewCase = ({ setShowCase, overflow }) => {
                 </p>
               </div>
             );
-          })}
-          {/* {!paraclinical.name && (
+          })} */}
+          {!paraclinical.name && (
             <button onClick={() => onBtnClick()} id="custom-file">
               <HiPlus /> <p>Add File</p>
             </button>
-          )} */}
-          <button onClick={() => onBtnClick()} id="custom-file">
-            <HiPlus /> <p>Add File</p>
-          </button>
+          )}
+
           <input
             ref={inputFileRef}
             type="file"
@@ -565,11 +553,10 @@ const NewCase = ({ setShowCase, overflow }) => {
               //   name: e.target.files[0].name,
               //   file: e.target.files[0],
               // });
-              setParaclinical([
-                ...paraclinical,
-
-                { name: e.target.files[0].name, file: e.target.files[0] },
-              ]);
+              setParaclinical({
+                name: e.target.files[0].name,
+                file: e.target.files[0],
+              });
             }}
           />
 

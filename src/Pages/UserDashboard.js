@@ -283,7 +283,9 @@ const UserDashboard = () => {
               <StatisticCase bg="#FFE2D6" border="#FF8657" />
             )}
 
-            <UserChart />
+            <div className="chart-container">
+              <UserChart />
+            </div>
           </div>
         </div>
       </div>
