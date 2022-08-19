@@ -116,12 +116,7 @@ const Reports = () => {
                 )
                 .map((item, index) => {
                   return (
-                    <div
-                      key={index}
-                      className={
-                        index % 2 === 0 ? "table-body" : "table-body-2"
-                      }
-                    >
+                    <div key={index} className="table-body">
                       <div className="rp-id">
                         <p
                           onClick={() =>

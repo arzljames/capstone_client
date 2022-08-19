@@ -25,6 +25,7 @@ import StatisticDoctor from "../Components/StatisticDoctor";
 import StatisticCase from "../Components/StatisticCase";
 import StatisticHospital from "../Components/StatisticHospital";
 import StatisticPatient from "../Components/StatisticPatient";
+import UserChart from "../Components/UserChart";
 
 const UserDashboard = () => {
   const { facilities, listUsers, patients, cases, followUp } = useAuth();
@@ -195,8 +196,6 @@ const UserDashboard = () => {
     );
   };
 
-
-
   return (
     <>
       <Helmet>
@@ -258,10 +257,10 @@ const UserDashboard = () => {
                 iconColor="#fff"
                 total={cases.length + followUp}
                 subTotal={
-                  cases.filter((e) => e.active === 'Active').length > 1
-                    ? cases.filter((e) => e.active === 'Active').length +
+                  cases.filter((e) => e.active === "Active").length > 1
+                    ? cases.filter((e) => e.active === "Active").length +
                       " Active Cases"
-                    : cases.filter((e) => e.active === 'Active').length +
+                    : cases.filter((e) => e.active === "Active").length +
                       " Active Case"
                 }
                 bg="#FF8657"
@@ -271,10 +270,20 @@ const UserDashboard = () => {
               />
             </div>
 
-            {stats === "Total Hospitals" && <StatisticHospital bg="#C9D3F8" border="#5D7CE9"/>}
-            {stats === "Total Doctors" && <StatisticDoctor bg="#FFDFDF" border="#FE7477"/>}
-            {stats === "Total Patients" && <StatisticPatient  bg="#DEFFF9" border="#3DC1AD"/>}
-            {stats === "Total Cases" && <StatisticCase bg="#FFE2D6" border="#FF8657"/>}
+            {stats === "Total Hospitals" && (
+              <StatisticHospital bg="#C9D3F8" border="#5D7CE9" />
+            )}
+            {stats === "Total Doctors" && (
+              <StatisticDoctor bg="#FFDFDF" border="#FE7477" />
+            )}
+            {stats === "Total Patients" && (
+              <StatisticPatient bg="#DEFFF9" border="#3DC1AD" />
+            )}
+            {stats === "Total Cases" && (
+              <StatisticCase bg="#FFE2D6" border="#FF8657" />
+            )}
+
+            <UserChart />
           </div>
         </div>
       </div>

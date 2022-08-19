@@ -21,7 +21,7 @@ export const CaseDataProvider = ({ children }) => {
   const [pmh, setPmh] = useState("");
   const [ros, setRos] = useState("");
   const [pe, setPe] = useState("");
-  const [paraclinical, setParaclinical] = useState({});
+  const [paraclinical, setParaclinical] = useState([]);
   const [wi, setWi] = useState("");
   const [imd, setImd] = useState("");
   const [reason, setReason] = useState("");

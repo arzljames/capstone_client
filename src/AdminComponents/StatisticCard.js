@@ -34,7 +34,7 @@ const StatisticCard = ({
       variants={variant}
       initial="initial"
       animate={stats === heading ? "animate" : "initial"}
-      onClick={() => setStats(heading)}
+      onClick={() => stats === heading ? setStats(!stats) : setStats(heading)}
       className="statistic-card"
     >
       <div className="card-upper">
