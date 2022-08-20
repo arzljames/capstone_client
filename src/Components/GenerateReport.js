@@ -20,6 +20,16 @@ const GenerateReport = ({ setFilterModal }) => {
     setReport(reports.filter((e) => e._id === id)[0]);
   }, [reports]);
 
+  useEffect(() => {
+    console.log(patients
+      .filter(filterDate)
+      .filter(filterGender)
+      .filter(filterHospital)
+      .filter(filterSpec)
+      .filter(filterAge)
+      .map((e) => e))
+  },[])
+
   if (!report) {
     return (
       <div className="wait-spinner-container">
@@ -130,6 +140,8 @@ const GenerateReport = ({ setFilterModal }) => {
       }),
     filename: `${reportId}.csv`,
   };
+
+
 
   return (
     <>

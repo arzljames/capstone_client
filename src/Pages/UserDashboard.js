@@ -26,9 +26,11 @@ import StatisticCase from "../Components/StatisticCase";
 import StatisticHospital from "../Components/StatisticHospital";
 import StatisticPatient from "../Components/StatisticPatient";
 import UserChart from "../Components/UserChart";
+import CasesChart from "../Components/CasesChart";
 
 const UserDashboard = () => {
-  const { facilities, listUsers, patients, cases, followUp } = useAuth();
+  const { facilities, listUsers, patients, cases, followUp, specializations } =
+    useAuth();
 
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
 
@@ -69,47 +71,6 @@ const UserDashboard = () => {
   for (let i = 1; i < 100; i++) {
     year.push(1999 + i);
   }
-
-  // useEffect(() => {
-  //   function extract() {
-  //     const groups = {};
-  //     patients
-  //       .filter((e) => yearSelected === parseInt(e.createdAt.substring(0, 4)))
-  //       .map(function (val) {
-  //         const dates = new Date(val.createdAt);
-  //         const date = dates.toLocaleString("en-us", { month: "short" });
-  //         if (date in groups) {
-  //           groups[date].push(val._id);
-  //         } else {
-  //           groups[date] = new Array(val._id);
-  //         }
-  //       });
-
-  //     setMonths(groups);
-  //     return groups;
-  //   }
-
-  //   function extractCase() {
-  //     const groups = {};
-  //     cases
-  //       .filter((e) => yearSelected === parseInt(e.createdAt.substring(0, 4)))
-  //       .forEach(function (val) {
-  //         const dates = new Date(val.createdAt);
-  //         const date = dates.toLocaleString("en-us", { month: "short" });
-  //         if (date in groups) {
-  //           groups[date].push(val._id);
-  //         } else {
-  //           groups[date] = new Array(val._id);
-  //         }
-  //       });
-
-  //     setMonthsCase(groups);
-  //     return groups;
-  //   }
-
-  //   extract();
-  //   extractCase();
-  // }, [patients, cases, yearSelected]);
 
   const [currYear, setCurrYear] = useState(new Date().getFullYear());
 
@@ -197,6 +158,10 @@ const UserDashboard = () => {
       getDates(e.createdAt) <= new Date()
     );
   };
+
+  useEffect(() => {
+    console.log(specializations.map((item) => item.specialization));
+  }, []);
 
   return (
     <>
@@ -286,25 +251,8 @@ const UserDashboard = () => {
             )}
 
             <div className="chart-container">
-              <div className="year-container">
-                <p>Year</p>
-                <select
-                  onChange={(e) => setCurrYear(e.target.value)}
-                  value={currYear}
-                >
-                  <option value={2022}>2022</option>
-                  <option value={2023}>2023</option>
-                  <option value={2024}>2024</option>
-                  <option value={2025}>2025</option>
-                  <option value={2026}>2026</option>{" "}
-                  <option value={2027}>2027</option>
-                  <option value={2028}>2028</option>
-                  <option value={2029}>2029</option>
-                  <option value={2030}>2030</option>
-                </select>
-              </div>
-
-              <UserChart yearSelected={currYear} />
+              <UserChart yearSelected={currYear} setCurrYear={setCurrYear} />
+              <CasesChart />
             </div>
           </div>
         </div>

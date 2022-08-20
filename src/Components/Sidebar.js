@@ -69,7 +69,11 @@ const Sidebar = () => {
 
   return (
     <div className="admin-sidebar">
-      {SidebarData.map((item) => {
+      {SidebarData.filter((data) =>
+        user?.designation !== "623ec7fb80a6838424edaa29"
+          ? data.name !== "Report"
+          : data
+      ).map((item) => {
         return (
           <div
             onClick={() => navigate(item.link)}
@@ -93,7 +97,7 @@ const Sidebar = () => {
               path.includes(item.link2) ||
               path.includes(item.link3) ||
               path.includes(item.link4) ||
-              path.includes(item.link5) 
+              path.includes(item.link5)
                 ? item.activeIcon
                 : item.icon}
             </div>

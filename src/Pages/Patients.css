@@ -1091,11 +1091,10 @@ button.deactive-btn:hover {
 
 .patient-personal {
   width: 100%;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ebebeb;
+  border: 1px solid #d3d3d3;
 }
 
 .patient-personal h2 {
@@ -1116,6 +1115,7 @@ button.deactive-btn:hover {
   font-size: 14px;
   color: #272727;
   font-weight: 500;
+  text-transform: uppercase;
 }
 
 .case-history-table {
@@ -1123,10 +1123,8 @@ button.deactive-btn:hover {
   background: #fff;
   border-radius: 8px;
   padding: 0px 0px;
-  border: 1px solid #ebebeb;
+  border: 1px solid #d3d3d3;
   position: relative;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   overflow: hidden;
 }
 
@@ -1140,8 +1138,9 @@ button.deactive-btn:hover {
   justify-content: space-between;
   font-weight: 600;
   text-transform: uppercase;
-  color: #ffffff;
-  background: #5fa56f;
+  color: #272727;
+  background: #fff;
+  border-bottom: 1px solid #d3d3d3;
 }
 
 .case-history-table-body {
@@ -1170,13 +1169,13 @@ button.deactive-btn:hover {
   font-weight: 400;
   text-transform: capitalize;
   color: #5f5f5f;
-  background: #e9f1eb;
+  background: #f0f0f0;
   cursor: pointer;
 }
 
 .case-history-table-body:hover,
 .case-history-table-body-2:hover {
-  background: #ced3cf;
+  background: #e4e4e4;
 }
 
 .ch-no {
@@ -1254,7 +1253,7 @@ button.deactive-btn:hover {
   .patient-modal-nav ul li.li-active {
     background: transparent;
     width: 33.33%;
-    border-bottom: 1px solid #257447;
+    border-bottom: 2px solid rgb(45, 109, 206);
     border-radius: 0px;
   }
 

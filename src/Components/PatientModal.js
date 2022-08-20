@@ -53,6 +53,10 @@ const PatientModal = ({
     return today;
   };
 
+  useEffect(() => {
+    console.log(cases.filter(e => e.active === 'Active'))
+  }, [])
+
   return (
     <>
       <motion.div
@@ -102,13 +106,13 @@ const PatientModal = ({
                   >
                     Active Case{" "}
                     {cases.filter(
-                      (e) => e.patient._id === patient._id && e.active === true
+                      (e) => e.patient._id === patient._id && e.active === 'Active'
                     ).length === 0 ? null : (
                       <div>
                         {
                           cases.filter(
                             (e) =>
-                              e.patient._id === patient._id && e.active === true
+                              e.patient._id === patient._id && e.active === 'Active'
                           ).length
                         }
                       </div>
@@ -322,7 +326,7 @@ const PatientModal = ({
                             }
                           </div>
                           <div className="ch-status">
-                            {item.active ? "Active" : "Done"}
+                            {item.active==="Active" ? "Active" : "Done"}
                           </div>
                         </div>
                       );
@@ -342,7 +346,7 @@ const PatientModal = ({
             {tab === "Active Case" && (
               <div className="patient-modal-content">
                 {cases.filter(
-                  (e) => e.patient._id === patient._id && e.active === true
+                  (e) => e.patient._id === patient._id && e.active === "Active"
                 ).length === 0 ? (
                   <div className="no-active-case">
                     <h1>No Case</h1>
@@ -351,7 +355,7 @@ const PatientModal = ({
                 ) : (
                   cases
                     .filter(
-                      (e) => e.patient._id === patient._id && e.active === true
+                      (e) => e.patient._id === patient._id && e.active === "Active"
                     )
                     .map((item, key) => {
                       return (
