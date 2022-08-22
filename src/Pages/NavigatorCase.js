@@ -57,20 +57,7 @@ const NavigatorCase = () => {
   const [usersPerPage, setUsersPerPage] = useState(10);
   const pagesVisited = pageNumber * usersPerPage;
 
-  const pageCount = Math.ceil(
-    cases.filter((val) => {
-      if (
-        (user.designation === "623ec7fb80a6838424edaa29" &&
-          val.specialization.includes(user.specialization)) ||
-        (user.designation === "623ec7fb80a6838424edaa29" &&
-          val.subSpecialization.map((f) => f._id).includes(user.specialization))
-      ) {
-        return val;
-      } else if (user.userId === val.physician._id) {
-        return val;
-      }
-    }).length / usersPerPage
-  );
+  const pageCount = Math.ceil(cases.length / usersPerPage);
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
@@ -120,7 +107,97 @@ const NavigatorCase = () => {
                     return vals;
                   }
                 })
+                .filter((e) => e.active === "Pending" || e.active === "Active")
 
+                .slice(
+                  term === "" ? pagesVisited : 0,
+                  term === "" ? pagesVisited + usersPerPage : cases.length
+                )
+                .map((item, index) => {
+                  return (
+                    <div
+                      index={index}
+                      className={
+                        item.active === "Pending"
+                          ? "table-body-2"
+                          : "table-body"
+                      }
+                    >
+                      <div className="cs-id">
+                        <p>{item.caseId}</p>
+                        <div className="cs-info-container">
+                          <div>Follow Ups: {item.followUp?.length}</div>
+                        </div>
+                      </div>
+                      <div className="cs-name">
+                        <p>
+                          {item.patient.lastname +
+                            "," +
+                            " " +
+                            item.patient.firstname +
+                            " " +
+                            item.patient.middlename[0] +
+                            "."}
+                        </p>
+                        <div className="cs-info-container">
+                          <div>Gender: {item.patient.sex}</div>
+                          <div>
+                            Age: {getAge(item.patient.birthday) + " yrs old"}
+                          </div>
+                          <div>Civil Status: {item.patient.civilStatus}</div>
+                        </div>
+                      </div>
+
+                      <div className="cs-department">
+                        {specializations.length === 0
+                          ? null
+                          : specializations.filter((e) => {
+                              return item.specialization.includes(e._id);
+                            })[0].specialization}
+                      </div>
+                      <div className="cs-date">{getDate(item.createdAt)}</div>
+                      <div className="cs-status">
+                        <p
+                          className={
+                            item.active === "Active"
+                              ? "active"
+                              : item.active === "Done"
+                              ? "done"
+                              : "pending"
+                          }
+                        >
+                          <div
+                            className={
+                              item.active === "Active"
+                                ? "indicator active"
+                                : item.active === "Done"
+                                ? "indicator done"
+                                : "indicator pending"
+                            }
+                          ></div>
+                          {item.active}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+
+              {cases
+                .filter((vals) => {
+                  if (term === "") {
+                    return vals;
+                  } else if (
+                    vals.caseId
+                      .toLowerCase()
+                      .includes(term.toLocaleLowerCase()) ||
+                    vals.patient.fullname
+                      .toLowerCase()
+                      .includes(term.toLocaleLowerCase())
+                  ) {
+                    return vals;
+                  }
+                })
+                .filter((e) => e.active === "Done")
                 .slice(
                   term === "" ? pagesVisited : 0,
                   term === "" ? pagesVisited + usersPerPage : cases.length
@@ -186,28 +263,6 @@ const NavigatorCase = () => {
                     </div>
                   );
                 })}
-
-              {cases.filter((vals) => {
-                if (term === "") {
-                  return vals;
-                } else if (
-                  vals.caseId
-                    .toLowerCase()
-                    .includes(term.toLocaleLowerCase()) ||
-                  vals.patient.fullname
-                    .toLowerCase()
-                    .includes(term.toLocaleLowerCase())
-                ) {
-                  return vals;
-                }
-              }).length === 0 && (
-                <div className="no-data">
-                  <span>
-                    <VscBracketError />
-                  </span>
-                  <p>No data found</p>
-                </div>
-              )}
             </div>
 
             <div className="pagination-container">
