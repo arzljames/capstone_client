@@ -257,29 +257,20 @@ const Patients = () => {
                     Patient
                   </motion.button>
                   <motion.div
-                    whileTap={{
-                      scale: 0.75,
-                    }}
                     onClick={() => setShowImport(!showImport)}
                     className="import-patient-btn"
                     ref={domNodeImport}
                   >
                     <AiFillCaretDown />
                     {showImport && (
-                      <motion.div
-                        variants={dropdownVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        className="import-patient-container"
-                      >
+                      <div className="import-patient-container">
                         <div onClick={() => onBtnClick()}>
                           <p>
                             <HiUpload />
                           </p>
                           Import CSV
                         </div>
-                      </motion.div>
+                      </div>
                     )}
 
                     <input

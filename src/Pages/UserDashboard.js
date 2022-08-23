@@ -29,8 +29,15 @@ import UserChart from "../Components/UserChart";
 import CasesChart from "../Components/CasesChart";
 
 const UserDashboard = () => {
-  const { facilities, listUsers, patients, cases, followUp, specializations } =
-    useAuth();
+  const {
+    user,
+    facilities,
+    listUsers,
+    patients,
+    cases,
+    followUp,
+    specializations,
+  } = useAuth();
 
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
 
@@ -250,10 +257,12 @@ const UserDashboard = () => {
               <StatisticCase bg="#FFE2D6" border="#FF8657" />
             )}
 
-            <div className="chart-container">
-              <UserChart yearSelected={currYear} setCurrYear={setCurrYear} />
-              <CasesChart />
-            </div>
+            {user?.designation === "623ec7fb80a6838424edaa29" && (
+              <div className="chart-container">
+                <UserChart yearSelected={currYear} setCurrYear={setCurrYear} />
+                <CasesChart />
+              </div>
+            )}
           </div>
         </div>
       </div>
